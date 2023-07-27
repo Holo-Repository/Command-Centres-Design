@@ -8,22 +8,22 @@
 //------------------------------------------------------------------------------
 
 
-namespace TestApp
+namespace app
 {
     public partial class App : global::Microsoft.UI.Xaml.Markup.IXamlMetadataProvider
     {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.UI.Xaml.Markup.Compiler"," 1.0.0.0")]
-        private global::TestApp.TestApp_XamlTypeInfo.XamlMetaDataProvider __appProvider;
+        private global::app.app_XamlTypeInfo.XamlMetaDataProvider __appProvider;
 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.UI.Xaml.Markup.Compiler"," 1.0.0.0")]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        private global::TestApp.TestApp_XamlTypeInfo.XamlMetaDataProvider _AppProvider
+        private global::app.app_XamlTypeInfo.XamlMetaDataProvider _AppProvider
         {
             get
             {
                 if (__appProvider == null)
                 {
-                    __appProvider = new global::TestApp.TestApp_XamlTypeInfo.XamlMetaDataProvider();
+                    __appProvider = new global::app.app_XamlTypeInfo.XamlMetaDataProvider();
                 }
                 return __appProvider;
             }
@@ -61,7 +61,7 @@ namespace TestApp
     }
 }
 
-namespace TestApp.TestApp_XamlTypeInfo
+namespace app.app_XamlTypeInfo
 {
     /// <summary>
     /// Main class for providing metadata for the app or library
@@ -70,15 +70,15 @@ namespace TestApp.TestApp_XamlTypeInfo
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     public sealed class XamlMetaDataProvider : global::Microsoft.UI.Xaml.Markup.IXamlMetadataProvider
     {
-        private global::TestApp.TestApp_XamlTypeInfo.XamlTypeInfoProvider _provider = null;
+        private global::app.app_XamlTypeInfo.XamlTypeInfoProvider _provider = null;
 
-        private global::TestApp.TestApp_XamlTypeInfo.XamlTypeInfoProvider Provider
+        private global::app.app_XamlTypeInfo.XamlTypeInfoProvider Provider
         {
             get
             {
                 if (_provider == null)
                 {
-                    _provider = new global::TestApp.TestApp_XamlTypeInfo.XamlTypeInfoProvider();
+                    _provider = new global::app.app_XamlTypeInfo.XamlTypeInfoProvider();
                 }
                 return _provider;
             }
@@ -128,7 +128,7 @@ namespace TestApp.TestApp_XamlTypeInfo
                 {
                     xamlType = CreateXamlType(typeIndex);
                 }
-                var userXamlType = xamlType as global::TestApp.TestApp_XamlTypeInfo.XamlUserType;
+                var userXamlType = xamlType as global::app.app_XamlTypeInfo.XamlUserType;
                 if(xamlType == null || (userXamlType != null && userXamlType.IsReturnTypeStub && !userXamlType.IsLocalType))
                 {
                     global::Microsoft.UI.Xaml.Markup.IXamlType libXamlType = CheckOtherMetadataProvidersForType(type);
@@ -167,7 +167,7 @@ namespace TestApp.TestApp_XamlTypeInfo
                 {
                     xamlType = CreateXamlType(typeIndex);
                 }
-                var userXamlType = xamlType as global::TestApp.TestApp_XamlTypeInfo.XamlUserType;
+                var userXamlType = xamlType as global::app.app_XamlTypeInfo.XamlUserType;
                 if(xamlType == null || (userXamlType != null && userXamlType.IsReturnTypeStub && !userXamlType.IsLocalType))
                 {
                     global::Microsoft.UI.Xaml.Markup.IXamlType libXamlType = CheckOtherMetadataProvidersForName(typeName);
@@ -229,7 +229,7 @@ namespace TestApp.TestApp_XamlTypeInfo
             _typeNameTable[1] = "Microsoft.UI.Xaml.ResourceDictionary";
             _typeNameTable[2] = "Object";
             _typeNameTable[3] = "Boolean";
-            _typeNameTable[4] = "TestApp.MainWindow";
+            _typeNameTable[4] = "app.MainWindow";
             _typeNameTable[5] = "Microsoft.UI.Xaml.Window";
 
             _typeTable = new global::System.Type[6];
@@ -237,7 +237,7 @@ namespace TestApp.TestApp_XamlTypeInfo
             _typeTable[1] = typeof(global::Microsoft.UI.Xaml.ResourceDictionary);
             _typeTable[2] = typeof(global::System.Object);
             _typeTable[3] = typeof(global::System.Boolean);
-            _typeTable[4] = typeof(global::TestApp.MainWindow);
+            _typeTable[4] = typeof(global::app.MainWindow);
             _typeTable[5] = typeof(global::Microsoft.UI.Xaml.Window);
         }
 
@@ -274,7 +274,7 @@ namespace TestApp.TestApp_XamlTypeInfo
         }
 
         private object Activate_0_XamlControlsResources() { return new global::Microsoft.UI.Xaml.Controls.XamlControlsResources(); }
-        private object Activate_4_MainWindow() { return new global::TestApp.MainWindow(); }
+        private object Activate_4_MainWindow() { return new global::app.MainWindow(); }
         private void MapAdd_0_XamlControlsResources(object instance, object key, object item)
         {
             var collection = (global::System.Collections.Generic.IDictionary<global::System.Object, global::System.Object>)instance;
@@ -285,8 +285,8 @@ namespace TestApp.TestApp_XamlTypeInfo
 
         private global::Microsoft.UI.Xaml.Markup.IXamlType CreateXamlType(int typeIndex)
         {
-            global::TestApp.TestApp_XamlTypeInfo.XamlSystemBaseType xamlType = null;
-            global::TestApp.TestApp_XamlTypeInfo.XamlUserType userType;
+            global::app.app_XamlTypeInfo.XamlSystemBaseType xamlType = null;
+            global::app.app_XamlTypeInfo.XamlUserType userType;
             string typeName = _typeNameTable[typeIndex];
             global::System.Type type = _typeTable[typeIndex];
 
@@ -294,7 +294,7 @@ namespace TestApp.TestApp_XamlTypeInfo
             {
 
             case 0:   //  Microsoft.UI.Xaml.Controls.XamlControlsResources
-                userType = new global::TestApp.TestApp_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.ResourceDictionary"));
+                userType = new global::app.app_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.ResourceDictionary"));
                 userType.Activator = Activate_0_XamlControlsResources;
                 userType.DictionaryAdd = MapAdd_0_XamlControlsResources;
                 userType.AddMemberName("UseCompactResources");
@@ -302,26 +302,26 @@ namespace TestApp.TestApp_XamlTypeInfo
                 break;
 
             case 1:   //  Microsoft.UI.Xaml.ResourceDictionary
-                xamlType = new global::TestApp.TestApp_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                xamlType = new global::app.app_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
             case 2:   //  Object
-                xamlType = new global::TestApp.TestApp_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                xamlType = new global::app.app_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
             case 3:   //  Boolean
-                xamlType = new global::TestApp.TestApp_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                xamlType = new global::app.app_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 4:   //  TestApp.MainWindow
-                userType = new global::TestApp.TestApp_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Window"));
+            case 4:   //  app.MainWindow
+                userType = new global::app.app_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Window"));
                 userType.Activator = Activate_4_MainWindow;
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
             case 5:   //  Microsoft.UI.Xaml.Window
-                xamlType = new global::TestApp.TestApp_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                xamlType = new global::app.app_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
             }
             return xamlType;
@@ -395,14 +395,14 @@ namespace TestApp.TestApp_XamlTypeInfo
 
         private global::Microsoft.UI.Xaml.Markup.IXamlMember CreateXamlMember(string longMemberName)
         {
-            global::TestApp.TestApp_XamlTypeInfo.XamlMember xamlMember = null;
-            global::TestApp.TestApp_XamlTypeInfo.XamlUserType userType;
+            global::app.app_XamlTypeInfo.XamlMember xamlMember = null;
+            global::app.app_XamlTypeInfo.XamlUserType userType;
 
             switch (longMemberName)
             {
             case "Microsoft.UI.Xaml.Controls.XamlControlsResources.UseCompactResources":
-                userType = (global::TestApp.TestApp_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.XamlControlsResources");
-                xamlMember = new global::TestApp.TestApp_XamlTypeInfo.XamlMember(this, "UseCompactResources", "Boolean");
+                userType = (global::app.app_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.XamlControlsResources");
+                xamlMember = new global::app.app_XamlTypeInfo.XamlMember(this, "UseCompactResources", "Boolean");
                 xamlMember.SetIsDependencyProperty();
                 xamlMember.Getter = get_0_XamlControlsResources_UseCompactResources;
                 xamlMember.Setter = set_0_XamlControlsResources_UseCompactResources;
@@ -464,10 +464,10 @@ namespace TestApp.TestApp_XamlTypeInfo
 
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.UI.Xaml.Markup.Compiler"," 1.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-    internal class XamlUserType : global::TestApp.TestApp_XamlTypeInfo.XamlSystemBaseType
+    internal class XamlUserType : global::app.app_XamlTypeInfo.XamlSystemBaseType
         , global::Microsoft.UI.Xaml.Markup.IXamlType
     {
-        global::TestApp.TestApp_XamlTypeInfo.XamlTypeInfoProvider _provider;
+        global::app.app_XamlTypeInfo.XamlTypeInfoProvider _provider;
         global::Microsoft.UI.Xaml.Markup.IXamlType _baseType;
         global::Microsoft.UI.Xaml.Markup.IXamlType _boxedType;
         bool _isArray;
@@ -482,7 +482,7 @@ namespace TestApp.TestApp_XamlTypeInfo
         global::System.Collections.Generic.Dictionary<string, string> _memberNames;
         global::System.Collections.Generic.Dictionary<string, object> _enumValues;
 
-        public XamlUserType(global::TestApp.TestApp_XamlTypeInfo.XamlTypeInfoProvider provider, string fullName, global::System.Type fullType, global::Microsoft.UI.Xaml.Markup.IXamlType baseType)
+        public XamlUserType(global::app.app_XamlTypeInfo.XamlTypeInfoProvider provider, string fullName, global::System.Type fullType, global::Microsoft.UI.Xaml.Markup.IXamlType baseType)
             :base(fullName, fullType)
         {
             _provider = provider;
@@ -697,7 +697,7 @@ namespace TestApp.TestApp_XamlTypeInfo
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     internal class XamlMember : global::Microsoft.UI.Xaml.Markup.IXamlMember
     {
-        global::TestApp.TestApp_XamlTypeInfo.XamlTypeInfoProvider _provider;
+        global::app.app_XamlTypeInfo.XamlTypeInfoProvider _provider;
         string _name;
         bool _isAttachable;
         bool _isDependencyProperty;
@@ -706,7 +706,7 @@ namespace TestApp.TestApp_XamlTypeInfo
         string _typeName;
         string _targetTypeName;
 
-        public XamlMember(global::TestApp.TestApp_XamlTypeInfo.XamlTypeInfoProvider provider, string name, string typeName)
+        public XamlMember(global::app.app_XamlTypeInfo.XamlTypeInfoProvider provider, string name, string typeName)
         {
             _name = name;
             _typeName = typeName;

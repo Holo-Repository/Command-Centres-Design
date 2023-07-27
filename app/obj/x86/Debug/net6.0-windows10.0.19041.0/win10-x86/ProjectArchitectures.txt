@@ -1,1 +1,1 @@
-C:\Users\isobe\source\repos\TestApp\TestApp.csproj;x86
+C:\code\Command-Centres-Design\app\app.csproj;x86

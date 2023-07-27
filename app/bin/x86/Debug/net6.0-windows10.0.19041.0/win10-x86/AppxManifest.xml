@@ -7,10 +7,10 @@
 
     For more information on package manifest files, see http://go.microsoft.com/fwlink/?LinkID=241727
   -->
-  <Identity Name="958113ae-8b2e-4800-a018-4848f77bcfdd" Publisher="CN=isobe" Version="1.0.0.0" ProcessorArchitecture="x86" />
-  <mp:PhoneIdentity PhoneProductId="958113ae-8b2e-4800-a018-4848f77bcfdd" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
+  <Identity Name="9a4587d6-6a2c-4fa8-a8d7-e0024fa5bb26" Publisher="CN=isobe" Version="1.0.0.0" ProcessorArchitecture="x86" />
+  <mp:PhoneIdentity PhoneProductId="9a4587d6-6a2c-4fa8-a8d7-e0024fa5bb26" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
-    <DisplayName>TestApp</DisplayName>
+    <DisplayName>app</DisplayName>
     <PublisherDisplayName>isobe</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
@@ -23,8 +23,8 @@
     <Resource Language="EN-US" />
   </Resources>
   <Applications>
-    <Application Id="App" Executable="TestApp.exe" EntryPoint="Windows.FullTrustApplication">
-      <uap:VisualElements DisplayName="TestApp" Description="TestApp" BackgroundColor="transparent" Square150x150Logo="Assets\Square150x150Logo.png" Square44x44Logo="Assets\Square44x44Logo.png">
+    <Application Id="App" Executable="app.exe" EntryPoint="Windows.FullTrustApplication">
+      <uap:VisualElements DisplayName="app" Description="app" BackgroundColor="transparent" Square150x150Logo="Assets\Square150x150Logo.png" Square44x44Logo="Assets\Square44x44Logo.png">
         <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png" />
         <uap:SplashScreen Image="Assets\SplashScreen.png" />
       </uap:VisualElements>
