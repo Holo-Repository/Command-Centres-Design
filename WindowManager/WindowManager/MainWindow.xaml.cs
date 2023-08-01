@@ -18,6 +18,7 @@ using Windows.Foundation.Collections;
 using Windows.Storage.Pickers;
 using Windows.Storage;
 using Windows.ApplicationModel.DataTransfer;
+using Microsoft.UI.Xaml.Media.Imaging;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -32,38 +33,60 @@ namespace WindowManager
         public MainWindow()
         {
             this.InitializeComponent();
+
             System.Diagnostics.Debug.WriteLine("Initialising");
 
         }
 
         private void Frame_DragStarting(UIElement sender, DragStartingEventArgs args)
         {
-            System.Diagnostics.Debug.WriteLine("Drag event started");
-            System.Diagnostics.Debug.WriteLine(sender);
-            System.Diagnostics.Debug.WriteLine(args);
 
             Frame frame = sender as Frame;
-            if (frame.Content != null) { System.Diagnostics.Debug.WriteLine(frame.Content.ToString()); }
-            else { System.Diagnostics.Debug.WriteLine(null); }
 
-            // Create a DataPackage
-            DataPackage dataPackage = new DataPackage();
+            if (frame.Content != null) 
+            { 
+                // set payload of DataPackage to WebLink
+                WebView2 webView = frame.Content as WebView2;
+                args.Data.SetWebLink(webView.Source);
+
+            }
+            else { System.Diagnostics.Debug.WriteLine("null"); }
 
         }
 
         private void Frame_DragOver(object sender, DragEventArgs e)
         {
-
+            e.AcceptedOperation = DataPackageOperation.Move;
         }
 
-        private void Frame_Drop(object sender, DragEventArgs e)
+        private async void Frame_Drop(object sender, DragEventArgs e)
         {
+            System.Diagnostics.Debug.WriteLine("Drop event handler triggered");
 
+            Frame frame = sender as Frame;
+
+            if (e.DataView.Contains(StandardDataFormats.WebLink))
+            {
+                var webLink = await e.DataView.GetWebLinkAsync();
+                if (webLink != null)
+                {
+                    frame.Content = new WebView2 { Source = webLink };
+
+                    // Set margin of webView (for now)
+                    WebView2 webView = frame.Content as WebView2;
+                    webView.Margin = new Thickness(10);
+                }
+            }
         }
 
         private void Frame_DropCompleted(UIElement sender, DropCompletedEventArgs args)
         {
+            System.Diagnostics.Debug.WriteLine("DropCompleted event handler triggered");
 
+            Frame frame = sender as Frame;
+
+            // Remove content from original frame (delete this line for Copy instead of Move)
+            frame.Content = null;
         }
 
         //private void myButton_Click(object sender, RoutedEventArgs e)

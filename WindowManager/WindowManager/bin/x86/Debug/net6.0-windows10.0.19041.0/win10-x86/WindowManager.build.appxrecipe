@@ -781,6 +781,9 @@
     <AppxPackagedFile Include="C:\code\Command-Centres-Design\WindowManager\WindowManager\Assets\StoreLogo.png">
       <PackagePath>Assets\StoreLogo.png</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\code\Command-Centres-Design\WindowManager\WindowManager\Assets\tree.jpg">
+      <PackagePath>Assets\tree.jpg</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\code\Command-Centres-Design\WindowManager\WindowManager\Assets\Wide310x150Logo.scale-200.png">
       <PackagePath>Assets\Wide310x150Logo.scale-200.png</PackagePath>
     </AppxPackagedFile>

@@ -83,7 +83,7 @@
 
             <Frame x:ConnectionId='2' Background="LightSteelBlue" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="2" 
                    CanDrag="True" AllowDrop="True" 
-                                                                                                                                    >
+                                                                                                                                     >
                 <!--<TextBox Name="addressBar"/>
                 <Button x:Name="myButton">Go</Button>-->
                 <controls:WebView2 x:ConnectionId='9' x:Name="MyWebView" Source="http://localhost:3000/" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10"/>
@@ -100,7 +100,7 @@
             <Frame x:ConnectionId='5' Background="LightSeaGreen" Grid.Column="1" Grid.Row="2" 
                    CanDrag="True" AllowDrop="True" 
                                                                                                                                     ></Frame>
-                
+
             <Frame x:ConnectionId='6' Background="MediumPurple" Grid.Column="2" Grid.Row="2"
                    CanDrag="True" AllowDrop="True" 
                                                                                                                                     ></Frame>
@@ -110,7 +110,8 @@
                    CanDrag="True" AllowDrop="True" 
                                                                                                                                     >
                 
-                <controls:WebView2 x:ConnectionId='8' x:Name="MyWebViewGoogle" Margin="10" Source="https://www.google.com" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                <controls:WebView2 x:ConnectionId='8' x:Name="MyWebViewGoogle" Margin="10" Source="https://www.google.com" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                                   CanDrag="True" AllowDrop="True"/>
             </Frame>
         </Grid>
    

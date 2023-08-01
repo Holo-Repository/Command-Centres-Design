@@ -83,7 +83,7 @@
 
             <Frame Background="LightSteelBlue" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="2" 
                    CanDrag="True" AllowDrop="True" 
-                   DragStarting="Frame_DragStarting" DragOver="Frame_DragOver" Drop="Frame_Drop" DropCompleted="Frame_DropCompleted">
+                   DragStarting="Frame_DragStarting" DragOver="Frame_DragOver" Drop="Frame_Drop" DropCompleted="Frame_DropCompleted" >
                 <!--<TextBox Name="addressBar"/>
                 <Button x:Name="myButton">Go</Button>-->
                 <controls:WebView2 x:Name="MyWebView" Source="http://localhost:3000/" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10"/>
@@ -100,7 +100,7 @@
             <Frame Background="LightSeaGreen" Grid.Column="1" Grid.Row="2" 
                    CanDrag="True" AllowDrop="True" 
                    DragStarting="Frame_DragStarting" DragOver="Frame_DragOver" Drop="Frame_Drop" DropCompleted="Frame_DropCompleted"></Frame>
-                
+
             <Frame Background="MediumPurple" Grid.Column="2" Grid.Row="2"
                    CanDrag="True" AllowDrop="True" 
                    DragStarting="Frame_DragStarting" DragOver="Frame_DragOver" Drop="Frame_Drop" DropCompleted="Frame_DropCompleted"></Frame>
@@ -110,7 +110,8 @@
                    CanDrag="True" AllowDrop="True" 
                    DragStarting="Frame_DragStarting" DragOver="Frame_DragOver" Drop="Frame_Drop" DropCompleted="Frame_DropCompleted">
                 
-                <controls:WebView2 x:Name="MyWebViewGoogle" Margin="10" Source="https://www.google.com" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                <controls:WebView2 x:Name="MyWebViewGoogle" Margin="10" Source="https://www.google.com" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                                   CanDrag="True" AllowDrop="True"/>
             </Frame>
         </Grid>
    
