@@ -242,10 +242,10 @@ namespace WindowManager.WindowManager_XamlTypeInfo
             _typeNameTable[14] = "Microsoft.Web.WebView2.Core.CoreWebView2";
             _typeNameTable[15] = "Windows.UI.Color";
             _typeNameTable[16] = "System.ValueType";
-            _typeNameTable[17] = "WindowManager.UserControls.WebViewGrid";
-            _typeNameTable[18] = "Microsoft.UI.Xaml.Controls.UserControl";
-            _typeNameTable[19] = "WindowManager.MainWindow";
-            _typeNameTable[20] = "Microsoft.UI.Xaml.Window";
+            _typeNameTable[17] = "WindowManager.MainWindow";
+            _typeNameTable[18] = "Microsoft.UI.Xaml.Window";
+            _typeNameTable[19] = "WindowManager.WebViewPanel";
+            _typeNameTable[20] = "Microsoft.UI.Xaml.Controls.UserControl";
 
             _typeTable = new global::System.Type[21];
             _typeTable[0] = typeof(global::Microsoft.UI.Xaml.Controls.XamlControlsResources);
@@ -265,10 +265,10 @@ namespace WindowManager.WindowManager_XamlTypeInfo
             _typeTable[14] = typeof(global::Microsoft.Web.WebView2.Core.CoreWebView2);
             _typeTable[15] = typeof(global::Windows.UI.Color);
             _typeTable[16] = typeof(global::System.ValueType);
-            _typeTable[17] = typeof(global::WindowManager.UserControls.WebViewGrid);
-            _typeTable[18] = typeof(global::Microsoft.UI.Xaml.Controls.UserControl);
-            _typeTable[19] = typeof(global::WindowManager.MainWindow);
-            _typeTable[20] = typeof(global::Microsoft.UI.Xaml.Window);
+            _typeTable[17] = typeof(global::WindowManager.MainWindow);
+            _typeTable[18] = typeof(global::Microsoft.UI.Xaml.Window);
+            _typeTable[19] = typeof(global::WindowManager.WebViewPanel);
+            _typeTable[20] = typeof(global::Microsoft.UI.Xaml.Controls.UserControl);
         }
 
         private int LookupTypeIndexByName(string typeName)
@@ -307,8 +307,8 @@ namespace WindowManager.WindowManager_XamlTypeInfo
         private object Activate_4_MenuBar() { return new global::Microsoft.UI.Xaml.Controls.MenuBar(); }
         private object Activate_7_MenuBarItem() { return new global::Microsoft.UI.Xaml.Controls.MenuBarItem(); }
         private object Activate_11_WebView2() { return new global::Microsoft.UI.Xaml.Controls.WebView2(); }
-        private object Activate_17_WebViewGrid() { return new global::WindowManager.UserControls.WebViewGrid(); }
-        private object Activate_19_MainWindow() { return new global::WindowManager.MainWindow(); }
+        private object Activate_17_MainWindow() { return new global::WindowManager.MainWindow(); }
+        private object Activate_19_WebViewPanel() { return new global::WindowManager.WebViewPanel(); }
         private void MapAdd_0_XamlControlsResources(object instance, object key, object item)
         {
             var collection = (global::System.Collections.Generic.IDictionary<global::System.Object, global::System.Object>)instance;
@@ -440,26 +440,25 @@ namespace WindowManager.WindowManager_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 17:   //  WindowManager.UserControls.WebViewGrid
-                userType = new global::WindowManager.WindowManager_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.UserControl"));
-                userType.Activator = Activate_17_WebViewGrid;
-                userType.AddMemberName("Source");
+            case 17:   //  WindowManager.MainWindow
+                userType = new global::WindowManager.WindowManager_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Window"));
+                userType.Activator = Activate_17_MainWindow;
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 18:   //  Microsoft.UI.Xaml.Controls.UserControl
+            case 18:   //  Microsoft.UI.Xaml.Window
                 xamlType = new global::WindowManager.WindowManager_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 19:   //  WindowManager.MainWindow
-                userType = new global::WindowManager.WindowManager_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Window"));
-                userType.Activator = Activate_19_MainWindow;
+            case 19:   //  WindowManager.WebViewPanel
+                userType = new global::WindowManager.WindowManager_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.UserControl"));
+                userType.Activator = Activate_19_WebViewPanel;
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 20:   //  Microsoft.UI.Xaml.Window
+            case 20:   //  Microsoft.UI.Xaml.Controls.UserControl
                 xamlType = new global::WindowManager.WindowManager_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
             }
@@ -596,16 +595,6 @@ namespace WindowManager.WindowManager_XamlTypeInfo
             var that = (global::Microsoft.UI.Xaml.Controls.WebView2)instance;
             that.DefaultBackgroundColor = (global::Windows.UI.Color)Value;
         }
-        private object get_9_WebViewGrid_Source(object instance)
-        {
-            var that = (global::WindowManager.UserControls.WebViewGrid)instance;
-            return that.Source;
-        }
-        private void set_9_WebViewGrid_Source(object instance, object Value)
-        {
-            var that = (global::WindowManager.UserControls.WebViewGrid)instance;
-            that.Source = (global::System.String)Value;
-        }
 
         private global::Microsoft.UI.Xaml.Markup.IXamlMember CreateXamlMember(string longMemberName)
         {
@@ -675,13 +664,6 @@ namespace WindowManager.WindowManager_XamlTypeInfo
                 xamlMember.SetIsDependencyProperty();
                 xamlMember.Getter = get_8_WebView2_DefaultBackgroundColor;
                 xamlMember.Setter = set_8_WebView2_DefaultBackgroundColor;
-                break;
-            case "WindowManager.UserControls.WebViewGrid.Source":
-                userType = (global::WindowManager.WindowManager_XamlTypeInfo.XamlUserType)GetXamlTypeByName("WindowManager.UserControls.WebViewGrid");
-                xamlMember = new global::WindowManager.WindowManager_XamlTypeInfo.XamlMember(this, "Source", "String");
-                xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_9_WebViewGrid_Source;
-                xamlMember.Setter = set_9_WebViewGrid_Source;
                 break;
             }
             return xamlMember;

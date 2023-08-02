@@ -43,11 +43,19 @@ namespace WindowManager
 
             Frame frame = sender as Frame;
 
-            if (frame.Content != null) 
-            { 
-                // set payload of DataPackage to WebLink
-                WebView2 webView = frame.Content as WebView2;
-                args.Data.SetWebLink(webView.Source);
+            // if sender frame contains grid
+            if (frame.Content != null & frame.Content.GetType() == typeof(Grid)) 
+            {
+                Grid grid = frame.Content as Grid;
+
+                // if grid contains webView2 child
+                if (grid.Children.Count > 0 & grid.Children[1].GetType() == typeof(WebView2))
+                {
+                    // set payload of DataPackage to WebLink
+                    WebView2 webView = grid.Children[1] as WebView2;
+                    args.Data.SetWebLink(webView.Source);
+
+                }
 
             }
             else { System.Diagnostics.Debug.WriteLine("null"); }
@@ -140,6 +148,11 @@ namespace WindowManager
                     }
                 }
             }
+        }
+
+        private void MoveButton_DragStarting(UIElement sender, DragStartingEventArgs args)
+        {
+
         }
 
         //private void myButton_Click(object sender, RoutedEventArgs e)
