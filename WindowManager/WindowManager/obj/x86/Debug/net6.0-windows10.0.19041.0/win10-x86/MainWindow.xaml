@@ -83,10 +83,9 @@
 
             <Frame x:ConnectionId='2' Name="Frame1"  Background="LightSteelBlue" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="2" 
                    CanDrag="True" AllowDrop="True" 
-                                                                                                                                     >
-                <!--<TextBox Name="addressBar"/>
-                <Button x:Name="myButton">Go</Button>-->
-
+                                                                                                                                    
+                                                                                            >
+                
                 <Grid HorizontalAlignment="Stretch" BorderBrush="Black" BorderThickness="1">
 
                     <Grid.RowDefinitions >
@@ -98,12 +97,22 @@
                     </Grid.ColumnDefinitions>
 
                     <RelativePanel Grid.Column="0" Grid.Row="0">
-                        <CommandBar RelativePanel.AlignLeftWithPanel="True" Background="Transparent" IsOpen="False" DefaultLabelPosition="Right">
-                            <AppBarButton Icon="Add" Label="Add"/>
+                        <CommandBar RelativePanel.AlignLeftWithPanel="True" Background="Transparent" IsOpen="False" DefaultLabelPosition="Right"
+                                    Visibility="Collapsed">
+                            <AppBarButton Label="Move">
+                                <AppBarButton.Icon>
+                                    <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE7C2;"/>
+                                </AppBarButton.Icon>
+                            </AppBarButton>
                         </CommandBar>
 
-                        <CommandBar RelativePanel.AlignRightWithPanel="True" Background="Transparent" IsOpen="False" DefaultLabelPosition="Right">
-                            <AppBarButton Icon="Share" Label="Share"/>
+                        <CommandBar RelativePanel.AlignRightWithPanel="True" Background="Transparent" IsOpen="False" DefaultLabelPosition="Right"
+                                    Visibility="Collapsed">
+                            <AppBarButton Label="Close">
+                                <AppBarButton.Icon>
+                                    <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE8BB;"/>
+                                </AppBarButton.Icon>
+                            </AppBarButton>
                         </CommandBar>
                     </RelativePanel>
 
@@ -111,27 +120,12 @@
                                        Grid.Column="0" Grid.Row="1"
                                        HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
                 </Grid>
-              
-                <!--<StackPanel Orientation="Vertical">
-                    <RelativePanel>
-                        <CommandBar RelativePanel.AlignLeftWithPanel="True" Background="Transparent" IsOpen="False" DefaultLabelPosition="Right">
-                            <AppBarButton Icon="Add" Label="Add"/>
-                        </CommandBar>
-
-                        <CommandBar RelativePanel.AlignRightWithPanel="True" Background="Transparent" IsOpen="False" DefaultLabelPosition="Right">
-                            <AppBarButton Icon="Share" Label="Share"/>
-                        </CommandBar>
-                    </RelativePanel>
-                    <controls:WebView2 x:Name="MyWebView" Source="http://localhost:3000/" 
-                                       HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="300"/>
-                </StackPanel>-->
+             
             </Frame>
 
             <Frame x:ConnectionId='3' Name="Frame2" Background="Pink" Grid.Column="2" Grid.Row="0" 
                    CanDrag="True" AllowDrop="True" 
-                                                                                                                                     
-                                                                            >
-                
+                                                                                                                                    >
                 <RelativePanel>
                     <CommandBar RelativePanel.AlignLeftWithPanel="True" Background="Transparent" IsOpen="False" DefaultLabelPosition="Right">
                         <AppBarButton Icon="Add" Label="Add"/>

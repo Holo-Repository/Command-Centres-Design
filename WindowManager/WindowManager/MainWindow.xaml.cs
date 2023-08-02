@@ -93,14 +93,53 @@ namespace WindowManager
 
         }
 
-        private void Frame2_DragEnter(object sender, DragEventArgs e)
+        private void Frame_PointerEntered(object sender, PointerRoutedEventArgs e)
         {
+            System.Diagnostics.Debug.WriteLine("Pointer entered");
+
+            Frame frame = sender as Frame;
+            Grid grid = frame.Content as Grid;
+
+            if (grid.Children.Count > 0 & grid.Children[0].GetType() == typeof(RelativePanel))
+            {
+                RelativePanel relativePanel = grid.Children[0] as RelativePanel;
+                
+                if (relativePanel.Children.Count > 0)
+                {
+                    foreach (var child in relativePanel.Children)
+                    {
+                        if (child.GetType() == typeof(CommandBar))
+                        {
+                            child.Visibility = Visibility.Visible;
+                        }
+                    }
+                }
+            }
 
         }
 
-        private void Frame2_DragLeave(object sender, DragEventArgs e)
+        private void Frame_PointerExited(object sender, PointerRoutedEventArgs e)
         {
+            System.Diagnostics.Debug.WriteLine("Pointer exited");
 
+            Frame frame = sender as Frame;
+            Grid grid = frame.Content as Grid;
+
+            if (grid.Children.Count > 0 & grid.Children[0].GetType() == typeof(RelativePanel))
+            {
+                RelativePanel relativePanel = grid.Children[0] as RelativePanel;
+
+                if (relativePanel.Children.Count > 0)
+                {
+                    foreach (var child in relativePanel.Children)
+                    {
+                        if (child.GetType() == typeof(CommandBar))
+                        {
+                            child.Visibility = Visibility.Collapsed;
+                        }
+                    }
+                }
+            }
         }
 
         //private void myButton_Click(object sender, RoutedEventArgs e)
