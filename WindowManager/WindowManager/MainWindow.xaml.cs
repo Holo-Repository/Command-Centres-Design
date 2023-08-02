@@ -57,24 +57,28 @@ namespace WindowManager
         private void Frame_DragOver(object sender, DragEventArgs e)
         {
             e.AcceptedOperation = DataPackageOperation.Move;
+
         }
 
         private async void Frame_Drop(object sender, DragEventArgs e)
         {
             System.Diagnostics.Debug.WriteLine("Drop event handler triggered");
 
-            Frame frame = sender as Frame;
+            Frame frame2 = sender as Frame;
 
             if (e.DataView.Contains(StandardDataFormats.WebLink))
             {
                 var webLink = await e.DataView.GetWebLinkAsync();
                 if (webLink != null)
                 {
-                    frame.Content = new WebView2 { Source = webLink };
+
+                    // swap content
+                    frame2.Content = new WebView2 { Source = webLink };
 
                     // Set margin of webView (for now)
-                    WebView2 webView = frame.Content as WebView2;
+                    WebView2 webView = frame2.Content as WebView2;
                     webView.Margin = new Thickness(10);
+
                 }
             }
         }
@@ -82,11 +86,21 @@ namespace WindowManager
         private void Frame_DropCompleted(UIElement sender, DropCompletedEventArgs args)
         {
             System.Diagnostics.Debug.WriteLine("DropCompleted event handler triggered");
+            
+            // remove frame1 content
+            Frame originalFrame = sender as Frame;
+            originalFrame.Content = null;
 
-            Frame frame = sender as Frame;
+        }
 
-            // Remove content from original frame (delete this line for Copy instead of Move)
-            frame.Content = null;
+        private void Frame2_DragEnter(object sender, DragEventArgs e)
+        {
+
+        }
+
+        private void Frame2_DragLeave(object sender, DragEventArgs e)
+        {
+
         }
 
         //private void myButton_Click(object sender, RoutedEventArgs e)
