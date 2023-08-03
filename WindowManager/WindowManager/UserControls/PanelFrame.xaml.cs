@@ -21,34 +21,42 @@ using Windows.ApplicationModel.DataTransfer;
 namespace WindowManager.UserControls
 {
     public sealed partial class PanelFrame : UserControl
-    {        
+    {
+        public event TypedEventHandler<UIElement, DragStartingEventArgs> Frame_DragStarting;
+
+        public void Frame1_DragStarting(UIElement sender, DragStartingEventArgs e)
+        {
+            //bubble the event up to the parent
+            if (this.Frame_DragStarting != null)
+                this.Frame_DragStarting(this, e);
+        }
         public PanelFrame()
         {
             this.InitializeComponent();
         }
-        private void Frame_DragStarting(UIElement sender, DragStartingEventArgs args)
-        {
+        //private void Frame_DragStarting(UIElement sender, DragStartingEventArgs args)
+        //{
 
-            Frame frame = sender as Frame;
+        //    Frame frame = sender as Frame;
 
-            // if sender frame contains grid
-            if (frame.Content != null & frame.Content.GetType() == typeof(Grid))
-            {
-                Grid grid = frame.Content as Grid;
+        //    // if sender frame contains grid
+        //    if (frame.Content != null & frame.Content.GetType() == typeof(Grid))
+        //    {
+        //        Grid grid = frame.Content as Grid;
 
-                // if grid contains webView2 child
-                if (grid.Children.Count > 0 & grid.Children[1].GetType() == typeof(WebView2))
-                {
-                    // set payload of DataPackage to WebLink
-                    WebView2 webView = grid.Children[1] as WebView2;
-                    args.Data.SetWebLink(webView.Source);
+        //        // if grid contains webView2 child
+        //        if (grid.Children.Count > 0 & grid.Children[1].GetType() == typeof(WebView2))
+        //        {
+        //            // set payload of DataPackage to WebLink
+        //            WebView2 webView = grid.Children[1] as WebView2;
+        //            args.Data.SetWebLink(webView.Source);
 
-                }
+        //        }
 
-            }
-            else { System.Diagnostics.Debug.WriteLine("null"); }
+        //    }
+        //    else { System.Diagnostics.Debug.WriteLine("null"); }
 
-        }
+        //}
 
         private void Frame_DragOver(object sender, DragEventArgs e)
         {
@@ -91,51 +99,51 @@ namespace WindowManager.UserControls
 
         private void Frame_PointerEntered(object sender, PointerRoutedEventArgs e)
         {
-            System.Diagnostics.Debug.WriteLine("Pointer entered");
+            //System.Diagnostics.Debug.WriteLine("Pointer entered");
 
-            Frame frame = sender as Frame;
-            Grid grid = frame.Content as Grid;
+            //Frame frame = sender as Frame;
+            //Grid grid = frame.Content as Grid;
 
-            if (grid.Children.Count > 0 & grid.Children[0].GetType() == typeof(RelativePanel))
-            {
-                RelativePanel relativePanel = grid.Children[0] as RelativePanel;
+            //if (grid.Children.Count > 0 & grid.Children[0].GetType() == typeof(RelativePanel))
+            //{
+            //    RelativePanel relativePanel = grid.Children[0] as RelativePanel;
 
-                if (relativePanel.Children.Count > 0)
-                {
-                    foreach (var child in relativePanel.Children)
-                    {
-                        if (child.GetType() == typeof(CommandBar))
-                        {
-                            child.Visibility = Visibility.Visible;
-                        }
-                    }
-                }
-            }
+            //    if (relativePanel.Children.Count > 0)
+            //    {
+            //        foreach (var child in relativePanel.Children)
+            //        {
+            //            if (child.GetType() == typeof(CommandBar))
+            //            {
+            //                child.Visibility = Visibility.Visible;
+            //            }
+            //        }
+            //    }
+            //}
 
         }
 
         private void Frame_PointerExited(object sender, PointerRoutedEventArgs e)
         {
-            System.Diagnostics.Debug.WriteLine("Pointer exited");
+            //System.Diagnostics.Debug.WriteLine("Pointer exited");
 
-            Frame frame = sender as Frame;
-            Grid grid = frame.Content as Grid;
+            //Frame frame = sender as Frame;
+            //Grid grid = frame.Content as Grid;
 
-            if (grid.Children.Count > 0 & grid.Children[0].GetType() == typeof(RelativePanel))
-            {
-                RelativePanel relativePanel = grid.Children[0] as RelativePanel;
+            //if (grid.Children.Count > 0 & grid.Children[0].GetType() == typeof(RelativePanel))
+            //{
+            //    RelativePanel relativePanel = grid.Children[0] as RelativePanel;
 
-                if (relativePanel.Children.Count > 0)
-                {
-                    foreach (var child in relativePanel.Children)
-                    {
-                        if (child.GetType() == typeof(CommandBar))
-                        {
-                            child.Visibility = Visibility.Collapsed;
-                        }
-                    }
-                }
-            }
+            //    if (relativePanel.Children.Count > 0)
+            //    {
+            //        foreach (var child in relativePanel.Children)
+            //        {
+            //            if (child.GetType() == typeof(CommandBar))
+            //            {
+            //                child.Visibility = Visibility.Collapsed;
+            //            }
+            //        }
+            //    }
+            //}
         }
     }
 }

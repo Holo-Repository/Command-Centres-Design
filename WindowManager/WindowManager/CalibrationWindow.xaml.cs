@@ -18,6 +18,9 @@ using Microsoft.UI.Xaml.Shapes;
 using Windows.UI.WindowManagement;
 using AppWindow = Microsoft.UI.Windowing.AppWindow;
 using WinRT.Interop;
+using System.Xml.Linq;
+using System.Text.Json.Nodes;
+using System.Text.Json;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -151,6 +154,32 @@ namespace WindowManager
                         if (width != 0 & height != 0)
                         {
                             System.Diagnostics.Debug.WriteLine($"Value: {kvp.Value}");
+
+                            double tv_width = kvp.Value.Width;
+                            double tv_height = kvp.Value.Height;
+                            double tv_x = kvp.Value.X;
+                            double tv_y = kvp.Value.Y;
+
+                            //string dir = Directory.GetCurrentDirectory();
+                            //string filePath = dir + "\\settings.json";
+
+                            string filePath = "C:\\code\\Command-Centres-Design\\WindowManager\\WindowManager\\settings.json";
+
+                            // Read the existing JSON data
+                            string jsonString = File.ReadAllText(filePath);
+
+                            // Deserialize JSON to C# object                            
+                            Object json_data = JsonSerializer.Deserialize<Object>(jsonString)!;
+
+                            //// Modify the object as needed
+                            //data.Age = 30;
+
+                            //// Serialize the updated object back to JSON
+                            //json = JsonConvert.SerializeObject(data);
+
+                            //// Write the JSON back to the file, overwriting the existing data
+                            //File.WriteAllText(filePath, json);
+
                         }
                         else
                         {

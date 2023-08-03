@@ -10,7 +10,7 @@
 
     <Frame Name="Frame1"  Background="LightSteelBlue" 
                    CanDrag="True" AllowDrop="True" 
-                   DragStarting="Frame_DragStarting" DragOver="Frame_DragOver" Drop="Frame_Drop" DropCompleted="Frame_DropCompleted"
+                   DragStarting="Frame1_DragStarting" DragOver="Frame_DragOver" Drop="Frame_Drop" DropCompleted="Frame_DropCompleted"
                    PointerEntered="Frame_PointerEntered"  PointerExited="Frame_PointerExited">
 
     </Frame>

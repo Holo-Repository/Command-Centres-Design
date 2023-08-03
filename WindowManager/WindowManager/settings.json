@@ -1,13 +1,4 @@
 {
-  "exclude": [
-    "**/bin",
-    "**/bower_components",
-    "**/jspm_packages",
-    "**/node_modules",
-    "**/obj",
-    "**/platforms"
-  ],
-
   "tv": {
     "height": 100,
     "width": 100,
@@ -15,9 +6,63 @@
     "y_position": 50
   },
 
-  "panels": {
-    "panel1": {
-  
+  "num_panels": 6,
+
+  "panels": [
+    {
+      "1": {
+        "gridRow": 0,
+        "gridColumn": 0,
+        "gridRowSpan": 2,
+        "gridColumnSpan": 2,
+        "empty": "false",
+        "uri": "https://www.google.com"
+      }
+    },
+    {
+      "2": {
+        "gridRow": 0,
+        "gridColumn": 2,
+        "gridSpan": 1,
+        "empty": "true",
+        "uri": ""
+      }
+    },
+    {
+      "3": {
+        "gridRow": 1,
+        "gridColumn": 2,
+        "gridSpan": 1,
+        "empty": "true",
+        "uri": ""
+      }
+    },
+    {
+      "4": {
+        "gridRow": 0,
+        "gridColumn": 0,
+        "gridSpan": 1,
+        "empty": "false",
+        "uri": "https://www.google.com"
+      }
+    },
+    {
+      "5": {
+        "gridRow": 0,
+        "gridColumn": 0,
+        "gridSpan": 1,
+        "empty": "false",
+        "uri": "https://www.google.com"
+      }
+    },
+    {
+      "6": {
+        "gridRow": 0,
+        "gridColumn": 0,
+        "gridSpan": 1,
+        "empty": "false",
+        "uri": "https://www.google.com"
+      }
     }
-  }
+  ]
 }

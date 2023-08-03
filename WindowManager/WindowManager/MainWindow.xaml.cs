@@ -40,6 +40,13 @@ namespace WindowManager
         {
             this.InitializeComponent();
 
+            TestFrame.Frame_DragStarting += new TypedEventHandler<UIElement, DragStartingEventArgs>(PanelFrame_DragStarting);
+
+            // wire event handler to vent bubbled up from PanelFrame class
+            //panelFrame.Frame_DragStarting += new RoutedEventHandler(PanelFrame_DragStarting);
+            //panelFrame.Frame_DragStarting += PanelFrame_DragStarting;
+            //panelFrame.Frame_DragStarting += new TypedEventHandler<UIElement, DragStartingEventArgs>(PanelFrame_DragStarting);
+
             System.Diagnostics.Debug.WriteLine("Initialising");
 
 
@@ -48,6 +55,28 @@ namespace WindowManager
 
             //System.Diagnostics.Debug.WriteLine(_appWindow.ClientSize)
 
+        }
+
+        private void PanelFrame_DragStarting(UIElement sender, DragStartingEventArgs args)
+        {
+            Frame frame = sender as Frame;
+
+            // if sender frame contains grid
+            if (frame.Content != null & frame.Content.GetType() == typeof(Grid))
+            {
+                Grid grid = frame.Content as Grid;
+
+                // if grid contains webView2 child
+                if (grid.Children.Count > 0 & grid.Children[1].GetType() == typeof(WebView2))
+                {
+                    // set payload of DataPackage to WebLink
+                    WebView2 webView = grid.Children[1] as WebView2;
+                    args.Data.SetWebLink(webView.Source);
+
+                }
+
+            }
+            else { System.Diagnostics.Debug.WriteLine("null"); }
         }
 
         private AppWindow GetAppWindowForCurrentWindow()

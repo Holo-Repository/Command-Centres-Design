@@ -10,7 +10,7 @@
 
     <Frame x:ConnectionId='2' Name="Frame1"  Background="LightSteelBlue" 
                    CanDrag="True" AllowDrop="True" 
-                                                                                                                                    
+                                                                                                                                     
                                                                                              >
 
     </Frame>
