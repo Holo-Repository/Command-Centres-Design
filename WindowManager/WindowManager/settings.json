@@ -1,0 +1,23 @@
+{
+  "exclude": [
+    "**/bin",
+    "**/bower_components",
+    "**/jspm_packages",
+    "**/node_modules",
+    "**/obj",
+    "**/platforms"
+  ],
+
+  "tv": {
+    "height": 100,
+    "width": 100,
+    "x_position": 50,
+    "y_position": 50
+  },
+
+  "panels": {
+    "panel1": {
+  
+    }
+  }
+}

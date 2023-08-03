@@ -65,6 +65,14 @@
                     </MenuFlyoutItem.KeyboardAccelerators>
                 </MenuFlyoutItem>
             </MenuBarItem>
+
+            <MenuBarItem Title="Calibration">
+                <MenuFlyoutItem Text="Begin Calibration" Click="Calibration_Click">
+                    <MenuFlyoutItem.KeyboardAccelerators>
+                        <KeyboardAccelerator Modifiers="Control" Key="S"/>
+                    </MenuFlyoutItem.KeyboardAccelerators>
+                </MenuFlyoutItem>
+            </MenuBarItem>
         </MenuBar>
 
         
@@ -85,9 +93,40 @@
                    CanDrag="True" AllowDrop="True" 
                    DragStarting="Frame_DragStarting" DragOver="Frame_DragOver" Drop="Frame_Drop" DropCompleted="Frame_DropCompleted"
                    PointerEntered="Frame_PointerEntered" PointerExited="Frame_PointerExited">
+                <Grid HorizontalAlignment="Stretch" BorderBrush="Black" BorderThickness="1">
 
-                <local:WebViewGrid Source="http://localhost:3000/"/>
-                
+                    <Grid.RowDefinitions >
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions >
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <RelativePanel Grid.Column="0" Grid.Row="0">
+                        <CommandBar Name="MoveCommandBar" RelativePanel.AlignLeftWithPanel="True" Background="Transparent" IsOpen="False" DefaultLabelPosition="Right"
+                                    Visibility="Collapsed">
+                            <AppBarButton Label="Move">
+                                <AppBarButton.Icon>
+                                    <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE7C2;"/>
+                                </AppBarButton.Icon>
+                            </AppBarButton>
+                        </CommandBar>
+
+                        <CommandBar Name="CloseCommandBar" RelativePanel.AlignRightWithPanel="True" Background="Transparent" IsOpen="False" DefaultLabelPosition="Right"
+                                    Visibility="Collapsed">
+                            <AppBarButton Label="Close">
+                                <AppBarButton.Icon>
+                                    <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE8BB;"/>
+                                </AppBarButton.Icon>
+                            </AppBarButton>
+                        </CommandBar>
+                    </RelativePanel>
+
+                    <controls:WebView2 x:Name="MyWebView" Source="http://localhost:3000" 
+                                       Grid.Column="0" Grid.Row="1"
+                                       HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                </Grid>
             </Frame>
 
             <Frame Name="Frame2" Background="Pink" Grid.Column="2" Grid.Row="0" 
@@ -96,10 +135,6 @@
                 <RelativePanel>
                     <CommandBar RelativePanel.AlignLeftWithPanel="True" Background="Transparent" IsOpen="False" DefaultLabelPosition="Right" CanDrag="True">
                         <AppBarButton Icon="Add" Label="Add" CanDrag="True"/>
-                    </CommandBar>
-
-                    <CommandBar RelativePanel.AlignRightWithPanel="True" Background="Transparent" IsOpen="False" DefaultLabelPosition="Right">
-                        <AppBarButton Icon="Share" Label="Share"/>
                     </CommandBar>
                 </RelativePanel>
             </Frame>

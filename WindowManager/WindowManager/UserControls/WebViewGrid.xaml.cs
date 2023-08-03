@@ -31,10 +31,10 @@ namespace WindowManager.UserControls
         public static readonly DependencyProperty SourceProperty =
             DependencyProperty.Register("Source", typeof(string), typeof(WebViewGrid), new PropertyMetadata(string.Empty));
 
-
         public WebViewGrid()
         {
             this.InitializeComponent();
         }
+
     }
 }

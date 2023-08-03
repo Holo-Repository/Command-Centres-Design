@@ -21,7 +21,7 @@
             </Grid.ColumnDefinitions>
 
             <RelativePanel Grid.Column="0" Grid.Row="0">
-                <CommandBar RelativePanel.AlignLeftWithPanel="True" Background="Transparent" IsOpen="False" DefaultLabelPosition="Right"
+                <CommandBar Name="MoveCommandBar" RelativePanel.AlignLeftWithPanel="True" Background="Transparent" IsOpen="False" DefaultLabelPosition="Right"
                                     Visibility="Collapsed">
                     <AppBarButton Label="Move">
                         <AppBarButton.Icon>
@@ -30,7 +30,7 @@
                     </AppBarButton>
                 </CommandBar>
 
-                <CommandBar RelativePanel.AlignRightWithPanel="True" Background="Transparent" IsOpen="False" DefaultLabelPosition="Right"
+                <CommandBar Name="CloseCommandBar" RelativePanel.AlignRightWithPanel="True" Background="Transparent" IsOpen="False" DefaultLabelPosition="Right"
                                     Visibility="Collapsed">
                     <AppBarButton Label="Close">
                         <AppBarButton.Icon>

@@ -19,6 +19,12 @@ using Windows.Storage.Pickers;
 using Windows.Storage;
 using Windows.ApplicationModel.DataTransfer;
 using Microsoft.UI.Xaml.Media.Imaging;
+using WindowManager.UserControls;
+using Microsoft.UI;
+using WinRT.Interop;
+using Windows.UI.WindowManagement;
+using System.Reflection.Metadata;
+using AppWindow = Microsoft.UI.Windowing.AppWindow;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -36,8 +42,23 @@ namespace WindowManager
 
             System.Diagnostics.Debug.WriteLine("Initialising");
 
+
+            AppWindow _appWindow = GetAppWindowForCurrentWindow();
+            //            _appWindow.SetPresenter(AppWindowPresenterKind.FullScreen);
+
+            //System.Diagnostics.Debug.WriteLine(_appWindow.ClientSize)
+
         }
 
+        private AppWindow GetAppWindowForCurrentWindow()
+        {
+            IntPtr hWnd = WindowNative.GetWindowHandle(this);
+            WindowId myWndId = Win32Interop.GetWindowIdFromWindow(hWnd);
+
+            return AppWindow.GetFromWindowId(myWndId);
+        }
+
+        // event handlers
         private void Frame_DragStarting(UIElement sender, DragStartingEventArgs args)
         {
 
@@ -150,24 +171,10 @@ namespace WindowManager
             }
         }
 
-        private void MoveButton_DragStarting(UIElement sender, DragStartingEventArgs args)
+        private void Calibration_Click(object sender, RoutedEventArgs e)
         {
-
+            CalibrationWindow calibrationWindow = new CalibrationWindow();
+            calibrationWindow.Activate();
         }
-
-        //private void myButton_Click(object sender, RoutedEventArgs e)
-        //{
-        //    try
-        //    {
-        //        Uri targetUri = new Uri(addressBar.Text);
-        //        MyWebView.Source = targetUri;
-        //    }
-        //    catch (FormatException ex)
-        //    {
-        //        Console.WriteLine(ex);
-        //    }
-        //}
-
-
     }
 }

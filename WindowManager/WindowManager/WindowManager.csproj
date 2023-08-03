@@ -10,8 +10,12 @@
     <PublishProfile>win10-$(Platform).pubxml</PublishProfile>
     <UseWinUI>true</UseWinUI>
     <EnableMsixTooling>true</EnableMsixTooling>
+    <StartupObject>WindowManager.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Calibration.xaml" />
+    <None Remove="CalibrationWindow.xaml" />
+    <None Remove="UserControls\PanelFrame.xaml" />
     <None Remove="UserControls\WebViewGrid.xaml" />
   </ItemGroup>
 
@@ -47,6 +51,11 @@
   <ItemGroup>
     <Folder Include="Themes\" />
   </ItemGroup>
+  <ItemGroup>
+    <Page Update="UserControls\PanelFrame.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
 
   <!-- 
     Defining the "HasPackageAndPublishMenuAddedByProject" property here allows the Solution 
@@ -56,4 +65,20 @@
   <PropertyGroup Condition="'$(DisableHasPackageAndPublishMenuAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
     <HasPackageAndPublishMenu>true</HasPackageAndPublishMenu>
   </PropertyGroup>
+  <ItemGroup>
+    <EditorConfigFiles Remove="C:\code\Command-Centres-Design\WindowManager\WindowManager\.editorconfig" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="C:\code\Command-Centres-Design\WindowManager\WindowManager\.editorconfig" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="CalibrationWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Calibration.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
 </Project>
