@@ -10,7 +10,7 @@
     x:Name="root"
     mc:Ignorable="d">
 
-    <Grid HorizontalAlignment="Stretch">
+    <Grid HorizontalAlignment="Stretch" BorderBrush="Black" BorderThickness="0.5">
 
             <Grid.RowDefinitions >
                 <RowDefinition Height="Auto"/>

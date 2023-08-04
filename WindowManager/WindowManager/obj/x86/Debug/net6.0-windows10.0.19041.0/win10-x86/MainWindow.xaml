@@ -27,7 +27,7 @@
             </Grid.ColumnDefinitions>
 
             <local:PanelFrame x:ConnectionId='2' x:Name="Frame1" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="2">
-                <local:WebViewGrid Source="http://localhost:3000"/>
+                <local:WebViewGrid x:ConnectionId='9' x:Name="WVG1" Source="http://localhost:3000"/>
             </local:PanelFrame>
 
             <local:EmptyFrame x:ConnectionId='3' x:Name="Frame2" Grid.Column="2" Grid.Row="0"/>            
@@ -35,7 +35,7 @@
             <local:PanelFrame x:ConnectionId='4' x:Name="Frame3" Grid.Column="2" Grid.Row="1"/>
 
             <local:PanelFrame x:ConnectionId='5' x:Name="Frame4" Grid.Column="0" Grid.Row="2">
-                <local:WebViewGrid Source="https://www.google.com"/>
+                <local:WebViewGrid x:ConnectionId='8' x:Name="WVG4" Source="https://www.google.com"/>
             </local:PanelFrame>
 
             <local:EmptyFrame x:ConnectionId='6' x:Name="Frame5" Grid.Column="1" Grid.Row="2"/>

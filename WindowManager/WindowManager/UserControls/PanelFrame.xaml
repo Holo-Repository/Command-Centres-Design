@@ -10,8 +10,7 @@
 
     <Frame Name="Frame1" Background="LightSteelBlue" 
                    CanDrag="True" AllowDrop="True" 
-                   DragStarting="Frame1_DragStarting" DragOver="Frame_DragOver" Drop="Frame_Drop" DropCompleted="Frame_DropCompleted"
-                   BorderBrush="Black" BorderThickness="0.5">
+                   DragStarting="Frame1_DragStarting" DragOver="Frame1_DragOver" Drop="Frame1_Drop" DropCompleted="Frame1_DropCompleted">
         
         <RelativePanel>
             <CommandBar RelativePanel.AlignLeftWithPanel="True" Background="Transparent" IsOpen="False" DefaultLabelPosition="Right">

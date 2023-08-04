@@ -20,6 +20,8 @@ namespace WindowManager.UserControls
 {
     public sealed partial class MenuBar : UserControl
     {
+        public event TypedEventHandler<Object, RoutedEventArgs> MenuFlyoutItem_Click;
+
         public MenuBar()
         {
             this.InitializeComponent();

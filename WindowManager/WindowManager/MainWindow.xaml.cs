@@ -40,12 +40,23 @@ namespace WindowManager
         {
             this.InitializeComponent();
 
-            Frame3.Frame_DragStarting += new TypedEventHandler<UIElement, DragStartingEventArgs>(PanelFrame_DragStarting);
+            // Probably should put this in its own function WireEventHandlers
 
-            // wire event handler to vent bubbled up from PanelFrame class
-            //panelFrame.Frame_DragStarting += new RoutedEventHandler(PanelFrame_DragStarting);
-            //panelFrame.Frame_DragStarting += PanelFrame_DragStarting;
-            //panelFrame.Frame_DragStarting += new TypedEventHandler<UIElement, DragStartingEventArgs>(PanelFrame_DragStarting);
+            List<PanelFrame> populateFrames = new List<PanelFrame> { Frame1, Frame4 };
+            foreach (PanelFrame frame in populateFrames)
+            {
+                frame.Frame_DragStarting += new TypedEventHandler<UIElement, DragStartingEventArgs>(PanelFrame_DragStarting);
+                frame.Frame_DragOver += new TypedEventHandler<object, DragEventArgs>(PanelFrame_DragOver);
+                frame.Frame_Drop += new TypedEventHandler<object, DragEventArgs>(PanelFrame_Drop);
+                frame.Frame_DropCompleted += new TypedEventHandler<UIElement, DropCompletedEventArgs>(PanelFrame_DropCompleted);
+            }
+
+            List<WebViewGrid> WVGs = new List<WebViewGrid> { WVG1, WVG4 };
+            foreach (WebViewGrid WVG in WVGs)
+            {
+                WVG.WebViewGrid_PointerEntered += new TypedEventHandler<object, PointerRoutedEventArgs>(WVG_PointerEntered);
+                WVG.WebViewGrid_PointerExited += new TypedEventHandler<object, PointerRoutedEventArgs>(WVG_PointerExited);
+            }
 
             System.Diagnostics.Debug.WriteLine("Initialising");
 
@@ -57,28 +68,6 @@ namespace WindowManager
 
         }
 
-        private void PanelFrame_DragStarting(UIElement sender, DragStartingEventArgs args)
-        {
-            Frame frame = sender as Frame;
-
-            // if sender frame contains grid
-            if (frame.Content != null & frame.Content.GetType() == typeof(Grid))
-            {
-                Grid grid = frame.Content as Grid;
-
-                // if grid contains webView2 child
-                if (grid.Children.Count > 0 & grid.Children[1].GetType() == typeof(WebView2))
-                {
-                    // set payload of DataPackage to WebLink
-                    WebView2 webView = grid.Children[1] as WebView2;
-                    args.Data.SetWebLink(webView.Source);
-
-                }
-
-            }
-            else { System.Diagnostics.Debug.WriteLine("null"); }
-        }
-
         private AppWindow GetAppWindowForCurrentWindow()
         {
             IntPtr hWnd = WindowNative.GetWindowHandle(this);
@@ -88,7 +77,7 @@ namespace WindowManager
         }
 
         // event handlers
-        private void Frame_DragStarting(UIElement sender, DragStartingEventArgs args)
+        private void PanelFrame_DragStarting(UIElement sender, DragStartingEventArgs args)
         {
 
             Frame frame = sender as Frame;
@@ -112,13 +101,13 @@ namespace WindowManager
 
         }
 
-        private void Frame_DragOver(object sender, DragEventArgs e)
+        private void PanelFrame_DragOver(object sender, DragEventArgs e)
         {
             e.AcceptedOperation = DataPackageOperation.Move;
 
         }
 
-        private async void Frame_Drop(object sender, DragEventArgs e)
+        private async void PanelFrame_Drop(object sender, DragEventArgs e)
         {
             System.Diagnostics.Debug.WriteLine("Drop event handler triggered");
 
@@ -141,7 +130,7 @@ namespace WindowManager
             }
         }
 
-        private void Frame_DropCompleted(UIElement sender, DropCompletedEventArgs args)
+        private void PanelFrame_DropCompleted(UIElement sender, DropCompletedEventArgs args)
         {
             System.Diagnostics.Debug.WriteLine("DropCompleted event handler triggered");
             
@@ -151,7 +140,7 @@ namespace WindowManager
 
         }
 
-        private void Frame_PointerEntered(object sender, PointerRoutedEventArgs e)
+        private void WVG_PointerEntered(object sender, PointerRoutedEventArgs e)
         {
             System.Diagnostics.Debug.WriteLine("Pointer entered");
 
@@ -176,7 +165,7 @@ namespace WindowManager
 
         }
 
-        private void Frame_PointerExited(object sender, PointerRoutedEventArgs e)
+        private void WVG_PointerExited(object sender, PointerRoutedEventArgs e)
         {
             System.Diagnostics.Debug.WriteLine("Pointer exited");
 

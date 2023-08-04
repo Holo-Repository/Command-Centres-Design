@@ -19,7 +19,23 @@ using Microsoft.UI.Xaml.Navigation;
 namespace WindowManager.UserControls
 {
     public sealed partial class WebViewGrid : UserControl
-    { 
+    {
+        public event TypedEventHandler<object, PointerRoutedEventArgs> WebViewGrid_PointerEntered;
+        public event TypedEventHandler<object, PointerRoutedEventArgs> WebViewGrid_PointerExited;
+
+        public void WebViewGrid1_PointerEntered(object sender, PointerRoutedEventArgs e)
+        {
+            //bubble the event up to the parent
+            if (this.WebViewGrid_PointerEntered != null)
+                this.WebViewGrid_PointerEntered(this, e);
+        }
+
+        public void WebViewGrid1_PointerExited(object sender, PointerRoutedEventArgs e)
+        {
+            //bubble the event up to the parent
+            if (this.WebViewGrid_PointerExited != null)
+                this.WebViewGrid_PointerExited(this, e);
+        }
 
         public string Source
         {
