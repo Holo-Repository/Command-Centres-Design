@@ -11,72 +11,9 @@
 
     <StackPanel>
 
-        <MenuBar HorizontalAlignment="Left">
-            <MenuBarItem Title="File">
-                <MenuFlyoutItem Text="New">
-                    <MenuFlyoutItem.KeyboardAccelerators>
-                        <KeyboardAccelerator Modifiers="Control" Key="N"/>
-                    </MenuFlyoutItem.KeyboardAccelerators>
-                </MenuFlyoutItem>
-                <MenuFlyoutItem Text="Open...">
-                    <MenuFlyoutItem.KeyboardAccelerators>
-                        <KeyboardAccelerator Modifiers="Control" Key="O"/>
-                    </MenuFlyoutItem.KeyboardAccelerators>
-                </MenuFlyoutItem>
-                <MenuFlyoutItem Text="Save">
-                    <MenuFlyoutItem.KeyboardAccelerators>
-                        <KeyboardAccelerator Modifiers="Control" Key="S"/>
-                    </MenuFlyoutItem.KeyboardAccelerators>
-                </MenuFlyoutItem>
-                <MenuFlyoutItem Text="Exit">
-                    <MenuFlyoutItem.KeyboardAccelerators>
-                        <KeyboardAccelerator Modifiers="Control" Key="E"/>
-                    </MenuFlyoutItem.KeyboardAccelerators>
-                </MenuFlyoutItem>
-            </MenuBarItem>
+        <local:MenuBar HorizontalAlignment="Left"/>
 
-            <MenuBarItem Title="Edit">
-                <MenuFlyoutItem Text="Undo">
-                    <MenuFlyoutItem.KeyboardAccelerators>
-                        <KeyboardAccelerator Modifiers="Control" Key="Z"/>
-                    </MenuFlyoutItem.KeyboardAccelerators>
-                </MenuFlyoutItem>
-                <MenuFlyoutItem Text="Cut">
-                    <MenuFlyoutItem.KeyboardAccelerators>
-                        <KeyboardAccelerator Modifiers="Control" Key="X"/>
-                    </MenuFlyoutItem.KeyboardAccelerators>
-                </MenuFlyoutItem>
-                <MenuFlyoutItem Text="Copy">
-                    <MenuFlyoutItem.KeyboardAccelerators>
-                        <KeyboardAccelerator Modifiers="Control" Key="C"/>
-                    </MenuFlyoutItem.KeyboardAccelerators>
-                </MenuFlyoutItem>
-                <MenuFlyoutItem Text="Paste">
-                    <MenuFlyoutItem.KeyboardAccelerators>
-                        <KeyboardAccelerator Modifiers="Control" Key="V"/>
-                    </MenuFlyoutItem.KeyboardAccelerators>
-                </MenuFlyoutItem>
-            </MenuBarItem>
-
-            <MenuBarItem Title="Help">
-                <MenuFlyoutItem Text="About">
-                    <MenuFlyoutItem.KeyboardAccelerators>
-                        <KeyboardAccelerator Modifiers="Control" Key="I"/>
-                    </MenuFlyoutItem.KeyboardAccelerators>
-                </MenuFlyoutItem>
-            </MenuBarItem>
-
-            <MenuBarItem Title="Calibration">
-                <MenuFlyoutItem x:ConnectionId='15' Text="Begin Calibration"                          >
-                    <MenuFlyoutItem.KeyboardAccelerators>
-                        <KeyboardAccelerator Modifiers="Control" Key="S"/>
-                    </MenuFlyoutItem.KeyboardAccelerators>
-                </MenuFlyoutItem>
-            </MenuBarItem>
-        </MenuBar>
-
-        
-            <Grid HorizontalAlignment="Left">
+        <Grid HorizontalAlignment="Left">
 
             <Grid.RowDefinitions >
                 <RowDefinition Height="205"/>
@@ -89,88 +26,21 @@
                 <ColumnDefinition Width="427"/>
             </Grid.ColumnDefinitions>
 
-            <Frame x:ConnectionId='2' Name="Frame1"  Background="LightSteelBlue" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="2" 
-                   CanDrag="True" AllowDrop="True" 
-                                                                                                                                    
-                                                                                            >
-                <Grid HorizontalAlignment="Stretch" BorderBrush="Black" BorderThickness="1">
-
-                    <Grid.RowDefinitions >
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions >
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <RelativePanel Grid.Column="0" Grid.Row="0">
-                        <CommandBar x:ConnectionId='13' Name="MoveCommandBar" RelativePanel.AlignLeftWithPanel="True" Background="Transparent" IsOpen="False" DefaultLabelPosition="Right"
-                                    Visibility="Collapsed">
-                            <AppBarButton Label="Move">
-                                <AppBarButton.Icon>
-                                    <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE7C2;"/>
-                                </AppBarButton.Icon>
-                            </AppBarButton>
-                        </CommandBar>
-
-                        <CommandBar x:ConnectionId='14' Name="CloseCommandBar" RelativePanel.AlignRightWithPanel="True" Background="Transparent" IsOpen="False" DefaultLabelPosition="Right"
-                                    Visibility="Collapsed">
-                            <AppBarButton Label="Close">
-                                <AppBarButton.Icon>
-                                    <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE8BB;"/>
-                                </AppBarButton.Icon>
-                            </AppBarButton>
-                        </CommandBar>
-                    </RelativePanel>
-
-                    <controls:WebView2 x:ConnectionId='12' x:Name="MyWebView" Source="http://localhost:3000" 
-                                       Grid.Column="0" Grid.Row="1"
-                                       HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-                </Grid>
-            </Frame>
-
-            <Frame x:ConnectionId='3' Name="Frame2" Background="Pink" Grid.Column="2" Grid.Row="0" 
-                   CanDrag="True" AllowDrop="True" 
-                                                                                                                                    >
-                <RelativePanel>
-                    <CommandBar RelativePanel.AlignLeftWithPanel="True" Background="Transparent" IsOpen="False" DefaultLabelPosition="Right" CanDrag="True">
-                        <AppBarButton Icon="Add" Label="Add" CanDrag="True"/>
-                    </CommandBar>
-                </RelativePanel>
-            </Frame>
-
-            <Frame x:ConnectionId='4' Name="Frame3" Background="LightYellow" Grid.Column="2" Grid.Row="1" 
-                   CanDrag="True" AllowDrop="True" 
-                                                                                                                                    ></Frame>
-
-            <local:PanelFrame x:ConnectionId='5' x:Name="TestFrame" Grid.Column="2" Grid.Row="1">
-                
+            <local:PanelFrame x:ConnectionId='2' x:Name="Frame1" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <local:WebViewGrid Source="http://localhost:3000"/>
             </local:PanelFrame>
-                
-            <Frame x:ConnectionId='6' Name="Frame5" Background="LightSeaGreen" Grid.Column="1" Grid.Row="2" 
-                   CanDrag="True" AllowDrop="True" 
-                                                                                                                                    ></Frame>
 
-            <Frame x:ConnectionId='7' Name="Frame6" Background="MediumPurple" Grid.Column="2" Grid.Row="2"
-                   CanDrag="True" AllowDrop="True" 
-                                                                                                                                    ></Frame>
+            <local:EmptyFrame x:ConnectionId='3' x:Name="Frame2" Grid.Column="2" Grid.Row="0"/>            
 
+            <local:PanelFrame x:ConnectionId='4' x:Name="Frame3" Grid.Column="2" Grid.Row="1"/>
 
-            <Frame x:ConnectionId='8' x:Name="Frame4" Background="CornflowerBlue" Grid.Column="0" Grid.Row="2" 
-                   CanDrag="True" AllowDrop="True" 
-                                                                                                                                    >
-                
-                <controls:WebView2 x:ConnectionId='11' x:Name="MyWebViewGoogle" Margin="10" Source="https://www.google.com" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-                                   CanDrag="True" AllowDrop="True"/>
-            </Frame>
+            <local:PanelFrame x:ConnectionId='5' x:Name="Frame4" Grid.Column="0" Grid.Row="2">
+                <local:WebViewGrid Source="https://www.google.com"/>
+            </local:PanelFrame>
 
-            <Frame x:ConnectionId='9' Name="Frame7" Background="MediumPurple" Grid.Column="2" Grid.Row="2"
-                   CanDrag="True" AllowDrop="True" 
-                                                                                                                                    ></Frame>
-
-            <Frame x:ConnectionId='10' Name="Frame8" Background="MediumPurple" Grid.Column="2" Grid.Row="2"
-                   CanDrag="True" AllowDrop="True" 
-                                                                                                                                     ></Frame>
+            <local:EmptyFrame x:ConnectionId='6' x:Name="Frame5" Grid.Column="1" Grid.Row="2"/>
+          
+            <local:EmptyFrame x:ConnectionId='7' x:Name="Frame6" Grid.Column="2" Grid.Row="2"/>                                  
                 
         </Grid>
    

@@ -1,5 +1,7 @@
 App.xbf
 CalibrationWindow.xbf
 MainWindow.xbf
+UserControls\EmptyFrame.xbf
+UserControls\MenuBar.xbf
 UserControls\PanelFrame.xbf
 UserControls\WebViewGrid.xbf

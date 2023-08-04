@@ -224,55 +224,59 @@ namespace WindowManager.WindowManager_XamlTypeInfo
 
         private void InitTypeTables()
         {
-            _typeNameTable = new string[23];
+            _typeNameTable = new string[25];
             _typeNameTable[0] = "Microsoft.UI.Xaml.Controls.XamlControlsResources";
             _typeNameTable[1] = "Microsoft.UI.Xaml.ResourceDictionary";
             _typeNameTable[2] = "Object";
             _typeNameTable[3] = "Boolean";
             _typeNameTable[4] = "WindowManager.CalibrationWindow";
             _typeNameTable[5] = "Microsoft.UI.Xaml.Window";
-            _typeNameTable[6] = "Microsoft.UI.Xaml.Controls.MenuBar";
-            _typeNameTable[7] = "Microsoft.UI.Xaml.Controls.Control";
-            _typeNameTable[8] = "System.Collections.Generic.IList`1<Microsoft.UI.Xaml.Controls.MenuBarItem>";
-            _typeNameTable[9] = "Microsoft.UI.Xaml.Controls.MenuBarItem";
-            _typeNameTable[10] = "System.Collections.Generic.IList`1<Microsoft.UI.Xaml.Controls.MenuFlyoutItemBase>";
-            _typeNameTable[11] = "Microsoft.UI.Xaml.Controls.MenuFlyoutItemBase";
-            _typeNameTable[12] = "String";
-            _typeNameTable[13] = "WindowManager.UserControls.PanelFrame";
-            _typeNameTable[14] = "Microsoft.UI.Xaml.Controls.UserControl";
-            _typeNameTable[15] = "Microsoft.UI.Xaml.Controls.WebView2";
-            _typeNameTable[16] = "Microsoft.UI.Xaml.FrameworkElement";
-            _typeNameTable[17] = "System.Uri";
-            _typeNameTable[18] = "Microsoft.Web.WebView2.Core.CoreWebView2";
-            _typeNameTable[19] = "Windows.UI.Color";
-            _typeNameTable[20] = "System.ValueType";
-            _typeNameTable[21] = "WindowManager.MainWindow";
-            _typeNameTable[22] = "WindowManager.UserControls.WebViewGrid";
+            _typeNameTable[6] = "WindowManager.UserControls.MenuBar";
+            _typeNameTable[7] = "Microsoft.UI.Xaml.Controls.UserControl";
+            _typeNameTable[8] = "WindowManager.UserControls.PanelFrame";
+            _typeNameTable[9] = "WindowManager.UserControls.EmptyFrame";
+            _typeNameTable[10] = "WindowManager.UserControls.WebViewGrid";
+            _typeNameTable[11] = "String";
+            _typeNameTable[12] = "WindowManager.MainWindow";
+            _typeNameTable[13] = "Microsoft.UI.Xaml.Controls.MenuBar";
+            _typeNameTable[14] = "Microsoft.UI.Xaml.Controls.Control";
+            _typeNameTable[15] = "System.Collections.Generic.IList`1<Microsoft.UI.Xaml.Controls.MenuBarItem>";
+            _typeNameTable[16] = "Microsoft.UI.Xaml.Controls.MenuBarItem";
+            _typeNameTable[17] = "System.Collections.Generic.IList`1<Microsoft.UI.Xaml.Controls.MenuFlyoutItemBase>";
+            _typeNameTable[18] = "Microsoft.UI.Xaml.Controls.MenuFlyoutItemBase";
+            _typeNameTable[19] = "Microsoft.UI.Xaml.Controls.WebView2";
+            _typeNameTable[20] = "Microsoft.UI.Xaml.FrameworkElement";
+            _typeNameTable[21] = "System.Uri";
+            _typeNameTable[22] = "Microsoft.Web.WebView2.Core.CoreWebView2";
+            _typeNameTable[23] = "Windows.UI.Color";
+            _typeNameTable[24] = "System.ValueType";
 
-            _typeTable = new global::System.Type[23];
+            _typeTable = new global::System.Type[25];
             _typeTable[0] = typeof(global::Microsoft.UI.Xaml.Controls.XamlControlsResources);
             _typeTable[1] = typeof(global::Microsoft.UI.Xaml.ResourceDictionary);
             _typeTable[2] = typeof(global::System.Object);
             _typeTable[3] = typeof(global::System.Boolean);
             _typeTable[4] = typeof(global::WindowManager.CalibrationWindow);
             _typeTable[5] = typeof(global::Microsoft.UI.Xaml.Window);
-            _typeTable[6] = typeof(global::Microsoft.UI.Xaml.Controls.MenuBar);
-            _typeTable[7] = typeof(global::Microsoft.UI.Xaml.Controls.Control);
-            _typeTable[8] = typeof(global::System.Collections.Generic.IList<global::Microsoft.UI.Xaml.Controls.MenuBarItem>);
-            _typeTable[9] = typeof(global::Microsoft.UI.Xaml.Controls.MenuBarItem);
-            _typeTable[10] = typeof(global::System.Collections.Generic.IList<global::Microsoft.UI.Xaml.Controls.MenuFlyoutItemBase>);
-            _typeTable[11] = typeof(global::Microsoft.UI.Xaml.Controls.MenuFlyoutItemBase);
-            _typeTable[12] = typeof(global::System.String);
-            _typeTable[13] = typeof(global::WindowManager.UserControls.PanelFrame);
-            _typeTable[14] = typeof(global::Microsoft.UI.Xaml.Controls.UserControl);
-            _typeTable[15] = typeof(global::Microsoft.UI.Xaml.Controls.WebView2);
-            _typeTable[16] = typeof(global::Microsoft.UI.Xaml.FrameworkElement);
-            _typeTable[17] = typeof(global::System.Uri);
-            _typeTable[18] = typeof(global::Microsoft.Web.WebView2.Core.CoreWebView2);
-            _typeTable[19] = typeof(global::Windows.UI.Color);
-            _typeTable[20] = typeof(global::System.ValueType);
-            _typeTable[21] = typeof(global::WindowManager.MainWindow);
-            _typeTable[22] = typeof(global::WindowManager.UserControls.WebViewGrid);
+            _typeTable[6] = typeof(global::WindowManager.UserControls.MenuBar);
+            _typeTable[7] = typeof(global::Microsoft.UI.Xaml.Controls.UserControl);
+            _typeTable[8] = typeof(global::WindowManager.UserControls.PanelFrame);
+            _typeTable[9] = typeof(global::WindowManager.UserControls.EmptyFrame);
+            _typeTable[10] = typeof(global::WindowManager.UserControls.WebViewGrid);
+            _typeTable[11] = typeof(global::System.String);
+            _typeTable[12] = typeof(global::WindowManager.MainWindow);
+            _typeTable[13] = typeof(global::Microsoft.UI.Xaml.Controls.MenuBar);
+            _typeTable[14] = typeof(global::Microsoft.UI.Xaml.Controls.Control);
+            _typeTable[15] = typeof(global::System.Collections.Generic.IList<global::Microsoft.UI.Xaml.Controls.MenuBarItem>);
+            _typeTable[16] = typeof(global::Microsoft.UI.Xaml.Controls.MenuBarItem);
+            _typeTable[17] = typeof(global::System.Collections.Generic.IList<global::Microsoft.UI.Xaml.Controls.MenuFlyoutItemBase>);
+            _typeTable[18] = typeof(global::Microsoft.UI.Xaml.Controls.MenuFlyoutItemBase);
+            _typeTable[19] = typeof(global::Microsoft.UI.Xaml.Controls.WebView2);
+            _typeTable[20] = typeof(global::Microsoft.UI.Xaml.FrameworkElement);
+            _typeTable[21] = typeof(global::System.Uri);
+            _typeTable[22] = typeof(global::Microsoft.Web.WebView2.Core.CoreWebView2);
+            _typeTable[23] = typeof(global::Windows.UI.Color);
+            _typeTable[24] = typeof(global::System.ValueType);
         }
 
         private int LookupTypeIndexByName(string typeName)
@@ -309,12 +313,14 @@ namespace WindowManager.WindowManager_XamlTypeInfo
 
         private object Activate_0_XamlControlsResources() { return new global::Microsoft.UI.Xaml.Controls.XamlControlsResources(); }
         private object Activate_4_CalibrationWindow() { return new global::WindowManager.CalibrationWindow(); }
-        private object Activate_6_MenuBar() { return new global::Microsoft.UI.Xaml.Controls.MenuBar(); }
-        private object Activate_9_MenuBarItem() { return new global::Microsoft.UI.Xaml.Controls.MenuBarItem(); }
-        private object Activate_13_PanelFrame() { return new global::WindowManager.UserControls.PanelFrame(); }
-        private object Activate_15_WebView2() { return new global::Microsoft.UI.Xaml.Controls.WebView2(); }
-        private object Activate_21_MainWindow() { return new global::WindowManager.MainWindow(); }
-        private object Activate_22_WebViewGrid() { return new global::WindowManager.UserControls.WebViewGrid(); }
+        private object Activate_6_MenuBar() { return new global::WindowManager.UserControls.MenuBar(); }
+        private object Activate_8_PanelFrame() { return new global::WindowManager.UserControls.PanelFrame(); }
+        private object Activate_9_EmptyFrame() { return new global::WindowManager.UserControls.EmptyFrame(); }
+        private object Activate_10_WebViewGrid() { return new global::WindowManager.UserControls.WebViewGrid(); }
+        private object Activate_12_MainWindow() { return new global::WindowManager.MainWindow(); }
+        private object Activate_13_MenuBar() { return new global::Microsoft.UI.Xaml.Controls.MenuBar(); }
+        private object Activate_16_MenuBarItem() { return new global::Microsoft.UI.Xaml.Controls.MenuBarItem(); }
+        private object Activate_19_WebView2() { return new global::Microsoft.UI.Xaml.Controls.WebView2(); }
         private void MapAdd_0_XamlControlsResources(object instance, object key, object item)
         {
             var collection = (global::System.Collections.Generic.IDictionary<global::System.Object, global::System.Object>)instance;
@@ -322,13 +328,13 @@ namespace WindowManager.WindowManager_XamlTypeInfo
             var newItem = (global::System.Object)item;
             collection.Add(newKey, newItem);
         }
-        private void VectorAdd_8_IList(object instance, object item)
+        private void VectorAdd_15_IList(object instance, object item)
         {
             var collection = (global::System.Collections.Generic.ICollection<global::Microsoft.UI.Xaml.Controls.MenuBarItem>)instance;
             var newItem = (global::Microsoft.UI.Xaml.Controls.MenuBarItem)item;
             collection.Add(newItem);
         }
-        private void VectorAdd_10_IList(object instance, object item)
+        private void VectorAdd_17_IList(object instance, object item)
         {
             var collection = (global::System.Collections.Generic.ICollection<global::Microsoft.UI.Xaml.Controls.MenuFlyoutItemBase>)instance;
             var newItem = (global::Microsoft.UI.Xaml.Controls.MenuFlyoutItemBase)item;
@@ -376,63 +382,92 @@ namespace WindowManager.WindowManager_XamlTypeInfo
                 xamlType = new global::WindowManager.WindowManager_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 6:   //  Microsoft.UI.Xaml.Controls.MenuBar
-                userType = new global::WindowManager.WindowManager_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Control"));
+            case 6:   //  WindowManager.UserControls.MenuBar
+                userType = new global::WindowManager.WindowManager_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.UserControl"));
                 userType.Activator = Activate_6_MenuBar;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 7:   //  Microsoft.UI.Xaml.Controls.UserControl
+                xamlType = new global::WindowManager.WindowManager_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 8:   //  WindowManager.UserControls.PanelFrame
+                userType = new global::WindowManager.WindowManager_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.UserControl"));
+                userType.Activator = Activate_8_PanelFrame;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 9:   //  WindowManager.UserControls.EmptyFrame
+                userType = new global::WindowManager.WindowManager_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.UserControl"));
+                userType.Activator = Activate_9_EmptyFrame;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 10:   //  WindowManager.UserControls.WebViewGrid
+                userType = new global::WindowManager.WindowManager_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.UserControl"));
+                userType.Activator = Activate_10_WebViewGrid;
+                userType.AddMemberName("Source");
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 11:   //  String
+                xamlType = new global::WindowManager.WindowManager_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 12:   //  WindowManager.MainWindow
+                userType = new global::WindowManager.WindowManager_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Window"));
+                userType.Activator = Activate_12_MainWindow;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 13:   //  Microsoft.UI.Xaml.Controls.MenuBar
+                userType = new global::WindowManager.WindowManager_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Control"));
+                userType.Activator = Activate_13_MenuBar;
                 userType.SetContentPropertyName("Microsoft.UI.Xaml.Controls.MenuBar.Items");
                 userType.AddMemberName("Items");
                 xamlType = userType;
                 break;
 
-            case 7:   //  Microsoft.UI.Xaml.Controls.Control
+            case 14:   //  Microsoft.UI.Xaml.Controls.Control
                 xamlType = new global::WindowManager.WindowManager_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 8:   //  System.Collections.Generic.IList`1<Microsoft.UI.Xaml.Controls.MenuBarItem>
+            case 15:   //  System.Collections.Generic.IList`1<Microsoft.UI.Xaml.Controls.MenuBarItem>
                 userType = new global::WindowManager.WindowManager_XamlTypeInfo.XamlUserType(this, typeName, type, null);
-                userType.CollectionAdd = VectorAdd_8_IList;
+                userType.CollectionAdd = VectorAdd_15_IList;
                 userType.SetIsReturnTypeStub();
                 xamlType = userType;
                 break;
 
-            case 9:   //  Microsoft.UI.Xaml.Controls.MenuBarItem
+            case 16:   //  Microsoft.UI.Xaml.Controls.MenuBarItem
                 userType = new global::WindowManager.WindowManager_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Control"));
-                userType.Activator = Activate_9_MenuBarItem;
+                userType.Activator = Activate_16_MenuBarItem;
                 userType.SetContentPropertyName("Microsoft.UI.Xaml.Controls.MenuBarItem.Items");
                 userType.AddMemberName("Items");
                 userType.AddMemberName("Title");
                 xamlType = userType;
                 break;
 
-            case 10:   //  System.Collections.Generic.IList`1<Microsoft.UI.Xaml.Controls.MenuFlyoutItemBase>
+            case 17:   //  System.Collections.Generic.IList`1<Microsoft.UI.Xaml.Controls.MenuFlyoutItemBase>
                 userType = new global::WindowManager.WindowManager_XamlTypeInfo.XamlUserType(this, typeName, type, null);
-                userType.CollectionAdd = VectorAdd_10_IList;
+                userType.CollectionAdd = VectorAdd_17_IList;
                 userType.SetIsReturnTypeStub();
                 xamlType = userType;
                 break;
 
-            case 11:   //  Microsoft.UI.Xaml.Controls.MenuFlyoutItemBase
+            case 18:   //  Microsoft.UI.Xaml.Controls.MenuFlyoutItemBase
                 xamlType = new global::WindowManager.WindowManager_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 12:   //  String
-                xamlType = new global::WindowManager.WindowManager_XamlTypeInfo.XamlSystemBaseType(typeName, type);
-                break;
-
-            case 13:   //  WindowManager.UserControls.PanelFrame
-                userType = new global::WindowManager.WindowManager_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.UserControl"));
-                userType.Activator = Activate_13_PanelFrame;
-                userType.SetIsLocalType();
-                xamlType = userType;
-                break;
-
-            case 14:   //  Microsoft.UI.Xaml.Controls.UserControl
-                xamlType = new global::WindowManager.WindowManager_XamlTypeInfo.XamlSystemBaseType(typeName, type);
-                break;
-
-            case 15:   //  Microsoft.UI.Xaml.Controls.WebView2
+            case 19:   //  Microsoft.UI.Xaml.Controls.WebView2
                 userType = new global::WindowManager.WindowManager_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.FrameworkElement"));
-                userType.Activator = Activate_15_WebView2;
+                userType.Activator = Activate_19_WebView2;
                 userType.AddMemberName("Source");
                 userType.AddMemberName("CanGoBack");
                 userType.AddMemberName("CanGoForward");
@@ -441,45 +476,30 @@ namespace WindowManager.WindowManager_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 16:   //  Microsoft.UI.Xaml.FrameworkElement
+            case 20:   //  Microsoft.UI.Xaml.FrameworkElement
                 xamlType = new global::WindowManager.WindowManager_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 17:   //  System.Uri
+            case 21:   //  System.Uri
                 userType = new global::WindowManager.WindowManager_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
                 userType.SetIsReturnTypeStub();
                 xamlType = userType;
                 break;
 
-            case 18:   //  Microsoft.Web.WebView2.Core.CoreWebView2
+            case 22:   //  Microsoft.Web.WebView2.Core.CoreWebView2
                 userType = new global::WindowManager.WindowManager_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
                 userType.SetIsReturnTypeStub();
                 xamlType = userType;
                 break;
 
-            case 19:   //  Windows.UI.Color
+            case 23:   //  Windows.UI.Color
                 userType = new global::WindowManager.WindowManager_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.ValueType"));
                 userType.SetIsReturnTypeStub();
                 xamlType = userType;
                 break;
 
-            case 20:   //  System.ValueType
+            case 24:   //  System.ValueType
                 userType = new global::WindowManager.WindowManager_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
-                xamlType = userType;
-                break;
-
-            case 21:   //  WindowManager.MainWindow
-                userType = new global::WindowManager.WindowManager_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Window"));
-                userType.Activator = Activate_21_MainWindow;
-                userType.SetIsLocalType();
-                xamlType = userType;
-                break;
-
-            case 22:   //  WindowManager.UserControls.WebViewGrid
-                userType = new global::WindowManager.WindowManager_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.UserControl"));
-                userType.Activator = Activate_22_WebViewGrid;
-                userType.AddMemberName("Source");
-                userType.SetIsLocalType();
                 xamlType = userType;
                 break;
             }
@@ -551,80 +571,80 @@ namespace WindowManager.WindowManager_XamlTypeInfo
             var that = (global::Microsoft.UI.Xaml.Controls.XamlControlsResources)instance;
             that.UseCompactResources = (global::System.Boolean)Value;
         }
-        private object get_1_MenuBar_Items(object instance)
+        private object get_1_WebViewGrid_Source(object instance)
+        {
+            var that = (global::WindowManager.UserControls.WebViewGrid)instance;
+            return that.Source;
+        }
+        private void set_1_WebViewGrid_Source(object instance, object Value)
+        {
+            var that = (global::WindowManager.UserControls.WebViewGrid)instance;
+            that.Source = (global::System.String)Value;
+        }
+        private object get_2_MenuBar_Items(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.MenuBar)instance;
             return that.Items;
         }
-        private object get_2_MenuBarItem_Items(object instance)
+        private object get_3_MenuBarItem_Items(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.MenuBarItem)instance;
             return that.Items;
         }
-        private object get_3_MenuBarItem_Title(object instance)
+        private object get_4_MenuBarItem_Title(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.MenuBarItem)instance;
             return that.Title;
         }
-        private void set_3_MenuBarItem_Title(object instance, object Value)
+        private void set_4_MenuBarItem_Title(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.MenuBarItem)instance;
             that.Title = (global::System.String)Value;
         }
-        private object get_4_WebView2_Source(object instance)
+        private object get_5_WebView2_Source(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.WebView2)instance;
             return that.Source;
         }
-        private void set_4_WebView2_Source(object instance, object Value)
+        private void set_5_WebView2_Source(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.WebView2)instance;
             that.Source = (global::System.Uri)Value;
         }
-        private object get_5_WebView2_CanGoBack(object instance)
+        private object get_6_WebView2_CanGoBack(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.WebView2)instance;
             return that.CanGoBack;
         }
-        private void set_5_WebView2_CanGoBack(object instance, object Value)
+        private void set_6_WebView2_CanGoBack(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.WebView2)instance;
             that.CanGoBack = (global::System.Boolean)Value;
         }
-        private object get_6_WebView2_CanGoForward(object instance)
+        private object get_7_WebView2_CanGoForward(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.WebView2)instance;
             return that.CanGoForward;
         }
-        private void set_6_WebView2_CanGoForward(object instance, object Value)
+        private void set_7_WebView2_CanGoForward(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.WebView2)instance;
             that.CanGoForward = (global::System.Boolean)Value;
         }
-        private object get_7_WebView2_CoreWebView2(object instance)
+        private object get_8_WebView2_CoreWebView2(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.WebView2)instance;
             return that.CoreWebView2;
         }
-        private object get_8_WebView2_DefaultBackgroundColor(object instance)
+        private object get_9_WebView2_DefaultBackgroundColor(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.WebView2)instance;
             return that.DefaultBackgroundColor;
         }
-        private void set_8_WebView2_DefaultBackgroundColor(object instance, object Value)
+        private void set_9_WebView2_DefaultBackgroundColor(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.WebView2)instance;
             that.DefaultBackgroundColor = (global::Windows.UI.Color)Value;
-        }
-        private object get_9_WebViewGrid_Source(object instance)
-        {
-            var that = (global::WindowManager.UserControls.WebViewGrid)instance;
-            return that.Source;
-        }
-        private void set_9_WebViewGrid_Source(object instance, object Value)
-        {
-            var that = (global::WindowManager.UserControls.WebViewGrid)instance;
-            that.Source = (global::System.String)Value;
         }
 
         private global::Microsoft.UI.Xaml.Markup.IXamlMember CreateXamlMember(string longMemberName)
@@ -641,67 +661,67 @@ namespace WindowManager.WindowManager_XamlTypeInfo
                 xamlMember.Getter = get_0_XamlControlsResources_UseCompactResources;
                 xamlMember.Setter = set_0_XamlControlsResources_UseCompactResources;
                 break;
+            case "WindowManager.UserControls.WebViewGrid.Source":
+                userType = (global::WindowManager.WindowManager_XamlTypeInfo.XamlUserType)GetXamlTypeByName("WindowManager.UserControls.WebViewGrid");
+                xamlMember = new global::WindowManager.WindowManager_XamlTypeInfo.XamlMember(this, "Source", "String");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_1_WebViewGrid_Source;
+                xamlMember.Setter = set_1_WebViewGrid_Source;
+                break;
             case "Microsoft.UI.Xaml.Controls.MenuBar.Items":
                 userType = (global::WindowManager.WindowManager_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.MenuBar");
                 xamlMember = new global::WindowManager.WindowManager_XamlTypeInfo.XamlMember(this, "Items", "System.Collections.Generic.IList`1<Microsoft.UI.Xaml.Controls.MenuBarItem>");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_1_MenuBar_Items;
+                xamlMember.Getter = get_2_MenuBar_Items;
                 xamlMember.SetIsReadOnly();
                 break;
             case "Microsoft.UI.Xaml.Controls.MenuBarItem.Items":
                 userType = (global::WindowManager.WindowManager_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.MenuBarItem");
                 xamlMember = new global::WindowManager.WindowManager_XamlTypeInfo.XamlMember(this, "Items", "System.Collections.Generic.IList`1<Microsoft.UI.Xaml.Controls.MenuFlyoutItemBase>");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_2_MenuBarItem_Items;
+                xamlMember.Getter = get_3_MenuBarItem_Items;
                 xamlMember.SetIsReadOnly();
                 break;
             case "Microsoft.UI.Xaml.Controls.MenuBarItem.Title":
                 userType = (global::WindowManager.WindowManager_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.MenuBarItem");
                 xamlMember = new global::WindowManager.WindowManager_XamlTypeInfo.XamlMember(this, "Title", "String");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_3_MenuBarItem_Title;
-                xamlMember.Setter = set_3_MenuBarItem_Title;
+                xamlMember.Getter = get_4_MenuBarItem_Title;
+                xamlMember.Setter = set_4_MenuBarItem_Title;
                 break;
             case "Microsoft.UI.Xaml.Controls.WebView2.Source":
                 userType = (global::WindowManager.WindowManager_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.WebView2");
                 xamlMember = new global::WindowManager.WindowManager_XamlTypeInfo.XamlMember(this, "Source", "System.Uri");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_4_WebView2_Source;
-                xamlMember.Setter = set_4_WebView2_Source;
+                xamlMember.Getter = get_5_WebView2_Source;
+                xamlMember.Setter = set_5_WebView2_Source;
                 break;
             case "Microsoft.UI.Xaml.Controls.WebView2.CanGoBack":
                 userType = (global::WindowManager.WindowManager_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.WebView2");
                 xamlMember = new global::WindowManager.WindowManager_XamlTypeInfo.XamlMember(this, "CanGoBack", "Boolean");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_5_WebView2_CanGoBack;
-                xamlMember.Setter = set_5_WebView2_CanGoBack;
+                xamlMember.Getter = get_6_WebView2_CanGoBack;
+                xamlMember.Setter = set_6_WebView2_CanGoBack;
                 break;
             case "Microsoft.UI.Xaml.Controls.WebView2.CanGoForward":
                 userType = (global::WindowManager.WindowManager_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.WebView2");
                 xamlMember = new global::WindowManager.WindowManager_XamlTypeInfo.XamlMember(this, "CanGoForward", "Boolean");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_6_WebView2_CanGoForward;
-                xamlMember.Setter = set_6_WebView2_CanGoForward;
+                xamlMember.Getter = get_7_WebView2_CanGoForward;
+                xamlMember.Setter = set_7_WebView2_CanGoForward;
                 break;
             case "Microsoft.UI.Xaml.Controls.WebView2.CoreWebView2":
                 userType = (global::WindowManager.WindowManager_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.WebView2");
                 xamlMember = new global::WindowManager.WindowManager_XamlTypeInfo.XamlMember(this, "CoreWebView2", "Microsoft.Web.WebView2.Core.CoreWebView2");
-                xamlMember.Getter = get_7_WebView2_CoreWebView2;
+                xamlMember.Getter = get_8_WebView2_CoreWebView2;
                 xamlMember.SetIsReadOnly();
                 break;
             case "Microsoft.UI.Xaml.Controls.WebView2.DefaultBackgroundColor":
                 userType = (global::WindowManager.WindowManager_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.WebView2");
                 xamlMember = new global::WindowManager.WindowManager_XamlTypeInfo.XamlMember(this, "DefaultBackgroundColor", "Windows.UI.Color");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_8_WebView2_DefaultBackgroundColor;
-                xamlMember.Setter = set_8_WebView2_DefaultBackgroundColor;
-                break;
-            case "WindowManager.UserControls.WebViewGrid.Source":
-                userType = (global::WindowManager.WindowManager_XamlTypeInfo.XamlUserType)GetXamlTypeByName("WindowManager.UserControls.WebViewGrid");
-                xamlMember = new global::WindowManager.WindowManager_XamlTypeInfo.XamlMember(this, "Source", "String");
-                xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_9_WebViewGrid_Source;
-                xamlMember.Setter = set_9_WebViewGrid_Source;
+                xamlMember.Getter = get_9_WebView2_DefaultBackgroundColor;
+                xamlMember.Setter = set_9_WebView2_DefaultBackgroundColor;
                 break;
             }
             return xamlMember;

@@ -40,7 +40,7 @@ namespace WindowManager
         {
             this.InitializeComponent();
 
-            TestFrame.Frame_DragStarting += new TypedEventHandler<UIElement, DragStartingEventArgs>(PanelFrame_DragStarting);
+            Frame3.Frame_DragStarting += new TypedEventHandler<UIElement, DragStartingEventArgs>(PanelFrame_DragStarting);
 
             // wire event handler to vent bubbled up from PanelFrame class
             //panelFrame.Frame_DragStarting += new RoutedEventHandler(PanelFrame_DragStarting);

@@ -8,10 +8,16 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Frame x:ConnectionId='2' Name="Frame1"  Background="LightSteelBlue" 
+    <Frame x:ConnectionId='2' Name="Frame1" Background="LightSteelBlue" 
                    CanDrag="True" AllowDrop="True" 
                                                                                                                                      
-                                                                                             >
+                   BorderBrush="Black" BorderThickness="0.5">
+        
+        <RelativePanel>
+            <CommandBar RelativePanel.AlignLeftWithPanel="True" Background="Transparent" IsOpen="False" DefaultLabelPosition="Right">
+                <AppBarButton Icon="Add" Label="Add Window"/>
+            </CommandBar>
+        </RelativePanel>
 
     </Frame>
     

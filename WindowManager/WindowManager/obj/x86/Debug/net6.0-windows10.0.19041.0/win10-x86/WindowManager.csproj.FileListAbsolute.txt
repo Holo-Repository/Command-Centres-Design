@@ -300,3 +300,13 @@ C:\code\Command-Centres-Design\WindowManager\WindowManager\obj\x86\Debug\net6.0-
 C:\code\Command-Centres-Design\WindowManager\WindowManager\obj\x86\Debug\net6.0-windows10.0.19041.0\win10-x86\CalibrationWindow.g.cs
 C:\code\Command-Centres-Design\WindowManager\WindowManager\obj\x86\Debug\net6.0-windows10.0.19041.0\win10-x86\CalibrationWindow.xaml
 C:\code\Command-Centres-Design\WindowManager\WindowManager\obj\x86\Debug\net6.0-windows10.0.19041.0\win10-x86\CalibrationWindow.xbf
+C:\code\Command-Centres-Design\WindowManager\WindowManager\obj\x86\Debug\net6.0-windows10.0.19041.0\win10-x86\UserControls\EmptyFrame.g.i.cs
+C:\code\Command-Centres-Design\WindowManager\WindowManager\obj\x86\Debug\net6.0-windows10.0.19041.0\win10-x86\UserControls\EmptyFrame.g.cs
+C:\code\Command-Centres-Design\WindowManager\WindowManager\obj\x86\Debug\net6.0-windows10.0.19041.0\win10-x86\UserControls\EmptyFrame.xaml
+C:\code\Command-Centres-Design\WindowManager\WindowManager\obj\x86\Debug\net6.0-windows10.0.19041.0\win10-x86\UserControls\EmptyFrame.xbf
+C:\code\Command-Centres-Design\WindowManager\WindowManager\bin\x86\Debug\net6.0-windows10.0.19041.0\win10-x86\UserControls\EmptyFrame.xbf
+C:\code\Command-Centres-Design\WindowManager\WindowManager\obj\x86\Debug\net6.0-windows10.0.19041.0\win10-x86\UserControls\MenuBar.g.i.cs
+C:\code\Command-Centres-Design\WindowManager\WindowManager\obj\x86\Debug\net6.0-windows10.0.19041.0\win10-x86\UserControls\MenuBar.g.cs
+C:\code\Command-Centres-Design\WindowManager\WindowManager\obj\x86\Debug\net6.0-windows10.0.19041.0\win10-x86\UserControls\MenuBar.xaml
+C:\code\Command-Centres-Design\WindowManager\WindowManager\obj\x86\Debug\net6.0-windows10.0.19041.0\win10-x86\UserControls\MenuBar.xbf
+C:\code\Command-Centres-Design\WindowManager\WindowManager\bin\x86\Debug\net6.0-windows10.0.19041.0\win10-x86\UserControls\MenuBar.xbf

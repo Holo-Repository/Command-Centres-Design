@@ -14,6 +14,8 @@
   </PropertyGroup>
   <ItemGroup>
     <None Remove="CalibrationWindow.xaml" />
+    <None Remove="UserControls\EmptyFrame.xaml" />
+    <None Remove="UserControls\MenuBar.xaml" />
     <None Remove="UserControls\PanelFrame.xaml" />
     <None Remove="UserControls\WebViewGrid.xaml" />
   </ItemGroup>
@@ -69,6 +71,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="C:\code\Command-Centres-Design\WindowManager\WindowManager\.editorconfig" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="UserControls\MenuBar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="UserControls\EmptyFrame.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="CalibrationWindow.xaml">

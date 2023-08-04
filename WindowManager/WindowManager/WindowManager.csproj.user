@@ -5,6 +5,12 @@
     <None Update="App.xaml">
       <SubType>Designer</SubType>
     </None>
+    <Page Update="UserControls\MenuBar.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UserControls\EmptyFrame.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="CalibrationWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
