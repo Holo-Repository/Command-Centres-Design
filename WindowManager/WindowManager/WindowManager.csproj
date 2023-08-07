@@ -14,10 +14,8 @@
   </PropertyGroup>
   <ItemGroup>
     <None Remove="CalibrationWindow.xaml" />
-    <None Remove="UserControls\EmptyFrame.xaml" />
     <None Remove="UserControls\MenuBar.xaml" />
-    <None Remove="UserControls\PanelFrame.xaml" />
-    <None Remove="UserControls\WebViewGrid.xaml" />
+    <None Remove="UserControls\WebPanel.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -45,17 +43,7 @@
     <ProjectCapability Include="Msix" />
   </ItemGroup>
   <ItemGroup>
-    <Page Update="UserControls\WebViewGrid.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="Themes\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Page Update="UserControls\PanelFrame.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
 
   <!-- 
@@ -73,12 +61,12 @@
     <None Include="C:\code\Command-Centres-Design\WindowManager\WindowManager\.editorconfig" />
   </ItemGroup>
   <ItemGroup>
-    <Page Update="UserControls\MenuBar.xaml">
+    <Page Update="UserControls\WebPanel.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="UserControls\EmptyFrame.xaml">
+    <Page Update="UserControls\MenuBar.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>

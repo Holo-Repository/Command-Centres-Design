@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <UserControl x:ConnectionId='1'
-    x:Class="WindowManager.UserControls.WebViewGrid"
+    x:Class="WindowManager.UserControls.WebPanel"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:WindowManager.UserControls"
@@ -10,7 +10,13 @@
     x:Name="root"
     mc:Ignorable="d">
 
-    <Grid HorizontalAlignment="Stretch" BorderBrush="Black" BorderThickness="0.5">
+    <Frame x:ConnectionId='2' x:Name="Frame1" Background="LightSteelBlue" 
+                   CanDrag="True" AllowDrop="True" 
+                                                                                 
+                                                                  
+                                                                                      >
+
+        <Grid HorizontalAlignment="Stretch" BorderBrush="Black" BorderThickness="0.5">
 
             <Grid.RowDefinitions >
                 <RowDefinition Height="Auto"/>
@@ -21,7 +27,7 @@
             </Grid.ColumnDefinitions>
 
             <RelativePanel Grid.Column="0" Grid.Row="0">
-                <CommandBar x:ConnectionId='3' Name="MoveCommandBar" RelativePanel.AlignLeftWithPanel="True" Background="Transparent" IsOpen="False" DefaultLabelPosition="Right"
+                <CommandBar x:ConnectionId='4' x:Name="MoveCommandBar" RelativePanel.AlignLeftWithPanel="True" Background="Transparent" IsOpen="False" DefaultLabelPosition="Right"
                                     Visibility="Collapsed">
                     <AppBarButton Label="Move">
                         <AppBarButton.Icon>
@@ -30,7 +36,7 @@
                     </AppBarButton>
                 </CommandBar>
 
-                <CommandBar x:ConnectionId='4' Name="CloseCommandBar" RelativePanel.AlignRightWithPanel="True" Background="Transparent" IsOpen="False" DefaultLabelPosition="Right"
+                <CommandBar x:ConnectionId='5' x:Name="CloseCommandBar" RelativePanel.AlignRightWithPanel="True" Background="Transparent" IsOpen="False" DefaultLabelPosition="Right"
                                     Visibility="Collapsed">
                     <AppBarButton Label="Close">
                         <AppBarButton.Icon>
@@ -40,10 +46,12 @@
                 </CommandBar>
             </RelativePanel>
 
-            <controls:WebView2 x:ConnectionId='2' x:Name="MyWebView" Source="{Binding Source, ElementName=root}" 
+            <controls:WebView2 x:ConnectionId='3' x:Name="WebViewContent" Source="{Binding Source, ElementName=root}" 
                                        Grid.Column="0" Grid.Row="1"
                                        HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
         </Grid>
 
+    </Frame>
+    
 </UserControl>
 

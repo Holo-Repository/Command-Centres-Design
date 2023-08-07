@@ -77,7 +77,6 @@ namespace WindowManager
         private void Canvas_PointerPressed(object sender, PointerRoutedEventArgs e)
         {
 
-
             canvas.Children.Clear();
             startPoint = e.GetCurrentPoint(canvas).Position;
             currentRectangle = new Rectangle

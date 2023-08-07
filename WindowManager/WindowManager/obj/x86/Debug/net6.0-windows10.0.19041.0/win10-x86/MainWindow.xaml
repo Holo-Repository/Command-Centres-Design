@@ -26,21 +26,15 @@
                 <ColumnDefinition Width="427"/>
             </Grid.ColumnDefinitions>
 
-            <local:PanelFrame x:ConnectionId='2' x:Name="Frame1" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="2">
-                <local:WebViewGrid x:ConnectionId='9' x:Name="WVG1" Source="http://localhost:3000"/>
-            </local:PanelFrame>
-
-            <local:EmptyFrame x:ConnectionId='3' x:Name="Frame2" Grid.Column="2" Grid.Row="0"/>            
-
-            <local:PanelFrame x:ConnectionId='4' x:Name="Frame3" Grid.Column="2" Grid.Row="1"/>
-
-            <local:PanelFrame x:ConnectionId='5' x:Name="Frame4" Grid.Column="0" Grid.Row="2">
-                <local:WebViewGrid x:ConnectionId='8' x:Name="WVG4" Source="https://www.google.com"/>
-            </local:PanelFrame>
-
-            <local:EmptyFrame x:ConnectionId='6' x:Name="Frame5" Grid.Column="1" Grid.Row="2"/>
-          
-            <local:EmptyFrame x:ConnectionId='7' x:Name="Frame6" Grid.Column="2" Grid.Row="2"/>                                  
+            <local:WebPanel x:ConnectionId='2' x:Name="Panel1" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="2" 
+                            Source="https://www.microsoft.com"/>
+            <local:WebPanel x:ConnectionId='3' x:Name="Panel2" Grid.Column="2" Grid.Row="0"/>
+            <local:WebPanel x:ConnectionId='4' x:Name="Panel3" Grid.Column="2" Grid.Row="1"/>
+            <local:WebPanel x:ConnectionId='5' x:Name="Panel4" Grid.Column="0" Grid.Row="2" 
+                            Source="https://www.google.com"/>
+            <local:WebPanel x:ConnectionId='6' x:Name="Panel5" Grid.Column="1" Grid.Row="2"/>
+            <local:WebPanel x:ConnectionId='7' x:Name="Panel6" Grid.Column="2" Grid.Row="2"/>
+                            
                 
         </Grid>
    
