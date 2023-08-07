@@ -11,7 +11,7 @@
 
     <StackPanel>
 
-        <local:MenuBar HorizontalAlignment="Left"/>
+        <local:MenuBar x:Name="MainMenuBar" HorizontalAlignment="Left"/>
 
         <Grid HorizontalAlignment="Left">
 

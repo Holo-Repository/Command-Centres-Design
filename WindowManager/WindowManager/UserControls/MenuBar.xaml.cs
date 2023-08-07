@@ -22,9 +22,17 @@ namespace WindowManager.UserControls
     {
         public event TypedEventHandler<Object, RoutedEventArgs> MenuFlyoutItem_Click;
 
+        public void MenuFlyoutItem1_Click(object sender, RoutedEventArgs e)
+        {
+            //bubble the event up to the parent
+            if (this.MenuFlyoutItem_Click != null)
+                this.MenuFlyoutItem_Click(this, e);
+        }
+
         public MenuBar()
         {
             this.InitializeComponent();
         }
+
     }
 }

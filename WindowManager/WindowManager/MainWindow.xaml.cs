@@ -54,6 +54,8 @@ namespace WindowManager
                 panel.Frame_PointerExited += new TypedEventHandler<object, PointerRoutedEventArgs>(WebPanel_PointerExited);
             }
 
+            MainMenuBar.MenuFlyoutItem_Click += new TypedEventHandler<object, RoutedEventArgs>(Calibration_Click);
+
             System.Diagnostics.Debug.WriteLine("Initialising");
 
 

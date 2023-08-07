@@ -65,7 +65,7 @@
 
         <!--Add in Click="Calibration_Click"-->
         <MenuBarItem Title="Calibration">
-            <MenuFlyoutItem Text="Begin Calibration">
+            <MenuFlyoutItem x:ConnectionId='2' Text="Begin Calibration"                              >
                 <MenuFlyoutItem.KeyboardAccelerators>
                     <KeyboardAccelerator Modifiers="Control" Key="S"/>
                 </MenuFlyoutItem.KeyboardAccelerators>
