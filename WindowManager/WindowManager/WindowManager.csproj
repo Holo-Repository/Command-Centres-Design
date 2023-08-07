@@ -15,6 +15,7 @@
   <ItemGroup>
     <None Remove="CalibrationWindow.xaml" />
     <None Remove="UserControls\MenuBar.xaml" />
+    <None Remove="UserControls\TvPanel.xaml" />
     <None Remove="UserControls\WebPanel.xaml" />
   </ItemGroup>
 
@@ -59,6 +60,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="C:\code\Command-Centres-Design\WindowManager\WindowManager\.editorconfig" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="UserControls\TvPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="UserControls\WebPanel.xaml">

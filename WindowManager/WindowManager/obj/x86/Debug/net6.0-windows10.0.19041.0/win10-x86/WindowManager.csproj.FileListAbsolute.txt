@@ -300,3 +300,8 @@ C:\code\Command-Centres-Design\WindowManager\WindowManager\obj\x86\Debug\net6.0-
 C:\code\Command-Centres-Design\WindowManager\WindowManager\obj\x86\Debug\net6.0-windows10.0.19041.0\win10-x86\UserControls\WebPanel.g.cs
 C:\code\Command-Centres-Design\WindowManager\WindowManager\obj\x86\Debug\net6.0-windows10.0.19041.0\win10-x86\UserControls\WebPanel.xaml
 C:\code\Command-Centres-Design\WindowManager\WindowManager\obj\x86\Debug\net6.0-windows10.0.19041.0\win10-x86\UserControls\WebPanel.xbf
+C:\code\Command-Centres-Design\WindowManager\WindowManager\bin\x86\Debug\net6.0-windows10.0.19041.0\win10-x86\UserControls\TvPanel.xbf
+C:\code\Command-Centres-Design\WindowManager\WindowManager\obj\x86\Debug\net6.0-windows10.0.19041.0\win10-x86\UserControls\TvPanel.g.i.cs
+C:\code\Command-Centres-Design\WindowManager\WindowManager\obj\x86\Debug\net6.0-windows10.0.19041.0\win10-x86\UserControls\TvPanel.g.cs
+C:\code\Command-Centres-Design\WindowManager\WindowManager\obj\x86\Debug\net6.0-windows10.0.19041.0\win10-x86\UserControls\TvPanel.xaml
+C:\code\Command-Centres-Design\WindowManager\WindowManager\obj\x86\Debug\net6.0-windows10.0.19041.0\win10-x86\UserControls\TvPanel.xbf
