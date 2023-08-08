@@ -154,30 +154,20 @@ namespace WindowManager
                         {
                             System.Diagnostics.Debug.WriteLine($"Value: {kvp.Value}");
 
+                            SettingsData settings = DeserialiseSettingsJSON();
+
                             double tv_width = kvp.Value.Width;
                             double tv_height = kvp.Value.Height;
                             double tv_x = kvp.Value.X;
                             double tv_y = kvp.Value.Y;
 
-                            //string dir = Directory.GetCurrentDirectory();
-                            //string filePath = dir + "\\settings.json";
+                            settings.Tv.Height = tv_height;
+                            settings.Tv.Width = tv_width;
+                            settings.Tv.X_Position = tv_x;
+                            settings.Tv.Y_Position = tv_y;
 
-                            string filePath = "C:\\code\\Command-Centres-Design\\WindowManager\\WindowManager\\settings.json";
-
-                            // Read the existing JSON data
-                            string jsonString = File.ReadAllText(filePath);
-
-                            // Deserialize JSON to C# object                            
-                            Object json_data = JsonSerializer.Deserialize<Object>(jsonString)!;
-
-                            //// Modify the object as needed
-                            //data.Age = 30;
-
-                            //// Serialize the updated object back to JSON
-                            //json = JsonConvert.SerializeObject(data);
-
-                            //// Write the JSON back to the file, overwriting the existing data
-                            //File.WriteAllText(filePath, json);
+                            SerialiseSettingsJSON(settings);
+                          
 
                         }
                         else
@@ -202,6 +192,27 @@ namespace WindowManager
             }
         }
 
+        private SettingsData DeserialiseSettingsJSON()
+        {
+            string dir = Directory.GetCurrentDirectory();
+            string filePath = dir + "\\settings.json";
+
+            string jsonString = File.ReadAllText(filePath);
+            SettingsData settings = JsonSerializer.Deserialize<SettingsData>(jsonString);
+
+            return settings;
+        }
+
+        private void SerialiseSettingsJSON(SettingsData newSettings)
+        {
+            string fileName = "settings.json";
+
+            string jsonString = JsonSerializer.Serialize<SettingsData>(newSettings);
+            File.WriteAllText(fileName, jsonString);
+
+
+
+        }
 
     }
 }

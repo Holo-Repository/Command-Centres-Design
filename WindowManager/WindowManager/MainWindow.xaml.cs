@@ -25,6 +25,8 @@ using WinRT.Interop;
 using Windows.UI.WindowManagement;
 using System.Reflection.Metadata;
 using AppWindow = Microsoft.UI.Windowing.AppWindow;
+using System.Text.Json;
+using System.Reflection;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -40,8 +42,16 @@ namespace WindowManager
         public MainWindow()
         {
             this.InitializeComponent();
+            
+           // Directory.GetCurrentDirectory was returning service directory of system32 so using this workaround instead
+            string baseDir = AppDomain.CurrentDomain.BaseDirectory;
+            string projectName = "WindowManager\\";
+            int startOfProj = baseDir.LastIndexOf(projectName);
 
-            // Probably should put this in its own function WireEventHandlers
+            string currentDir = baseDir.Substring(0, (startOfProj + projectName.Length));
+            Directory.SetCurrentDirectory(currentDir);
+
+            // Wire event handlers (probably should put this in its own function)
 
             List<WebPanel> populateFrames = new List<WebPanel> { Panel1, Panel2, Panel3, Panel4, Panel5, Panel6 };
             foreach (WebPanel panel in populateFrames)
@@ -58,20 +68,6 @@ namespace WindowManager
 
             System.Diagnostics.Debug.WriteLine("Initialising");
 
-
-            AppWindow _appWindow = GetAppWindowForCurrentWindow();
-            //            _appWindow.SetPresenter(AppWindowPresenterKind.FullScreen);
-
-            //System.Diagnostics.Debug.WriteLine(_appWindow.ClientSize)
-
-        }
-
-        private AppWindow GetAppWindowForCurrentWindow()
-        {
-            IntPtr hWnd = WindowNative.GetWindowHandle(this);
-            WindowId myWndId = Win32Interop.GetWindowIdFromWindow(hWnd);
-
-            return AppWindow.GetFromWindowId(myWndId);
         }
 
         // event handlers
@@ -143,5 +139,6 @@ namespace WindowManager
             CalibrationWindow calibrationWindow = new CalibrationWindow();
             calibrationWindow.Activate();
         }
+
     }
 }
