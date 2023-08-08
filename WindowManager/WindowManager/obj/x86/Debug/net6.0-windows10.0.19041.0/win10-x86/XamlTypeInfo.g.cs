@@ -233,16 +233,16 @@ namespace WindowManager.WindowManager_XamlTypeInfo
             _typeNameTable[5] = "Microsoft.UI.Xaml.Window";
             _typeNameTable[6] = "WindowManager.UserControls.MenuBar";
             _typeNameTable[7] = "Microsoft.UI.Xaml.Controls.UserControl";
-            _typeNameTable[8] = "WindowManager.UserControls.TvPanel";
-            _typeNameTable[9] = "WindowManager.UserControls.WebPanel";
-            _typeNameTable[10] = "String";
-            _typeNameTable[11] = "WindowManager.MainWindow";
-            _typeNameTable[12] = "Microsoft.UI.Xaml.Controls.MenuBar";
-            _typeNameTable[13] = "Microsoft.UI.Xaml.Controls.Control";
-            _typeNameTable[14] = "System.Collections.Generic.IList`1<Microsoft.UI.Xaml.Controls.MenuBarItem>";
-            _typeNameTable[15] = "Microsoft.UI.Xaml.Controls.MenuBarItem";
-            _typeNameTable[16] = "System.Collections.Generic.IList`1<Microsoft.UI.Xaml.Controls.MenuFlyoutItemBase>";
-            _typeNameTable[17] = "Microsoft.UI.Xaml.Controls.MenuFlyoutItemBase";
+            _typeNameTable[8] = "WindowManager.UserControls.WebPanel";
+            _typeNameTable[9] = "String";
+            _typeNameTable[10] = "WindowManager.MainWindow";
+            _typeNameTable[11] = "Microsoft.UI.Xaml.Controls.MenuBar";
+            _typeNameTable[12] = "Microsoft.UI.Xaml.Controls.Control";
+            _typeNameTable[13] = "System.Collections.Generic.IList`1<Microsoft.UI.Xaml.Controls.MenuBarItem>";
+            _typeNameTable[14] = "Microsoft.UI.Xaml.Controls.MenuBarItem";
+            _typeNameTable[15] = "System.Collections.Generic.IList`1<Microsoft.UI.Xaml.Controls.MenuFlyoutItemBase>";
+            _typeNameTable[16] = "Microsoft.UI.Xaml.Controls.MenuFlyoutItemBase";
+            _typeNameTable[17] = "WindowManager.UserControls.TvPanel";
             _typeNameTable[18] = "Microsoft.UI.Xaml.Controls.WebView2";
             _typeNameTable[19] = "Microsoft.UI.Xaml.FrameworkElement";
             _typeNameTable[20] = "System.Uri";
@@ -259,16 +259,16 @@ namespace WindowManager.WindowManager_XamlTypeInfo
             _typeTable[5] = typeof(global::Microsoft.UI.Xaml.Window);
             _typeTable[6] = typeof(global::WindowManager.UserControls.MenuBar);
             _typeTable[7] = typeof(global::Microsoft.UI.Xaml.Controls.UserControl);
-            _typeTable[8] = typeof(global::WindowManager.UserControls.TvPanel);
-            _typeTable[9] = typeof(global::WindowManager.UserControls.WebPanel);
-            _typeTable[10] = typeof(global::System.String);
-            _typeTable[11] = typeof(global::WindowManager.MainWindow);
-            _typeTable[12] = typeof(global::Microsoft.UI.Xaml.Controls.MenuBar);
-            _typeTable[13] = typeof(global::Microsoft.UI.Xaml.Controls.Control);
-            _typeTable[14] = typeof(global::System.Collections.Generic.IList<global::Microsoft.UI.Xaml.Controls.MenuBarItem>);
-            _typeTable[15] = typeof(global::Microsoft.UI.Xaml.Controls.MenuBarItem);
-            _typeTable[16] = typeof(global::System.Collections.Generic.IList<global::Microsoft.UI.Xaml.Controls.MenuFlyoutItemBase>);
-            _typeTable[17] = typeof(global::Microsoft.UI.Xaml.Controls.MenuFlyoutItemBase);
+            _typeTable[8] = typeof(global::WindowManager.UserControls.WebPanel);
+            _typeTable[9] = typeof(global::System.String);
+            _typeTable[10] = typeof(global::WindowManager.MainWindow);
+            _typeTable[11] = typeof(global::Microsoft.UI.Xaml.Controls.MenuBar);
+            _typeTable[12] = typeof(global::Microsoft.UI.Xaml.Controls.Control);
+            _typeTable[13] = typeof(global::System.Collections.Generic.IList<global::Microsoft.UI.Xaml.Controls.MenuBarItem>);
+            _typeTable[14] = typeof(global::Microsoft.UI.Xaml.Controls.MenuBarItem);
+            _typeTable[15] = typeof(global::System.Collections.Generic.IList<global::Microsoft.UI.Xaml.Controls.MenuFlyoutItemBase>);
+            _typeTable[16] = typeof(global::Microsoft.UI.Xaml.Controls.MenuFlyoutItemBase);
+            _typeTable[17] = typeof(global::WindowManager.UserControls.TvPanel);
             _typeTable[18] = typeof(global::Microsoft.UI.Xaml.Controls.WebView2);
             _typeTable[19] = typeof(global::Microsoft.UI.Xaml.FrameworkElement);
             _typeTable[20] = typeof(global::System.Uri);
@@ -312,11 +312,11 @@ namespace WindowManager.WindowManager_XamlTypeInfo
         private object Activate_0_XamlControlsResources() { return new global::Microsoft.UI.Xaml.Controls.XamlControlsResources(); }
         private object Activate_4_CalibrationWindow() { return new global::WindowManager.CalibrationWindow(); }
         private object Activate_6_MenuBar() { return new global::WindowManager.UserControls.MenuBar(); }
-        private object Activate_8_TvPanel() { return new global::WindowManager.UserControls.TvPanel(); }
-        private object Activate_9_WebPanel() { return new global::WindowManager.UserControls.WebPanel(); }
-        private object Activate_11_MainWindow() { return new global::WindowManager.MainWindow(); }
-        private object Activate_12_MenuBar() { return new global::Microsoft.UI.Xaml.Controls.MenuBar(); }
-        private object Activate_15_MenuBarItem() { return new global::Microsoft.UI.Xaml.Controls.MenuBarItem(); }
+        private object Activate_8_WebPanel() { return new global::WindowManager.UserControls.WebPanel(); }
+        private object Activate_10_MainWindow() { return new global::WindowManager.MainWindow(); }
+        private object Activate_11_MenuBar() { return new global::Microsoft.UI.Xaml.Controls.MenuBar(); }
+        private object Activate_14_MenuBarItem() { return new global::Microsoft.UI.Xaml.Controls.MenuBarItem(); }
+        private object Activate_17_TvPanel() { return new global::WindowManager.UserControls.TvPanel(); }
         private object Activate_18_WebView2() { return new global::Microsoft.UI.Xaml.Controls.WebView2(); }
         private void MapAdd_0_XamlControlsResources(object instance, object key, object item)
         {
@@ -325,13 +325,13 @@ namespace WindowManager.WindowManager_XamlTypeInfo
             var newItem = (global::System.Object)item;
             collection.Add(newKey, newItem);
         }
-        private void VectorAdd_14_IList(object instance, object item)
+        private void VectorAdd_13_IList(object instance, object item)
         {
             var collection = (global::System.Collections.Generic.ICollection<global::Microsoft.UI.Xaml.Controls.MenuBarItem>)instance;
             var newItem = (global::Microsoft.UI.Xaml.Controls.MenuBarItem)item;
             collection.Add(newItem);
         }
-        private void VectorAdd_16_IList(object instance, object item)
+        private void VectorAdd_15_IList(object instance, object item)
         {
             var collection = (global::System.Collections.Generic.ICollection<global::Microsoft.UI.Xaml.Controls.MenuFlyoutItemBase>)instance;
             var newItem = (global::Microsoft.UI.Xaml.Controls.MenuFlyoutItemBase)item;
@@ -390,69 +390,69 @@ namespace WindowManager.WindowManager_XamlTypeInfo
                 xamlType = new global::WindowManager.WindowManager_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 8:   //  WindowManager.UserControls.TvPanel
+            case 8:   //  WindowManager.UserControls.WebPanel
                 userType = new global::WindowManager.WindowManager_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.UserControl"));
-                userType.Activator = Activate_8_TvPanel;
-                userType.SetIsLocalType();
-                xamlType = userType;
-                break;
-
-            case 9:   //  WindowManager.UserControls.WebPanel
-                userType = new global::WindowManager.WindowManager_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.UserControl"));
-                userType.Activator = Activate_9_WebPanel;
+                userType.Activator = Activate_8_WebPanel;
                 userType.AddMemberName("Source");
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 10:   //  String
+            case 9:   //  String
                 xamlType = new global::WindowManager.WindowManager_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 11:   //  WindowManager.MainWindow
+            case 10:   //  WindowManager.MainWindow
                 userType = new global::WindowManager.WindowManager_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Window"));
-                userType.Activator = Activate_11_MainWindow;
+                userType.Activator = Activate_10_MainWindow;
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 12:   //  Microsoft.UI.Xaml.Controls.MenuBar
+            case 11:   //  Microsoft.UI.Xaml.Controls.MenuBar
                 userType = new global::WindowManager.WindowManager_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Control"));
-                userType.Activator = Activate_12_MenuBar;
+                userType.Activator = Activate_11_MenuBar;
                 userType.SetContentPropertyName("Microsoft.UI.Xaml.Controls.MenuBar.Items");
                 userType.AddMemberName("Items");
                 xamlType = userType;
                 break;
 
-            case 13:   //  Microsoft.UI.Xaml.Controls.Control
+            case 12:   //  Microsoft.UI.Xaml.Controls.Control
                 xamlType = new global::WindowManager.WindowManager_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 14:   //  System.Collections.Generic.IList`1<Microsoft.UI.Xaml.Controls.MenuBarItem>
+            case 13:   //  System.Collections.Generic.IList`1<Microsoft.UI.Xaml.Controls.MenuBarItem>
                 userType = new global::WindowManager.WindowManager_XamlTypeInfo.XamlUserType(this, typeName, type, null);
-                userType.CollectionAdd = VectorAdd_14_IList;
+                userType.CollectionAdd = VectorAdd_13_IList;
                 userType.SetIsReturnTypeStub();
                 xamlType = userType;
                 break;
 
-            case 15:   //  Microsoft.UI.Xaml.Controls.MenuBarItem
+            case 14:   //  Microsoft.UI.Xaml.Controls.MenuBarItem
                 userType = new global::WindowManager.WindowManager_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Control"));
-                userType.Activator = Activate_15_MenuBarItem;
+                userType.Activator = Activate_14_MenuBarItem;
                 userType.SetContentPropertyName("Microsoft.UI.Xaml.Controls.MenuBarItem.Items");
                 userType.AddMemberName("Items");
                 userType.AddMemberName("Title");
                 xamlType = userType;
                 break;
 
-            case 16:   //  System.Collections.Generic.IList`1<Microsoft.UI.Xaml.Controls.MenuFlyoutItemBase>
+            case 15:   //  System.Collections.Generic.IList`1<Microsoft.UI.Xaml.Controls.MenuFlyoutItemBase>
                 userType = new global::WindowManager.WindowManager_XamlTypeInfo.XamlUserType(this, typeName, type, null);
-                userType.CollectionAdd = VectorAdd_16_IList;
+                userType.CollectionAdd = VectorAdd_15_IList;
                 userType.SetIsReturnTypeStub();
                 xamlType = userType;
                 break;
 
-            case 17:   //  Microsoft.UI.Xaml.Controls.MenuFlyoutItemBase
+            case 16:   //  Microsoft.UI.Xaml.Controls.MenuFlyoutItemBase
                 xamlType = new global::WindowManager.WindowManager_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 17:   //  WindowManager.UserControls.TvPanel
+                userType = new global::WindowManager.WindowManager_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.UserControl"));
+                userType.Activator = Activate_17_TvPanel;
+                userType.SetIsLocalType();
+                xamlType = userType;
                 break;
 
             case 18:   //  Microsoft.UI.Xaml.Controls.WebView2

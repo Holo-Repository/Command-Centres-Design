@@ -27,23 +27,24 @@
             </Grid.ColumnDefinitions>
 
             <!--TV-->
-            <local:TvPanel x:ConnectionId='4' x:Name="TV_Panel" Grid.Row="1" Grid.Column="1"/>
+            <!--<local:TvPanel x:Name="TV_Panel" Grid.Row="1" Grid.Column="1"/>-->
 
             <!--Row 0-->
-            <local:WebPanel x:ConnectionId='5' x:Name="Panel1" Grid.Row="0" 
-                            Grid.RowSpan="2" 
+            <local:WebPanel x:ConnectionId='4' x:Name="Panel1" Grid.Row="0" Grid.Column="0" Visibility="Collapsed"
                             Source="https://www.microsoft.com"/>
-            <local:WebPanel x:ConnectionId='6' x:Name="Panel2" Grid.Row="0" Grid.Column="2"/>
+            <local:WebPanel x:ConnectionId='5' x:Name="Panel2" Grid.Row="0" Grid.Column="1" Visibility="Collapsed"/>
+            <local:WebPanel x:ConnectionId='6' x:Name="Panel3" Grid.Row="0" Grid.Column="2" Visibility="Collapsed"/>
 
             <!--Row 1-->
-            <local:WebPanel x:ConnectionId='7' x:Name="Panel3" Grid.Row="1" Grid.Column="2"/>
-            
-            
+            <local:WebPanel x:ConnectionId='7' x:Name="Panel4" Grid.Row="1" Grid.Column="0" Visibility="Collapsed"/>
+            <local:WebPanel x:ConnectionId='8' x:Name="Panel5" Grid.Row="1" Grid.Column="1" Visibility="Collapsed"/>
+            <local:WebPanel x:ConnectionId='9' x:Name="Panel6" Grid.Row="1" Grid.Column="2" Visibility="Collapsed"/>
+
             <!--Row 2-->
-            <local:WebPanel x:ConnectionId='8' x:Name="Panel4" Grid.Row="2" Grid.Column="0"
+            <local:WebPanel x:ConnectionId='10' x:Name="Panel7" Grid.Row="2" Grid.Column="0" Visibility="Collapsed"
                             Source="https://www.google.com"/>
-            <local:WebPanel x:ConnectionId='9' x:Name="Panel5" Grid.Row="2" Grid.Column="1"/>
-            <local:WebPanel x:ConnectionId='10' x:Name="Panel6" Grid.Row="2" Grid.Column="2"/>
+            <local:WebPanel x:ConnectionId='11' x:Name="Panel8" Grid.Row="2" Grid.Column="1" Visibility="Collapsed"/>
+            <local:WebPanel x:ConnectionId='12' x:Name="Panel9" Grid.Row="2" Grid.Column="2" Visibility="Collapsed"/>
 
 
         </Grid>

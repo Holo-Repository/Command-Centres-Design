@@ -6,7 +6,37 @@
     "Y_Position": 185.3333282470703
   },
   "Grid": {
-    "RowHeights": [ 100, 205, 100 ],
-    "ColumnWidths": [250, 250, 426]
+    "RowHeights": [ 205, 205, 205 ],
+    "ColumnWidths": [ 426, 426, 426 ]
+  },
+
+  "Panels": {
+    "Panel1": {
+      "PanelNum": 1,
+      "Uri": "https://www.microsoft.com",
+      "RowSpan": 1,
+      "ColumnSpan": 1
+    },
+
+    "Panel4": {
+      "PanelNum": 4,
+      "Uri": "https://www.apple.com",
+      "RowSpan": 1,
+      "ColumnSpan": 1
+    },
+
+    "Panel5": {
+      "PanelNum": 5,
+      "Uri": "https://www.google.com",
+      "RowSpan": 1,
+      "ColumnSpan": 1
+    },
+
+    "Panel9": {
+      "PanelNum": 9,
+      "Uri": "https://www.facebook.com",
+      "RowSpan": 1,
+      "ColumnSpan": 1
+    }
   }
 }

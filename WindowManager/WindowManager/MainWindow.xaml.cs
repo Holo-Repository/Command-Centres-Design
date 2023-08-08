@@ -39,6 +39,7 @@ namespace WindowManager
     public sealed partial class MainWindow : Window
     {
         private string SwapUri;
+
         public MainWindow()
         {
             // Directory.GetCurrentDirectory was returning service directory of system32 so using this workaround instead
@@ -49,32 +50,24 @@ namespace WindowManager
             string currentDir = baseDir.Substring(0, (startOfProj + projectName.Length));
             Directory.SetCurrentDirectory(currentDir);
 
+            // Read settings from Json
+            SettingsData settings = SettingsManager.DeserialiseSettingsJSON();
+
             // Initialise main window
             this.InitializeComponent();
 
             // Adjust layout
-            AdjustGridSize();
+            AdjustGridSize(settings);
 
-            // Wire event handlers (probably should put this in its own function)
+            PopulatePanelsFromJSON(settings);
 
-            List<WebPanel> populateFrames = new List<WebPanel> { Panel1, Panel2, Panel3, Panel4, Panel5, Panel6 };
-            foreach (WebPanel panel in populateFrames)
-            {
-                panel.Frame_DragStarting += new TypedEventHandler<UIElement, DragStartingEventArgs>(WebPanel_DragStarting);
-                panel.Frame_DragOver += new TypedEventHandler<object, DragEventArgs>(WebPanel_DragOver);
-                panel.Frame_Drop += new TypedEventHandler<object, DragEventArgs>(WebPanel_Drop);
-                panel.Frame_DropCompleted += new TypedEventHandler<UIElement, DropCompletedEventArgs>(WebPanel_DropCompleted);
-                panel.Frame_PointerEntered += new TypedEventHandler<object, PointerRoutedEventArgs>(WebPanel_PointerEntered);
-                panel.Frame_PointerExited += new TypedEventHandler<object, PointerRoutedEventArgs>(WebPanel_PointerExited);
-            }
-
-            MainMenuBar.MenuFlyoutItem_Click += new TypedEventHandler<object, RoutedEventArgs>(Calibration_Click);
+            // This needs to come before adding TV element or must include type check
+            WireEventHandlers();
 
         }
 
-        private void AdjustGridSize ()
+        private void AdjustGridSize (SettingsData settings)
         {
-            SettingsData settings = SettingsManager.DeserialiseSettingsJSON();
             double[] RowHeights = settings.Grid.RowHeights;
             double[] ColumnWidths = settings.Grid.ColumnWidths;
 
@@ -90,10 +83,56 @@ namespace WindowManager
             {
                 columnDefinitions[i].Width = new GridLength(ColumnWidths[i]);
             }
+            
         }
 
-        // event handlers
-        private void WebPanel_DragStarting(UIElement sender, DragStartingEventArgs args)
+        private void PopulatePanelsFromJSON(SettingsData settings)
+        {
+            WebPanel[] PanelsArray = { Panel1, Panel2, Panel3, Panel4, Panel5, Panel6, Panel7, Panel8, Panel9 };
+
+            foreach (Panel panelData in settings.Panels.GetPanelsArray())
+            {
+                if (panelData != null)
+                {
+                    int index = panelData.PanelNum - 1;
+                    WebPanel panel = PanelsArray[index];
+
+                    panel.Visibility = Visibility.Visible;
+                    panel.SetUri(new Uri(panelData.Uri));
+
+                    Microsoft.UI.Xaml.Controls.Grid.SetRowSpan(panel, panelData.RowSpan);
+                    Microsoft.UI.Xaml.Controls.Grid.SetColumnSpan(panel, panelData.ColumnSpan);
+
+                }
+            }
+            //WebPanel panel1 = new WebPanel ();
+            //panel1.SetUri(new Uri("https://www.apple.com"));
+
+            //PanelGrid.Children.Add(panel1);
+            //Microsoft.UI.Xaml.Controls.Grid.SetColumn(panel1, 0);
+            //Microsoft.UI.Xaml.Controls.Grid.SetRow(panel1, 0);
+            //Microsoft.UI.Xaml.Controls.Grid.SetRowSpan(panel1, 2);
+
+        }
+
+        public void WireEventHandlers()
+        {
+            UIElementCollection panels = PanelGrid.Children;
+            foreach (WebPanel panel in panels)
+            {
+                panel.Frame_DragStarting += new TypedEventHandler<UIElement, DragStartingEventArgs>(WebPanel_DragStarting);
+                panel.Frame_DragOver += new TypedEventHandler<object, DragEventArgs>(WebPanel_DragOver);
+                panel.Frame_Drop += new TypedEventHandler<object, DragEventArgs>(WebPanel_Drop);
+                panel.Frame_DropCompleted += new TypedEventHandler<UIElement, DropCompletedEventArgs>(WebPanel_DropCompleted);
+                panel.Frame_PointerEntered += new TypedEventHandler<object, PointerRoutedEventArgs>(WebPanel_PointerEntered);
+                panel.Frame_PointerExited += new TypedEventHandler<object, PointerRoutedEventArgs>(WebPanel_PointerExited);
+            }
+
+            MainMenuBar.MenuFlyoutItem_Click += new TypedEventHandler<object, RoutedEventArgs>(Calibration_Click);
+        }
+
+    // event handlers
+    private void WebPanel_DragStarting(UIElement sender, DragStartingEventArgs args)
         {
 
             WebPanel panel = sender as WebPanel;
