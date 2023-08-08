@@ -40,6 +40,21 @@ namespace WindowManager
     {
         private string SwapUri;
 
+        // A dictionary to map panel number : row number
+        private Dictionary<int, int> RowMappings = new Dictionary<int, int>()
+        {
+            { 1, 0 }, { 2, 0 }, { 3, 0 },
+            { 4, 1 }, { 5, 1 }, { 6, 1 },
+            { 7, 2 }, { 8, 2 }, { 9, 2 }
+        };
+        // A dictionary to map panel number : column number
+        private Dictionary<int, int> ColumnMappings = new Dictionary<int, int>()
+        {
+            { 1, 0 }, { 2, 1 }, { 3, 2 },
+            { 4, 0 }, { 5, 1 }, { 6, 2 },
+            { 7, 0 }, { 8, 1 }, { 9, 2 }
+        };
+
         public MainWindow()
         {
             // Directory.GetCurrentDirectory was returning service directory of system32 so using this workaround instead
@@ -63,6 +78,8 @@ namespace WindowManager
 
             // This needs to come before adding TV element or must include type check
             WireEventHandlers();
+
+            InitialiseTv(settings);
 
         }
 
@@ -112,6 +129,21 @@ namespace WindowManager
             //Microsoft.UI.Xaml.Controls.Grid.SetColumn(panel1, 0);
             //Microsoft.UI.Xaml.Controls.Grid.SetRow(panel1, 0);
             //Microsoft.UI.Xaml.Controls.Grid.SetRowSpan(panel1, 2);
+
+        }
+
+        private void InitialiseTv (SettingsData settings)
+        {
+            TvPanel tvPanel = new TvPanel();
+            PanelGrid.Children.Add(tvPanel);
+
+            int PanelNum = settings.Tv.PanelNum;
+
+            int RowNumber = RowMappings[PanelNum];
+            int ColumnNumber = ColumnMappings[PanelNum];
+
+            Microsoft.UI.Xaml.Controls.Grid.SetRow(tvPanel, RowNumber);
+            Microsoft.UI.Xaml.Controls.Grid.SetColumn(tvPanel, ColumnNumber);
 
         }
 

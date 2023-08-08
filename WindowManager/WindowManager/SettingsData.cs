@@ -18,6 +18,7 @@ namespace WindowManager
         public double Width { get; set; }
         public double X_Position { get; set; }
         public double Y_Position { get; set; }
+        public int PanelNum { get; set; }
     }
 
     public class Grid

@@ -3,7 +3,8 @@
     "Height": 288,
     "Width": 636,
     "X_Position": 314,
-    "Y_Position": 185.3333282470703
+    "Y_Position": 185.3333282470703,
+    "PanelNum": 6
   },
   "Grid": {
     "RowHeights": [ 205, 205, 205 ],
