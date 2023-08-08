@@ -13,7 +13,7 @@
 
         <local:MenuBar x:ConnectionId='2' x:Name="MainMenuBar" HorizontalAlignment="Left"/>
 
-        <Grid HorizontalAlignment="Left">
+        <Grid x:ConnectionId='3' x:Name="PanelGrid" HorizontalAlignment="Left">
 
             <Grid.RowDefinitions >
                 <RowDefinition Height="205"/>
@@ -23,27 +23,27 @@
             <Grid.ColumnDefinitions >
                 <ColumnDefinition Width="426"/>
                 <ColumnDefinition Width="426"/>
-                <ColumnDefinition Width="427"/>
+                <ColumnDefinition Width="427.12"/>
             </Grid.ColumnDefinitions>
 
             <!--TV-->
-            <local:TvPanel x:ConnectionId='3' x:Name="TV_Panel" Grid.Row="1" Grid.Column="1"/>
+            <local:TvPanel x:ConnectionId='4' x:Name="TV_Panel" Grid.Row="1" Grid.Column="1"/>
 
             <!--Row 0-->
-            <local:WebPanel x:ConnectionId='4' x:Name="Panel1" Grid.Row="0" 
+            <local:WebPanel x:ConnectionId='5' x:Name="Panel1" Grid.Row="0" 
                             Grid.RowSpan="2" 
                             Source="https://www.microsoft.com"/>
-            <local:WebPanel x:ConnectionId='5' x:Name="Panel2" Grid.Row="0" Grid.Column="2"/>
+            <local:WebPanel x:ConnectionId='6' x:Name="Panel2" Grid.Row="0" Grid.Column="2"/>
 
             <!--Row 1-->
-            <local:WebPanel x:ConnectionId='6' x:Name="Panel3" Grid.Row="1" Grid.Column="2"/>
+            <local:WebPanel x:ConnectionId='7' x:Name="Panel3" Grid.Row="1" Grid.Column="2"/>
             
             
             <!--Row 2-->
-            <local:WebPanel x:ConnectionId='7' x:Name="Panel4" Grid.Row="2" Grid.Column="0"
+            <local:WebPanel x:ConnectionId='8' x:Name="Panel4" Grid.Row="2" Grid.Column="0"
                             Source="https://www.google.com"/>
-            <local:WebPanel x:ConnectionId='8' x:Name="Panel5" Grid.Row="2" Grid.Column="1"/>
-            <local:WebPanel x:ConnectionId='9' x:Name="Panel6" Grid.Row="2" Grid.Column="2"/>
+            <local:WebPanel x:ConnectionId='9' x:Name="Panel5" Grid.Row="2" Grid.Column="1"/>
+            <local:WebPanel x:ConnectionId='10' x:Name="Panel6" Grid.Row="2" Grid.Column="2"/>
 
 
         </Grid>

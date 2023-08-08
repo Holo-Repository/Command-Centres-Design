@@ -154,7 +154,7 @@ namespace WindowManager
                         {
                             System.Diagnostics.Debug.WriteLine($"Value: {kvp.Value}");
 
-                            SettingsData settings = DeserialiseSettingsJSON();
+                            SettingsData settings = SettingsManager.DeserialiseSettingsJSON();
 
                             double tv_width = kvp.Value.Width;
                             double tv_height = kvp.Value.Height;
@@ -166,9 +166,9 @@ namespace WindowManager
                             settings.Tv.X_Position = tv_x;
                             settings.Tv.Y_Position = tv_y;
 
-                            SerialiseSettingsJSON(settings);
+                            SettingsManager.SerialiseSettingsJSON(settings);
                           
-
+                            // Will need to reload main window at the end of this
                         }
                         else
                         {
@@ -192,27 +192,6 @@ namespace WindowManager
             }
         }
 
-        private SettingsData DeserialiseSettingsJSON()
-        {
-            string dir = Directory.GetCurrentDirectory();
-            string filePath = dir + "\\settings.json";
-
-            string jsonString = File.ReadAllText(filePath);
-            SettingsData settings = JsonSerializer.Deserialize<SettingsData>(jsonString);
-
-            return settings;
-        }
-
-        private void SerialiseSettingsJSON(SettingsData newSettings)
-        {
-            string fileName = "settings.json";
-
-            string jsonString = JsonSerializer.Serialize<SettingsData>(newSettings);
-            File.WriteAllText(fileName, jsonString);
-
-
-
-        }
 
     }
 }

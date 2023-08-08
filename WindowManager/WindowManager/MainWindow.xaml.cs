@@ -41,15 +41,19 @@ namespace WindowManager
         private string SwapUri;
         public MainWindow()
         {
-            this.InitializeComponent();
-            
-           // Directory.GetCurrentDirectory was returning service directory of system32 so using this workaround instead
+            // Directory.GetCurrentDirectory was returning service directory of system32 so using this workaround instead
             string baseDir = AppDomain.CurrentDomain.BaseDirectory;
             string projectName = "WindowManager\\";
             int startOfProj = baseDir.LastIndexOf(projectName);
 
             string currentDir = baseDir.Substring(0, (startOfProj + projectName.Length));
             Directory.SetCurrentDirectory(currentDir);
+
+            // Initialise main window
+            this.InitializeComponent();
+
+            // Adjust layout
+            AdjustGridSize();
 
             // Wire event handlers (probably should put this in its own function)
 
@@ -66,8 +70,26 @@ namespace WindowManager
 
             MainMenuBar.MenuFlyoutItem_Click += new TypedEventHandler<object, RoutedEventArgs>(Calibration_Click);
 
-            System.Diagnostics.Debug.WriteLine("Initialising");
+        }
 
+        private void AdjustGridSize ()
+        {
+            SettingsData settings = SettingsManager.DeserialiseSettingsJSON();
+            double[] RowHeights = settings.Grid.RowHeights;
+            double[] ColumnWidths = settings.Grid.ColumnWidths;
+
+            RowDefinitionCollection rowDefinitions = PanelGrid.RowDefinitions;
+            ColumnDefinitionCollection columnDefinitions = PanelGrid.ColumnDefinitions;
+
+            for (int i = 0; i < rowDefinitions.Count; i++)
+            {
+                rowDefinitions[i].Height = new GridLength (RowHeights[i]);
+            }
+
+            for (int i = 0; i < columnDefinitions.Count; i++)
+            {
+                columnDefinitions[i].Width = new GridLength(ColumnWidths[i]);
+            }
         }
 
         // event handlers

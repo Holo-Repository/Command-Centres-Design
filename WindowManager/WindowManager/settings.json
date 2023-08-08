@@ -1,1 +1,12 @@
-{"Tv":{"Height":368.0000305175781,"Width":506.4000244140625,"X_Position":428,"Y_Position":294.3999938964844}}
+{
+  "Tv": {
+    "Height": 288,
+    "Width": 636,
+    "X_Position": 314,
+    "Y_Position": 185.3333282470703
+  },
+  "Grid": {
+    "RowHeights": [ 100, 205, 100 ],
+    "ColumnWidths": [250, 250, 426]
+  }
+}

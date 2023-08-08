@@ -9,7 +9,7 @@ namespace WindowManager
     internal class SettingsData
     {
         public Tv Tv { get; set; }
-
+        public Grid Grid { get; set; }
     }
     public class Tv
     {
@@ -17,6 +17,12 @@ namespace WindowManager
         public double Width { get; set; }
         public double X_Position { get; set; }
         public double Y_Position { get; set; }
+    }
+
+    public class Grid
+    {
+        public double[] RowHeights { get; set; }
+        public double[] ColumnWidths { get; set;}
     }
 
 }

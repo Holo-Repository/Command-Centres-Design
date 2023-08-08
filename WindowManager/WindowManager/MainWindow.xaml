@@ -13,7 +13,7 @@
 
         <local:MenuBar x:Name="MainMenuBar" HorizontalAlignment="Left"/>
 
-        <Grid HorizontalAlignment="Left">
+        <Grid x:Name="PanelGrid" HorizontalAlignment="Left">
 
             <Grid.RowDefinitions >
                 <RowDefinition Height="205"/>
@@ -23,7 +23,7 @@
             <Grid.ColumnDefinitions >
                 <ColumnDefinition Width="426"/>
                 <ColumnDefinition Width="426"/>
-                <ColumnDefinition Width="427"/>
+                <ColumnDefinition Width="427.12"/>
             </Grid.ColumnDefinitions>
 
             <!--TV-->
