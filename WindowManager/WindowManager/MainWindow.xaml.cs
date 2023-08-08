@@ -163,6 +163,7 @@ namespace WindowManager
             }
 
             MainMenuBar.MenuFlyoutItem_Click += new TypedEventHandler<object, RoutedEventArgs>(Calibration_Click);
+            MainMenuBar.GoButton_Click += new TypedEventHandler<object, RoutedEventArgs>(Add_WebPanel);
         }
 
     // event handlers
@@ -233,6 +234,11 @@ namespace WindowManager
         {
             WebPanel webPanel = sender as WebPanel;
             webPanel.Visibility = Visibility.Collapsed;
+        }
+
+        private void Add_WebPanel(object sender, RoutedEventArgs e)
+        {
+
         }
 
         private void Calibration_Click(object sender, RoutedEventArgs e)

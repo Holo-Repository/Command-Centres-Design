@@ -20,7 +20,8 @@ namespace WindowManager.UserControls
 {
     public sealed partial class MenuBar : UserControl
     {
-        public event TypedEventHandler<Object, RoutedEventArgs> MenuFlyoutItem_Click;
+        public event TypedEventHandler<object, RoutedEventArgs> MenuFlyoutItem_Click;
+        public event TypedEventHandler<object, RoutedEventArgs> GoButton_Click;
 
         public void MenuFlyoutItem1_Click(object sender, RoutedEventArgs e)
         {
@@ -34,5 +35,11 @@ namespace WindowManager.UserControls
             this.InitializeComponent();
         }
 
+        private void Button1_Click(object sender, RoutedEventArgs e)
+        {
+            //bubble the event up to the parent
+            if (this.GoButton_Click != null)
+                this.GoButton_Click(this, e);
+        }
     }
 }
