@@ -26,6 +26,7 @@ namespace WindowManager.UserControls
         public event TypedEventHandler<UIElement, DropCompletedEventArgs> Frame_DropCompleted;
         public event TypedEventHandler<object, PointerRoutedEventArgs> Frame_PointerEntered;
         public event TypedEventHandler<object, PointerRoutedEventArgs> Frame_PointerExited;
+        public event TypedEventHandler<object, RoutedEventArgs> AppBarButton_Click;
 
         public void Frame1_PointerEntered(object sender, PointerRoutedEventArgs e)
         {
@@ -69,6 +70,14 @@ namespace WindowManager.UserControls
                 this.Frame_DropCompleted(this, e);
         }
 
+        private void AppBarButton1_Click(object sender, RoutedEventArgs e)
+        {
+            //bubble the event up to the parent
+            if (this.AppBarButton_Click != null)
+                this.AppBarButton_Click(this, e);
+        }
+
+
         public string Source
         {
             get { return (string)GetValue(SourceProperty); }
@@ -79,7 +88,7 @@ namespace WindowManager.UserControls
         public static readonly DependencyProperty SourceProperty =
             DependencyProperty.Register("Source", typeof(Uri), typeof(WebPanel), new PropertyMetadata("https://www.google.com"));
 
-        public void ChangeCommandBarVisibility (string visibility)
+        public void ChangeCommandBarVisibility(string visibility)
         {
             if (visibility == "visible")
             {
@@ -107,5 +116,6 @@ namespace WindowManager.UserControls
         {
             this.InitializeComponent();
         }
+
     }
 }

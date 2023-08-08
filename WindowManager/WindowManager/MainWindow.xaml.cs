@@ -134,6 +134,7 @@ namespace WindowManager
 
         private void InitialiseTv (SettingsData settings)
         {
+            // Create component and link PanelGrid as parent
             TvPanel tvPanel = new TvPanel();
             PanelGrid.Children.Add(tvPanel);
 
@@ -158,6 +159,7 @@ namespace WindowManager
                 panel.Frame_DropCompleted += new TypedEventHandler<UIElement, DropCompletedEventArgs>(WebPanel_DropCompleted);
                 panel.Frame_PointerEntered += new TypedEventHandler<object, PointerRoutedEventArgs>(WebPanel_PointerEntered);
                 panel.Frame_PointerExited += new TypedEventHandler<object, PointerRoutedEventArgs>(WebPanel_PointerExited);
+                panel.AppBarButton_Click += new TypedEventHandler<object, RoutedEventArgs>(WebPanel_Close);
             }
 
             MainMenuBar.MenuFlyoutItem_Click += new TypedEventHandler<object, RoutedEventArgs>(Calibration_Click);
@@ -225,6 +227,12 @@ namespace WindowManager
 
             WebPanel webPanel = sender as WebPanel;
             webPanel.ChangeCommandBarVisibility("collapsed");
+        }
+
+        private void WebPanel_Close(object sender, RoutedEventArgs e)
+        {
+            WebPanel webPanel = sender as WebPanel;
+            webPanel.Visibility = Visibility.Collapsed;
         }
 
         private void Calibration_Click(object sender, RoutedEventArgs e)

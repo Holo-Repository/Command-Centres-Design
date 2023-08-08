@@ -38,7 +38,7 @@
 
                 <CommandBar x:ConnectionId='5' x:Name="CloseCommandBar" RelativePanel.AlignRightWithPanel="True" Background="Transparent" IsOpen="False" DefaultLabelPosition="Right"
                                     Visibility="Collapsed">
-                    <AppBarButton Label="Close">
+                    <AppBarButton x:ConnectionId='6' Label="Close"                            >
                         <AppBarButton.Icon>
                             <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE8BB;"/>
                         </AppBarButton.Icon>

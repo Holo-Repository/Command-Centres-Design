@@ -38,7 +38,7 @@
 
                 <CommandBar x:Name="CloseCommandBar" RelativePanel.AlignRightWithPanel="True" Background="Transparent" IsOpen="False" DefaultLabelPosition="Right"
                                     Visibility="Collapsed">
-                    <AppBarButton Label="Close">
+                    <AppBarButton Label="Close" Click="AppBarButton1_Click">
                         <AppBarButton.Icon>
                             <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE8BB;"/>
                         </AppBarButton.Icon>
