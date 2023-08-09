@@ -84,8 +84,8 @@ namespace WindowManager
 
             foreach (KeyValuePair<int, dynamic> f in frames)
             {
-                int c = f.Value.columnSpan;
-                int r = f.Value.rowSpan;
+                int c = f.Value.ColumnSpan;
+                int r = f.Value.RowSpan;
                 int[] rect = new int[r * c];
 
                 int a = 0;
@@ -114,10 +114,13 @@ namespace WindowManager
         }
 
         //returns object for json
-        public static dynamic PackedFrames(List<Uri> uris, List<int[]> optimalFrames)
+        public static dynamic PackedFrames(List<Uri> uris, List<List<int[]>> optimalFrames)
         {
+            //configuration for number of panels
+            List<int[]> instanceOptimalFrames = optimalFrames[uris.Count - 1];
+
             dynamic packed = new System.Dynamic.ExpandoObject();
-            List<(int[], Uri)> combinedList = optimalFrames.Zip(uris, (rect, uri) => (rect, uri)).ToList();
+            List<(int[], Uri)> combinedList = instanceOptimalFrames.Zip(uris, (rect, uri) => (rect, uri)).ToList();
 
             foreach ((int[], Uri) a in combinedList)
             {
@@ -126,9 +129,9 @@ namespace WindowManager
                 {
                     dynamic singleFrame = new System.Dynamic.ExpandoObject();
                     singleFrame.uri = a.Item2;
-                    singleFrame.columnSpan = 1;
-                    singleFrame.rowSpan = 1;
-                    packed[a.Item1[0]] = singleFrame;
+                    singleFrame.ColumnSpan = 1;
+                    singleFrame.RowSpan = 1;
+                    packed[$"Panel{a.Item1[0]}"] = singleFrame;
                     continue;
                 }
                 //square
@@ -136,9 +139,9 @@ namespace WindowManager
                 {
                     dynamic squareFrame = new System.Dynamic.ExpandoObject();
                     squareFrame.uri = a.Item2;
-                    squareFrame.columnSpan = 2;
-                    squareFrame.rowSpan = 2;
-                    packed[a.Item1[0]] = squareFrame;
+                    squareFrame.ColumnSpan = 2;
+                    squareFrame.RowSpan = 2;
+                    packed[$"Panel{a.Item1[0]}"] = squareFrame;
                     continue;
                 }
                 //2 X 3
@@ -146,9 +149,9 @@ namespace WindowManager
                 {
                     dynamic twobythree = new System.Dynamic.ExpandoObject();
                     twobythree.uri = a.Item2;
-                    twobythree.columnSpan = 2 + (a.Item1[2] - a.Item1[1] == 1 ? 1 : 0);
-                    twobythree.rowSpan = 3 - (a.Item1[2] - a.Item1[1] == 1 ? 1 : 0);
-                    packed[a.Item1[0]] = twobythree;
+                    twobythree.ColumnSpan = 2 + (a.Item1[2] - a.Item1[1] == 1 ? 1 : 0);
+                    twobythree.RowSpan = 3 - (a.Item1[2] - a.Item1[1] == 1 ? 1 : 0);
+                    packed[$"Panel{a.Item1[0]}"] = twobythree;
                     continue;
                 }
                 //horizontal
@@ -156,38 +159,82 @@ namespace WindowManager
                 {
                     dynamic horizontalFrame = new System.Dynamic.ExpandoObject();
                     horizontalFrame.uri = a.Item2;
-                    horizontalFrame.columnSpan = a.Item1.Length;
-                    horizontalFrame.rowSpan = 1;
-                    packed[a.Item1[0]] = horizontalFrame;
+                    horizontalFrame.ColumnSpan = a.Item1.Length;
+                    horizontalFrame.RowSpan = 1;
+                    packed[$"Panel{a.Item1[0]}"] = horizontalFrame;
                     continue;
                 }
                 //vertical
                 dynamic verticalFrame = new System.Dynamic.ExpandoObject();
                 verticalFrame.uri = a.Item2;
-                verticalFrame.columnSpan = 1;
-                verticalFrame.rowSpan = a.Item1.Length;
+                verticalFrame.ColumnSpan = 1;
+                verticalFrame.RowSpan = a.Item1.Length;
                 packed[a.Item1[0]] = verticalFrame;
             }
 
             return packed;
         }
 
-        public static dynamic OptimalFrames(List<int[]> intermediates, int[] columnWidths, int[] rowHeights)
+        private static bool NoOverlap(int[] array, List<int[]> arrayList)
         {
-            dynamic areas = new System.Dynamic.ExpandoObject();
+            return !arrayList.Any(a => array.Intersect(a).Any());
+        }
 
-            for (int i = 0; i < 3; i++)
-            {
-                for (int j = 0; j < 3; j++)
-                {
-                    areas[j + i * 3] = columnWidths[j] * rowHeights[i];
-                }
+        private static void GenerateCombinations(List<int[]> remainingRectangles, List<int[]> currentCombination, int num, List<List<int[]>> store)
+        {
+            if (num == 0) {
+                store.Add(currentCombination);
+                return;
             }
 
-            //find areas of frames, find combinations of panels (x many), find optimal
+            foreach (int[] array in remainingRectangles)
+            {
+                //add array to combination, remove overlaps from remaining
+                List<int[]> newCurrentCombination = new List<int[]>(currentCombination) { array };
+                List<int[]> newRemainingRectangles = remainingRectangles.Where(rect => NoOverlap(rect, newCurrentCombination)).ToList();
 
-            return areas; //remove - just to get rid of error
+                if (newRemainingRectangles.Count == 0 && num != 1) continue; //skip if no rectangles left and not last step
 
+                GenerateCombinations(newRemainingRectangles, newCurrentCombination, num - 1, store);
+            }
+        }
+
+
+        public static List<List<int[]>> OptimalFrames(List<int[]> intermediates)
+        {
+
+            List<List<int[]>> optimalFrames = new List<List<int[]>>();
+
+            int i = 0;
+            while (true)
+            {
+                i++;
+                //if 1 frame, select largest
+                if (i == 1)
+                {
+                    optimalFrames.Add(new List<int[]>() { intermediates[0] });
+                    continue;
+                }
+                //if 8 frames, select singles
+                if (i == 8)
+                {
+                    optimalFrames.Add(new List<int[]>(intermediates.Where(array => array.Length == 1).ToList()));
+                    break;
+                }
+
+                List<List<int[]>> candidates = new List<List<int[]>>();
+                GenerateCombinations(intermediates, new List<int[]>(), i, candidates);
+
+                //sort candidates by average index of their intermediates
+                List<List<int[]>> sortedCandidates = candidates.OrderBy(candidateList =>
+                {
+                    double averageIndex = candidateList.Average(candidate => intermediates.IndexOf(candidate));
+                    return averageIndex;
+                }).ToList();
+                optimalFrames.Add(sortedCandidates[0]);
+            }
+
+            return optimalFrames;
         }
     }
 }
