@@ -27,5 +27,11 @@ namespace WindowManager
         {
             this.InitializeComponent();
         }
+
+        private void Calibration_Click(object sender, RoutedEventArgs e)
+        {
+            CalibrationWindow calibrationWindow = new CalibrationWindow();
+            calibrationWindow.Activate();
+        }
     }
 }

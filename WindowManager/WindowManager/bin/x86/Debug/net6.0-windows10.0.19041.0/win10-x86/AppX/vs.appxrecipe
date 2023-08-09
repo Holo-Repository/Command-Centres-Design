@@ -29,13 +29,13 @@
     <AppXManifest Include="C:\code\Command-Centres-Design\WindowManager\WindowManager\bin\x86\Debug\net6.0-windows10.0.19041.0\win10-x86\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2023-08-09T15:17:57.218</Modified>
+      <Modified>2023-08-09T18:16:46.907</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\code\Command-Centres-Design\WindowManager\WindowManager\bin\x86\Debug\net6.0-windows10.0.19041.0\win10-x86\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2023-08-09T15:17:56.973</Modified>
+      <Modified>2023-08-09T18:16:46.667</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\code\Command-Centres-Design\WindowManager\WindowManager\bin\x86\Debug\net6.0-windows10.0.19041.0\win10-x86\WindowManager.runtimeconfig.json">
       <PackagePath>WindowManager.runtimeconfig.json</PackagePath>
@@ -43,11 +43,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\code\Command-Centres-Design\WindowManager\WindowManager\bin\x86\Debug\net6.0-windows10.0.19041.0\win10-x86\WindowManager.dll">
       <PackagePath>WindowManager.dll</PackagePath>
-      <Modified>2023-08-09T15:17:56.861</Modified>
+      <Modified>2023-08-09T18:16:46.565</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\code\Command-Centres-Design\WindowManager\WindowManager\obj\x86\Debug\net6.0-windows10.0.19041.0\win10-x86\apphost.exe">
       <PackagePath>WindowManager.exe</PackagePath>
-      <Modified>2023-08-09T15:17:56.869</Modified>
+      <Modified>2023-08-09T18:16:46.572</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\code\Command-Centres-Design\WindowManager\WindowManager\bin\x86\Debug\net6.0-windows10.0.19041.0\win10-x86\WindowManager.deps.json">
       <PackagePath>WindowManager.deps.json</PackagePath>
@@ -1017,9 +1017,21 @@
       <PackagePath>Microsoft.WindowsAppRuntime.Bootstrap.dll</PackagePath>
       <Modified>2023-04-28T12:59:12.000</Modified>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\code\Command-Centres-Design\WindowManager\WindowManager\Assets\bing-logo.png">
+      <PackagePath>Assets\bing-logo.png</PackagePath>
+      <Modified>2023-08-09T16:49:15.157</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\code\Command-Centres-Design\WindowManager\WindowManager\Assets\ChatGPT_logo.png">
+      <PackagePath>Assets\ChatGPT_logo.png</PackagePath>
+      <Modified>2023-08-09T16:52:22.979</Modified>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\code\Command-Centres-Design\WindowManager\WindowManager\Assets\LockScreenLogo.scale-200.png">
       <PackagePath>Assets\LockScreenLogo.scale-200.png</PackagePath>
       <Modified>2023-07-27T13:28:26.649</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\code\Command-Centres-Design\WindowManager\WindowManager\Assets\microsoft_bing.png">
+      <PackagePath>Assets\microsoft_bing.png</PackagePath>
+      <Modified>2023-08-09T16:45:28.508</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\code\Command-Centres-Design\WindowManager\WindowManager\Assets\SplashScreen.scale-200.png">
       <PackagePath>Assets\SplashScreen.scale-200.png</PackagePath>
@@ -1044,6 +1056,10 @@
     <AppxPackagedFile Include="C:\code\Command-Centres-Design\WindowManager\WindowManager\Assets\Wide310x150Logo.scale-200.png">
       <PackagePath>Assets\Wide310x150Logo.scale-200.png</PackagePath>
       <Modified>2023-07-27T13:28:26.652</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\code\Command-Centres-Design\WindowManager\WindowManager\Assets\youtube_logo.png">
+      <PackagePath>Assets\youtube_logo.png</PackagePath>
+      <Modified>2023-08-09T16:53:27.946</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

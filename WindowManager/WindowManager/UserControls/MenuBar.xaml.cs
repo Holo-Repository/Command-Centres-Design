@@ -41,5 +41,38 @@ namespace WindowManager.UserControls
             if (this.GoButton_Click != null)
                 this.GoButton_Click(this, e);
         }
+
+        private async void MenuFlyoutItem_Click_1(object sender, RoutedEventArgs e)
+        {
+            ContentDialog dialog = new ContentDialog();
+
+            // XamlRoot must be set in the case of a ContentDialog running in a Desktop app
+            dialog.XamlRoot = this.XamlRoot;
+            dialog.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
+            dialog.Title = "Enter URL:";
+            dialog.PrimaryButtonText = "Go";
+           
+            dialog.CloseButtonText = "Cancel";
+            dialog.DefaultButton = ContentDialogButton.Primary;
+
+            TextBox textBox = new TextBox();
+            textBox.PlaceholderText = "URL";
+            dialog.Content = textBox;
+
+            dialog.PrimaryButtonClick += GoButtonClick;
+
+            var result = await dialog.ShowAsync();
+
+        }
+
+        private void GoButtonClick(ContentDialog dialog, ContentDialogButtonClickEventArgs args)
+        {
+            // currently url must be entered with the format http://www....
+            TextBox textBox = dialog.Content as TextBox;
+            string UriString = textBox.Text;
+            Uri uri = new Uri(UriString);
+
+
+        }
     }
 }

@@ -763,8 +763,17 @@
     <AppxPackagedFile Include="C:\Users\isobe\.nuget\packages\microsoft.windowsappsdk\1.3.230502000\runtimes\win10-x86\native\Microsoft.WindowsAppRuntime.Bootstrap.dll">
       <PackagePath>Microsoft.WindowsAppRuntime.Bootstrap.dll</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\code\Command-Centres-Design\WindowManager\WindowManager\Assets\bing-logo.png">
+      <PackagePath>Assets\bing-logo.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\code\Command-Centres-Design\WindowManager\WindowManager\Assets\ChatGPT_logo.png">
+      <PackagePath>Assets\ChatGPT_logo.png</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\code\Command-Centres-Design\WindowManager\WindowManager\Assets\LockScreenLogo.scale-200.png">
       <PackagePath>Assets\LockScreenLogo.scale-200.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\code\Command-Centres-Design\WindowManager\WindowManager\Assets\microsoft_bing.png">
+      <PackagePath>Assets\microsoft_bing.png</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\code\Command-Centres-Design\WindowManager\WindowManager\Assets\SplashScreen.scale-200.png">
       <PackagePath>Assets\SplashScreen.scale-200.png</PackagePath>
@@ -783,6 +792,9 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\code\Command-Centres-Design\WindowManager\WindowManager\Assets\Wide310x150Logo.scale-200.png">
       <PackagePath>Assets\Wide310x150Logo.scale-200.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\code\Command-Centres-Design\WindowManager\WindowManager\Assets\youtube_logo.png">
+      <PackagePath>Assets\youtube_logo.png</PackagePath>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

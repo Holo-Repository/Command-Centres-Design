@@ -149,7 +149,6 @@ namespace WindowManager
                 panel.AppBarButton_Click += new TypedEventHandler<object, RoutedEventArgs>(WebPanel_Close);
             }
 
-            MainMenuBar.MenuFlyoutItem_Click += new TypedEventHandler<object, RoutedEventArgs>(Calibration_Click);
             MainMenuBar.GoButton_Click += new TypedEventHandler<object, RoutedEventArgs>(Add_WebPanel);
         }
 
@@ -234,12 +233,6 @@ namespace WindowManager
             // 3. Write to JSON
             // 4. Update panels from JSON
             DisplayPanelsFromJSON(settings);
-        }
-
-        private void Calibration_Click(object sender, RoutedEventArgs e)
-        {
-            CalibrationWindow calibrationWindow = new CalibrationWindow();
-            calibrationWindow.Activate();
         }
 
 

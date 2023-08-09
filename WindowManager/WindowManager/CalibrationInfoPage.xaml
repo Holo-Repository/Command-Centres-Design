@@ -9,7 +9,15 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
-        <TextBlock Text="This page will be a calibration guide, from which you can launch the calibration window."/>
-    </Grid>
-</Page>
+        <StackPanel Orientation="Vertical">
+        <MenuBar>
+            <MenuBarItem Title="Calibration">
+                <MenuFlyoutItem Text="Begin Calibration" Click="Calibration_Click">
+                    <MenuFlyoutItem.KeyboardAccelerators>
+                        <KeyboardAccelerator Modifiers="Control" Key="S"/>
+                    </MenuFlyoutItem.KeyboardAccelerators>
+                </MenuFlyoutItem>
+            </MenuBarItem>
+        </MenuBar>
+    </StackPanel>
+    </Page>
