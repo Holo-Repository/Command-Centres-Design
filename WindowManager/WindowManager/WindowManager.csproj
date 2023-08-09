@@ -13,10 +13,14 @@
     <StartupObject>WindowManager.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="CalibrationInfoPage.xaml" />
     <None Remove="CalibrationWindow.xaml" />
+    <None Remove="DownloadConfigPage.xaml" />
+    <None Remove="HelpPage.xaml" />
     <None Remove="UserControls\MenuBar.xaml" />
     <None Remove="UserControls\TvPanel.xaml" />
     <None Remove="UserControls\WebPanel.xaml" />
+    <None Remove="WindowManagerPage.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -60,6 +64,26 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="C:\code\Command-Centres-Design\WindowManager\WindowManager\.editorconfig" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="DownloadConfigPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="CalibrationInfoPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="HelpPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="WindowManagerPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="UserControls\TvPanel.xaml">
