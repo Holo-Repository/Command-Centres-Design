@@ -58,6 +58,11 @@ namespace WindowManager
             // Initialise main window
             this.InitializeComponent();
 
+            //// C# code to set AppTitleBar uielement as titlebar
+            Window window = this;
+            window.ExtendsContentIntoTitleBar = true;  // enable custom titlebar
+            window.SetTitleBar(AppTitleBar);      // set user ui element as titlebar
+
         }
 
         private void NavView_Loaded(object sender, RoutedEventArgs e)

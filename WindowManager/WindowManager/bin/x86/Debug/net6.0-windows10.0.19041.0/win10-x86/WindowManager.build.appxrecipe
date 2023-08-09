@@ -766,6 +766,9 @@
     <AppxPackagedFile Include="C:\code\Command-Centres-Design\WindowManager\WindowManager\Assets\bing-logo.png">
       <PackagePath>Assets\bing-logo.png</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\code\Command-Centres-Design\WindowManager\WindowManager\Assets\CCD-logo.png">
+      <PackagePath>Assets\CCD-logo.png</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\code\Command-Centres-Design\WindowManager\WindowManager\Assets\ChatGPT_logo.png">
       <PackagePath>Assets\ChatGPT_logo.png</PackagePath>
     </AppxPackagedFile>

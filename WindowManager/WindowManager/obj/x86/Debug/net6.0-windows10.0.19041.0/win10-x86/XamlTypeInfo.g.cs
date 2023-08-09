@@ -267,9 +267,9 @@ namespace WindowManager.WindowManager_XamlTypeInfo
             _typeNameTable[39] = "Microsoft.UI.Xaml.Controls.NavigationViewItemBase";
             _typeNameTable[40] = "Microsoft.UI.Xaml.Controls.IconElement";
             _typeNameTable[41] = "Microsoft.UI.Xaml.Controls.InfoBadge";
-            _typeNameTable[42] = "WindowManager.MainWindow";
-            _typeNameTable[43] = "Microsoft.UI.Xaml.Controls.ImageIcon";
-            _typeNameTable[44] = "Microsoft.UI.Xaml.Media.ImageSource";
+            _typeNameTable[42] = "Microsoft.UI.Xaml.Controls.ImageIcon";
+            _typeNameTable[43] = "Microsoft.UI.Xaml.Media.ImageSource";
+            _typeNameTable[44] = "WindowManager.MainWindow";
             _typeNameTable[45] = "WindowManager.UserControls.MenuBar";
             _typeNameTable[46] = "WindowManager.UserControls.TvPanel";
             _typeNameTable[47] = "Microsoft.UI.Xaml.Controls.WebView2";
@@ -323,9 +323,9 @@ namespace WindowManager.WindowManager_XamlTypeInfo
             _typeTable[39] = typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewItemBase);
             _typeTable[40] = typeof(global::Microsoft.UI.Xaml.Controls.IconElement);
             _typeTable[41] = typeof(global::Microsoft.UI.Xaml.Controls.InfoBadge);
-            _typeTable[42] = typeof(global::WindowManager.MainWindow);
-            _typeTable[43] = typeof(global::Microsoft.UI.Xaml.Controls.ImageIcon);
-            _typeTable[44] = typeof(global::Microsoft.UI.Xaml.Media.ImageSource);
+            _typeTable[42] = typeof(global::Microsoft.UI.Xaml.Controls.ImageIcon);
+            _typeTable[43] = typeof(global::Microsoft.UI.Xaml.Media.ImageSource);
+            _typeTable[44] = typeof(global::WindowManager.MainWindow);
             _typeTable[45] = typeof(global::WindowManager.UserControls.MenuBar);
             _typeTable[46] = typeof(global::WindowManager.UserControls.TvPanel);
             _typeTable[47] = typeof(global::Microsoft.UI.Xaml.Controls.WebView2);
@@ -380,8 +380,8 @@ namespace WindowManager.WindowManager_XamlTypeInfo
         private object Activate_36_NavigationViewTemplateSettings() { return new global::Microsoft.UI.Xaml.Controls.NavigationViewTemplateSettings(); }
         private object Activate_38_NavigationViewItem() { return new global::Microsoft.UI.Xaml.Controls.NavigationViewItem(); }
         private object Activate_41_InfoBadge() { return new global::Microsoft.UI.Xaml.Controls.InfoBadge(); }
-        private object Activate_42_MainWindow() { return new global::WindowManager.MainWindow(); }
-        private object Activate_43_ImageIcon() { return new global::Microsoft.UI.Xaml.Controls.ImageIcon(); }
+        private object Activate_42_ImageIcon() { return new global::Microsoft.UI.Xaml.Controls.ImageIcon(); }
+        private object Activate_44_MainWindow() { return new global::WindowManager.MainWindow(); }
         private object Activate_45_MenuBar() { return new global::WindowManager.UserControls.MenuBar(); }
         private object Activate_46_TvPanel() { return new global::WindowManager.UserControls.TvPanel(); }
         private object Activate_47_WebView2() { return new global::Microsoft.UI.Xaml.Controls.WebView2(); }
@@ -707,22 +707,22 @@ namespace WindowManager.WindowManager_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 42:   //  WindowManager.MainWindow
-                userType = new global::WindowManager.WindowManager_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Window"));
-                userType.Activator = Activate_42_MainWindow;
-                userType.SetIsLocalType();
-                xamlType = userType;
-                break;
-
-            case 43:   //  Microsoft.UI.Xaml.Controls.ImageIcon
+            case 42:   //  Microsoft.UI.Xaml.Controls.ImageIcon
                 userType = new global::WindowManager.WindowManager_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.IconElement"));
-                userType.Activator = Activate_43_ImageIcon;
+                userType.Activator = Activate_42_ImageIcon;
                 userType.AddMemberName("Source");
                 xamlType = userType;
                 break;
 
-            case 44:   //  Microsoft.UI.Xaml.Media.ImageSource
+            case 43:   //  Microsoft.UI.Xaml.Media.ImageSource
                 xamlType = new global::WindowManager.WindowManager_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 44:   //  WindowManager.MainWindow
+                userType = new global::WindowManager.WindowManager_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Window"));
+                userType.Activator = Activate_44_MainWindow;
+                userType.SetIsLocalType();
+                xamlType = userType;
                 break;
 
             case 45:   //  WindowManager.UserControls.MenuBar

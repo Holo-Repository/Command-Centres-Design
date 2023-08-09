@@ -9,25 +9,36 @@
     xmlns:controls="using:Microsoft.UI.Xaml.Controls"
     mc:Ignorable="d">
 
-    <NavigationView x:Name="NavView"
+    <StackPanel Orientation="Vertical">
+        
+        <Border x:Name="AppTitleBar">
+            <StackPanel Orientation="Horizontal">
+                <ImageIcon Source="/Assets/CCD-logo.png" Width="10" Height="10"/>
+                <TextBlock x:Name="AppTitle" Text="Command Centres Design" Style="{StaticResource CaptionTextBlockStyle}" 
+                           VerticalAlignment="Top" Margin="10"/>
+            </StackPanel>
+        </Border>
+        
+        <NavigationView x:Name="NavView"
                      Loaded="NavView_Loaded"
                      ItemInvoked="NavView_ItemInvoked">
-        <NavigationView.MenuItems>
-            <!--Change Icon to TaskView icon from Fluent-->
-            <NavigationViewItem Icon="NewWindow" Content="Windows" Tag="WindowManager.WindowManagerPage" />
+            <NavigationView.MenuItems>
+                <!--Change Icon to TaskView icon from Fluent-->
+                <NavigationViewItem Icon="NewWindow" Content="Windows" Tag="WindowManager.WindowManagerPage" />
                 <!--<NavigationViewItem.Icon>
                     <FontIcon Glyph="&#xEB3C;"/>
                 </NavigationViewItem.Icon>-->
-            <NavigationViewItem Icon="Help" Content="Help" Tag="WindowManager.HelpPage" />
-            <NavigationViewItem Icon="Setting" Content="Calibration" Tag="WindowManager.CalibrationInfoPage" />
-            <NavigationViewItem Icon="Download" Content="Download Window Configuration" Tag="WindowManager.DownloadConfigPage" />
-        </NavigationView.MenuItems>
+                <NavigationViewItem Icon="Help" Content="Help" Tag="WindowManager.HelpPage" />
+                <NavigationViewItem Icon="Setting" Content="Calibration" Tag="WindowManager.CalibrationInfoPage" />
+                <NavigationViewItem Icon="Download" Content="Download Window Configuration" Tag="WindowManager.DownloadConfigPage" />
+            </NavigationView.MenuItems>
 
-        <ScrollViewer>
-            <Frame x:Name="ContentFrame" IsTabStop="True"
+            <ScrollViewer>
+                <Frame x:Name="ContentFrame" IsTabStop="True"
                 NavigationFailed="ContentFrame_NavigationFailed"/>
-        </ScrollViewer>
+            </ScrollViewer>
 
-    </NavigationView>
-
+        </NavigationView>
+    </StackPanel>
+    
 </Window>
