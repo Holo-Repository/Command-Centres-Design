@@ -13,7 +13,7 @@
         
         <Border x:Name="AppTitleBar">
             <StackPanel Orientation="Horizontal">
-                <ImageIcon Source="/Assets/CCD-logo.png" Width="10" Height="10"/>
+                <ImageIcon Source="/Assets/CCD-logo.png" Width="20" Height="20" Margin="10,0,0,0"/>
                 <TextBlock x:Name="AppTitle" Text="Command Centres Design" Style="{StaticResource CaptionTextBlockStyle}" 
                            VerticalAlignment="Top" Margin="10"/>
             </StackPanel>
@@ -21,7 +21,8 @@
         
         <NavigationView x:Name="NavView"
                      Loaded="NavView_Loaded"
-                     ItemInvoked="NavView_ItemInvoked">
+                     ItemInvoked="NavView_ItemInvoked"
+                     PaneDisplayMode="LeftCompact">
             <NavigationView.MenuItems>
                 <!--Change Icon to TaskView icon from Fluent-->
                 <NavigationViewItem Icon="NewWindow" Content="Windows" Tag="WindowManager.WindowManagerPage" />
@@ -34,7 +35,7 @@
             </NavigationView.MenuItems>
 
             <ScrollViewer>
-                <Frame x:Name="ContentFrame" IsTabStop="True"
+                <Frame x:Name="ContentFrame" IsTabStop="True" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
                 NavigationFailed="ContentFrame_NavigationFailed"/>
             </ScrollViewer>
 
