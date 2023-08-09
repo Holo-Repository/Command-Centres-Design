@@ -39,6 +39,7 @@ namespace WindowManager
     public sealed partial class MainWindow : Window
     {
         private string SwapUri;
+        private SettingsData settings;
 
         // A dictionary to map panel number : row number
         private Dictionary<int, int> RowMappings = new Dictionary<int, int>()
@@ -65,8 +66,8 @@ namespace WindowManager
             string currentDir = baseDir.Substring(0, (startOfProj + projectName.Length));
             Directory.SetCurrentDirectory(currentDir);
 
-            // Read settings from Json
-            SettingsData settings = SettingsManager.DeserialiseSettingsJSON();
+            //Read settings from Json into class variable - this must come after the above code to correct current directory
+            settings = SettingsManager.DeserialiseSettingsJSON();
 
             // Initialise main window
             this.InitializeComponent();
@@ -74,7 +75,7 @@ namespace WindowManager
             // Adjust layout
             AdjustGridSize(settings);
 
-            PopulatePanelsFromJSON(settings);
+            DisplayPanelsFromJSON(settings);
 
             // This needs to come before adding TV element or must include type check
             WireEventHandlers();
@@ -103,10 +104,17 @@ namespace WindowManager
             
         }
 
-        private void PopulatePanelsFromJSON(SettingsData settings)
+        private void DisplayPanelsFromJSON(SettingsData settings)
         {
             WebPanel[] PanelsArray = { Panel1, Panel2, Panel3, Panel4, Panel5, Panel6, Panel7, Panel8, Panel9 };
 
+            // Set the visibility of all panels to collapsed
+            foreach (WebPanel webPanel in PanelsArray)
+            {
+                webPanel.Visibility = Visibility.Collapsed;
+            }
+
+            // Set Uri and make visible any panels that are included in the JSON
             foreach (Panel panelData in settings.Panels.GetPanelsArray())
             {
                 if (panelData != null)
@@ -122,14 +130,7 @@ namespace WindowManager
 
                 }
             }
-            //WebPanel panel1 = new WebPanel ();
-            //panel1.SetUri(new Uri("https://www.apple.com"));
-
-            //PanelGrid.Children.Add(panel1);
-            //Microsoft.UI.Xaml.Controls.Grid.SetColumn(panel1, 0);
-            //Microsoft.UI.Xaml.Controls.Grid.SetRow(panel1, 0);
-            //Microsoft.UI.Xaml.Controls.Grid.SetRowSpan(panel1, 2);
-
+           
         }
 
         private void InitialiseTv (SettingsData settings)
@@ -234,11 +235,32 @@ namespace WindowManager
         {
             WebPanel webPanel = sender as WebPanel;
             webPanel.Visibility = Visibility.Collapsed;
+
+            //Write to JSON
+            // This doesn't work - dictionary appears to contain value rather than reference
+            //Dictionary<string, Panel> SettingsPanelMappings = new Dictionary<string, Panel>
+            //{
+            //    {"Panel1", settings.Panels.Panel1 }, {"Panel2", settings.Panels.Panel2 }, {"Panel3", settings.Panels.Panel3 }, 
+            //    {"Panel4", settings.Panels.Panel4 }, {"Panel5", settings.Panels.Panel5 }, {"Panel6", settings.Panels.Panel6 },
+            //    {"Panel7", settings.Panels.Panel7 }, {"Panel8", settings.Panels.Panel8 }, {"Panel9", settings.Panels.Panel9 }
+            //};
+
+            //// set close panel equal to null
+            //SettingsPanelMappings[webPanel.Name] = null;
+
+            settings.Panels.ClosePanelByName(webPanel.Name);
+
+            // write to json
+            SettingsManager.SerialiseSettingsJSON(settings);
         }
 
         private void Add_WebPanel(object sender, RoutedEventArgs e)
         {
-
+            // 1. Prioritise URIs
+            // 2. Identify layout
+            // 3. Write to JSON
+            // 4. Update panels from JSON
+            DisplayPanelsFromJSON(settings);
         }
 
         private void Calibration_Click(object sender, RoutedEventArgs e)

@@ -44,6 +44,42 @@ namespace WindowManager
             return new[] { Panel1, Panel2, Panel3, Panel4, Panel5, Panel6, Panel7, Panel8, Panel9 };
 
         }
+        
+        public void ClosePanelByName(string panelName)
+        {
+            switch (panelName)
+            {
+                case "Panel1":
+                    Panel1 = null;
+                    break;
+                case "Panel2":
+                    Panel2 = null;
+                    break;
+                case "Panel3":
+                    Panel3 = null;
+                    break;
+                case "Panel4":
+                    Panel4 = null;
+                    break;
+                case "Panel5":
+                    Panel5 = null;
+                    break;
+                case "Panel6":
+                    Panel6 = null;
+                    break;
+                case "Panel7":
+                    Panel7 = null;
+                    break;
+                case "Panel8":
+                    Panel8 = null;
+                    break;
+                case "Panel9":
+                    Panel9 = null;
+                    break;
+                default:
+                    throw new ArgumentException("Invalid panel name", nameof(panelName));
+            }
+        }
 
     }
     public class Panel
