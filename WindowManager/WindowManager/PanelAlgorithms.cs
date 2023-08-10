@@ -23,7 +23,10 @@ namespace WindowManager
                 }
             }
 
-            rectangles.Sort((a, b) => b.Sum(x => areas[x]) - a.Sum(x => areas[x]));
+            // a and b are each possible combination of rectangles
+            // iterate over every single panel in a and b and find their areas
+            // sum those and then find which is larger and place forward
+            rectangles.Sort((a, b) => b.Sum(x => areas[x-1]) - a.Sum(x => areas[x-1]));
 
             return rectangles;
         }
@@ -166,7 +169,7 @@ namespace WindowManager
                     attributes["RowSpan"] = a.Item1.Length;
                 }
 
-                packed[$"Panel{a.Item1[0] + 1}"] = attributes;
+                packed[$"Panel{a.Item1[0]}"] = attributes;
             }
 
             return packed;

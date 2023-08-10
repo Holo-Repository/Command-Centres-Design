@@ -224,22 +224,14 @@ namespace WindowManager
         private void WebPanel_Close(object sender, RoutedEventArgs e)
         {
             WebPanel webPanel = sender as WebPanel;
-            webPanel.Visibility = Visibility.Collapsed;
 
-            // write to json
-            settings.Panels.ClosePanelByName(webPanel.Name);
-            SettingsManager.SerialiseSettingsJSON(settings);
-        }
-
-        public void Add_WebPanel(object sender, Uri deltaUri)
-        {
             // uri to be added or removed
-            //Uri deltaUri = new Uri("https://www.microsoft.com");
-            bool isAdd = true;
-            int screenPanel = 5;
+            Uri deltaUri = new Uri (webPanel.Source);
+            bool isAdd = false;
+            int screenPanel = 6;
             // Calculate these?
-            int[] ColumnWidths = { 100, 100, 100 };
-            int[] RowHeights = { 100, 100, 100 };
+            int[] ColumnWidths = { 425, 425, 425 };
+            int[] RowHeights = { 250, 250, 250 };
 
             // call during calibration and assign to global variables
             // rectangles ordered by area - is "intermediates" interchangeable with "rectangles"?
@@ -252,24 +244,64 @@ namespace WindowManager
             List<Uri> UriListByPriority = PanelAlgorithms.UriPriority(deltaUri, intermediateRectangles, panelArray, isAdd);
             dynamic packedFrames = PanelAlgorithms.PackedFrames(UriListByPriority, optimalFrames);
 
-            //foreach(dynamic packedFrame in packedFrames)
-            //{
-
-            //}
-
             // PackedFrames is a dict where keys are strings of panel names e.g. "Panel1"
             // The value corresponding to that key is another dict where the keys are "uri", "ColumnSpan", and "RowSpan"
-            Dictionary<string, System.Collections.Generic.Dictionary<string, object>>.KeyCollection PanelNames = packedFrames.Keys;
+            Dictionary<string, Dictionary<string, object>>.KeyCollection PanelNames = packedFrames.Keys;
 
-            foreach(var PanelNameString in PanelNames)
+            foreach (var PanelNameString in PanelNames)
             {
-
                 Uri uri = packedFrames[PanelNameString]["uri"];
                 int ColumnSpan = packedFrames[PanelNameString]["ColumnSpan"];
                 int RowSpan = packedFrames[PanelNameString]["RowSpan"];
 
-                //settings.Panels.SetPanelDataByName(PanelNameString, uri, ColumnSpan, RowSpan);
-                settings.Panels.SetPanelDataByName("Panel1", uri, ColumnSpan, RowSpan); // For testing until bug fixed
+                settings.Panels.SetPanelDataByName(PanelNameString, uri, ColumnSpan, RowSpan);
+
+            }
+
+            // 3. Write to JSON - function will only take SettingsData object
+            SettingsManager.SerialiseSettingsJSON(settings);
+
+            // write to json
+            settings.Panels.ClosePanelByName(webPanel.Name);
+            SettingsManager.SerialiseSettingsJSON(settings);
+
+            webPanel.Visibility = Visibility.Collapsed;
+
+            DisplayPanelsFromJSON(settings);
+        }
+
+        public void Add_WebPanel(object sender, Uri deltaUri)
+        {
+            // uri to be added or removed
+            //Uri deltaUri = new Uri("https://www.microsoft.com");
+            bool isAdd = true;
+            int screenPanel = 6;
+            // Calculate these?
+            int[] ColumnWidths = { 425, 425, 425 };
+            int[] RowHeights = { 250, 250, 250 };
+
+            // call during calibration and assign to global variables
+            // rectangles ordered by area - is "intermediates" interchangeable with "rectangles"?
+            intermediateRectangles = PanelAlgorithms.IntermediateRectangles(screenPanel, ColumnWidths, RowHeights);
+            optimalFrames = PanelAlgorithms.OptimalFrames(intermediateRectangles);
+
+            // 1. Prioritise URIs
+            // 2. Identify layout
+            Panel[] panelArray = settings.Panels.GetPanelsArray();
+            List<Uri> UriListByPriority = PanelAlgorithms.UriPriority(deltaUri, intermediateRectangles, panelArray, isAdd);
+            dynamic packedFrames = PanelAlgorithms.PackedFrames(UriListByPriority, optimalFrames);
+
+            // PackedFrames is a dict where keys are strings of panel names e.g. "Panel1"
+            // The value corresponding to that key is another dict where the keys are "uri", "ColumnSpan", and "RowSpan"
+            Dictionary<string, Dictionary<string, object>>.KeyCollection PanelNames = packedFrames.Keys;
+
+            foreach(var PanelNameString in PanelNames)
+            {
+                Uri uri = packedFrames[PanelNameString]["uri"];
+                int ColumnSpan = packedFrames[PanelNameString]["ColumnSpan"];
+                int RowSpan = packedFrames[PanelNameString]["RowSpan"];
+
+                settings.Panels.SetPanelDataByName(PanelNameString, uri, ColumnSpan, RowSpan);
 
             }
 
