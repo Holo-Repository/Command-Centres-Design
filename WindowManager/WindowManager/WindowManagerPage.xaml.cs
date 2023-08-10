@@ -247,7 +247,7 @@ namespace WindowManager
 
             // 1. Prioritise URIs
             // 2. Identify layout
-            Panel[] panelArray = Panels.GetPanelArray();
+            Panel[] panelArray = settings.Panels.GetPanelsArray();
             List<Uri> UriListByPriority = PanelAlgorithms.UriPriority(deltaUri, intermediateRectangles, panelArray, isAdd);
             dynamic packedFrames = PanelAlgorithms.PackedFrames(UriListByPriority, optimalFrames);
 
