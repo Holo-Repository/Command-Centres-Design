@@ -70,8 +70,21 @@ namespace WindowManager.UserControls
             // currently url must be entered with the format http://www....
             TextBox textBox = dialog.Content as TextBox;
             string UriString = textBox.Text;
-            Uri uri = new Uri(UriString);
+            Uri deltaUri = new Uri(UriString);
 
+            //Uri deltaUri = new Uri("https://www.microsoft.com");
+            bool isAdd = true;
+            int screenPanel = 5;
+            // Calculate these?
+            int[] ColumnWidths = { 100, 100, 100 };
+            int[] RowHeights = { 100, 100, 100 };
+
+            // rectangles ordered by area - is "intermediates" interchangeable with "rectangles"?
+            List<int[]> rectangles = PanelAlgorithms.IntermediateRectangles(screenPanel, ColumnWidths, RowHeights);
+            List<List<int[]>> optimalFrames = PanelAlgorithms.OptimalFrames(rectangles);
+
+            List<Uri> UriListByPriority = PanelAlgorithms.UriPriority(deltaUri, rectangles, optimalFrames, isAdd);
+            dynamic packed = PanelAlgorithms.PackedFrames(UriListByPriority, optimalFrames);
 
         }
     }

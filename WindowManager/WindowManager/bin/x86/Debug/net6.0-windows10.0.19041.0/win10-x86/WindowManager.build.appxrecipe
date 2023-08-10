@@ -775,6 +775,9 @@
     <AppxPackagedFile Include="C:\code\Command-Centres-Design\WindowManager\WindowManager\Assets\LockScreenLogo.scale-200.png">
       <PackagePath>Assets\LockScreenLogo.scale-200.png</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\code\Command-Centres-Design\WindowManager\WindowManager\Assets\microsoft-teams-logo.png">
+      <PackagePath>Assets\microsoft-teams-logo.png</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\code\Command-Centres-Design\WindowManager\WindowManager\Assets\microsoft_bing.png">
       <PackagePath>Assets\microsoft_bing.png</PackagePath>
     </AppxPackagedFile>

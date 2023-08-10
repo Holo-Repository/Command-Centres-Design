@@ -228,6 +228,21 @@ namespace WindowManager
 
         private void Add_WebPanel(object sender, RoutedEventArgs e)
         {
+            // uri to be added or removed
+            Uri deltaUri = new Uri("https://www.microsoft.com");
+            bool isAdd = true;
+            int screenPanel = 5;
+            // Calculate these?
+            int[] ColumnWidths = { 100, 100, 100 };
+            int[] RowHeights = { 100, 100, 100 };
+
+            // rectangles ordered by area - is "intermediates" interchangeable with "rectangles"?
+            List<int[]> rectangles = PanelAlgorithms.IntermediateRectangles(screenPanel, ColumnWidths, RowHeights);
+            List<List<int[]>> optimalFrames = PanelAlgorithms.OptimalFrames(rectangles);
+
+            List<Uri> UriListByPriority = PanelAlgorithms.UriPriority(deltaUri, rectangles, optimalFrames, isAdd);
+            dynamic packed = PanelAlgorithms.PackedFrames(UriListByPriority, optimalFrames);
+
             // 1. Prioritise URIs
             // 2. Identify layout
             // 3. Write to JSON
