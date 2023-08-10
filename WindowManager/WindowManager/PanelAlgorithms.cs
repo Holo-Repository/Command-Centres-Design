@@ -73,6 +73,8 @@ namespace WindowManager
 
             List<int[]> filteredIntermediates = new List<int[]>(intermediates);
 
+
+            //add condition that removes too small rectangles
             foreach (var rectangle in intermediates)
             {
                 if (rectangle.Contains(screen)) filteredIntermediates.Remove(rectangle);
@@ -203,6 +205,7 @@ namespace WindowManager
 
         public static List<List<int[]>> OptimalFrames(List<int[]> intermediates)
         {
+            //be sure to make it so only x number of panels can be added - where x is the total number of optimal combinations this returns
 
             List<List<int[]>> optimalFrames = new List<List<int[]>>();
 
