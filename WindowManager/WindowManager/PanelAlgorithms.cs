@@ -86,30 +86,28 @@ namespace WindowManager
             List<int[]> rectangles = new List<int[]>();
             List<Uri> uris = new List<Uri>();
 
-            //may have to add handling for nulls if first uri - or add some case handling
             foreach (Panel f in frames)
-            { if(f != null)
+            {
+                if (f.GetType() == null) continue; //more robust type check
+                
+                int c = f.ColumnSpan;
+                int r = f.RowSpan;
+                int[] rect = new int[r * c];
+
+                int a = 0;
+                // loop through columns
+                for (int i = 0; i < c; i++)
                 {
-                    int c = f.ColumnSpan;
-                    int r = f.RowSpan;
-                    int[] rect = new int[r * c];
-
-                    int a = 0;
-                    // loop through columns
-                    for (int i = 0; i < c; i++)
+                    // loop through rows
+                    for (int j = 0; j < r; j++)
                     {
-                        // loop through rows
-                        for (int j = 0; j < r; j++)
-                        {
-                            rect[a] = f.PanelNum + i + j * 3;
-                            a++;
-                        }
+                        rect[a] = f.PanelNum + i + j * 3;
+                        a++;
                     }
-
-                    rectangles.Add(rect);
-                    uris.Add(new Uri(f.Uri));
                 }
-              
+
+                rectangles.Add(rect);
+                uris.Add(new Uri(f.Uri));
             }
 
             //sort uris by priority (frame area); append new
@@ -135,52 +133,40 @@ namespace WindowManager
 
             foreach ((int[], Uri) a in combinedList)
             {
-                //single frame
-                if (a.Item1.Length == 1)
+                var attributes = new Dictionary<string, dynamic>();
+                attributes["uri"] = a.Item2;
+
+                if (a.Item1.Length == 1) //single
                 {
-                    dynamic singleFrame = new System.Dynamic.ExpandoObject();
-                    singleFrame.uri = a.Item2;
-                    singleFrame.ColumnSpan = 1;
-                    singleFrame.RowSpan = 1;
-                    packed[$"Panel{a.Item1[0]}"] = singleFrame;
-                    continue;
+                    attributes["ColumnSpan"] = 1;
+                    attributes["RowSpan"] = 1;
+
                 }
-                //square
-                if (a.Item1.Length == 4)
+                else if (a.Item1.Length == 4) //square
                 {
-                    dynamic squareFrame = new System.Dynamic.ExpandoObject();
-                    squareFrame.uri = a.Item2;
-                    squareFrame.ColumnSpan = 2;
-                    squareFrame.RowSpan = 2;
-                    packed[$"Panel{a.Item1[0]}"] = squareFrame;
-                    continue;
+                    attributes["ColumnSpan"] = 2;
+                    attributes["RowSpan"] = 2;
+
                 }
-                //2 X 3
-                if (a.Item1.Length == 6)
+                else if (a.Item1.Length == 6) //2 x 3
                 {
-                    dynamic twobythree = new System.Dynamic.ExpandoObject();
-                    twobythree.uri = a.Item2;
-                    twobythree.ColumnSpan = 2 + (a.Item1[2] - a.Item1[1] == 1 ? 1 : 0);
-                    twobythree.RowSpan = 3 - (a.Item1[2] - a.Item1[1] == 1 ? 1 : 0);
-                    packed[$"Panel{a.Item1[0]}"] = twobythree;
-                    continue;
+                    attributes["ColumnSpan"] = 2 + (a.Item1[2] - a.Item1[1] == 1 ? 1 : 0);
+                    attributes["RowSpan"] = 3 - (a.Item1[2] - a.Item1[1] == 1 ? 1 : 0);
+
                 }
-                //horizontal
-                if (a.Item1[1] - a.Item1[0] == 1)
+                else if (a.Item1[1] - a.Item1[0] == 1) //horizontal
                 {
-                    dynamic horizontalFrame = new System.Dynamic.ExpandoObject();
-                    horizontalFrame.uri = a.Item2;
-                    horizontalFrame.ColumnSpan = a.Item1.Length;
-                    horizontalFrame.RowSpan = 1;
-                    packed[$"Panel{a.Item1[0]}"] = horizontalFrame;
-                    continue;
+                    attributes["ColumnSpan"] = a.Item1.Length;
+                    attributes["RowSpan"] = 1;
+
                 }
-                //vertical
-                dynamic verticalFrame = new System.Dynamic.ExpandoObject();
-                verticalFrame.uri = a.Item2;
-                verticalFrame.ColumnSpan = 1;
-                verticalFrame.RowSpan = a.Item1.Length;
-                //packed[a.Item1[0]] = verticalFrame;
+                else
+                {
+                    attributes["ColumnSpan"] = 1;
+                    attributes["RowSpan"] = a.Item1.Length;
+                }
+
+                packed[$"Panel{a.Item1[0]}"] = attributes;
             }
 
             return packed;
