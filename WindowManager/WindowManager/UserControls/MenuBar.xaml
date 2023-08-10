@@ -10,10 +10,10 @@
 
     <StackPanel Orientation="Horizontal">
         <MenuBar>
-            <MenuBarItem Title="Add Web Panel" >
-             
+            <MenuBarItem Title="+ Add Web Panel" >
+
                 <MenuFlyoutSubItem Text="Popular Websites">
-                    
+
                     <MenuFlyoutItem Text="Bing">
                         <MenuFlyoutItem.Icon>
                             <ImageIcon Source="/Assets/bing-logo.png"/>
@@ -31,40 +31,35 @@
                             <ImageIcon Source="/Assets/ChatGPT_logo.png"/>
                         </MenuFlyoutItem.Icon>
                     </MenuFlyoutItem>
-                    
+
                 </MenuFlyoutSubItem>
                 <MenuFlyoutItem Text="Add by URL" Click="MenuFlyoutItem_Click_1">
+                    <MenuFlyoutItem.KeyboardAccelerators>
+                        <KeyboardAccelerator Modifiers="Control" Key="U"/>
+                    </MenuFlyoutItem.KeyboardAccelerators>
                 </MenuFlyoutItem>
-                
+
             </MenuBarItem>
 
-            <MenuBarItem Title="Add Teams Panel">
+            <MenuBarItem Title="+ Add Teams Panel">
                 <MenuFlyoutItem Text="Create A Meeting">
+                    <MenuFlyoutItem.Icon>
+                        <ImageIcon Source="/Assets/microsoft-teams-logo.png"/>
+                    </MenuFlyoutItem.Icon>
                     <MenuFlyoutItem.KeyboardAccelerators>
                         <KeyboardAccelerator Modifiers="Control" Key="Z"/>
                     </MenuFlyoutItem.KeyboardAccelerators>
                 </MenuFlyoutItem>
                 <MenuFlyoutItem Text="Join A Meeting">
+                    <MenuFlyoutItem.Icon>
+                        <ImageIcon Source="/Assets/microsoft-teams-logo.png"/>
+                    </MenuFlyoutItem.Icon>
                     <MenuFlyoutItem.KeyboardAccelerators>
                         <KeyboardAccelerator Modifiers="Control" Key="X"/>
                     </MenuFlyoutItem.KeyboardAccelerators>
                 </MenuFlyoutItem>
             </MenuBarItem>
         </MenuBar>
-
-        <!--<Button Content="Add Web Content">
-            <Button.Flyout>
-                <Flyout>
-                    <StackPanel>
-                        <TextBlock Style="{ThemeResource BaseTextBlockStyle}" Text="Enter URL" Margin="0,0,0,12" />
-                        <StackPanel Orientation="Horizontal">
-                            <TextBox PlaceholderText="URL" />
-                            <Button Content="Go" Click="Button1_Click" />
-                        </StackPanel>
-                    </StackPanel>
-                </Flyout>
-            </Button.Flyout>
-        </Button>-->
     </StackPanel>
 
 </UserControl>
