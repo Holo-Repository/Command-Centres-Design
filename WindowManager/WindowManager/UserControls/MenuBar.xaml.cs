@@ -84,5 +84,38 @@ namespace WindowManager.UserControls
                 this.Add_Window(this, deltaUri);
 
         }
+
+        // Send the correct uri according to content
+        private void MenuFlyoutItem_Click(object sender, RoutedEventArgs e)
+        {
+            MenuFlyoutItem menuFlyoutItem = sender as MenuFlyoutItem;
+            Uri deltaUri;
+
+            switch (menuFlyoutItem.Text)
+            {
+                case "Bing":
+                    deltaUri = new Uri("https://www.bing.com");
+                    break;
+                case "Youtube":
+                    deltaUri = new Uri("https://www.youtube.com");
+                    break;
+                case "NHS England":
+                    deltaUri = new Uri("https://www.england.nhs.uk/");
+                    break;
+                case "Create A Meeting":
+                    deltaUri = new Uri("http://localhost:3000/createcall");
+                    break;
+                case "Join A Meeting":
+                    deltaUri = new Uri("http://localhost:3000/");
+                    break;
+                default:
+                    throw new ArgumentException("MenuFlyoutItem.Text matches no Uri", nameof(menuFlyoutItem.Text));
+
+            }
+
+            //bubble the event up to the parent
+            if (this.Add_Window != null)
+                this.Add_Window(this, deltaUri);
+        }
     }
 }

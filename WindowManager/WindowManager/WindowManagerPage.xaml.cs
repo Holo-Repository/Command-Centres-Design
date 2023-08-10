@@ -71,7 +71,7 @@ namespace WindowManager
             this.InitializeComponent();
 
             // Adjust layout
-            AdjustGridSize(settings);
+            //AdjustGridSize(settings);
 
             DisplayPanelsFromJSON(settings);
 

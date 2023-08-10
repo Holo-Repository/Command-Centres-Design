@@ -29,13 +29,13 @@
     <AppXManifest Include="C:\code\Command-Centres-Design\WindowManager\WindowManager\bin\x86\Debug\net6.0-windows10.0.19041.0\win10-x86\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2023-08-10T13:33:16.724</Modified>
+      <Modified>2023-08-10T14:33:51.675</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\code\Command-Centres-Design\WindowManager\WindowManager\bin\x86\Debug\net6.0-windows10.0.19041.0\win10-x86\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2023-08-10T13:32:38.704</Modified>
+      <Modified>2023-08-10T14:33:51.426</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\code\Command-Centres-Design\WindowManager\WindowManager\bin\x86\Debug\net6.0-windows10.0.19041.0\win10-x86\WindowManager.runtimeconfig.json">
       <PackagePath>WindowManager.runtimeconfig.json</PackagePath>
@@ -43,11 +43,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\code\Command-Centres-Design\WindowManager\WindowManager\bin\x86\Debug\net6.0-windows10.0.19041.0\win10-x86\WindowManager.dll">
       <PackagePath>WindowManager.dll</PackagePath>
-      <Modified>2023-08-10T13:33:16.401</Modified>
+      <Modified>2023-08-10T14:33:51.298</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\code\Command-Centres-Design\WindowManager\WindowManager\obj\x86\Debug\net6.0-windows10.0.19041.0\win10-x86\apphost.exe">
       <PackagePath>WindowManager.exe</PackagePath>
-      <Modified>2023-08-10T13:33:16.409</Modified>
+      <Modified>2023-08-10T14:33:51.308</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\code\Command-Centres-Design\WindowManager\WindowManager\bin\x86\Debug\net6.0-windows10.0.19041.0\win10-x86\WindowManager.deps.json">
       <PackagePath>WindowManager.deps.json</PackagePath>
@@ -1040,6 +1040,10 @@
     <AppxPackagedFile Include="C:\code\Command-Centres-Design\WindowManager\WindowManager\Assets\microsoft_bing.png">
       <PackagePath>Assets\microsoft_bing.png</PackagePath>
       <Modified>2023-08-09T16:45:28.508</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\code\Command-Centres-Design\WindowManager\WindowManager\Assets\nhs-logo.png">
+      <PackagePath>Assets\nhs-logo.png</PackagePath>
+      <Modified>2023-08-10T14:03:57.713</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\code\Command-Centres-Design\WindowManager\WindowManager\Assets\SplashScreen.scale-200.png">
       <PackagePath>Assets\SplashScreen.scale-200.png</PackagePath>

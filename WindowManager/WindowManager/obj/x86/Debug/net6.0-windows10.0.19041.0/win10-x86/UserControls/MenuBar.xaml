@@ -14,26 +14,26 @@
 
                 <MenuFlyoutSubItem Text="Popular Websites">
 
-                    <MenuFlyoutItem Text="Bing">
+                    <MenuFlyoutItem x:ConnectionId='5' Text="Bing"                             >
                         <MenuFlyoutItem.Icon>
                             <ImageIcon Source="/Assets/bing-logo.png"/>
                         </MenuFlyoutItem.Icon>
                     </MenuFlyoutItem>
 
-                    <MenuFlyoutItem Text="Youtube">
+                    <MenuFlyoutItem x:ConnectionId='6' Text="Youtube"                             >
                         <MenuFlyoutItem.Icon>
                             <ImageIcon Source="/Assets/youtube_logo.png"/>
                         </MenuFlyoutItem.Icon>
                     </MenuFlyoutItem>
 
-                    <MenuFlyoutItem Text="ChatGPT">
+                    <MenuFlyoutItem x:ConnectionId='7' Text="NHS England"                             >
                         <MenuFlyoutItem.Icon>
-                            <ImageIcon Source="/Assets/ChatGPT_logo.png"/>
+                            <ImageIcon Source="/Assets/nhs-logo.png"/>
                         </MenuFlyoutItem.Icon>
                     </MenuFlyoutItem>
 
                 </MenuFlyoutSubItem>
-                <MenuFlyoutItem x:ConnectionId='2' Text="Add by URL"                               >
+                <MenuFlyoutItem x:ConnectionId='4' Text="Add by URL"                               >
                     <MenuFlyoutItem.KeyboardAccelerators>
                         <KeyboardAccelerator Modifiers="Control" Key="U"/>
                     </MenuFlyoutItem.KeyboardAccelerators>
@@ -42,7 +42,7 @@
             </MenuBarItem>
 
             <MenuBarItem Title="+ Add Teams Panel">
-                <MenuFlyoutItem Text="Create A Meeting">
+                <MenuFlyoutItem x:ConnectionId='2' Text="Create A Meeting"                             >
                     <MenuFlyoutItem.Icon>
                         <ImageIcon Source="/Assets/microsoft-teams-logo.png"/>
                     </MenuFlyoutItem.Icon>
@@ -50,7 +50,7 @@
                         <KeyboardAccelerator Modifiers="Control" Key="Z"/>
                     </MenuFlyoutItem.KeyboardAccelerators>
                 </MenuFlyoutItem>
-                <MenuFlyoutItem Text="Join A Meeting">
+                <MenuFlyoutItem x:ConnectionId='3' Text="Join A Meeting"                             >
                     <MenuFlyoutItem.Icon>
                         <ImageIcon Source="/Assets/microsoft-teams-logo.png"/>
                     </MenuFlyoutItem.Icon>
