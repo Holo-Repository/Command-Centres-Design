@@ -781,6 +781,9 @@
     <AppxPackagedFile Include="C:\code\Command-Centres-Design\WindowManager\WindowManager\Assets\microsoft_bing.png">
       <PackagePath>Assets\microsoft_bing.png</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\code\Command-Centres-Design\WindowManager\WindowManager\Assets\nhs-logo.png">
+      <PackagePath>Assets\nhs-logo.png</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\code\Command-Centres-Design\WindowManager\WindowManager\Assets\SplashScreen.scale-200.png">
       <PackagePath>Assets\SplashScreen.scale-200.png</PackagePath>
     </AppxPackagedFile>

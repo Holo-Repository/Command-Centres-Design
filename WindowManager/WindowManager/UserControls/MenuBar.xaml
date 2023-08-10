@@ -14,21 +14,21 @@
 
                 <MenuFlyoutSubItem Text="Popular Websites">
 
-                    <MenuFlyoutItem Text="Bing">
+                    <MenuFlyoutItem Text="Bing" Click="MenuFlyoutItem_Click">
                         <MenuFlyoutItem.Icon>
                             <ImageIcon Source="/Assets/bing-logo.png"/>
                         </MenuFlyoutItem.Icon>
                     </MenuFlyoutItem>
 
-                    <MenuFlyoutItem Text="Youtube">
+                    <MenuFlyoutItem Text="Youtube" Click="MenuFlyoutItem_Click">
                         <MenuFlyoutItem.Icon>
                             <ImageIcon Source="/Assets/youtube_logo.png"/>
                         </MenuFlyoutItem.Icon>
                     </MenuFlyoutItem>
 
-                    <MenuFlyoutItem Text="ChatGPT">
+                    <MenuFlyoutItem Text="NHS England" Click="MenuFlyoutItem_Click">
                         <MenuFlyoutItem.Icon>
-                            <ImageIcon Source="/Assets/ChatGPT_logo.png"/>
+                            <ImageIcon Source="/Assets/nhs-logo.png"/>
                         </MenuFlyoutItem.Icon>
                     </MenuFlyoutItem>
 
@@ -42,7 +42,7 @@
             </MenuBarItem>
 
             <MenuBarItem Title="+ Add Teams Panel">
-                <MenuFlyoutItem Text="Create A Meeting">
+                <MenuFlyoutItem Text="Create A Meeting" Click="MenuFlyoutItem_Click">
                     <MenuFlyoutItem.Icon>
                         <ImageIcon Source="/Assets/microsoft-teams-logo.png"/>
                     </MenuFlyoutItem.Icon>
@@ -50,7 +50,7 @@
                         <KeyboardAccelerator Modifiers="Control" Key="Z"/>
                     </MenuFlyoutItem.KeyboardAccelerators>
                 </MenuFlyoutItem>
-                <MenuFlyoutItem Text="Join A Meeting">
+                <MenuFlyoutItem Text="Join A Meeting" Click="MenuFlyoutItem_Click">
                     <MenuFlyoutItem.Icon>
                         <ImageIcon Source="/Assets/microsoft-teams-logo.png"/>
                     </MenuFlyoutItem.Icon>

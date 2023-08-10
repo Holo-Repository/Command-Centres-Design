@@ -65,7 +65,7 @@ namespace WindowManager
             this.InitializeComponent();
 
             // Adjust layout
-            AdjustGridSize(settings);
+            //AdjustGridSize(settings);
 
             DisplayPanelsFromJSON(settings);
 
@@ -275,7 +275,7 @@ namespace WindowManager
             // uri to be added or removed
             //Uri deltaUri = new Uri("https://www.microsoft.com");
             bool isAdd = true;
-            int screenPanel = 6;
+            int screenPanel = settings.Tv.PanelNum;
             // Calculate these?
             int[] ColumnWidths = { 425, 425, 425 };
             int[] RowHeights = { 250, 250, 250 };

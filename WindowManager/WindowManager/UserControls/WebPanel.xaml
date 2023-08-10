@@ -26,24 +26,31 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <RelativePanel Grid.Column="0" Grid.Row="0">
-                <CommandBar x:Name="MoveCommandBar" RelativePanel.AlignLeftWithPanel="True" Background="Transparent" IsOpen="False" DefaultLabelPosition="Right"
-                                    Visibility="Collapsed">
-                    <AppBarButton Label="Move">
-                        <AppBarButton.Icon>
-                            <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE7C2;"/>
-                        </AppBarButton.Icon>
-                    </AppBarButton>
-                </CommandBar>
+            <RelativePanel Grid.Column="0" Grid.Row="0" Margin="0">
+                <Button x:Name="MoveCommandBar" RelativePanel.AlignLeftWithPanel="True" Background="Transparent"
+                                    Visibility="Collapsed" BorderBrush="Transparent">
+                    <StackPanel Orientation="Horizontal" Spacing="5">
+                        <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE7C2;"/>
+                        <TextBlock Text="Move"/>
+                    </StackPanel>
+                </Button>
 
-                <CommandBar x:Name="CloseCommandBar" RelativePanel.AlignRightWithPanel="True" Background="Transparent" IsOpen="False" DefaultLabelPosition="Right"
+                <Button x:Name="CloseCommandBar" RelativePanel.AlignRightWithPanel="True" Background="Transparent"
+                                    Visibility="Collapsed" BorderBrush="Transparent" Click="AppBarButton1_Click">
+                    <StackPanel Orientation="Horizontal" Spacing="5">
+                        <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE8BB;" Height="15"/>
+                        <TextBlock Text="Close"/>
+                    </StackPanel>
+                </Button>
+
+                <!--<CommandBar x:Name="CloseCommandBar" RelativePanel.AlignRightWithPanel="True" Background="Transparent" IsOpen="False" DefaultLabelPosition="Right"
                                     Visibility="Collapsed">
                     <AppBarButton Label="Close" Click="AppBarButton1_Click">
                         <AppBarButton.Icon>
                             <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE8BB;"/>
                         </AppBarButton.Icon>
                     </AppBarButton>
-                </CommandBar>
+                </CommandBar>-->
             </RelativePanel>
 
             <controls:WebView2 x:Name="WebViewContent" Source="{Binding Source, ElementName=root}" 

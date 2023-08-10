@@ -16,14 +16,14 @@
         <Grid x:Name="PanelGrid" HorizontalAlignment="Left" Background="LightSteelBlue">
 
             <Grid.RowDefinitions >
-                <RowDefinition Height="205"/>
-                <RowDefinition Height="205"/>
-                <RowDefinition Height="205"/>
+                <RowDefinition Height="281"/>
+                <RowDefinition Height="281"/>
+                <RowDefinition Height="281"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions >
-                <ColumnDefinition Width="426"/>
-                <ColumnDefinition Width="426"/>
-                <ColumnDefinition Width="427.12"/>
+                <ColumnDefinition Width="496"/>
+                <ColumnDefinition Width="496"/>
+                <ColumnDefinition Width="496"/>
             </Grid.ColumnDefinitions>
 
             <!--TV-->
