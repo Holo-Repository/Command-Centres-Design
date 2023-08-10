@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "pqVEaxwYrt8GgZ2GMEwCzTc2xWMt7lOWFaN88otrR+AZDk4UhvCod614ezlFN3KbcB3EyN0jiaa/pLshJcBLXQ==",
+  "dgSpecHash": "NbM4aIj7kVmTj0SeRls9/GIFd5GRZAmhhD2pC9k4MBy0OSg2IQ3aFax31x1gkkUzHOqFo6Ko0W2Hejv1QfToBg==",
   "success": true,
   "projectFilePath": "C:\\code\\Command-Centres-Design\\WindowManager\\WindowManager\\WindowManager.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\isobe\\.nuget\\packages\\microsoft.windows.sdk.buildtools\\10.0.22621.755\\microsoft.windows.sdk.buildtools.10.0.22621.755.nupkg.sha512",
-    "C:\\Users\\isobe\\.nuget\\packages\\microsoft.windowsappsdk\\1.3.230502000\\microsoft.windowsappsdk.1.3.230502000.nupkg.sha512",
+    "C:\\Users\\isobe\\.nuget\\packages\\microsoft.windowsappsdk\\1.3.230602002\\microsoft.windowsappsdk.1.3.230602002.nupkg.sha512",
     "C:\\Users\\isobe\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x86\\6.0.20\\microsoft.netcore.app.runtime.win-x86.6.0.20.nupkg.sha512",
     "C:\\Users\\isobe\\.nuget\\packages\\microsoft.windows.sdk.net.ref\\10.0.19041.29\\microsoft.windows.sdk.net.ref.10.0.19041.29.nupkg.sha512",
     "C:\\Users\\isobe\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x86\\6.0.20\\microsoft.aspnetcore.app.runtime.win-x86.6.0.20.nupkg.sha512",

@@ -88,7 +88,7 @@ namespace WindowManager
 
             foreach (Panel f in frames)
             {
-                if (f.GetType() == null) continue; //more robust type check
+                if (f == null) continue; //more robust type check
                 
                 int c = f.ColumnSpan;
                 int r = f.RowSpan;

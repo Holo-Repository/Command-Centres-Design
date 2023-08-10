@@ -7,6 +7,7 @@ using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -251,8 +252,29 @@ namespace WindowManager
             List<Uri> UriListByPriority = PanelAlgorithms.UriPriority(deltaUri, intermediateRectangles, panelArray, isAdd);
             dynamic packedFrames = PanelAlgorithms.PackedFrames(UriListByPriority, optimalFrames);
 
-            // 3. Write to JSON
-            SettingsManager.SerialiseSettingsJSON(packedFrames);
+            //foreach(dynamic packedFrame in packedFrames)
+            //{
+
+            //}
+
+            // PackedFrames is a dict where keys are strings of panel names e.g. "Panel1"
+            // The value corresponding to that key is another dict where the keys are "uri", "ColumnSpan", and "RowSpan"
+            Dictionary<string, System.Collections.Generic.Dictionary<string, object>>.KeyCollection PanelNames = packedFrames.Keys;
+
+            foreach(var PanelNameString in PanelNames)
+            {
+
+                Uri uri = packedFrames[PanelNameString]["uri"];
+                int ColumnSpan = packedFrames[PanelNameString]["ColumnSpan"];
+                int RowSpan = packedFrames[PanelNameString]["RowSpan"];
+
+                //settings.Panels.SetPanelDataByName(PanelNameString, uri, ColumnSpan, RowSpan);
+                settings.Panels.SetPanelDataByName("Panel1", uri, ColumnSpan, RowSpan); // For testing until bug fixed
+
+            }
+
+            // 3. Write to JSON - function will only take SettingsData object
+            SettingsManager.SerialiseSettingsJSON(settings);
 
             // 4. Update panels from JSON
             DisplayPanelsFromJSON(settings);
