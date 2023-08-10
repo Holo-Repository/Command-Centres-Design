@@ -129,7 +129,8 @@ namespace WindowManager
             //configuration for number of panels
             List<int[]> instanceOptimalFrames = optimalFrames[uris.Count - 1];
 
-            dynamic packed = new System.Dynamic.ExpandoObject();
+            //dynamic packed = new System.Dynamic.ExpandoObject();
+            var packed = new Dictionary<string, Dictionary<string, dynamic>>();
             List<(int[], Uri)> combinedList = instanceOptimalFrames.Zip(uris, (rect, uri) => (rect, uri)).ToList();
 
             foreach ((int[], Uri) a in combinedList)
@@ -179,7 +180,7 @@ namespace WindowManager
                 verticalFrame.uri = a.Item2;
                 verticalFrame.ColumnSpan = 1;
                 verticalFrame.RowSpan = a.Item1.Length;
-                packed[a.Item1[0]] = verticalFrame;
+                //packed[a.Item1[0]] = verticalFrame;
             }
 
             return packed;
