@@ -8,6 +8,7 @@ using Microsoft.UI.Xaml.Navigation;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -30,8 +31,13 @@ namespace WindowManager
         private string SwapUri;
         private SettingsData settings;
 
-        public List<int[]> intermediateRectangles;
-        public List<List<int[]>> optimalFrames;
+        //globals to be set on start-up/calibration
+        public int screenPanel = 6;
+        // Calculate these!
+        public int[] ColumnWidths = { 425, 425, 425 };
+        public int[] RowHeights = { 250, 250, 250 };
+        public List<int[]> intermediateRectangles = PanelAlgorithms.IntermediateRectangles(screenPanel, ColumnWidths, RowHeights);
+        public List<List<int[]>> optimalFrames = PanelAlgorithms.OptimalFrames(intermediateRectangles);
 
         // A dictionary to map panel number : row number
         private Dictionary<int, int> RowMappings = new Dictionary<int, int>()
@@ -228,15 +234,15 @@ namespace WindowManager
             // uri to be added or removed
             Uri deltaUri = new Uri (webPanel.Source);
             bool isAdd = false;
-            int screenPanel = 6;
+            //int screenPanel = 6;
             // Calculate these?
-            int[] ColumnWidths = { 425, 425, 425 };
-            int[] RowHeights = { 250, 250, 250 };
+            //int[] ColumnWidths = { 425, 425, 425 };
+            //int[] RowHeights = { 250, 250, 250 };
 
             // call during calibration and assign to global variables
             // rectangles ordered by area - is "intermediates" interchangeable with "rectangles"?
-            intermediateRectangles = PanelAlgorithms.IntermediateRectangles(screenPanel, ColumnWidths, RowHeights);
-            optimalFrames = PanelAlgorithms.OptimalFrames(intermediateRectangles);
+            //intermediateRectangles = PanelAlgorithms.IntermediateRectangles(screenPanel, ColumnWidths, RowHeights);
+            //optimalFrames = PanelAlgorithms.OptimalFrames(intermediateRectangles);
 
             // 1. Prioritise URIs
             // 2. Identify layout
@@ -255,17 +261,18 @@ namespace WindowManager
                 int RowSpan = packedFrames[PanelNameString]["RowSpan"];
 
                 settings.Panels.SetPanelDataByName(PanelNameString, uri, ColumnSpan, RowSpan);
-
             }
 
             // 3. Write to JSON - function will only take SettingsData object
+            //kill all panels
+            Panels.CloseAllPanels()
             SettingsManager.SerialiseSettingsJSON(settings);
 
             // write to json
-            settings.Panels.ClosePanelByName(webPanel.Name);
-            SettingsManager.SerialiseSettingsJSON(settings);
+            //settings.Panels.ClosePanelByName(webPanel.Name);
+            //SettingsManager.SerialiseSettingsJSON(settings);
 
-            webPanel.Visibility = Visibility.Collapsed;
+            //webPanel.Visibility = Visibility.Collapsed;
 
             DisplayPanelsFromJSON(settings);
         }
@@ -275,15 +282,15 @@ namespace WindowManager
             // uri to be added or removed
             //Uri deltaUri = new Uri("https://www.microsoft.com");
             bool isAdd = true;
-            int screenPanel = 6;
+            //int screenPanel = 6;
             // Calculate these?
-            int[] ColumnWidths = { 425, 425, 425 };
-            int[] RowHeights = { 250, 250, 250 };
+            //int[] ColumnWidths = { 425, 425, 425 };
+            //int[] RowHeights = { 250, 250, 250 };
 
             // call during calibration and assign to global variables
             // rectangles ordered by area - is "intermediates" interchangeable with "rectangles"?
-            intermediateRectangles = PanelAlgorithms.IntermediateRectangles(screenPanel, ColumnWidths, RowHeights);
-            optimalFrames = PanelAlgorithms.OptimalFrames(intermediateRectangles);
+            //intermediateRectangles = PanelAlgorithms.IntermediateRectangles(screenPanel, ColumnWidths, RowHeights);
+            //optimalFrames = PanelAlgorithms.OptimalFrames(intermediateRectangles);
 
             // 1. Prioritise URIs
             // 2. Identify layout
@@ -302,10 +309,11 @@ namespace WindowManager
                 int RowSpan = packedFrames[PanelNameString]["RowSpan"];
 
                 settings.Panels.SetPanelDataByName(PanelNameString, uri, ColumnSpan, RowSpan);
-
             }
 
             // 3. Write to JSON - function will only take SettingsData object
+            //kill all panels
+            Panels.CloseAllPanels()
             SettingsManager.SerialiseSettingsJSON(settings);
 
             // 4. Update panels from JSON
