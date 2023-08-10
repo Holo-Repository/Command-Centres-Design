@@ -67,13 +67,15 @@ namespace WindowManager
                 intermediates.Add(new int[] { 1, 2, 4, 5, 7, 8 });
             }
 
+            List<int[]> filteredIntermediates = new List<int[]>(intermediates);
+
             foreach (var rectangle in intermediates)
             {
-                if (rectangle.Contains(screen)) intermediates.Remove(rectangle);
+                if (rectangle.Contains(screen)) filteredIntermediates.Remove(rectangle);
             }
 
             //calculate on configuration, save as global
-            return OrderOnArea(intermediates, columnWidths, rowHeights);
+            return OrderOnArea(filteredIntermediates, columnWidths, rowHeights);
         }
 
         //orders components on size

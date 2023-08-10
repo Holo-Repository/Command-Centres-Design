@@ -20,6 +20,10 @@ using Windows.Foundation.Collections;
 
 namespace WindowManager
 {
+
+    public List<int[]> intermediateRectangles;
+    public List<List<int[]>> optimalRectangles;
+
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
