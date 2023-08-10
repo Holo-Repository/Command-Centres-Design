@@ -21,9 +21,6 @@ using Windows.Foundation.Collections;
 namespace WindowManager
 {
 
-    public List<int[]> intermediateRectangles;
-    public List<List<int[]>> optimalRectangles;
-
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
@@ -31,6 +28,9 @@ namespace WindowManager
     {
         private string SwapUri;
         private SettingsData settings;
+
+        public List<int[]> intermediateRectangles;
+        public List<List<int[]>> optimalFrames;
 
         // A dictionary to map panel number : row number
         private Dictionary<int, int> RowMappings = new Dictionary<int, int>()
@@ -241,15 +241,18 @@ namespace WindowManager
             int[] RowHeights = { 100, 100, 100 };
 
             // rectangles ordered by area - is "intermediates" interchangeable with "rectangles"?
-            List<int[]> rectangles = PanelAlgorithms.IntermediateRectangles(screenPanel, ColumnWidths, RowHeights);
-            List<List<int[]>> optimalFrames = PanelAlgorithms.OptimalFrames(rectangles);
-
-            List<Uri> UriListByPriority = PanelAlgorithms.UriPriority(deltaUri, rectangles, optimalFrames, isAdd);
-            dynamic packed = PanelAlgorithms.PackedFrames(UriListByPriority, optimalFrames);
+            intermediateRectangles = PanelAlgorithms.IntermediateRectangles(screenPanel, ColumnWidths, RowHeights);
+            optimalFrames = PanelAlgorithms.OptimalFrames(intermediateRectangles);
 
             // 1. Prioritise URIs
             // 2. Identify layout
+            Panel[] panelArray = Panels.GetPanelArray();
+            List<Uri> UriListByPriority = PanelAlgorithms.UriPriority(deltaUri, intermediateRectangles, panelArray, isAdd);
+            dynamic packedFrames = PanelAlgorithms.PackedFrames(UriListByPriority, optimalFrames);
+
             // 3. Write to JSON
+            SettingsManager.SerialiseSettingsJSON(packedFrames);
+
             // 4. Update panels from JSON
             DisplayPanelsFromJSON(settings);
         }

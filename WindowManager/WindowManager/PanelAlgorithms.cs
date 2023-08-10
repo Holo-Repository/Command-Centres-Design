@@ -84,6 +84,7 @@ namespace WindowManager
             List<int[]> rectangles = new List<int[]>();
             List<Uri> uris = new List<Uri>();
 
+            //may have to add handling for nulls if first uri - or add some case handling
             foreach (KeyValuePair<int, dynamic> f in frames)
             {
                 int c = f.Value.ColumnSpan;
