@@ -149,7 +149,7 @@ namespace WindowManager
                 panel.AppBarButton_Click += new TypedEventHandler<object, RoutedEventArgs>(WebPanel_Close);
             }
 
-            MainMenuBar.GoButton_Click += new TypedEventHandler<object, RoutedEventArgs>(Add_WebPanel);
+            MainMenuBar.Add_Window += new TypedEventHandler<object, Uri>(Add_WebPanel);
         }
 
         // event handlers
@@ -226,16 +226,17 @@ namespace WindowManager
             SettingsManager.SerialiseSettingsJSON(settings);
         }
 
-        private void Add_WebPanel(object sender, RoutedEventArgs e)
+        public void Add_WebPanel(object sender, Uri deltaUri)
         {
             // uri to be added or removed
-            Uri deltaUri = new Uri("https://www.microsoft.com");
+            //Uri deltaUri = new Uri("https://www.microsoft.com");
             bool isAdd = true;
             int screenPanel = 5;
             // Calculate these?
             int[] ColumnWidths = { 100, 100, 100 };
             int[] RowHeights = { 100, 100, 100 };
 
+            // call during calibration and assign to global variables
             // rectangles ordered by area - is "intermediates" interchangeable with "rectangles"?
             List<int[]> rectangles = PanelAlgorithms.IntermediateRectangles(screenPanel, ColumnWidths, RowHeights);
             List<List<int[]>> optimalFrames = PanelAlgorithms.OptimalFrames(rectangles);

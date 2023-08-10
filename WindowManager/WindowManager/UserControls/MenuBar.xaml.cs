@@ -21,7 +21,7 @@ namespace WindowManager.UserControls
     public sealed partial class MenuBar : UserControl
     {
         public event TypedEventHandler<object, RoutedEventArgs> MenuFlyoutItem_Click;
-        public event TypedEventHandler<object, RoutedEventArgs> GoButton_Click;
+        public event TypedEventHandler<object, Uri> Add_Window;
 
         public void MenuFlyoutItem1_Click(object sender, RoutedEventArgs e)
         {
@@ -33,13 +33,6 @@ namespace WindowManager.UserControls
         public MenuBar()
         {
             this.InitializeComponent();
-        }
-
-        private void Button1_Click(object sender, RoutedEventArgs e)
-        {
-            //bubble the event up to the parent
-            if (this.GoButton_Click != null)
-                this.GoButton_Click(this, e);
         }
 
         private async void MenuFlyoutItem_Click_1(object sender, RoutedEventArgs e)
@@ -72,19 +65,9 @@ namespace WindowManager.UserControls
             string UriString = textBox.Text;
             Uri deltaUri = new Uri(UriString);
 
-            //Uri deltaUri = new Uri("https://www.microsoft.com");
-            bool isAdd = true;
-            int screenPanel = 5;
-            // Calculate these?
-            int[] ColumnWidths = { 100, 100, 100 };
-            int[] RowHeights = { 100, 100, 100 };
-
-            // rectangles ordered by area - is "intermediates" interchangeable with "rectangles"?
-            List<int[]> rectangles = PanelAlgorithms.IntermediateRectangles(screenPanel, ColumnWidths, RowHeights);
-            List<List<int[]>> optimalFrames = PanelAlgorithms.OptimalFrames(rectangles);
-
-            List<Uri> UriListByPriority = PanelAlgorithms.UriPriority(deltaUri, rectangles, optimalFrames, isAdd);
-            dynamic packed = PanelAlgorithms.PackedFrames(UriListByPriority, optimalFrames);
+            //bubble the event up to the parent
+            if (this.Add_Window != null)
+                this.Add_Window(this, deltaUri);
 
         }
     }
