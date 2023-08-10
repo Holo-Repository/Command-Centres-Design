@@ -12,7 +12,8 @@ namespace WindowManager
     {
         private static List<int[]> OrderOnArea(List<int[]> rectangles, int[] columns, int[] rows)
         {
-            dynamic areas = new System.Dynamic.ExpandoObject();
+            //dynamic areas = new System.Dynamic.ExpandoObject();
+            int[] areas = new int[9];
 
             for (int i = 0; i < 3; i++)
             {
@@ -79,30 +80,36 @@ namespace WindowManager
         }
 
         //orders components on size
-        public static List<Uri> UriPriority(Uri deltaUri, List<int[]> intermediates, dynamic frames, bool isAdd)
+        // frames is array of panels
+        public static List<Uri> UriPriority(Uri deltaUri, List<int[]> intermediates, Panel[] frames, bool isAdd)
         {
             List<int[]> rectangles = new List<int[]>();
             List<Uri> uris = new List<Uri>();
 
             //may have to add handling for nulls if first uri - or add some case handling
-            foreach (KeyValuePair<int, dynamic> f in frames)
-            {
-                int c = f.Value.ColumnSpan;
-                int r = f.Value.RowSpan;
-                int[] rect = new int[r * c];
-
-                int a = 0;
-                for (int i = 0; i < c; i++)
+            foreach (Panel f in frames)
+            { if(f != null)
                 {
-                    for (int j = 0; j < r; j++)
-                    {
-                        rect[a] = f.Key + i + j * 3;
-                        a++;
-                    }
-                }
+                    int c = f.ColumnSpan;
+                    int r = f.RowSpan;
+                    int[] rect = new int[r * c];
 
-                rectangles.Add(rect);
-                uris.Add(new Uri(f.Value.uri));
+                    int a = 0;
+                    // loop through columns
+                    for (int i = 0; i < c; i++)
+                    {
+                        // loop through rows
+                        for (int j = 0; j < r; j++)
+                        {
+                            rect[a] = f.PanelNum + i + j * 3;
+                            a++;
+                        }
+                    }
+
+                    rectangles.Add(rect);
+                    uris.Add(new Uri(f.Uri));
+                }
+              
             }
 
             //sort uris by priority (frame area); append new
