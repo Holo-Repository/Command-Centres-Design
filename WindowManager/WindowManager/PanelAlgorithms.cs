@@ -36,36 +36,36 @@ namespace WindowManager
             for (int i = 0; i < 3; i++)
             {
                 //singles
-                intermediates.Add(new int[] { i * 3 });
                 intermediates.Add(new int[] { 1 + i * 3 });
                 intermediates.Add(new int[] { 2 + i * 3 });
+                intermediates.Add(new int[] { 3 + i * 3 });
 
                 //horizontals
-                intermediates.Add(new int[] { i * 3, 1 + i * 3 });
                 intermediates.Add(new int[] { 1 + i * 3, 2 + i * 3 });
-                intermediates.Add(new int[] { i * 3, 1 + i * 3, 2 + i * 3 });
+                intermediates.Add(new int[] { 2 + i * 3, 3 + i * 3 });
+                intermediates.Add(new int[] { 1 + i * 3, 2 + i * 3, 3 + i * 3 });
 
                 //verticals
-                intermediates.Add(new int[] { i, i + 3 });
-                intermediates.Add(new int[] { i + 3, i + 6 });
-                intermediates.Add(new int[] { i, i + 3, i + 6 });
+                intermediates.Add(new int[] { 1 + i, 4 + i });
+                intermediates.Add(new int[] { 4 + i, 7 + i });
+                intermediates.Add(new int[] { 1 + i, 4 + i, 7 + i });
 
             }
 
             //skip if screen central
-            if (screen != 4)
+            if (screen != 5)
             {
                 //squares
-                intermediates.Add(new int[] { 0, 1, 3, 4 });
                 intermediates.Add(new int[] { 1, 2, 4, 5 });
-                intermediates.Add(new int[] { 3, 4, 6, 7 });
+                intermediates.Add(new int[] { 2, 3, 5, 6 });
                 intermediates.Add(new int[] { 4, 5, 7, 8 });
+                intermediates.Add(new int[] { 5, 6, 8, 9 });
 
                 //2 x 3s
-                intermediates.Add(new int[] { 0, 1, 2, 3, 4, 5 });
-                intermediates.Add(new int[] { 3, 4, 5, 6, 7, 8 });
-                intermediates.Add(new int[] { 0, 1, 3, 4, 6, 7 });
+                intermediates.Add(new int[] { 1, 2, 3, 4, 5, 6 });
+                intermediates.Add(new int[] { 4, 5, 6, 7, 8, 9 });
                 intermediates.Add(new int[] { 1, 2, 4, 5, 7, 8 });
+                intermediates.Add(new int[] { 2, 3, 5, 6, 8, 9 });
             }
 
             List<int[]> filteredIntermediates = new List<int[]>(intermediates);
@@ -166,7 +166,7 @@ namespace WindowManager
                     attributes["RowSpan"] = a.Item1.Length;
                 }
 
-                packed[$"Panel{a.Item1[0]}"] = attributes;
+                packed[$"Panel{a.Item1[0] + 1}"] = attributes;
             }
 
             return packed;
