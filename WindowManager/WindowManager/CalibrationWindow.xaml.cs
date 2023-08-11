@@ -63,6 +63,13 @@ namespace WindowManager
 
             AppWindow m_appWindow = GetAppWindowForCurrentWindow();
             m_appWindow.SetPresenter(AppWindowPresenterKind.FullScreen);
+
+            Windows.Graphics.SizeInt32 Size = m_appWindow.Size;
+            int WindowHeight = Size.Height;
+            int WindowWidth = Size.Width;
+
+            MainWindow.settings.WindowDimensions.Height = WindowHeight;
+            MainWindow.settings.WindowDimensions.Width = WindowWidth;
         }
 
         private AppWindow GetAppWindowForCurrentWindow()
@@ -154,19 +161,20 @@ namespace WindowManager
                         {
                             System.Diagnostics.Debug.WriteLine($"Value: {kvp.Value}");
 
-                            SettingsData settings = SettingsManager.DeserialiseSettingsJSON();
+                            // Get settings from MainWindow.settings instead
+                            //SettingsData settings = SettingsManager.DeserialiseSettingsJSON();
 
                             double tv_width = kvp.Value.Width;
                             double tv_height = kvp.Value.Height;
                             double tv_x = kvp.Value.X;
                             double tv_y = kvp.Value.Y;
 
-                            settings.Tv.Height = tv_height;
-                            settings.Tv.Width = tv_width;
-                            settings.Tv.X_Position = tv_x;
-                            settings.Tv.Y_Position = tv_y;
+                            MainWindow.settings.Tv.Height = tv_height;
+                            MainWindow.settings.Tv.Width = tv_width;
+                            MainWindow.settings.Tv.X_Position = tv_x;
+                            MainWindow.settings.Tv.Y_Position = tv_y;
 
-                            SettingsManager.SerialiseSettingsJSON(settings);
+                            SettingsManager.SerialiseSettingsJSON(MainWindow.settings);
                           
                             // Will need to reload main window at the end of this
                         }

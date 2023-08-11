@@ -18,12 +18,12 @@
             <Grid.RowDefinitions >
                 <RowDefinition Height="281"/>
                 <RowDefinition Height="281"/>
-                <RowDefinition Height="281"/>
+                <RowDefinition Height="282"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions >
                 <ColumnDefinition Width="496"/>
                 <ColumnDefinition Width="496"/>
-                <ColumnDefinition Width="496"/>
+                <ColumnDefinition Width="495"/>
             </Grid.ColumnDefinitions>
 
             <!--TV-->

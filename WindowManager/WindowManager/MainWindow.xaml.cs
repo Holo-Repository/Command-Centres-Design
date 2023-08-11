@@ -40,7 +40,8 @@ namespace WindowManager
     /// </summary>
     public sealed partial class MainWindow : Window
     {
-        private SettingsData settings;
+        // settings object is initialise in the main window - maybe this should change
+        public static SettingsData settings;
 
         public MainWindow()
         {
@@ -55,6 +56,7 @@ namespace WindowManager
             //Read settings from Json into class variable - this must come after the above code to correct current directory
             settings = SettingsManager.DeserialiseSettingsJSON();
 
+            SettingsData test = new SettingsData();
             // Initialise main window
             this.InitializeComponent();
 
