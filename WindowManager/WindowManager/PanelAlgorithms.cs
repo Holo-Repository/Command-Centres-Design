@@ -83,7 +83,7 @@ namespace WindowManager
 
             //remove screen overlapping and unviable dimensions rectangles
             List<int[]> filteredIntermediates = intermediates.Where(rectangle => !rectangle.Contains(screen) &&
-                rectangle.Sum(x => heights[x]) >= minHeight && rectangle.Sum(x => widths[x]) >= minWidth).ToList();
+                rectangle.Sum(x => heights[x-1]) >= minHeight && rectangle.Sum(x => widths[x-1]) >= minWidth).ToList();
 
             //calculate on configuration, save as global
             return OrderOnArea(filteredIntermediates, columnWidths, rowHeights);
