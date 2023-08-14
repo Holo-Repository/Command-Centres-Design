@@ -12,7 +12,6 @@ namespace WindowManager
     {
         private static List<int[]> OrderOnArea(List<int[]> rectangles, double[] columns, double[] rows)
         {
-            //dynamic areas = new System.Dynamic.ExpandoObject();
             double[] areas = new double[9];
 
             for (int i = 0; i < 3; i++)
@@ -33,9 +32,13 @@ namespace WindowManager
         }
 
         //screen = screen frame; calculate from co-ordinates if needed. columnWidths, rowHeights = grid dimensions
-        public static List<int[]> IntermediateRectangles(int screen, double[] columnWidths, double[] rowHeights)
+        public static List<int[]> IntermediateRectangles(int screen, double[] columnWidths, double[] rowHeights, double minHeight, double minWidth)
         {
             List<int[]> intermediates = new List<int[]>();
+
+            //panel size viability
+            double[] widths = new double[9];
+            double[] heights = new double[9];
 
             for (int i = 0; i < 3; i++)
             {
@@ -54,6 +57,12 @@ namespace WindowManager
                 intermediates.Add(new int[] { 4 + i, 7 + i });
                 intermediates.Add(new int[] { 1 + i, 4 + i, 7 + i });
 
+                //calculate height, width pairs
+                for (int j = 0; j < 3; j++)
+                {
+                    widths[j + i * 3] = columnWidths[j];
+                    heights[j + i * 3] = rowHeights[i];
+                }
             }
 
             //skip if screen central
@@ -72,14 +81,9 @@ namespace WindowManager
                 intermediates.Add(new int[] { 2, 3, 5, 6, 8, 9 });
             }
 
-            List<int[]> filteredIntermediates = new List<int[]>(intermediates);
-
-
-            //add condition that removes too small rectangles
-            foreach (var rectangle in intermediates)
-            {
-                if (rectangle.Contains(screen)) filteredIntermediates.Remove(rectangle);
-            }
+            //remove screen overlapping and unviable dimensions rectangles
+            List<int[]> filteredIntermediates = intermediates.Where(rectangle => !rectangle.Contains(screen) &&
+                rectangle.Sum(x => heights[x]) >= minHeight && rectangle.Sum(x => widths[x]) >= minWidth).ToList();
 
             //calculate on configuration, save as global
             return OrderOnArea(filteredIntermediates, columnWidths, rowHeights);

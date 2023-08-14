@@ -36,6 +36,9 @@ namespace WindowManager
         // Calculate these!
         public double[] ColumnWidths;
         public double[] RowHeights;
+        //Minimum panel dimensions - perhaps scale to window size
+        public double minimumPanelHeight = 30.0;
+        public double minimumPanelWidth = 30.0;
         public List<int[]> intermediateRectangles;
         public List<List<int[]>> optimalFrames;
 
@@ -71,9 +74,13 @@ namespace WindowManager
             ColumnWidths = settings.Grid.ColumnWidths;
             RowHeights = settings.Grid.RowHeights;
 
+            //Set minimum height/width on screen size proportion
+            //public double minimumPanelHeight = 30.0;
+            //public double minimumPanelWidth = 30.0;
+
 
             //initialise intermediate rectantles and optimal frames
-            intermediateRectangles = PanelAlgorithms.IntermediateRectangles(screenPanel, ColumnWidths, RowHeights);
+            intermediateRectangles = PanelAlgorithms.IntermediateRectangles(screenPanel, ColumnWidths, RowHeights, minimumPanelHeight, minimumPanelWidth);
             optimalFrames = PanelAlgorithms.OptimalFrames(intermediateRectangles);
 
 
