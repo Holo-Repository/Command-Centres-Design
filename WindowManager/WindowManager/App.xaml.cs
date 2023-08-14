@@ -40,7 +40,7 @@ namespace WindowManager
         /// </summary>
         /// <param name="args">Details about the launch request and process.</param>
 
-        public static Window? m_window { get; private set; } 
+        public static Window m_window { get; private set; } 
         protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
         {
             m_window = new MainWindow();

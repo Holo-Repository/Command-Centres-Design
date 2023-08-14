@@ -23,6 +23,19 @@ using Windows.Foundation.Collections;
 namespace WindowManager
 {
 
+    public class MinimumDimensions
+    {
+        public double MinimumPanelHeight { get; }
+        public double MinimumPanelWidth { get; }
+
+        public MinimumDimensions(double height, double width)
+        {
+            MinimumPanelHeight = height * 0.028; //equals c.30 for 1080 pixel tall screen
+            MinimumPanelWidth = width * 0.016; //equals c.30 for 1920 pixel wide screen
+        }
+    }
+
+
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
@@ -36,9 +49,7 @@ namespace WindowManager
         // Calculate these!
         public double[] ColumnWidths;
         public double[] RowHeights;
-        //Minimum panel dimensions - perhaps scale to window size
-        public double minimumPanelHeight = 30.0;
-        public double minimumPanelWidth = 30.0;
+
         public List<int[]> intermediateRectangles;
         public List<List<int[]>> optimalFrames;
 
@@ -70,17 +81,15 @@ namespace WindowManager
             //Read settings from Json into class variable - this must come after the above code to correct current directory
             settings = SettingsManager.DeserialiseSettingsJSON();
 
+            //Minimum panel dimensions - perhaps scale to window size
+            MinimumDimensions minDim = new MinimumDimensions(settings.WindowDimensions.Height, settings.WindowDimensions.Width);
+
             screenPanel = settings.Tv.PanelNum;
             ColumnWidths = settings.Grid.ColumnWidths;
             RowHeights = settings.Grid.RowHeights;
 
-            //Set minimum height/width on screen size proportion
-            //public double minimumPanelHeight = 30.0;
-            //public double minimumPanelWidth = 30.0;
-
-
             //initialise intermediate rectantles and optimal frames
-            intermediateRectangles = PanelAlgorithms.IntermediateRectangles(screenPanel, ColumnWidths, RowHeights, minimumPanelHeight, minimumPanelWidth);
+            intermediateRectangles = PanelAlgorithms.IntermediateRectangles(screenPanel, ColumnWidths, RowHeights, minDim.MinimumPanelHeight, minDim.MinimumPanelWidth);
             optimalFrames = PanelAlgorithms.OptimalFrames(intermediateRectangles);
 
 

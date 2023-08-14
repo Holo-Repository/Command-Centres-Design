@@ -79,28 +79,67 @@ namespace WindowManager
                     int new_panel_number = new_settings.Tv.PanelNum;
 
                     //checking if layouts are compatible
-
-                    if (tvPanelNumber == new_panel_number)
+                    if (tvPanelNumber != new_panel_number)
                     {
-                        original_settings.Panels = new_settings.Panels;
-
-                        string updatedJsonContent = JsonSerializer.Serialize(original_settings, new JsonSerializerOptions { WriteIndented = true });
-
-                        // Overwrite the old settings file with the updated content
-                        await FileIO.WriteTextAsync(settings, updatedJsonContent);
-
-
-                        //await file.CopyAndReplaceAsync(settings);
-
-                        PickAFileOutputTextBlock.Text = "Setting updated successfully.";
+                        PickAFileOutputTextBlock.Text = "Incompatible app calibration."; //changed from "Incompatible file format."
+                        return;
                     }
 
-                    else
+                    //establish minimum panel dimensions
+                    MinimumDimensions minDim = new MinimumDimensions(original_settings.WindowDimensions.Height, original_settings.WindowDimensions.Width);
+                    List<dynamic[]> new_panels = new List<dynamic[]>
                     {
-                        PickAFileOutputTextBlock.Text = "Incompatible file format.";
+                        new dynamic[] { new_settings.Panels.Panel1?.ColumnSpan, new_settings.Panels.Panel1?.RowSpan, new_settings.Panels.Panel1?.PanelNum },
+                        new dynamic[] { new_settings.Panels.Panel2?.ColumnSpan, new_settings.Panels.Panel2?.RowSpan, new_settings.Panels.Panel2?.PanelNum },
+                        new dynamic[] { new_settings.Panels.Panel3?.ColumnSpan, new_settings.Panels.Panel3?.RowSpan, new_settings.Panels.Panel3?.PanelNum },
+                        new dynamic[] { new_settings.Panels.Panel4?.ColumnSpan, new_settings.Panels.Panel4?.RowSpan, new_settings.Panels.Panel4?.PanelNum },
+                        new dynamic[] { new_settings.Panels.Panel5?.ColumnSpan, new_settings.Panels.Panel5?.RowSpan, new_settings.Panels.Panel5?.PanelNum },
+                        new dynamic[] { new_settings.Panels.Panel6?.ColumnSpan, new_settings.Panels.Panel6?.RowSpan, new_settings.Panels.Panel6?.PanelNum },
+                        new dynamic[] { new_settings.Panels.Panel7?.ColumnSpan, new_settings.Panels.Panel7?.RowSpan, new_settings.Panels.Panel7?.PanelNum },
+                        new dynamic[] { new_settings.Panels.Panel8?.ColumnSpan, new_settings.Panels.Panel8?.RowSpan, new_settings.Panels.Panel8?.PanelNum },
+                        new dynamic[] { new_settings.Panels.Panel9?.ColumnSpan, new_settings.Panels.Panel9?.RowSpan, new_settings.Panels.Panel9?.PanelNum }
+                    };
+
+                    foreach (dynamic panel in new_panels)
+                    {
+                        if (panel == new dynamic[] { null, null, null } ) continue; //check if this is okay and what the proper method would be
+
+                        int a = (panel.PanelNum - 1) % 3;
+
+                        int c = panel.ColumnSpan;
+                        double csize = 0;
+                        for (int i = 0; i < c; i++)
+                        {
+                            csize += original_settings.Grid.ColumnWidths[a + i];
+                        }
+                        if (csize < minDim.MinimumPanelWidth)
+                        {
+                            PickAFileOutputTextBlock.Text = "Incompatible app calibration."; //changed from "Incompatible file format."
+                            return;
+                        }
+                        int r = panel.RowSpan;
+                        double rsize = 0;
+                        for (int i = 0; i < r; i++)
+                        {
+                            rsize += original_settings.Grid.ColumnWidths[a + i * 3];
+                        }
+                        if (rsize < minDim.MinimumPanelHeight)
+                        {
+                            PickAFileOutputTextBlock.Text = "Incompatible app calibration."; //changed from "Incompatible file format."
+                            return;
+                        }
                     }
 
-                    
+                    //remove indent
+                    original_settings.Panels = new_settings.Panels;
+                    string updatedJsonContent = JsonSerializer.Serialize(original_settings, new JsonSerializerOptions { WriteIndented = true });
+
+                    // Overwrite the old settings file with the updated content
+                    await FileIO.WriteTextAsync(settings, updatedJsonContent);
+
+                    //await file.CopyAndReplaceAsync(settings);
+                    PickAFileOutputTextBlock.Text = "Setting updated successfully.";
+                  
                 }
                 catch (Exception ex)
                 {
