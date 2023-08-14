@@ -264,6 +264,9 @@ namespace WindowManager
             // The value corresponding to that key is another dict where the keys are "uri", "ColumnSpan", and "RowSpan"
             Dictionary<string, Dictionary<string, object>>.KeyCollection PanelNames = packedFrames.Keys;
 
+            //kill all panels - make way for new
+            settings.Panels.CloseAllPanels();
+
             foreach (var PanelNameString in PanelNames)
             {
                 Uri uri = packedFrames[PanelNameString]["uri"];
@@ -275,7 +278,6 @@ namespace WindowManager
 
             // 3. Write to JSON - function will only take SettingsData object
             //kill all panels
-            settings.Panels.CloseAllPanels();
             SettingsManager.SerialiseSettingsJSON(settings);
 
             // write to json
@@ -312,7 +314,10 @@ namespace WindowManager
             // The value corresponding to that key is another dict where the keys are "uri", "ColumnSpan", and "RowSpan"
             Dictionary<string, Dictionary<string, object>>.KeyCollection PanelNames = packedFrames.Keys;
 
-            foreach(var PanelNameString in PanelNames)
+            //kill all panels - make way for new
+            settings.Panels.CloseAllPanels();
+
+            foreach (var PanelNameString in PanelNames)
             {
                 Uri uri = packedFrames[PanelNameString]["uri"];
                 int ColumnSpan = packedFrames[PanelNameString]["ColumnSpan"];
@@ -321,9 +326,6 @@ namespace WindowManager
                 settings.Panels.SetPanelDataByName(PanelNameString, uri, ColumnSpan, RowSpan);
             }
 
-            // 3. Write to JSON - function will only take SettingsData object
-            //kill all panels
-            settings.Panels.CloseAllPanels();
             SettingsManager.SerialiseSettingsJSON(settings);
 
             // 4. Update panels from JSON
