@@ -9,7 +9,7 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <StackPanel Margin="15" >
+    <StackPanel Margin="15" Height="853">
         <TextBlock x:Name="HelpTitle" Text="Calibration Guide" Style="{StaticResource TitleTextBlockStyle}" 
                            VerticalAlignment="Top" Margin="15" FontSize="35"/>
             <Grid>

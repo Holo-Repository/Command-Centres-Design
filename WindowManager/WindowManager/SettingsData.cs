@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Input.Inking;
 
 namespace WindowManager
 {
-    internal class SettingsData
+    public class SettingsData
     {
         public Tv Tv { get; set; }
+        public WindowDimensions WindowDimensions { get; set; }
         public Grid Grid { get; set; }
         public Panels Panels { get; set; }
     }
@@ -19,6 +21,12 @@ namespace WindowManager
         public double X_Position { get; set; }
         public double Y_Position { get; set; }
         public int PanelNum { get; set; }
+    }
+
+    public class WindowDimensions
+    {
+        public int Height { get; set; }
+        public int Width { get; set; }
     }
 
     public class Grid
