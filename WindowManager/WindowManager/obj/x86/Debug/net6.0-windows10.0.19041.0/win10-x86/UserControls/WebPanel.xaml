@@ -38,7 +38,7 @@
                 <Button x:ConnectionId='5' x:Name="CloseCommandBar" RelativePanel.AlignRightWithPanel="True" Background="Transparent"
                                     Visibility="Collapsed" BorderBrush="Transparent"                            >
                     <StackPanel Orientation="Horizontal" Spacing="5">
-                        <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE8BB;"/>
+                        <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE8BB;" Height="15"/>
                         <TextBlock Text="Close"/>
                     </StackPanel>
                 </Button>

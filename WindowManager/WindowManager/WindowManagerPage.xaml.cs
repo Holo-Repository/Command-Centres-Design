@@ -32,12 +32,12 @@ namespace WindowManager
         private SettingsData settings;
 
         //globals to be set on start-up/calibration
-        public int screenPanel = 6;
+        public int screenPanel;
         // Calculate these!
-        public int[] ColumnWidths = { 425, 425, 425 };
-        public int[] RowHeights = { 250, 250, 250 };
-        public List<int[]> intermediateRectangles = PanelAlgorithms.IntermediateRectangles(screenPanel, ColumnWidths, RowHeights);
-        public List<List<int[]>> optimalFrames = PanelAlgorithms.OptimalFrames(intermediateRectangles);
+        public double[] ColumnWidths;
+        public double[] RowHeights;
+        public List<int[]> intermediateRectangles;
+        public List<List<int[]>> optimalFrames;
 
         // A dictionary to map panel number : row number
         private Dictionary<int, int> RowMappings = new Dictionary<int, int>()
@@ -67,11 +67,21 @@ namespace WindowManager
             //Read settings from Json into class variable - this must come after the above code to correct current directory
             settings = SettingsManager.DeserialiseSettingsJSON();
 
+            screenPanel = settings.Tv.PanelNum;
+            ColumnWidths = settings.Grid.ColumnWidths;
+            RowHeights = settings.Grid.RowHeights;
+
+
+            //initialise intermediate rectantles and optimal frames
+            intermediateRectangles = PanelAlgorithms.IntermediateRectangles(screenPanel, ColumnWidths, RowHeights);
+            optimalFrames = PanelAlgorithms.OptimalFrames(intermediateRectangles);
+
+
             // Initialise main window
             this.InitializeComponent();
 
             // Adjust layout
-            //AdjustGridSize(settings);
+            AdjustGridSize(settings);
 
             DisplayPanelsFromJSON(settings);
 
@@ -265,7 +275,7 @@ namespace WindowManager
 
             // 3. Write to JSON - function will only take SettingsData object
             //kill all panels
-            Panels.CloseAllPanels()
+            settings.Panels.CloseAllPanels();
             SettingsManager.SerialiseSettingsJSON(settings);
 
             // write to json
@@ -313,7 +323,7 @@ namespace WindowManager
 
             // 3. Write to JSON - function will only take SettingsData object
             //kill all panels
-            Panels.CloseAllPanels()
+            settings.Panels.CloseAllPanels();
             SettingsManager.SerialiseSettingsJSON(settings);
 
             // 4. Update panels from JSON

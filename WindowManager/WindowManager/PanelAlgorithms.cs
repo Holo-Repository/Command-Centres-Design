@@ -10,10 +10,10 @@ namespace WindowManager
 {
     class PanelAlgorithms
     {
-        private static List<int[]> OrderOnArea(List<int[]> rectangles, int[] columns, int[] rows)
+        private static List<int[]> OrderOnArea(List<int[]> rectangles, double[] columns, double[] rows)
         {
             //dynamic areas = new System.Dynamic.ExpandoObject();
-            int[] areas = new int[9];
+            double[] areas = new double[9];
 
             for (int i = 0; i < 3; i++)
             {
@@ -26,13 +26,14 @@ namespace WindowManager
             // a and b are each possible combination of rectangles
             // iterate over every single panel in a and b and find their areas
             // sum those and then find which is larger and place forward
-            rectangles.Sort((a, b) => b.Sum(x => areas[x-1]) - a.Sum(x => areas[x-1]));
+            //rectangles.Sort((a, b) => b.Sum(x => areas[x-1]) - a.Sum(x => areas[x-1]));
+            rectangles.Sort((a, b) => b.Sum(x => areas[x - 1]).CompareTo(a.Sum(x => areas[x - 1]))); //doubles comparison
 
             return rectangles;
         }
 
         //screen = screen frame; calculate from co-ordinates if needed. columnWidths, rowHeights = grid dimensions
-        public static List<int[]> IntermediateRectangles(int screen, int[] columnWidths, int[] rowHeights)
+        public static List<int[]> IntermediateRectangles(int screen, double[] columnWidths, double[] rowHeights)
         {
             List<int[]> intermediates = new List<int[]>();
 
