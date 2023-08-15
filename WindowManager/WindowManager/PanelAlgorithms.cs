@@ -227,12 +227,14 @@ namespace WindowManager
                 //if 8 frames, select singles
                 if (i == 8)
                 {
-                    optimalFrames.Add(new List<int[]>(intermediates.Where(array => array.Length == 1).ToList()));
+                    List<int[]> sizeCheckStore = new List<int[]>(intermediates.Where(array => array.Length == 1).ToList())
+                    if (sizeCheckStore.Count == 8) optimalFrames.Add(sizeCheckStore); //skip if not 8 panels
                     break;
                 }
 
                 List<List<int[]>> candidates = new List<List<int[]>>();
-                GenerateCombinations(intermediates, new List<int[]>(), i, candidates);
+                GenerateCombinations(intermediates, new List<int[]>(), i, candidates); //check for frame quantity in recursion format
+                //if n panels possible, then n-1 always possible, so no risk of discontinuity
 
                 //sort candidates by average index of their intermediates
                 List<List<int[]>> sortedCandidates = candidates.OrderBy(candidateList =>
@@ -240,7 +242,7 @@ namespace WindowManager
                     double averageIndex = candidateList.Average(candidate => intermediates.IndexOf(candidate));
                     return averageIndex;
                 }).ToList();
-                optimalFrames.Add(sortedCandidates[0]);
+                optimalFrames.Add(sortedCandidates[0]); //take highest ranked
             }
 
             return optimalFrames;

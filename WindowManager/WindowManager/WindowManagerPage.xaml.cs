@@ -81,7 +81,7 @@ namespace WindowManager
             //Read settings from Json into class variable - this must come after the above code to correct current directory
             settings = SettingsManager.DeserialiseSettingsJSON();
 
-            //Minimum panel dimensions - perhaps scale to window size
+            //Minimum panel dimensions - scaled to window size - see definition above
             MinimumDimensions minDim = new MinimumDimensions(settings.WindowDimensions.Height, settings.WindowDimensions.Width);
 
             screenPanel = settings.Tv.PanelNum;
@@ -257,23 +257,16 @@ namespace WindowManager
         {
             WebPanel webPanel = sender as WebPanel;
 
-            // uri to be added or removed
+            // uri to be removed
             Uri deltaUri = new Uri (webPanel.Source);
             bool isAdd = false;
-            //int screenPanel = 6;
-            // Calculate these?
-            //int[] ColumnWidths = { 425, 425, 425 };
-            //int[] RowHeights = { 250, 250, 250 };
 
-            // call during calibration and assign to global variables
-            // rectangles ordered by area - is "intermediates" interchangeable with "rectangles"?
-            //intermediateRectangles = PanelAlgorithms.IntermediateRectangles(screenPanel, ColumnWidths, RowHeights);
-            //optimalFrames = PanelAlgorithms.OptimalFrames(intermediateRectangles);
+            Panel[] panelArray = settings.Panels.GetPanelsArray();
 
             // 1. Prioritise URIs
-            // 2. Identify layout
-            Panel[] panelArray = settings.Panels.GetPanelsArray();
             List<Uri> UriListByPriority = PanelAlgorithms.UriPriority(deltaUri, intermediateRectangles, panelArray, isAdd);
+
+            // 2. Identify layout
             dynamic packedFrames = PanelAlgorithms.PackedFrames(UriListByPriority, optimalFrames);
 
             // PackedFrames is a dict where keys are strings of panel names e.g. "Panel1"
@@ -293,39 +286,24 @@ namespace WindowManager
             }
 
             // 3. Write to JSON - function will only take SettingsData object
-            //kill all panels
             SettingsManager.SerialiseSettingsJSON(settings);
 
-            // write to json
-            //settings.Panels.ClosePanelByName(webPanel.Name);
-            //SettingsManager.SerialiseSettingsJSON(settings);
-
-            //webPanel.Visibility = Visibility.Collapsed;
-
+            //4. Display panels from JSON
             DisplayPanelsFromJSON(settings);
         }
 
         public void Add_WebPanel(object sender, Uri deltaUri)
         {
-            // uri to be added or removed
-            //Uri deltaUri = new Uri("https://www.microsoft.com");
             bool isAdd = true;
-            //int screenPanel = 6;
-            // Calculate these?
-            //int[] ColumnWidths = { 425, 425, 425 };
-            //int[] RowHeights = { 250, 250, 250 };
 
-            // call during calibration and assign to global variables
-            // rectangles ordered by area - is "intermediates" interchangeable with "rectangles"?
-            //intermediateRectangles = PanelAlgorithms.IntermediateRectangles(screenPanel, ColumnWidths, RowHeights);
-            //optimalFrames = PanelAlgorithms.OptimalFrames(intermediateRectangles);
+            Panel[] panelArray = settings.Panels.GetPanelsArray();
+            if (panelArray.Length == optimalFrames.Count) return; //prevents user from adding more panels than layout supports
 
             // 1. Prioritise URIs
-            // 2. Identify layout
-            Panel[] panelArray = settings.Panels.GetPanelsArray();
             List<Uri> UriListByPriority = PanelAlgorithms.UriPriority(deltaUri, intermediateRectangles, panelArray, isAdd);
-            dynamic packedFrames = PanelAlgorithms.PackedFrames(UriListByPriority, optimalFrames);
 
+            // 2. Identify layout
+            dynamic packedFrames = PanelAlgorithms.PackedFrames(UriListByPriority, optimalFrames);
             // PackedFrames is a dict where keys are strings of panel names e.g. "Panel1"
             // The value corresponding to that key is another dict where the keys are "uri", "ColumnSpan", and "RowSpan"
             Dictionary<string, Dictionary<string, object>>.KeyCollection PanelNames = packedFrames.Keys;
@@ -344,7 +322,7 @@ namespace WindowManager
 
             SettingsManager.SerialiseSettingsJSON(settings);
 
-            // 4. Update panels from JSON
+            // 4. Display panels from JSON
             DisplayPanelsFromJSON(settings);
         }
 
