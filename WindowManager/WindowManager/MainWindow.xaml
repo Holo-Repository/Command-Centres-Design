@@ -12,7 +12,7 @@
     <StackPanel Orientation="Vertical">
         
         <Border x:Name="AppTitleBar">
-            <StackPanel Orientation="Horizontal">
+            <StackPanel Orientation="Horizontal" Height="35px">
                 <ImageIcon Source="/Assets/CCD-logo.png" Width="20" Height="20" Margin="10,0,0,0"/>
                 <TextBlock x:Name="AppTitle" Text="Command Centres Design" Style="{StaticResource CaptionTextBlockStyle}" 
                            VerticalAlignment="Top" Margin="10"/>
@@ -22,14 +22,15 @@
         <NavigationView x:Name="NavView"
                      Loaded="NavView_Loaded"
                      ItemInvoked="NavView_ItemInvoked"
-                     PaneDisplayMode="LeftCompact">
+                     PaneDisplayMode="LeftCompact"
+                        CompactPaneLength="50">
             <NavigationView.MenuItems>
                 <!--Change Icon to TaskView icon from Fluent-->
-                <NavigationViewItem Icon="NewWindow" Content="Windows" Tag="WindowManager.WindowManagerPage" />
+                <NavigationViewItem Icon="NewWindow" Content="Windows" Tag="WindowManager.WindowManagerPage" Loaded="NavigationViewItem_Loaded" />
                 <!--<NavigationViewItem.Icon>
                     <FontIcon Glyph="&#xEB3C;"/>
                 </NavigationViewItem.Icon>-->
-                <NavigationViewItem Icon="Help" Content="Help" Tag="WindowManager.HelpPage" />
+                <NavigationViewItem Icon="Help" Content="Help" Tag="WindowManager.TestPage" />
                 <NavigationViewItem Icon="Setting" Content="Calibration" Tag="WindowManager.CalibrationInfoPage" />
                 <NavigationViewItem Icon="Download" Content="Download Window Configuration" Tag="WindowManager.DownloadConfigPage" />
             </NavigationView.MenuItems>

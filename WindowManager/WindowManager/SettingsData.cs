@@ -27,6 +27,7 @@ namespace WindowManager
     {
         public int Height { get; set; }
         public int Width { get; set; }
+        public double ScalingFactor { get; set; }
     }
 
     public class Grid

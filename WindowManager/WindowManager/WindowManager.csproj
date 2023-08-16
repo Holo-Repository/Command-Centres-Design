@@ -17,6 +17,7 @@
     <None Remove="CalibrationWindow.xaml" />
     <None Remove="DownloadConfigPage.xaml" />
     <None Remove="HelpPage.xaml" />
+    <None Remove="TestPage.xaml" />
     <None Remove="UserControls\MenuBar.xaml" />
     <None Remove="UserControls\TvPanel.xaml" />
     <None Remove="UserControls\WebPanel.xaml" />
@@ -64,6 +65,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="C:\code\Command-Centres-Design\WindowManager\WindowManager\.editorconfig" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="TestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="DownloadConfigPage.xaml">

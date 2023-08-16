@@ -12,8 +12,14 @@
         <Canvas x:Name="canvas" Background="White" 
                 PointerPressed="Canvas_PointerPressed" 
                 PointerMoved="Canvas_PointerMoved" 
-                PointerReleased="Canvas_PointerReleased"
-                 
-                />
+                PointerReleased="Canvas_PointerReleased">
+
+            <Rectangle Canvas.Left="0" Canvas.Top="0" Width="1920" Height="75" Fill="Black"/>
+            <Rectangle Canvas.Left="0" Canvas.Top="0" Width="50" Height="1080" Fill="Black"/>
+
+            <Rectangle Canvas.Left="500" Canvas.Top="300" Fill="LightYellow" Width="300" Height="200"/>
+
+        </Canvas>
+        
     </Grid>
 </Window>

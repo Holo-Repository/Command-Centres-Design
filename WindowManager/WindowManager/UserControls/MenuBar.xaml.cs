@@ -23,13 +23,6 @@ namespace WindowManager.UserControls
         //public event TypedEventHandler<object, RoutedEventArgs> MenuFlyoutItem_Click;
         public event TypedEventHandler<object, Uri> Add_Window;
 
-        //public void MenuFlyoutItem1_Click(object sender, RoutedEventArgs e)
-        //{
-        //    //bubble the event up to the parent
-        //    if (this.MenuFlyoutItem_Click != null)
-        //        this.MenuFlyoutItem_Click(this, e);
-        //}
-
         public MenuBar()
         {
             this.InitializeComponent();
@@ -60,19 +53,6 @@ namespace WindowManager.UserControls
         }
 
         private void GoButtonClick(ContentDialog dialog, ContentDialogButtonClickEventArgs args)
-        {
-            // currently url must be entered with the format http://www....
-            TextBox textBox = dialog.Content as TextBox;
-            string UriString = textBox.Text;
-            Uri deltaUri = new Uri(UriString);
-
-            //bubble the event up to the parent
-            if (this.Add_Window != null)
-                this.Add_Window(this, deltaUri);
-
-        }
-
-        private void PopularWebsitesClick(ContentDialog dialog, ContentDialogButtonClickEventArgs args)
         {
             // currently url must be entered with the format http://www....
             TextBox textBox = dialog.Content as TextBox;
@@ -117,5 +97,6 @@ namespace WindowManager.UserControls
             if (this.Add_Window != null)
                 this.Add_Window(this, deltaUri);
         }
+
     }
 }
