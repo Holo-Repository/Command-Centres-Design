@@ -35,13 +35,23 @@
                     <Button x:Name="PickAFileButton"
                             Click="PickAFileButton_Click" Margin="0,20,0,0">
                         <StackPanel Orientation="Horizontal" Spacing="5">
-                            <SymbolIcon Symbol="Download"/>
-                            <TextBlock Text="Download File"/>
+                            <SymbolIcon Symbol="Upload"/>
+                            <TextBlock Text="Upload Custom Settings"/>
                         </StackPanel>
 
                     </Button>
                     <TextBlock x:Name="PickAFileOutputTextBlock" TextWrapping="Wrap" Padding="20,5,0,0"/>
 
+
+                    <Button x:Name="ShareAFileButton"
+                            Click="ShareAFileButton_Click" Margin="0,20,0,0">
+                        <StackPanel Orientation="Horizontal" Spacing="5">
+                            <SymbolIcon Symbol="Share"/>
+                            <TextBlock Text="Share File"/>
+                        </StackPanel>
+
+                    </Button>
+                    <TextBlock x:Name="ShareAFileOutputTextBlock" TextWrapping="Wrap" Padding="20,5,0,0"/>
                 </StackPanel>
             </StackPanel>
 
