@@ -90,6 +90,19 @@ namespace WindowManager
             }
         }
 
+        public void CloseAllPanels()
+        {
+            Panel1 = null;
+            Panel2 = null;
+            Panel3 = null;
+            Panel4 = null;
+            Panel5 = null;
+            Panel6 = null;
+            Panel7 = null;
+            Panel8 = null;
+            Panel9 = null;
+        }
+
         public void SetPanelDataByName(string panelName, Uri uri, int ColumnSpan, int RowSpan)
         {
             switch (panelName)

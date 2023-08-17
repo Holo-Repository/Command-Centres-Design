@@ -8,6 +8,7 @@ using Microsoft.UI.Xaml.Navigation;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -24,12 +25,31 @@ using Windows.Graphics.Printing.PrintTicket;
 namespace WindowManager
 {
 
+    public class MinimumDimensions
+    {
+        public double MinimumPanelHeight { get; }
+        public double MinimumPanelWidth { get; }
+
+        public MinimumDimensions(double height, double width)
+        {
+            MinimumPanelHeight = height * 0.028; //equals c.30 for 1080 pixel tall screen
+            MinimumPanelWidth = width * 0.016; //equals c.30 for 1920 pixel wide screen
+        }
+    }
+
+
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     public sealed partial class WindowManagerPage : Page
     {
         private string SwapUri;
+
+        //globals to be set on start-up/calibration
+        public int screenPanel;
+        // Calculate these!
+        public double[] ColumnWidths;
+        public double[] RowHeights;
 
         public List<int[]> intermediateRectangles;
         public List<List<int[]>> optimalFrames;
@@ -58,6 +78,17 @@ namespace WindowManager
 
             string currentDir = baseDir.Substring(0, (startOfProj + projectName.Length));
             Directory.SetCurrentDirectory(currentDir);
+
+            //Minimum panel dimensions - scaled to window size - see definition above
+            MinimumDimensions minDim = new MinimumDimensions(MainWindow.settings.WindowDimensions.Height, MainWindow.settings.WindowDimensions.Width);
+
+            screenPanel = MainWindow.settings.Tv.PanelNum;
+            ColumnWidths = MainWindow.settings.Grid.ColumnWidths;
+            RowHeights = MainWindow.settings.Grid.RowHeights;
+
+            //initialise intermediate rectantles and optimal frames
+            intermediateRectangles = PanelAlgorithms.IntermediateRectangles(screenPanel, ColumnWidths, RowHeights, minDim.MinimumPanelHeight, minDim.MinimumPanelWidth);
+            optimalFrames = PanelAlgorithms.OptimalFrames(intermediateRectangles);
 
             // Initialise main window
             this.InitializeComponent();
@@ -231,28 +262,24 @@ namespace WindowManager
         {
             WebPanel webPanel = sender as WebPanel;
 
-            // uri to be added or removed
+            // uri to be removed
             Uri deltaUri = new Uri (webPanel.Source);
             bool isAdd = false;
-            int screenPanel = 6;
-            // Calculate these?
-            int[] ColumnWidths = { 425, 425, 425 };
-            int[] RowHeights = { 250, 250, 250 };
 
-            // call during calibration and assign to global variables
-            // rectangles ordered by area - is "intermediates" interchangeable with "rectangles"?
-            intermediateRectangles = PanelAlgorithms.IntermediateRectangles(screenPanel, ColumnWidths, RowHeights);
-            optimalFrames = PanelAlgorithms.OptimalFrames(intermediateRectangles);
+            Panel[] panelArray = MainWindow.settings.Panels.GetPanelsArray();
 
             // 1. Prioritise URIs
-            // 2. Identify layout
-            Panel[] panelArray = MainWindow.settings.Panels.GetPanelsArray();
             List<Uri> UriListByPriority = PanelAlgorithms.UriPriority(deltaUri, intermediateRectangles, panelArray, isAdd);
+
+            // 2. Identify layout
             dynamic packedFrames = PanelAlgorithms.PackedFrames(UriListByPriority, optimalFrames);
 
             // PackedFrames is a dict where keys are strings of panel names e.g. "Panel1"
             // The value corresponding to that key is another dict where the keys are "uri", "ColumnSpan", and "RowSpan"
             Dictionary<string, Dictionary<string, object>>.KeyCollection PanelNames = packedFrames.Keys;
+
+            //kill all panels - make way for new
+            MainWindow.settings.Panels.CloseAllPanels();
 
             foreach (var PanelNameString in PanelNames)
             {
@@ -267,41 +294,31 @@ namespace WindowManager
             // 3. Write to JSON - function will only take SettingsData object
             //SettingsManager.SerialiseSettingsJSON(MainWindow.settings);
 
-            // write to json
-            MainWindow.settings.Panels.ClosePanelByName(webPanel.Name);
-            SettingsManager.SerialiseSettingsJSON(MainWindow.settings);
-
-            webPanel.Visibility = Visibility.Collapsed;
-
+            //4. Display panels from JSON
             DisplayPanelsFromJSON(MainWindow.settings);
+
         }
 
         public void Add_WebPanel(object sender, Uri deltaUri)
         {
-            // uri to be added or removed
-            //Uri deltaUri = new Uri("https://www.microsoft.com");
             bool isAdd = true;
-            int screenPanel = MainWindow.settings.Tv.PanelNum;
-            // Calculate these?
-            int[] ColumnWidths = { 425, 425, 425 };
-            int[] RowHeights = { 250, 250, 250 };
 
-            // call during calibration and assign to global variables
-            // rectangles ordered by area - is "intermediates" interchangeable with "rectangles"?
-            intermediateRectangles = PanelAlgorithms.IntermediateRectangles(screenPanel, ColumnWidths, RowHeights);
-            optimalFrames = PanelAlgorithms.OptimalFrames(intermediateRectangles);
+            Panel[] panelArray = MainWindow.settings.Panels.GetPanelsArray();
+            if (panelArray.Length == optimalFrames.Count) return; //prevents user from adding more panels than layout supports
 
             // 1. Prioritise URIs
-            // 2. Identify layout
-            Panel[] panelArray = MainWindow.settings.Panels.GetPanelsArray();
             List<Uri> UriListByPriority = PanelAlgorithms.UriPriority(deltaUri, intermediateRectangles, panelArray, isAdd);
-            dynamic packedFrames = PanelAlgorithms.PackedFrames(UriListByPriority, optimalFrames);
 
+            // 2. Identify layout
+            dynamic packedFrames = PanelAlgorithms.PackedFrames(UriListByPriority, optimalFrames);
             // PackedFrames is a dict where keys are strings of panel names e.g. "Panel1"
             // The value corresponding to that key is another dict where the keys are "uri", "ColumnSpan", and "RowSpan"
             Dictionary<string, Dictionary<string, object>>.KeyCollection PanelNames = packedFrames.Keys;
 
-            foreach(var PanelNameString in PanelNames)
+            //kill all panels - make way for new
+            MainWindow.settings.Panels.CloseAllPanels();
+
+            foreach (var PanelNameString in PanelNames)
             {
                 Uri uri = packedFrames[PanelNameString]["uri"];
                 int ColumnSpan = packedFrames[PanelNameString]["ColumnSpan"];
@@ -316,6 +333,7 @@ namespace WindowManager
 
             // 4. Update panels from JSON
             DisplayPanelsFromJSON(MainWindow.settings);
+
         }
 
     }

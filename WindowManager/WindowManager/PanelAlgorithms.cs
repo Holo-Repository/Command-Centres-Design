@@ -10,10 +10,9 @@ namespace WindowManager
 {
     class PanelAlgorithms
     {
-        private static List<int[]> OrderOnArea(List<int[]> rectangles, int[] columns, int[] rows)
+        private static List<int[]> OrderOnArea(List<int[]> rectangles, double[] columns, double[] rows)
         {
-            //dynamic areas = new System.Dynamic.ExpandoObject();
-            int[] areas = new int[9];
+            double[] areas = new double[9];
 
             for (int i = 0; i < 3; i++)
             {
@@ -26,15 +25,20 @@ namespace WindowManager
             // a and b are each possible combination of rectangles
             // iterate over every single panel in a and b and find their areas
             // sum those and then find which is larger and place forward
-            rectangles.Sort((a, b) => b.Sum(x => areas[x-1]) - a.Sum(x => areas[x-1]));
+            //rectangles.Sort((a, b) => b.Sum(x => areas[x-1]) - a.Sum(x => areas[x-1]));
+            rectangles.Sort((a, b) => b.Sum(x => areas[x - 1]).CompareTo(a.Sum(x => areas[x - 1]))); //doubles comparison
 
             return rectangles;
         }
 
         //screen = screen frame; calculate from co-ordinates if needed. columnWidths, rowHeights = grid dimensions
-        public static List<int[]> IntermediateRectangles(int screen, int[] columnWidths, int[] rowHeights)
+        public static List<int[]> IntermediateRectangles(int screen, double[] columnWidths, double[] rowHeights, double minHeight, double minWidth)
         {
             List<int[]> intermediates = new List<int[]>();
+
+            //panel size viability
+            double[] widths = new double[9];
+            double[] heights = new double[9];
 
             for (int i = 0; i < 3; i++)
             {
@@ -53,6 +57,12 @@ namespace WindowManager
                 intermediates.Add(new int[] { 4 + i, 7 + i });
                 intermediates.Add(new int[] { 1 + i, 4 + i, 7 + i });
 
+                //calculate height, width pairs
+                for (int j = 0; j < 3; j++)
+                {
+                    widths[j + i * 3] = columnWidths[j];
+                    heights[j + i * 3] = rowHeights[i];
+                }
             }
 
             //skip if screen central
@@ -71,12 +81,9 @@ namespace WindowManager
                 intermediates.Add(new int[] { 2, 3, 5, 6, 8, 9 });
             }
 
-            List<int[]> filteredIntermediates = new List<int[]>(intermediates);
-
-            foreach (var rectangle in intermediates)
-            {
-                if (rectangle.Contains(screen)) filteredIntermediates.Remove(rectangle);
-            }
+            //remove screen overlapping and unviable dimensions rectangles
+            List<int[]> filteredIntermediates = intermediates.Where(rectangle => !rectangle.Contains(screen) &&
+                rectangle.Sum(x => heights[x-1]) >= minHeight && rectangle.Sum(x => widths[x-1]) >= minWidth).ToList();
 
             //calculate on configuration, save as global
             return OrderOnArea(filteredIntermediates, columnWidths, rowHeights);
@@ -203,6 +210,7 @@ namespace WindowManager
 
         public static List<List<int[]>> OptimalFrames(List<int[]> intermediates)
         {
+            //be sure to make it so only x number of panels can be added - where x is the total number of optimal combinations this returns
 
             List<List<int[]>> optimalFrames = new List<List<int[]>>();
 
@@ -219,12 +227,14 @@ namespace WindowManager
                 //if 8 frames, select singles
                 if (i == 8)
                 {
-                    optimalFrames.Add(new List<int[]>(intermediates.Where(array => array.Length == 1).ToList()));
+                    List<int[]> sizeCheckStore = new List<int[]>(intermediates.Where(array => array.Length == 1).ToList())
+                    if (sizeCheckStore.Count == 8) optimalFrames.Add(sizeCheckStore); //skip if not 8 panels
                     break;
                 }
 
                 List<List<int[]>> candidates = new List<List<int[]>>();
-                GenerateCombinations(intermediates, new List<int[]>(), i, candidates);
+                GenerateCombinations(intermediates, new List<int[]>(), i, candidates); //check for frame quantity in recursion format
+                //if n panels possible, then n-1 always possible, so no risk of discontinuity
 
                 //sort candidates by average index of their intermediates
                 List<List<int[]>> sortedCandidates = candidates.OrderBy(candidateList =>
@@ -232,7 +242,7 @@ namespace WindowManager
                     double averageIndex = candidateList.Average(candidate => intermediates.IndexOf(candidate));
                     return averageIndex;
                 }).ToList();
-                optimalFrames.Add(sortedCandidates[0]);
+                optimalFrames.Add(sortedCandidates[0]); //take highest ranked
             }
 
             return optimalFrames;
