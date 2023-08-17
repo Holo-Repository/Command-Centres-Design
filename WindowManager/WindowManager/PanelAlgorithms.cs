@@ -227,7 +227,7 @@ namespace WindowManager
                 //if 8 frames, select singles
                 if (i == 8)
                 {
-                    List<int[]> sizeCheckStore = new List<int[]>(intermediates.Where(array => array.Length == 1).ToList())
+                    List<int[]> sizeCheckStore = new List<int[]>(intermediates.Where(array => array.Length == 1).ToList());
                     if (sizeCheckStore.Count == 8) optimalFrames.Add(sizeCheckStore); //skip if not 8 panels
                     break;
                 }
