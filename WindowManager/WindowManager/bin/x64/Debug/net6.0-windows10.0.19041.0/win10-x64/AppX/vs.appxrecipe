@@ -29,29 +29,29 @@
     <AppXManifest Include="C:\code\Command-Centres-Design\WindowManager\WindowManager\bin\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2023-08-16T21:15:16.321</Modified>
+      <Modified>2023-08-17T15:38:15.355</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\code\Command-Centres-Design\WindowManager\WindowManager\bin\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2023-08-16T21:15:16.071</Modified>
+      <Modified>2023-08-17T15:38:14.928</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\code\Command-Centres-Design\WindowManager\WindowManager\bin\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\WindowManager.runtimeconfig.json">
       <PackagePath>WindowManager.runtimeconfig.json</PackagePath>
-      <Modified>2023-08-16T17:47:07.001</Modified>
+      <Modified>2023-08-17T15:38:14.602</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\code\Command-Centres-Design\WindowManager\WindowManager\bin\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\WindowManager.dll">
       <PackagePath>WindowManager.dll</PackagePath>
-      <Modified>2023-08-16T21:15:15.967</Modified>
+      <Modified>2023-08-17T15:38:13.519</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\code\Command-Centres-Design\WindowManager\WindowManager\obj\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\apphost.exe">
       <PackagePath>WindowManager.exe</PackagePath>
-      <Modified>2023-08-16T21:15:15.975</Modified>
+      <Modified>2023-08-17T15:38:13.547</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\code\Command-Centres-Design\WindowManager\WindowManager\bin\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\WindowManager.deps.json">
       <PackagePath>WindowManager.deps.json</PackagePath>
-      <Modified>2023-08-16T21:12:27.102</Modified>
+      <Modified>2023-08-17T15:38:14.451</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\isobe\.nuget\packages\microsoft.netcore.app.runtime.win-x64\6.0.20\runtimes\win-x64\lib\net6.0\Microsoft.CSharp.dll">
       <PackagePath>Microsoft.CSharp.dll</PackagePath>
