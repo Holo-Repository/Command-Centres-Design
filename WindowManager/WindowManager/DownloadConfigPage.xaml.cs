@@ -145,6 +145,54 @@ namespace WindowManager
             }
         }
 
+        private async void ShareAFileButton_Click(object sender, RoutedEventArgs e){
+
+           
+
+            var folderPicker = new Windows.Storage.Pickers.FolderPicker();
+
+            var hWnd = WinRT.Interop.WindowNative.GetWindowHandle(App.m_window);
+
+            // Initialize the file picker with the window handle (HWND).
+            WinRT.Interop.InitializeWithWindow.Initialize(folderPicker, hWnd);
+
+            folderPicker.ViewMode = PickerViewMode.Thumbnail;
+
+            // Open the picker for the user to pick a file
+            var folder = await folderPicker.PickSingleFolderAsync();
+
+            if (folder == null)
+            {
+                ShareAFileOutputTextBlock.Text = "Operation cancelled.";
+                return;
+            }
+
+            else
+            {
+                string searchDirectory = Directory.GetCurrentDirectory();
+                string settingsFilePath = FindSettingsFile(searchDirectory);
+                //string settingsFolder = Path.GetDirectoryName(settingsFilePath);
+                Windows.Storage.StorageFile settings = await Windows.Storage.StorageFile.GetFileFromPathAsync(settingsFilePath);
+
+                try
+                {
+                    // Get the selected folder's path
+                    string destinationFolderPath = folder.Path;
+
+                    // Copy and replace the file in the destination folder
+                    await settings.CopyAndReplaceAsync(await folder.CreateFileAsync(settings.Name, CreationCollisionOption.ReplaceExisting));
+
+                    ShareAFileOutputTextBlock.Text = "File downloaded successfully. Please check the folder: " + folder.Name;
+                }
+                catch (Exception ex)
+                {
+                    ShareAFileOutputTextBlock.Text = "An error occurred: " + ex.Message;
+                }
+            }
+
+        }
+
+
         static string FindSettingsFile(string directory)
         {
             string settingsFileName = "settings.json";
