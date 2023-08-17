@@ -14,10 +14,8 @@
                                                    
                                                         >
 
-            <Rectangle Canvas.Left="0" Canvas.Top="0" Width="1920" Height="75" Fill="Black"/>
-            <Rectangle Canvas.Left="0" Canvas.Top="0" Width="50" Height="1080" Fill="Black"/>
-
-            <Rectangle Canvas.Left="500" Canvas.Top="300" Fill="LightYellow" Width="300" Height="200"/>
+            <Rectangle Canvas.Left="0" Canvas.Top="0" Width="1920" Height="75" Fill="Gray"/>
+            <Rectangle Canvas.Left="0" Canvas.Top="0" Width="50" Height="1080" Fill="Gray"/>
 
         </Canvas>
         
