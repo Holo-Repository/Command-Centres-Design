@@ -29,6 +29,7 @@ namespace WindowManager
         public DownloadConfigPage()
         {
             this.InitializeComponent();
+            stackpanel.Height = MainWindow.settings.Grid.Height;
         }
 
 

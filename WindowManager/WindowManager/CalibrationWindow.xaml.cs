@@ -244,6 +244,10 @@ namespace WindowManager
             double GridHeight = (windowDimensions.Height / scaleFactor) - MenuBarHeight;
             double GridWidth = (windowDimensions.Width / scaleFactor) - MenuBarWidth;
 
+            // write grid dimensions to settings to scale pages
+            MainWindow.settings.Grid.Height = GridHeight;
+            MainWindow.settings.Grid.Width = GridWidth;
+
             // tv coordinates from top left hand corner of grid (instead of window)
             tv.Y_Position = tv.Y_Position - MenuBarHeight;
             tv.X_Position = tv.X_Position - MenuBarWidth;

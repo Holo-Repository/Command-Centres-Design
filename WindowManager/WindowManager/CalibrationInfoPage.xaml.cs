@@ -26,6 +26,7 @@ namespace WindowManager
         public CalibrationInfoPage()
         {
             this.InitializeComponent();
+            stackpanel.Height = MainWindow.settings.Grid.Height;
         }
 
         private void Calibration_Click(object sender, RoutedEventArgs e)

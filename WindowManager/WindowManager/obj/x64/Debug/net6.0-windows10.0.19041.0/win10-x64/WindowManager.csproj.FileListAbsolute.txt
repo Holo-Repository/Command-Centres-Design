@@ -324,8 +324,3 @@ C:\code\Command-Centres-Design\WindowManager\WindowManager\obj\x64\Debug\net6.0-
 C:\code\Command-Centres-Design\WindowManager\WindowManager\obj\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\qualifiers.txt.intermediate
 C:\code\Command-Centres-Design\WindowManager\WindowManager\obj\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\MultipleQualifiersPerDimensionFound.txt
 C:\code\Command-Centres-Design\WindowManager\WindowManager\obj\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\ProjectArchitectures.txt
-C:\code\Command-Centres-Design\WindowManager\WindowManager\bin\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\TestPage.xbf
-C:\code\Command-Centres-Design\WindowManager\WindowManager\obj\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\TestPage.g.i.cs
-C:\code\Command-Centres-Design\WindowManager\WindowManager\obj\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\TestPage.g.cs
-C:\code\Command-Centres-Design\WindowManager\WindowManager\obj\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\TestPage.xaml
-C:\code\Command-Centres-Design\WindowManager\WindowManager\obj\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\TestPage.xbf

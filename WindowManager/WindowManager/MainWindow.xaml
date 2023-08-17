@@ -30,13 +30,16 @@
                 <!--<NavigationViewItem.Icon>
                     <FontIcon Glyph="&#xEB3C;"/>
                 </NavigationViewItem.Icon>-->
-                <NavigationViewItem Icon="Help" Content="Help" Tag="WindowManager.TestPage" />
+                <NavigationViewItem Icon="Help" Content="Help" Tag="WindowManager.HelpPage" />
                 <NavigationViewItem Icon="Setting" Content="Calibration" Tag="WindowManager.CalibrationInfoPage" />
                 <NavigationViewItem Icon="Download" Content="Download Window Configuration" Tag="WindowManager.DownloadConfigPage" />
             </NavigationView.MenuItems>
 
             <ScrollViewer>
-                <Frame x:Name="ContentFrame" IsTabStop="True" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                <Frame x:Name="ContentFrame" IsTabStop="True" 
+                       Width="{Binding Path=MainWindow.settings.Grid.Width}"
+                       Height="{Binding Path=MainWindow.settings.Grid.Height}"
+                       HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
                 NavigationFailed="ContentFrame_NavigationFailed"/>
             </ScrollViewer>
 

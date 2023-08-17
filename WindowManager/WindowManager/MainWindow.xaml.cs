@@ -142,10 +142,6 @@ namespace WindowManager
             throw new Exception("Failed to load Page " + e.SourcePageType.FullName);
         }
 
-        private void CalibrationComplete()
-        {
-
-        }
 
         private void NavigationViewItem_Loaded(object sender, RoutedEventArgs e)
         {
