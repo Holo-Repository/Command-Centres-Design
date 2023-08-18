@@ -14,8 +14,10 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using WindowManager.UserControls;
 using Windows.ApplicationModel.DataTransfer;
+using Windows.Devices.Enumeration;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Graphics.Printing.PrintTicket;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -42,7 +44,6 @@ namespace WindowManager
     public sealed partial class WindowManagerPage : Page
     {
         private string SwapUri;
-        private SettingsData settings;
 
         //globals to be set on start-up/calibration
         public int screenPanel;
@@ -78,33 +79,30 @@ namespace WindowManager
             string currentDir = baseDir.Substring(0, (startOfProj + projectName.Length));
             Directory.SetCurrentDirectory(currentDir);
 
-            //Read settings from Json into class variable - this must come after the above code to correct current directory
-            settings = SettingsManager.DeserialiseSettingsJSON();
-
             //Minimum panel dimensions - scaled to window size - see definition above
-            MinimumDimensions minDim = new MinimumDimensions(settings.WindowDimensions.Height, settings.WindowDimensions.Width);
+            MinimumDimensions minDim = new MinimumDimensions(MainWindow.settings.WindowDimensions.Height, MainWindow.settings.WindowDimensions.Width);
 
-            screenPanel = settings.Tv.PanelNum;
-            ColumnWidths = settings.Grid.ColumnWidths;
-            RowHeights = settings.Grid.RowHeights;
+            screenPanel = MainWindow.settings.Tv.PanelNum;
+            ColumnWidths = MainWindow.settings.Grid.ColumnWidths;
+            RowHeights = MainWindow.settings.Grid.RowHeights;
 
             //initialise intermediate rectantles and optimal frames
             intermediateRectangles = PanelAlgorithms.IntermediateRectangles(screenPanel, ColumnWidths, RowHeights, minDim.MinimumPanelHeight, minDim.MinimumPanelWidth);
             optimalFrames = PanelAlgorithms.OptimalFrames(intermediateRectangles);
 
-
             // Initialise main window
             this.InitializeComponent();
 
             // Adjust layout
-            AdjustGridSize(settings);
+            AdjustGridSize(MainWindow.settings);
 
-            DisplayPanelsFromJSON(settings);
+            DisplayPanelsFromJSON(MainWindow.settings);
 
             // This needs to come before adding TV element or must include type check
             WireEventHandlers();
 
-            InitialiseTv(settings);
+            // If tv panel changes during calibration, will need to swap panel 
+            InitialiseTv(MainWindow.settings);
         }
 
         private void AdjustGridSize(SettingsData settings)
@@ -127,7 +125,7 @@ namespace WindowManager
 
         }
 
-        private void DisplayPanelsFromJSON(SettingsData settings)
+        public void DisplayPanelsFromJSON(SettingsData settings)
         {
             WebPanel[] PanelsArray = { Panel1, Panel2, Panel3, Panel4, Panel5, Panel6, Panel7, Panel8, Panel9 };
 
@@ -187,9 +185,16 @@ namespace WindowManager
             }
 
             MainMenuBar.Add_Window += new TypedEventHandler<object, Uri>(Add_WebPanel);
+            CalibrationWindow.Reload_Panels += new TypedEventHandler<object, RoutedEventArgs>(ReloadPanels);
         }
 
         // event handlers
+        private void ReloadPanels(object sender, RoutedEventArgs e)
+        {
+            AdjustGridSize(MainWindow.settings);
+
+            DisplayPanelsFromJSON(MainWindow.settings);
+        }
         private void WebPanel_DragStarting(UIElement sender, DragStartingEventArgs args)
         {
 
@@ -261,7 +266,7 @@ namespace WindowManager
             Uri deltaUri = new Uri (webPanel.Source);
             bool isAdd = false;
 
-            Panel[] panelArray = settings.Panels.GetPanelsArray();
+            Panel[] panelArray = MainWindow.settings.Panels.GetPanelsArray();
 
             // 1. Prioritise URIs
             List<Uri> UriListByPriority = PanelAlgorithms.UriPriority(deltaUri, intermediateRectangles, panelArray, isAdd);
@@ -274,7 +279,7 @@ namespace WindowManager
             Dictionary<string, Dictionary<string, object>>.KeyCollection PanelNames = packedFrames.Keys;
 
             //kill all panels - make way for new
-            settings.Panels.CloseAllPanels();
+            MainWindow.settings.Panels.CloseAllPanels();
 
             foreach (var PanelNameString in PanelNames)
             {
@@ -282,21 +287,23 @@ namespace WindowManager
                 int ColumnSpan = packedFrames[PanelNameString]["ColumnSpan"];
                 int RowSpan = packedFrames[PanelNameString]["RowSpan"];
 
-                settings.Panels.SetPanelDataByName(PanelNameString, uri, ColumnSpan, RowSpan);
+                MainWindow.settings.Panels.SetPanelDataByName(PanelNameString, uri, ColumnSpan, RowSpan);
+
             }
 
             // 3. Write to JSON - function will only take SettingsData object
-            SettingsManager.SerialiseSettingsJSON(settings);
+            //SettingsManager.SerialiseSettingsJSON(MainWindow.settings);
 
             //4. Display panels from JSON
-            DisplayPanelsFromJSON(settings);
+            DisplayPanelsFromJSON(MainWindow.settings);
+
         }
 
         public void Add_WebPanel(object sender, Uri deltaUri)
         {
             bool isAdd = true;
 
-            Panel[] panelArray = settings.Panels.GetPanelsArray();
+            Panel[] panelArray = MainWindow.settings.Panels.GetPanelsArray();
             if (panelArray.Length == optimalFrames.Count) return; //prevents user from adding more panels than layout supports
 
             // 1. Prioritise URIs
@@ -309,7 +316,7 @@ namespace WindowManager
             Dictionary<string, Dictionary<string, object>>.KeyCollection PanelNames = packedFrames.Keys;
 
             //kill all panels - make way for new
-            settings.Panels.CloseAllPanels();
+            MainWindow.settings.Panels.CloseAllPanels();
 
             foreach (var PanelNameString in PanelNames)
             {
@@ -317,15 +324,17 @@ namespace WindowManager
                 int ColumnSpan = packedFrames[PanelNameString]["ColumnSpan"];
                 int RowSpan = packedFrames[PanelNameString]["RowSpan"];
 
-                settings.Panels.SetPanelDataByName(PanelNameString, uri, ColumnSpan, RowSpan);
+                MainWindow.settings.Panels.SetPanelDataByName(PanelNameString, uri, ColumnSpan, RowSpan);
+
             }
 
-            SettingsManager.SerialiseSettingsJSON(settings);
+            // 3. Write to JSON - function will only take SettingsData object
+            SettingsManager.SerialiseSettingsJSON(MainWindow.settings);
 
-            // 4. Display panels from JSON
-            DisplayPanelsFromJSON(settings);
+            // 4. Update panels from JSON
+            DisplayPanelsFromJSON(MainWindow.settings);
+
         }
-
 
     }
 }

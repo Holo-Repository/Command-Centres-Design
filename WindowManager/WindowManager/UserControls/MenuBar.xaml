@@ -9,7 +9,7 @@
     mc:Ignorable="d">
 
     <StackPanel Orientation="Horizontal">
-        <MenuBar>
+        <MenuBar Height="40">
             <MenuBarItem Title="+ Add Web Panel" >
 
                 <MenuFlyoutSubItem Text="Popular Websites">
@@ -59,7 +59,9 @@
                     </MenuFlyoutItem.KeyboardAccelerators>
                 </MenuFlyoutItem>
             </MenuBarItem>
+
         </MenuBar>
+
     </StackPanel>
 
 </UserControl>

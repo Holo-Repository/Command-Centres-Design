@@ -1,1 +1,79 @@
-{"Tv":{"Height":244.6666717529297,"Width":514.6666259765625,"X_Position":348.6666564941406,"Y_Position":242.6666717529297,"PanelNum":5},"WindowDimensions":{"Height":1080,"Width":1920},"Grid":{"RowHeights":[300,300,300],"ColumnWidths":[500,500,500]},"Panels":{"Panel1":null,"Panel2":null,"Panel3":{"PanelNum":3,"Uri":"https://www.youtube.com/","RowSpan":3,"ColumnSpan":1},"Panel4":null,"Panel5":null,"Panel6":null,"Panel7":null,"Panel8":null,"Panel9":null}}
+{
+  "Tv": {
+    "Height": 254,
+    "Width": 395.3333435058594,
+    "X_Position": 398.6666564941406,
+    "Y_Position": 147,
+    "PanelNum": 5
+  },
+  "WindowDimensions": {
+    "Height": 1080,
+    "Width": 1920,
+    "ScalingFactor": 1.5
+  },
+  "Grid": {
+    "Height": 645.00,
+    "Width": 1230.00,
+    "RowHeights": [
+      147,
+      254,
+      244
+    ],
+    "ColumnWidths": [
+      398.6666564941406,
+      395.3333435058594,
+      436
+    ]
+  },
+  "Panels": {
+    "Panel1": {
+      "PanelNum": 1,
+      "Uri": "https://www.apple.com",
+      "RowSpan": 1,
+      "ColumnSpan": 1
+    },
+    "Panel2": {
+      "PanelNum": 2,
+      "Uri": "https://www.facebook.com",
+      "RowSpan": 1,
+      "ColumnSpan": 1
+    },
+    "Panel3": {
+      "PanelNum": 3,
+      "Uri": "https://www.google.com",
+      "RowSpan": 1,
+      "ColumnSpan": 1
+    },
+    "Panel4": {
+      "PanelNum": 4,
+      "Uri": "http://localhost:3000/",
+      "RowSpan": 1,
+      "ColumnSpan": 1
+    },
+    "Panel5": null,
+    "Panel6": {
+      "PanelNum": 6,
+      "Uri": "https://www.google.com",
+      "RowSpan": 1,
+      "ColumnSpan": 1
+    },
+    "Panel7": {
+      "PanelNum": 7,
+      "Uri": "http://www.reddit.com",
+      "RowSpan": 1,
+      "ColumnSpan": 1
+    },
+    "Panel8": {
+      "PanelNum": 8,
+      "Uri": "https://www.bing.com",
+      "RowSpan": 1,
+      "ColumnSpan": 1
+    },
+    "Panel9": {
+      "PanelNum": 9,
+      "Uri": "https://www.microsoft.com",
+      "RowSpan": 1,
+      "ColumnSpan": 1
+    }
+  }
+}

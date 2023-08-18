@@ -9,29 +9,26 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <StackPanel>
+    <StackPanel x:Name="MenuAndGrid">
 
         <local:MenuBar x:Name="MainMenuBar" HorizontalAlignment="Left"/>
 
         <Grid x:Name="PanelGrid" HorizontalAlignment="Left" Background="LightSteelBlue">
 
             <Grid.RowDefinitions >
-                <RowDefinition Height="281"/>
-                <RowDefinition Height="281"/>
-                <RowDefinition Height="282"/>
+                <RowDefinition Height="{Binding Path=MainWindow.settings.Grid.RowHeights[0]}"/>
+                <RowDefinition Height="{Binding Path=MainWindow.settings.Grid.RowHeights[1]}"/>
+                <RowDefinition Height="{Binding Path=MainWindow.settings.Grid.RowHeights[2]}"/>
             </Grid.RowDefinitions>
+
             <Grid.ColumnDefinitions >
-                <ColumnDefinition Width="496"/>
-                <ColumnDefinition Width="496"/>
-                <ColumnDefinition Width="495"/>
+                <ColumnDefinition Width="{Binding Path=MainWindow.settings.Grid.ColumnWidths[0]}"/>
+                <ColumnDefinition Width="{Binding Path=MainWindow.settings.Grid.ColumnWidths[1]}"/>
+                <ColumnDefinition Width="{Binding Path=MainWindow.settings.Grid.ColumnWidths[2]}"/>
             </Grid.ColumnDefinitions>
 
-            <!--TV-->
-            <!--<local:TvPanel x:Name="TV_Panel" Grid.Row="1" Grid.Column="1"/>-->
-
             <!--Row 0-->
-            <local:WebPanel x:Name="Panel1" Grid.Row="0" Grid.Column="0" Visibility="Collapsed"
-                            Source="https://www.microsoft.com"/>
+            <local:WebPanel x:Name="Panel1" Grid.Row="0" Grid.Column="0" Visibility="Collapsed"/>
             <local:WebPanel x:Name="Panel2" Grid.Row="0" Grid.Column="1" Visibility="Collapsed"/>
             <local:WebPanel x:Name="Panel3" Grid.Row="0" Grid.Column="2" Visibility="Collapsed"/>
 
@@ -41,8 +38,7 @@
             <local:WebPanel x:Name="Panel6" Grid.Row="1" Grid.Column="2" Visibility="Collapsed"/>
 
             <!--Row 2-->
-            <local:WebPanel x:Name="Panel7" Grid.Row="2" Grid.Column="0" Visibility="Collapsed"
-                            Source="https://www.google.com"/>
+            <local:WebPanel x:Name="Panel7" Grid.Row="2" Grid.Column="0" Visibility="Collapsed"/>
             <local:WebPanel x:Name="Panel8" Grid.Row="2" Grid.Column="1" Visibility="Collapsed"/>
             <local:WebPanel x:Name="Panel9" Grid.Row="2" Grid.Column="2" Visibility="Collapsed"/>
 

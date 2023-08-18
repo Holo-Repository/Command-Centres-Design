@@ -12,7 +12,7 @@
     <StackPanel Orientation="Vertical">
         
         <Border x:Name="AppTitleBar">
-            <StackPanel Orientation="Horizontal">
+            <StackPanel Orientation="Horizontal" Height="35px">
                 <ImageIcon Source="/Assets/CCD-logo.png" Width="20" Height="20" Margin="10,0,0,0"/>
                 <TextBlock x:Name="AppTitle" Text="Command Centres Design" Style="{StaticResource CaptionTextBlockStyle}" 
                            VerticalAlignment="Top" Margin="10"/>
@@ -22,10 +22,11 @@
         <NavigationView x:Name="NavView"
                      Loaded="NavView_Loaded"
                      ItemInvoked="NavView_ItemInvoked"
-                     PaneDisplayMode="LeftCompact">
+                     PaneDisplayMode="LeftCompact"
+                        CompactPaneLength="50">
             <NavigationView.MenuItems>
                 <!--Change Icon to TaskView icon from Fluent-->
-                <NavigationViewItem Icon="NewWindow" Content="Windows" Tag="WindowManager.WindowManagerPage" />
+                <NavigationViewItem Icon="NewWindow" Content="Windows" Tag="WindowManager.WindowManagerPage" Loaded="NavigationViewItem_Loaded" />
                 <!--<NavigationViewItem.Icon>
                     <FontIcon Glyph="&#xEB3C;"/>
                 </NavigationViewItem.Icon>-->
@@ -35,7 +36,10 @@
             </NavigationView.MenuItems>
 
             <ScrollViewer>
-                <Frame x:Name="ContentFrame" IsTabStop="True" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                <Frame x:Name="ContentFrame" IsTabStop="True" 
+                       Width="{Binding Path=MainWindow.settings.Grid.Width}"
+                       Height="{Binding Path=MainWindow.settings.Grid.Height}"
+                       HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
                 NavigationFailed="ContentFrame_NavigationFailed"/>
             </ScrollViewer>
 

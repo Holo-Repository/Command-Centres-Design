@@ -27,10 +27,13 @@ namespace WindowManager
     {
         public int Height { get; set; }
         public int Width { get; set; }
+        public double ScalingFactor { get; set; }
     }
 
     public class Grid
     {
+        public double Height { get; set; }
+        public double Width { get; set; }
         public double[] RowHeights { get; set; }
         public double[] ColumnWidths { get; set; }
     }

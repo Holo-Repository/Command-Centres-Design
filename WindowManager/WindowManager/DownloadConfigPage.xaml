@@ -9,7 +9,9 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <StackPanel Margin="15" >
+    <StackPanel 
+        x:Name="stackpanel"
+        Margin="15" >
         <TextBlock x:Name="HelpTitle" Text="Download Window Configuration File" Style="{StaticResource TitleTextBlockStyle}" 
                            VerticalAlignment="Top" Margin="15" FontSize="35"/>
         <Grid>
@@ -34,6 +36,7 @@
 
                     <Button x:Name="PickAFileButton"
                             Click="PickAFileButton_Click" Margin="0,20,0,0">
+
                         <StackPanel Orientation="Horizontal" Spacing="5">
                             <SymbolIcon Symbol="Upload"/>
                             <TextBlock Text="Upload Custom Settings"/>

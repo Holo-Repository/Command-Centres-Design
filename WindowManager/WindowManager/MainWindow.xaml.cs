@@ -29,6 +29,8 @@ using System.Text.Json;
 using System.Reflection;
 using Windows.UI.ApplicationSettings;
 using Microsoft.UI.Xaml.Media.Animation;
+using Windows.Devices.Enumeration;
+using System.Runtime.InteropServices;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -65,6 +67,40 @@ namespace WindowManager
             window.ExtendsContentIntoTitleBar = true;  // enable custom titlebar
             window.SetTitleBar(AppTitleBar);      // set user ui element as titlebar
 
+            double AppBarWidth = AppTitleBar.Width;
+
+            // Set fullscreen, get size of window and set scale factor
+            AppWindow m_appWindow = GetAppWindowForCurrentWindow();
+            m_appWindow.SetPresenter(AppWindowPresenterKind.FullScreen);
+
+            Windows.Graphics.SizeInt32 Size = m_appWindow.Size;
+            int WindowHeight = Size.Height;
+            int WindowWidth = Size.Width;
+
+            settings.WindowDimensions.Height = WindowHeight;
+            settings.WindowDimensions.Width = WindowWidth;
+
+
+        }
+
+        private AppWindow GetAppWindowForCurrentWindow()
+        {
+            IntPtr hWnd = WindowNative.GetWindowHandle(this);
+            WindowId myWndId = Win32Interop.GetWindowIdFromWindow(hWnd);
+
+            [DllImport("user32.dll")]
+            static extern int GetDpiForWindow(IntPtr hwnd);
+
+            // dots per inch
+            int dpi = GetDpiForWindow(hWnd);
+
+            // Calculate the scaling factor
+            double scalingFactor = dpi / 96.0f;
+
+            settings.WindowDimensions.ScalingFactor = scalingFactor;
+
+            return AppWindow.GetFromWindowId(myWndId);
+
         }
 
         private void NavView_Loaded(object sender, RoutedEventArgs e)
@@ -79,11 +115,13 @@ namespace WindowManager
             if (args.IsSettingsInvoked == true)
             {
                 NavView_Navigate(typeof(WindowManagerPage), args.RecommendedNavigationTransitionInfo);
+                ScrollViewer scroll = sender.Content as ScrollViewer;
             }
             else if (args.InvokedItemContainer != null)
             {
                 Type navPageType = Type.GetType(args.InvokedItemContainer.Tag.ToString());
                 NavView_Navigate(navPageType, args.RecommendedNavigationTransitionInfo);
+                args.InvokedItemContainer.UpdateLayout();
             }
         }
 
@@ -104,5 +142,10 @@ namespace WindowManager
             throw new Exception("Failed to load Page " + e.SourcePageType.FullName);
         }
 
+
+        private void NavigationViewItem_Loaded(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine("Window Manager Page reloaded");
+        }
     }
 }

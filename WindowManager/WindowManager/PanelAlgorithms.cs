@@ -182,11 +182,6 @@ namespace WindowManager
             return packed;
         }
 
-        private static bool NoOverlap(int[] array, List<int[]> arrayList)
-        {
-            return !arrayList.Any(a => array.Intersect(a).Any());
-        }
-
         private static void GenerateCombinations(List<int[]> remainingRectangles, List<int[]> currentCombination, int num, List<List<int[]>> store)
         {
             if (num == 0)
@@ -199,7 +194,9 @@ namespace WindowManager
             {
                 //add array to combination, remove overlaps from remaining
                 List<int[]> newCurrentCombination = new List<int[]>(currentCombination) { array };
-                List<int[]> newRemainingRectangles = remainingRectangles.Where(rect => NoOverlap(rect, newCurrentCombination)).ToList();
+
+                //optimisation - past rectangles checked, no need to repeat; just check array
+                List<int[]> newRemainingRectangles = remainingRectangles.Where(rect => !rect.Intersect(array).Any() && rect != array).ToList();
 
                 if (newRemainingRectangles.Count == 0 && num != 1) continue; //skip if no rectangles left and not last step
 
