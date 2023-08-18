@@ -14,8 +14,21 @@
                 PointerMoved="Canvas_PointerMoved" 
                 PointerReleased="Canvas_PointerReleased">
 
-            <Rectangle Canvas.Left="0" Canvas.Top="0" Width="1920" Height="75" Fill="Gray"/>
-            <Rectangle Canvas.Left="0" Canvas.Top="0" Width="50" Height="1080" Fill="Gray"/>
+            <InfoBar
+                Height="55"
+                Width="500"
+                Margin="10"
+                x:Name="infoBar"
+                Canvas.Left="0"
+                Canvas.Top="0"
+                IsOpen="True"
+                IsIconVisible="True"
+                IsClosable="False"
+                Title="Calibration Info"
+                Message="Click and drag a mask so that it covers the centre screen entirely. Press SPACE to save calibration settings or ESC to exit." />
+
+            <Rectangle x:Name="menuBar" Canvas.Left="0" Canvas.Top="0" Width="1920" Height="75" Fill="Gray"/>
+            <Rectangle x:Name="navBar" Canvas.Left="0" Canvas.Top="0" Width="50" Height="1080" Fill="Gray"/>
 
         </Canvas>
         

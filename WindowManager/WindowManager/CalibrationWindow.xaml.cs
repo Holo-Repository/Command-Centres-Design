@@ -39,9 +39,20 @@ namespace WindowManager
         private Dictionary<string, Rect> rectanglesDictionary = new Dictionary<string, Rect>();
         public static event TypedEventHandler<object, RoutedEventArgs> Reload_Panels;
 
+        private double menuBarWidth = MainWindow.settings.WindowDimensions.Width / MainWindow.settings.WindowDimensions.ScalingFactor;
+        private double navBarHeight = MainWindow.settings.WindowDimensions.Height / MainWindow.settings.WindowDimensions.ScalingFactor;
+
         public CalibrationWindow()
         {
             this.InitializeComponent();
+            menuBar.Width = menuBarWidth;
+            navBar.Height = navBarHeight;
+
+            Canvas.SetZIndex(infoBar, 1); // On top
+            Canvas.SetZIndex(menuBar, 0); // Below rectangle1
+
+            infoBar.Width = menuBarWidth - 20;
+
             canvas.PointerPressed += Canvas_PointerPressed;
             canvas.PointerMoved += Canvas_PointerMoved;
             canvas.PointerReleased += Canvas_PointerReleased;
@@ -70,6 +81,7 @@ namespace WindowManager
         {
             //canvas.Children.Clear();
 
+            // remove any existing retangle 
             for (int i = 0; i < canvas.Children.Count; i++)
             {
                 Rectangle child = canvas.Children[i] as Rectangle;
@@ -82,37 +94,21 @@ namespace WindowManager
                 }
             }
 
-            // Add menubar and navbar back in
-            //Rectangle menuBar = new Rectangle();
-            //menuBar.Height = 75;
-            //menuBar.Width = MainWindow.settings.WindowDimensions.Width / MainWindow.settings.WindowDimensions.ScalingFactor;
-            //menuBar.Fill = new SolidColorBrush(Colors.Gray);
-            //Canvas.SetLeft(menuBar, 0);
-            //Canvas.SetTop(menuBar, 0);
-            //canvas.Children.Add(menuBar);
-
-            //Rectangle navBar = new Rectangle();
-            //menuBar.Height = MainWindow.settings.WindowDimensions.Height / MainWindow.settings.WindowDimensions.ScalingFactor;
-            //menuBar.Width = 50;
-            //menuBar.Fill = new SolidColorBrush(Colors.Gray);
-            //Canvas.SetLeft(navBar, 0);
-            //Canvas.SetTop(navBar, 0);
-            //canvas.Children.Add(navBar);
-
-            //if (currentRectangle != null)
-            //{
-            //    currentRectangle.Destroy();
-            //}
-
             startPoint = e.GetCurrentPoint(canvas).Position;
-            currentRectangle = new Rectangle
+
+            // if pointer is not in menubar
+            if (startPoint.X > 50 && startPoint.Y > 75)
             {
-                Fill = new SolidColorBrush(Microsoft.UI.Colors.Black),
-                Opacity = 1,
-            };
-            Canvas.SetLeft(currentRectangle, startPoint.X);
-            Canvas.SetTop(currentRectangle, startPoint.Y);
-            canvas.Children.Add(currentRectangle);
+                currentRectangle = new Rectangle
+                {
+                    Fill = new SolidColorBrush(Microsoft.UI.Colors.Black),
+                    Opacity = 1,
+                };
+                Canvas.SetLeft(currentRectangle, startPoint.X);
+                Canvas.SetTop(currentRectangle, startPoint.Y);
+                canvas.Children.Add(currentRectangle);
+            }
+            
         }
 
         private void Canvas_PointerMoved(object sender, PointerRoutedEventArgs e)
@@ -192,6 +188,8 @@ namespace WindowManager
 
                             // Will need to reload main window at the end of this
                             CalculateGridDimensions();
+
+                            infoBar.Message = "Calibration settings successfully saved. Press ESC to exit.";
 
                         }
                         else
