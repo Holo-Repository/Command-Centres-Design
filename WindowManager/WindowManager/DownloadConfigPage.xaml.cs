@@ -111,13 +111,13 @@ namespace WindowManager
                 {
                     if (panel == new dynamic[] { null, null, null } ) continue; //check if this is okay and what the proper method would be
 
-                    int a = (panel.PanelNum - 1) % 3;
+                    int a = (panel[2] - 1) % 3; //PanelNum
 
-                    int c = panel.ColumnSpan;
+                    int c = panel[0]; //ColumnSpan
                     double csize = 0;
                     for (int i = 0; i < c; i++) csize += original_settings.Grid.ColumnWidths[a + i];
 
-                    int r = panel.RowSpan;
+                    int r = panel[1]; //RowSpan
                     double rsize = 0;
                     for (int i = 0; i < r; i++) rsize += original_settings.Grid.ColumnWidths[a + i * 3];
 

@@ -21,6 +21,7 @@ using WinRT.Interop;
 using System.Xml.Linq;
 using System.Text.Json.Nodes;
 using System.Text.Json;
+using System.Net;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -34,33 +35,27 @@ namespace WindowManager
     {
         private Point startPoint;
         private Rectangle currentRectangle;
-        //private bool fillingChildren = false;
+
         private Dictionary<string, Rect> rectanglesDictionary = new Dictionary<string, Rect>();
         public static event TypedEventHandler<object, RoutedEventArgs> Reload_Panels;
+
+        private double menuBarWidth = MainWindow.settings.WindowDimensions.Width / MainWindow.settings.WindowDimensions.ScalingFactor;
+        private double navBarHeight = MainWindow.settings.WindowDimensions.Height / MainWindow.settings.WindowDimensions.ScalingFactor;
 
         public CalibrationWindow()
         {
             this.InitializeComponent();
+            menuBar.Width = menuBarWidth;
+            navBar.Height = navBarHeight;
+
+            Canvas.SetZIndex(infoBar, 1); // On top
+            Canvas.SetZIndex(menuBar, 0); // Below rectangle1
+
+            infoBar.Width = menuBarWidth - 20;
+
             canvas.PointerPressed += Canvas_PointerPressed;
             canvas.PointerMoved += Canvas_PointerMoved;
             canvas.PointerReleased += Canvas_PointerReleased;
-            //canvas.KeyDown += Canvas_KeyDown;
-            //canvas.Focus(FocusState.Keyboard);
-            //TextBlock headingTextBlock = new TextBlock
-            //{
-            // Text = "Draw a rectangle around the TV in the center of the screen",
-            //FontSize = 25,
-            //Foreground = new SolidColorBrush(Windows.UI.Colors.Black),
-            // TextWrapping = TextWrapping.Wrap,
-            //TextAlignment = TextAlignment.Center
-            //};
-            // canvas.Children.Add(headingTextBlock);
-
-            // Position the TextBlock at the center of the canvas
-            //double centerX = canvas.ActualWidth / 2 - headingTextBlock.ActualWidth / 2;
-            //double centerY = canvas.ActualHeight / 2 - headingTextBlock.ActualHeight / 2;
-            // Canvas.SetLeft(headingTextBlock, centerX);
-            // Canvas.SetTop(headingTextBlock, centerY);
 
             AppWindow m_appWindow = GetAppWindowForCurrentWindow();
             m_appWindow.SetPresenter(AppWindowPresenterKind.FullScreen);
@@ -84,18 +79,36 @@ namespace WindowManager
 
         private void Canvas_PointerPressed(object sender, PointerRoutedEventArgs e)
         {
+            //canvas.Children.Clear();
 
-            canvas.Children.Clear();
-            startPoint = e.GetCurrentPoint(canvas).Position;
-            currentRectangle = new Rectangle
+            // remove any existing retangle 
+            for (int i = 0; i < canvas.Children.Count; i++)
             {
-                Fill = new SolidColorBrush(Microsoft.UI.Colors.Black),
-                //StrokeThickness = 5,
-                Opacity = 1,
-            };
-            Canvas.SetLeft(currentRectangle, startPoint.X);
-            Canvas.SetTop(currentRectangle, startPoint.Y);
-            canvas.Children.Add(currentRectangle);
+                Rectangle child = canvas.Children[i] as Rectangle;
+                if (child != null && child.Fill is SolidColorBrush solidColorBrush)
+                {
+                    if (solidColorBrush.Color == Colors.Black)
+                    {
+                        canvas.Children.RemoveAt(i);
+                    }
+                }
+            }
+
+            startPoint = e.GetCurrentPoint(canvas).Position;
+
+            // if pointer is not in menubar
+            if (startPoint.X > 50 && startPoint.Y > 75)
+            {
+                currentRectangle = new Rectangle
+                {
+                    Fill = new SolidColorBrush(Microsoft.UI.Colors.Black),
+                    Opacity = 1,
+                };
+                Canvas.SetLeft(currentRectangle, startPoint.X);
+                Canvas.SetTop(currentRectangle, startPoint.Y);
+                canvas.Children.Add(currentRectangle);
+            }
+            
         }
 
         private void Canvas_PointerMoved(object sender, PointerRoutedEventArgs e)
@@ -119,8 +132,7 @@ namespace WindowManager
 
         private void Canvas_PointerReleased(object sender, PointerRoutedEventArgs e)
         {
-            // currentRectangle = null;
-            //System.Diagnostics.Debug.WriteLine("good");
+           
             if (currentRectangle != null)
             {
                 rectanglesDictionary.Clear();
@@ -162,24 +174,10 @@ namespace WindowManager
                         {
                             System.Diagnostics.Debug.WriteLine($"Value: {kvp.Value}");
 
-                            // Get settings from MainWindow.settings instead
-                            //SettingsData settings = SettingsManager.DeserialiseSettingsJSON();
-
                             double tv_width = kvp.Value.Width;
                             double tv_height = kvp.Value.Height;
                             double tv_x = kvp.Value.X;
                             double tv_y = kvp.Value.Y;
-
-                            //Rectangle mask = new Rectangle();
-
-                            //mask.Width = tv_width;
-                            //mask.Height = tv_height;
-                            //mask.Fill = new SolidColorBrush(Colors.Green);
-
-                            //canvas.Children.Add(mask);
-
-                            //Canvas.SetLeft(mask, tv_x);
-                            //Canvas.SetTop(mask, tv_y);
 
                             MainWindow.settings.Tv.Height = tv_height;
                             MainWindow.settings.Tv.Width = tv_width;
@@ -191,28 +189,19 @@ namespace WindowManager
                             // Will need to reload main window at the end of this
                             CalculateGridDimensions();
 
-                            // empty arguments to satisfy event type
-                            RoutedEventArgs emptyEventArgs = new RoutedEventArgs();
-
-                            //bubble the event up to the parent
-                            if (Reload_Panels != null)
-                                Reload_Panels(this, emptyEventArgs);
-
+                            infoBar.Message = "Calibration settings successfully saved. Press ESC to exit.";
 
                         }
                         else
                         {
                             System.Diagnostics.Debug.WriteLine("Not a valid rectangle");
                         }
-
                     }
-
                 }
                 else
                 {
                     System.Diagnostics.Debug.WriteLine("There is no rectangle");
                 }
-
             }
 
             if (e.Key == Windows.System.VirtualKey.Escape)
@@ -230,11 +219,6 @@ namespace WindowManager
 
             // overwrite variables scaled to dpi
             double scaleFactor = windowDimensions.ScalingFactor;
-
-            //tv.Height = tv.Height / scaleFactor;
-            //tv.Width = tv.Width / scaleFactor;
-            //tv.Y_Position = tv.Y_Position / scaleFactor;
-            //tv.X_Position = tv.X_Position / scaleFactor;
 
             // UI dimensions in px (as set in XAML, so should be consistent across different window sizes)
             double MenuBarHeight = 35 + 40;
@@ -262,8 +246,6 @@ namespace WindowManager
             double marginPercentage = 0.10;
             double minYMargin = GridHeight * marginPercentage;
             double minXMargin = GridWidth * marginPercentage;
-
-            // is there any benefit to not overwriting the unscaled tv data?
 
             // calculate tv panel number - if tv position violates margin, assign as side or corner panel filling margin
             if (topMargin < minYMargin)

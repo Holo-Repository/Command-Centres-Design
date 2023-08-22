@@ -14,10 +14,21 @@
                                                    
                                                         >
 
-            <Rectangle Canvas.Left="0" Canvas.Top="0" Width="1920" Height="75" Fill="Black"/>
-            <Rectangle Canvas.Left="0" Canvas.Top="0" Width="50" Height="1080" Fill="Black"/>
+            <InfoBar x:ConnectionId='4'
+                Height="55"
+                Width="500"
+                Margin="10"
+                x:Name="infoBar"
+                Canvas.Left="0"
+                Canvas.Top="0"
+                IsOpen="True"
+                IsIconVisible="True"
+                IsClosable="False"
+                Title="Calibration Info"
+                Message="Click and drag a mask so that it covers the centre screen entirely. Press SPACE to save calibration settings or ESC to exit." />
 
-            <Rectangle Canvas.Left="500" Canvas.Top="300" Fill="LightYellow" Width="300" Height="200"/>
+            <Rectangle x:ConnectionId='5' x:Name="menuBar" Canvas.Left="0" Canvas.Top="0" Width="1920" Height="75" Fill="Gray"/>
+            <Rectangle x:ConnectionId='6' x:Name="navBar" Canvas.Left="0" Canvas.Top="0" Width="50" Height="1080" Fill="Gray"/>
 
         </Canvas>
         

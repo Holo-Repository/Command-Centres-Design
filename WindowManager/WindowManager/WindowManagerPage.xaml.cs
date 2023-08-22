@@ -37,7 +37,6 @@ namespace WindowManager
         }
     }
 
-
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
@@ -185,7 +184,6 @@ namespace WindowManager
             }
 
             MainMenuBar.Add_Window += new TypedEventHandler<object, Uri>(Add_WebPanel);
-            CalibrationWindow.Reload_Panels += new TypedEventHandler<object, RoutedEventArgs>(ReloadPanels);
         }
 
         // event handlers

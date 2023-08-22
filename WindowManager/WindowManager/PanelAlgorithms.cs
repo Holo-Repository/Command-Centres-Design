@@ -192,13 +192,14 @@ namespace WindowManager
 
             foreach (int[] array in remainingRectangles)
             {
-                //add array to combination, remove overlaps from remaining
-                List<int[]> newCurrentCombination = new List<int[]>(currentCombination) { array };
 
                 //optimisation - past rectangles checked, no need to repeat; just check array
                 List<int[]> newRemainingRectangles = remainingRectangles.Where(rect => !rect.Intersect(array).Any() && rect != array).ToList();
 
                 if (newRemainingRectangles.Count == 0 && num != 1) continue; //skip if no rectangles left and not last step
+
+                //add array to combination
+                List<int[]> newCurrentCombination = new List<int[]>(currentCombination) { array };
 
                 GenerateCombinations(newRemainingRectangles, newCurrentCombination, num - 1, store);
             }
