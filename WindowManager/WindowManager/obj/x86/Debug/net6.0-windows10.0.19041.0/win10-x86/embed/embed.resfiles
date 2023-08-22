@@ -1,12 +1,9 @@
 App.xbf
 CalibrationInfoPage.xbf
-CalibrationPage.xbf
 CalibrationWindow.xbf
 DownloadConfigPage.xbf
 HelpPage.xbf
 MainWindow.xbf
-TestGridWindow.xbf
-TestPage.xbf
 UserControls\MenuBar.xbf
 UserControls\TvPanel.xbf
 UserControls\WebPanel.xbf

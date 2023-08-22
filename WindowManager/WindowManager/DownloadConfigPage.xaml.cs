@@ -107,11 +107,11 @@ namespace WindowManager
                     new dynamic[] { new_settings.Panels.Panel9?.ColumnSpan, new_settings.Panels.Panel9?.RowSpan, new_settings.Panels.Panel9?.PanelNum }
                 };
 
-                foreach (dynamic panel in new_panels)
+                foreach (dynamic[] panel in new_panels)
                 {
-                    if (panel == new dynamic[] { null, null, null } ) continue; //check if this is okay and what the proper method would be
+                    if (Array.TrueForAll(panel, item => item == null)) continue; //to fix fucky json -> c# nonsense
 
-                    int a = (panel[2] - 1) % 3; //PanelNum
+                    int a = (panel[2] - 1) % 3; //PanelNum to 0 index column position
 
                     int c = panel[0]; //ColumnSpan
                     double csize = 0;
@@ -119,7 +119,7 @@ namespace WindowManager
 
                     int r = panel[1]; //RowSpan
                     double rsize = 0;
-                    for (int i = 0; i < r; i++) rsize += original_settings.Grid.ColumnWidths[a + i * 3];
+                    for (int i = 0; i < r; i++) rsize += original_settings.Grid.RowHeights[a + i];
 
                     //check incoming format against minimum panel dimensions
                     if (rsize < minDim.MinimumPanelHeight || csize < minDim.MinimumPanelWidth)
@@ -142,7 +142,7 @@ namespace WindowManager
             }
             catch (Exception ex)
             {
-                PickAFileOutputTextBlock.Text = "Error moving file: " + ex.Message;
+                PickAFileOutputTextBlock.Text += "Error moving file: " + ex.Message;
             }
         }
 
