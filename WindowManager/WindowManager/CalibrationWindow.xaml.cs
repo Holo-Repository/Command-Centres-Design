@@ -37,7 +37,6 @@ namespace WindowManager
         private Rectangle currentRectangle;
 
         private Dictionary<string, Rect> rectanglesDictionary = new Dictionary<string, Rect>();
-        public static event TypedEventHandler<object, RoutedEventArgs> Reload_Panels;
 
         private double menuBarWidth = MainWindow.settings.WindowDimensions.Width / MainWindow.settings.WindowDimensions.ScalingFactor;
         private double navBarHeight = MainWindow.settings.WindowDimensions.Height / MainWindow.settings.WindowDimensions.ScalingFactor;
@@ -217,6 +216,9 @@ namespace WindowManager
             Tv tv = MainWindow.settings.Tv;
             WindowDimensions windowDimensions = MainWindow.settings.WindowDimensions;
 
+            // extract the previous tv panel
+            int previousTvPanel = tv.PanelNum;
+
             // overwrite variables scaled to dpi
             double scaleFactor = windowDimensions.ScalingFactor;
 
@@ -392,6 +394,28 @@ namespace WindowManager
             {
                 throw new ArgumentException("Invalid panel number", tv.PanelNum.ToString());
             }
+
+            //// swap the contents of the new tv panel if changed
+            //if (tv.PanelNum != previousTvPanel)
+            //{
+            //    Panel[] panelsArray = MainWindow.settings.Panels.GetPanelsArray();
+
+            //    // the panels previously and currently occupied by the tv
+            //    //Panel previousPanelData = panelsArray[previousTvPanel - 1];
+            //    Panel newPanelData = panelsArray[tv.PanelNum - 1];
+
+            //    // if the panel that the tv has moved into isn't empty
+            //    if (newPanelData != null)
+            //    {
+            //        // previous panel = new panel content
+            //        panelsArray[previousTvPanel - 1] = panelsArray[tv.PanelNum - 1];
+            //        // new panel content = null (tv)
+            //        panelsArray[tv.PanelNum - 1] = null;
+            //    }
+
+            //    // Assign panels back to settings object (since returned by value and not ref)
+            //    MainWindow.settings.Panels.SetPanelsByArray(panelsArray);
+            //}
 
             MainWindow.settings.Grid.RowHeights = rowHeights;
             MainWindow.settings.Grid.ColumnWidths = columnWidths;

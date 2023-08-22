@@ -134,11 +134,15 @@ namespace WindowManager
                 webPanel.Visibility = Visibility.Collapsed;
             }
 
+            Panel[] PanelsFromJSON = settings.Panels.GetPanelsArray();
+
             // Set Uri and make visible any panels that are included in the JSON
-            foreach (Panel panelData in settings.Panels.GetPanelsArray())
+            for (int i = 0; i < 9; i++)
             {
-                if (panelData != null)
+                if (PanelsFromJSON[i] != null)
                 {
+                    Panel panelData = PanelsFromJSON[i];
+
                     int index = panelData.PanelNum - 1;
                     WebPanel panel = PanelsArray[index];
 
@@ -262,7 +266,7 @@ namespace WindowManager
 
             // uri to be removed
             Uri deltaUri = new Uri (webPanel.Source);
-            bool isAdd = false;
+            bool isAdd = false;                                                                                             
 
             Panel[] panelArray = MainWindow.settings.Panels.GetPanelsArray();
 

@@ -22,6 +22,7 @@ namespace WindowManager.UserControls
     {
         //public event TypedEventHandler<object, RoutedEventArgs> MenuFlyoutItem_Click;
         public event TypedEventHandler<object, Uri> Add_Window;
+        public event TypedEventHandler<object, Uri> Change_Teams_URL;
 
         public MenuBar()
         {
@@ -43,7 +44,7 @@ namespace WindowManager.UserControls
             dialog.DefaultButton = ContentDialogButton.Primary;
 
             TextBox textBox = new TextBox();
-            textBox.PlaceholderText = "URL";
+            textBox.PlaceholderText = "https://";
             dialog.Content = textBox;
 
             dialog.PrimaryButtonClick += GoButtonClick;
@@ -83,10 +84,10 @@ namespace WindowManager.UserControls
                     deltaUri = new Uri("https://www.england.nhs.uk/");
                     break;
                 case "Create A Meeting":
-                    deltaUri = new Uri("http://localhost:3000/createcall");
+                    deltaUri = new Uri(MainWindow.settings.TeamsURIs.Create);
                     break;
                 case "Join A Meeting":
-                    deltaUri = new Uri("http://localhost:3000/");
+                    deltaUri = new Uri(MainWindow.settings.TeamsURIs.Join);
                     break;
                 default:
                     throw new ArgumentException("MenuFlyoutItem.Text matches no Uri", nameof(menuFlyoutItem.Text));
@@ -96,6 +97,75 @@ namespace WindowManager.UserControls
             //bubble the event up to the parent
             if (this.Add_Window != null)
                 this.Add_Window(this, deltaUri);
+        }
+
+        private async void ChangeURLItem_Click(object sender, RoutedEventArgs e)
+        {
+            MenuFlyoutItem menuFlyoutItem = sender as MenuFlyoutItem;
+            //Uri deltaUri;
+
+            ContentDialog dialog = new ContentDialog();
+
+            // XamlRoot must be set in the case of a ContentDialog running in a Desktop app
+            dialog.XamlRoot = this.XamlRoot;
+            dialog.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
+            string dialogTitle;
+
+            if (menuFlyoutItem.Text == "Create A Meeting URL")
+            {
+                dialogTitle = "Enter Create A Meeting Page URL:";
+                dialog.PrimaryButtonClick += ChangeCreateURLClick;
+
+            } else if (menuFlyoutItem.Text == "Join A Meeting URL")
+            {
+                dialogTitle = "Enter Join A Meeting URL: ";
+                dialog.PrimaryButtonClick += ChangeJoinURLClick;
+
+            } else
+            {
+                throw new ArgumentException("MenuFlyoutItem.Text invalid", nameof(menuFlyoutItem.Text));
+            }
+
+            dialog.Title = dialogTitle;
+            dialog.PrimaryButtonText = "Go";
+
+            dialog.CloseButtonText = "Cancel";
+            dialog.DefaultButton = ContentDialogButton.Primary;
+
+            TextBox textBox = new TextBox();
+            textBox.PlaceholderText = "https://";
+            dialog.Content = textBox;
+
+            dialog.PrimaryButtonClick += ChangeJoinURLClick;
+
+            var result = await dialog.ShowAsync();
+
+        }
+
+        private void ChangeJoinURLClick(ContentDialog dialog, ContentDialogButtonClickEventArgs args)
+        {
+            // currently url must be entered with the format http://www....
+            TextBox textBox = dialog.Content as TextBox;
+            string joinUriString = textBox.Text;
+
+            MainWindow.settings.TeamsURIs.Join = joinUriString;
+            SettingsManager.SerialiseSettingsJSON(MainWindow.settings);
+
+            //bubble the event up to the parent
+            //if (this.Reload_Page != null)
+            //    this.Reload_Page(this, deltaUri);
+
+        }
+
+        private void ChangeCreateURLClick(ContentDialog dialog, ContentDialogButtonClickEventArgs args)
+        {
+            // currently url must be entered with the format http://www....
+            TextBox textBox = dialog.Content as TextBox;
+            string CreateUriString = textBox.Text;
+
+            MainWindow.settings.TeamsURIs.Create = CreateUriString;
+            SettingsManager.SerialiseSettingsJSON(MainWindow.settings);
+
         }
 
     }
