@@ -188,6 +188,7 @@ namespace WindowManager
             }
 
             MainMenuBar.Add_Window += new TypedEventHandler<object, Uri>(Add_WebPanel);
+            MainMenuBar.Toggle_Border_Visibility += new TypedEventHandler<object, bool>(Toggle_BorderVisibility);
         }
 
         // event handlers
@@ -338,5 +339,32 @@ namespace WindowManager
 
         }
 
+        public void Toggle_BorderVisibility(object sender, bool state)
+        {
+            WebPanel[] PanelsArray = { Panel1, Panel2, Panel3, Panel4, Panel5, Panel6, Panel7, Panel8, Panel9 };
+
+            //Brush updatedBorder;
+            Thickness updatedBorder;
+
+            if (state)
+            {
+                //updatedBorder = new SolidColorBrush(Microsoft.UI.Colors.Black);
+                updatedBorder = new Thickness(0.5);
+
+            } else
+            {
+                //updatedBorder = new SolidColorBrush(Microsoft.UI.Colors.Transparent);
+                updatedBorder = new Thickness(0);
+            
+            }
+
+            foreach (WebPanel panel in PanelsArray)
+            {
+                Frame frame = panel.Content as Frame;
+                Microsoft.UI.Xaml.Controls.Grid grid = frame.Content as Microsoft.UI.Xaml.Controls.Grid;
+                grid.BorderThickness = updatedBorder;
+
+            }
+        }
     }
 }

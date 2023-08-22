@@ -22,7 +22,7 @@ namespace WindowManager.UserControls
     {
         //public event TypedEventHandler<object, RoutedEventArgs> MenuFlyoutItem_Click;
         public event TypedEventHandler<object, Uri> Add_Window;
-        public event TypedEventHandler<object, Uri> Change_Teams_URL;
+        public event TypedEventHandler<object, bool> Toggle_Border_Visibility;
 
         public MenuBar()
         {
@@ -168,5 +168,15 @@ namespace WindowManager.UserControls
 
         }
 
+        // toggle borders on and off
+        private void ToggleSwitch_Toggled(object sender, RoutedEventArgs e)
+        {
+            ToggleSwitch toggle = sender as ToggleSwitch;
+            bool state = toggle.IsOn;
+
+            //bubble the event up to the parent
+            if (this.Toggle_Border_Visibility != null)
+                this.Toggle_Border_Visibility(this, state);
+        }
     }
 }

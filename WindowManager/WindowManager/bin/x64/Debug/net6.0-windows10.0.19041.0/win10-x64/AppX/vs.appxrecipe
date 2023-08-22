@@ -29,13 +29,13 @@
     <AppXManifest Include="C:\code\Command-Centres-Design\WindowManager\WindowManager\bin\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2023-08-22T13:23:33.138</Modified>
+      <Modified>2023-08-22T14:22:13.063</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\code\Command-Centres-Design\WindowManager\WindowManager\bin\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2023-08-22T13:23:32.887</Modified>
+      <Modified>2023-08-22T14:22:12.752</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\code\Command-Centres-Design\WindowManager\WindowManager\bin\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\WindowManager.runtimeconfig.json">
       <PackagePath>WindowManager.runtimeconfig.json</PackagePath>
@@ -43,11 +43,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\code\Command-Centres-Design\WindowManager\WindowManager\bin\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\WindowManager.dll">
       <PackagePath>WindowManager.dll</PackagePath>
-      <Modified>2023-08-22T13:23:32.775</Modified>
+      <Modified>2023-08-22T14:22:12.604</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\code\Command-Centres-Design\WindowManager\WindowManager\obj\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\apphost.exe">
       <PackagePath>WindowManager.exe</PackagePath>
-      <Modified>2023-08-22T13:23:32.785</Modified>
+      <Modified>2023-08-22T14:22:12.611</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\code\Command-Centres-Design\WindowManager\WindowManager\bin\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\WindowManager.deps.json">
       <PackagePath>WindowManager.deps.json</PackagePath>

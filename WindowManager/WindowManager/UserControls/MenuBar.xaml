@@ -8,7 +8,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <StackPanel Orientation="Horizontal">
+    <StackPanel Orientation="Horizontal" Spacing="15">
         <MenuBar Height="40">
             <MenuBarItem Title="+ Add Web Panel" >
 
@@ -80,6 +80,9 @@
             </MenuBarItem>
 
         </MenuBar>
+
+        <ToggleSwitch OffContent="Borders Off" OnContent="Borders On" IsOn="True"
+                      Toggled="ToggleSwitch_Toggled"/>
 
     </StackPanel>
 
