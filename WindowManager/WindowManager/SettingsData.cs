@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading.Tasks.Dataflow;
 using Windows.UI.Input.Inking;
 
 namespace WindowManager
@@ -13,6 +14,7 @@ namespace WindowManager
         public WindowDimensions WindowDimensions { get; set; }
         public Grid Grid { get; set; }
         public Panels Panels { get; set; }
+        public TeamsURIs TeamsURIs { get; set; }
     }
     public class Tv
     {
@@ -54,6 +56,20 @@ namespace WindowManager
         {
             return new[] { Panel1, Panel2, Panel3, Panel4, Panel5, Panel6, Panel7, Panel8, Panel9 };
 
+        }
+
+        public void SetPanelsByArray(Panel[] panels)
+        {
+            Panel1 = panels[0];
+            Panel2 = panels[1];
+            Panel3 = panels[2];
+            Panel4 = panels[3];
+            Panel5 = panels[4];
+            Panel6 = panels[5];
+            Panel7 = panels[6];
+            Panel8 = panels[7];
+            Panel9 = panels[8];
+   
         }
         
         public void ClosePanelByName(string panelName)
@@ -165,4 +181,10 @@ namespace WindowManager
         public int ColumnSpan { get; set; }
     }
 
+    public class TeamsURIs
+    {
+        public string Join { get; set; }
+        public string Create { get; set; }
+
+    }
 }

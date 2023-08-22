@@ -8,7 +8,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <StackPanel Orientation="Horizontal">
+    <StackPanel Orientation="Horizontal" Spacing="15">
         <MenuBar Height="40">
             <MenuBarItem Title="+ Add Web Panel" >
 
@@ -60,7 +60,29 @@
                 </MenuFlyoutItem>
             </MenuBarItem>
 
+            <MenuBarItem Title="Change Teams URLs">
+                <MenuFlyoutItem Text="Create A Meeting URL" Click="ChangeURLItem_Click">
+                    <MenuFlyoutItem.Icon>
+                        <SymbolIcon Symbol="Setting"/>
+                    </MenuFlyoutItem.Icon>
+                    <MenuFlyoutItem.KeyboardAccelerators>
+                        <KeyboardAccelerator Modifiers="Control" Key="Z"/>
+                    </MenuFlyoutItem.KeyboardAccelerators>
+                </MenuFlyoutItem>
+                <MenuFlyoutItem Text="Join A Meeting URL" Click="ChangeURLItem_Click">
+                    <MenuFlyoutItem.Icon>
+                        <SymbolIcon Symbol="Setting"/>
+                    </MenuFlyoutItem.Icon>
+                    <MenuFlyoutItem.KeyboardAccelerators>
+                        <KeyboardAccelerator Modifiers="Control" Key="X"/>
+                    </MenuFlyoutItem.KeyboardAccelerators>
+                </MenuFlyoutItem>
+            </MenuBarItem>
+
         </MenuBar>
+
+        <ToggleSwitch OffContent="Borders Off" OnContent="Borders On" IsOn="True"
+                      Toggled="ToggleSwitch_Toggled"/>
 
     </StackPanel>
 

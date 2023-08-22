@@ -134,11 +134,15 @@ namespace WindowManager
                 webPanel.Visibility = Visibility.Collapsed;
             }
 
+            Panel[] PanelsFromJSON = settings.Panels.GetPanelsArray();
+
             // Set Uri and make visible any panels that are included in the JSON
-            foreach (Panel panelData in settings.Panels.GetPanelsArray())
+            for (int i = 0; i < 9; i++)
             {
-                if (panelData != null)
+                if (PanelsFromJSON[i] != null)
                 {
+                    Panel panelData = PanelsFromJSON[i];
+
                     int index = panelData.PanelNum - 1;
                     WebPanel panel = PanelsArray[index];
 
@@ -184,6 +188,7 @@ namespace WindowManager
             }
 
             MainMenuBar.Add_Window += new TypedEventHandler<object, Uri>(Add_WebPanel);
+            MainMenuBar.Toggle_Border_Visibility += new TypedEventHandler<object, bool>(Toggle_BorderVisibility);
         }
 
         // event handlers
@@ -262,7 +267,7 @@ namespace WindowManager
 
             // uri to be removed
             Uri deltaUri = new Uri (webPanel.Source);
-            bool isAdd = false;
+            bool isAdd = false;                                                                                             
 
             Panel[] panelArray = MainWindow.settings.Panels.GetPanelsArray();
 
@@ -334,5 +339,32 @@ namespace WindowManager
 
         }
 
+        public void Toggle_BorderVisibility(object sender, bool state)
+        {
+            WebPanel[] PanelsArray = { Panel1, Panel2, Panel3, Panel4, Panel5, Panel6, Panel7, Panel8, Panel9 };
+
+            //Brush updatedBorder;
+            Thickness updatedBorder;
+
+            if (state)
+            {
+                //updatedBorder = new SolidColorBrush(Microsoft.UI.Colors.Black);
+                updatedBorder = new Thickness(0.5);
+
+            } else
+            {
+                //updatedBorder = new SolidColorBrush(Microsoft.UI.Colors.Transparent);
+                updatedBorder = new Thickness(0);
+            
+            }
+
+            foreach (WebPanel panel in PanelsArray)
+            {
+                Frame frame = panel.Content as Frame;
+                Microsoft.UI.Xaml.Controls.Grid grid = frame.Content as Microsoft.UI.Xaml.Controls.Grid;
+                grid.BorderThickness = updatedBorder;
+
+            }
+        }
     }
 }
