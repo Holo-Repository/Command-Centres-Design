@@ -16,7 +16,7 @@
                            VerticalAlignment="Top" Margin="15" FontSize="35"/>
         <Grid>
             <StackPanel Orientation="Horizontal">
-                <Rectangle Height ="700" Width="100" Fill="LightSeaGreen"/>
+                <Rectangle Height ="600" Width="100" Fill="LightSeaGreen"/>
                 <StackPanel Orientation="Vertical" Margin="20">
                     <TextBlock Text="Uploading a Custom Window Configuration"
                                    Style="{StaticResource SubtitleTextBlockStyle}" TextWrapping="Wrap"

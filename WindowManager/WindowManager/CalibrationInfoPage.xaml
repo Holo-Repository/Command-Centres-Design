@@ -17,23 +17,51 @@
                            VerticalAlignment="Top" Margin="15" FontSize="35"/>
             <Grid>
             <StackPanel Orientation="Horizontal">
-                <Rectangle Height ="300" Width="100" Fill="LightPink"/>
+                <Rectangle Height ="400" Width="100" Fill="LightPink"/>
                 <StackPanel Orientation="Vertical" Margin="20">
-                    <TextBlock Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit" 
+                    <TextBlock Text="Calibrating the Application"
                                    Style="{StaticResource SubtitleTextBlockStyle}" TextWrapping="Wrap"
-                                   FontSize="30"/>
-
-                    <TextBlock Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum" 
+                                   FontSize="25"/>
+                    <TextBlock Text="To calibrate the application to your own TV setup, please follow the steps below: "
                                    Style="{StaticResource BodyTextBlockStyle}"
                                    MaxWidth="800"
                                    HorizontalAlignment="Left"
-                                   Margin="0,10,0,0"/>
-
-                    <TextBlock Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum" 
+                                   Margin="0,15,0,0"/>
+                    <TextBlock Text="1. First, place the projector in the desired position. Make sure that it is secure, and at least 2 metres away from the TV. "
                                    Style="{StaticResource BodyTextBlockStyle}"
                                    MaxWidth="800"
                                    HorizontalAlignment="Left"
-                                   Margin="0,10,0,0"/>
+                                   Margin="30,10,0,0"/>
+                    <TextBlock Text="2. Click on the 'Begin Calibration' button. This will take you to the calibration page." 
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   MaxWidth="800"
+                                   HorizontalAlignment="Left"
+                                   Margin="30,5,0,0"/>
+                    <TextBlock Text="3. Once on the calibration page, you can use your mouse to draw a rectangle around where the TV is. Please note that the rectangle can only be drawn on the white area."
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   MaxWidth="800"
+                                   HorizontalAlignment="Left"
+                                   Margin="30,5,0,0"/>
+                    <TextBlock Text="4.  If you have drawn the rectangle incorrectly, you can draw another rectangle in the same way, and the old rectangle will be cleared." 
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   MaxWidth="800"
+                                   HorizontalAlignment="Left"
+                                   Margin="30,5,0,0"/>
+                    <TextBlock Text="5.  Once the position of the rectangle is in the same position as your TV, you can press the spacebar to confirm." 
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   MaxWidth="800"
+                                   HorizontalAlignment="Left"
+                                   Margin="30,5,0,0"/>
+                    <TextBlock Text="6. This will save the TV coordinates to the settings, and your application is correctly calibrated. " 
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   MaxWidth="800"
+                                   HorizontalAlignment="Left"
+                                   Margin="30,5,0,0"/>
+                    <TextBlock Text="7. The 'esc' key can be pressed at any time to exit the calibration window" 
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   MaxWidth="800"
+                                   HorizontalAlignment="Left"
+                                   Margin="30,5,0,0"/>
 
                     <Button Click="Calibration_Click" Margin="0,20,0,0">
                         <StackPanel Orientation="Horizontal" Spacing="5">
