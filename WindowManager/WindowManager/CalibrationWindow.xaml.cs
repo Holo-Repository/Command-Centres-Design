@@ -172,7 +172,7 @@ namespace WindowManager
                         // Get width and height of the rectangle
                         double width = rectangleRect.Width;
                         double height = rectangleRect.Height;
-                        if (width != 0 & height != 0 & width >= WindowWidth/4 & height >= WindowHeight / 4)
+                        if (width != 0 & height != 0 & width >= WindowWidth/8 & height >= WindowHeight / 8)
                         {
                             System.Diagnostics.Debug.WriteLine($"Value: {kvp.Value}");
 

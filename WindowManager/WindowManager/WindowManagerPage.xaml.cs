@@ -32,8 +32,8 @@ namespace WindowManager
 
         public static void Initialize(double height, double width)
         {
-            MinimumPanelHeight = height * 0.1; // 10% of screenheight
-            MinimumPanelWidth = width * 0.1; // 10% of screenwidth
+            MinimumPanelHeight = height * 0.125; // 10% of screenheight
+            MinimumPanelWidth = width * 0.125; // 10% of screenwidth
         }
     }
 
