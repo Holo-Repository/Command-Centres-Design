@@ -172,6 +172,9 @@ namespace WindowManager
                         // Get width and height of the rectangle
                         double width = rectangleRect.Width;
                         double height = rectangleRect.Height;
+
+                        //ADD CHECK ON PANEL SIZES - find number of URIs and see if enough panels meet minimum size
+
                         if (width != 0 & height != 0 & width >= WindowWidth/8 & height >= WindowHeight / 8)
                         {
                             System.Diagnostics.Debug.WriteLine($"Value: {kvp.Value}");
@@ -219,9 +222,6 @@ namespace WindowManager
                                 MainWindow.settings.Panels.SetPanelDataByName(PanelNameString, uri, ColumnSpan, RowSpan);
 
                             }
-
-                            WindowManagerPage windowManagerPage = new WindowManagerPage();
-                            windowManagerPage.DisplayPanelsFromJSON(MainWindow.settings);
 
                             infoBar.Message = "Calibration settings successfully saved. Press ESC to exit.";
 

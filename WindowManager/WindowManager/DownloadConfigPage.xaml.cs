@@ -140,8 +140,8 @@ namespace WindowManager
                 //await FileIO.WriteTextAsync(settings, updatedJsonContent);
 
                 //for whatever reason, this is not doing anything
-                WindowManagerPage windowManagerPage = new WindowManagerPage();
-                windowManagerPage.DisplayPanelsFromJSON(MainWindow.settings);
+                //WindowManagerPage windowManagerPage = new WindowManagerPage();
+                //windowManagerPage.DisplayPanelsFromJSON(MainWindow.settings);
 
                 //await file.CopyAndReplaceAsync(settings);
                 PickAFileOutputTextBlock.Text = "Settings updated successfully.";
