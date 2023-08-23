@@ -12,28 +12,40 @@
     <StackPanel 
         x:Name="stackpanel"
         Margin="15" >
-        <TextBlock x:Name="HelpTitle" Text="Download Window Configuration File" Style="{StaticResource TitleTextBlockStyle}" 
+        <TextBlock x:Name="HelpTitle" Text="Upload or Share Window Configuration File" Style="{StaticResource TitleTextBlockStyle}" 
                            VerticalAlignment="Top" Margin="15" FontSize="35"/>
         <Grid>
             <StackPanel Orientation="Horizontal">
-                <Rectangle Height ="300" Width="100" Fill="LightSeaGreen"/>
+                <Rectangle Height ="700" Width="100" Fill="LightSeaGreen"/>
                 <StackPanel Orientation="Vertical" Margin="20">
-                    <TextBlock Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit" 
+                    <TextBlock Text="Uploading a Custom Window Configuration"
                                    Style="{StaticResource SubtitleTextBlockStyle}" TextWrapping="Wrap"
-                                   FontSize="30"/>
-
-                    <TextBlock Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum" 
+                                   FontSize="25"/>
+                    <TextBlock Text="If you have a custom window layout which you would like to upload, please follow the steps below: "
                                    Style="{StaticResource BodyTextBlockStyle}"
                                    MaxWidth="800"
                                    HorizontalAlignment="Left"
-                                   Margin="0,10,0,0"/>
-
-                    <TextBlock Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum" 
+                                   Margin="0,15,0,0"/>
+                    <TextBlock Text="1. Click on the 'Upload Custom Settings' button."
                                    Style="{StaticResource BodyTextBlockStyle}"
                                    MaxWidth="800"
                                    HorizontalAlignment="Left"
-                                   Margin="0,10,0,0"/>
-
+                                   Margin="30,10,0,0"/>
+                    <TextBlock Text="2. A file explorer will open. Please navigate to the folder where you have your custom settings JSON file" 
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   MaxWidth="800"
+                                   HorizontalAlignment="Left"
+                                   Margin="30,5,0,0"/>
+                    <TextBlock Text="3. Select your file and confirm. If the file is not compatible, such as the TV being in a different panel than in the current layout, an error message will be displayed to the user and the settings will not be updated."
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   MaxWidth="800"
+                                   HorizontalAlignment="Left"
+                                   Margin="30,5,0,0"/>
+                    <TextBlock Text="4.  If the file passes the validation checks, a success message will appear notifying you to restart the application" 
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   MaxWidth="800"
+                                   HorizontalAlignment="Left"
+                                   Margin="30,5,0,0"/>
                     <Button x:Name="PickAFileButton"
                             Click="PickAFileButton_Click" Margin="0,20,0,0">
 
@@ -43,9 +55,41 @@
                         </StackPanel>
 
                     </Button>
+
+                   
+
+                   
                     <TextBlock x:Name="PickAFileOutputTextBlock" TextWrapping="Wrap" Padding="20,5,0,0"/>
 
-
+                    <TextBlock Text="Share your Windows Layout"
+                                   Style="{StaticResource SubtitleTextBlockStyle}" TextWrapping="Wrap"
+                                   FontSize="25"/>
+                    <TextBlock Text="If you would like to share your windows layout with another user, please follow the steps to below: "
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   MaxWidth="800"
+                                   HorizontalAlignment="Left"
+                                   Margin="0,15,0,0"/>
+                    <TextBlock Text="1. Click on the 'Share a file button'"
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   MaxWidth="800"
+                                   HorizontalAlignment="Left"
+                                   Margin="30,10,0,0"/>
+                    <TextBlock Text="2. A file explorer will open. Please navigate to the folder where you want to store the settings file"
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   MaxWidth="800"
+                                   HorizontalAlignment="Left"
+                                   Margin="30,5,0,0"/>
+                    <TextBlock Text="3. Select the folder and confirm. A success message should appear notifying the user that the settings have successfully been into the folder selected."
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   MaxWidth="800"
+                                   HorizontalAlignment="Left"
+                                   Margin="30,5,0,0"/>
+                    <TextBlock Text="4. If you navigate to the folder chosen, a settings.json file will now be present, and this file can be shared with other users. "
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   MaxWidth="800"
+                                   HorizontalAlignment="Left"
+                                   Margin="30,5,0,0"/>
+                    
                     <Button x:Name="ShareAFileButton"
                             Click="ShareAFileButton_Click" Margin="0,20,0,0">
                         <StackPanel Orientation="Horizontal" Spacing="5">
