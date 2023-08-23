@@ -41,6 +41,9 @@ namespace WindowManager
         private double menuBarWidth = MainWindow.settings.WindowDimensions.Width / MainWindow.settings.WindowDimensions.ScalingFactor;
         private double navBarHeight = MainWindow.settings.WindowDimensions.Height / MainWindow.settings.WindowDimensions.ScalingFactor;
 
+        private int WindowHeight;
+        private int WindowWidth;
+
         public CalibrationWindow()
         {
             this.InitializeComponent();
@@ -60,8 +63,8 @@ namespace WindowManager
             m_appWindow.SetPresenter(AppWindowPresenterKind.FullScreen);
 
             Windows.Graphics.SizeInt32 Size = m_appWindow.Size;
-            int WindowHeight = Size.Height;
-            int WindowWidth = Size.Width;
+            WindowHeight = Size.Height;
+            WindowWidth = Size.Width;
 
             MainWindow.settings.WindowDimensions.Height = WindowHeight;
             MainWindow.settings.WindowDimensions.Width = WindowWidth;
@@ -169,7 +172,7 @@ namespace WindowManager
                         // Get width and height of the rectangle
                         double width = rectangleRect.Width;
                         double height = rectangleRect.Height;
-                        if (width != 0 & height != 0)
+                        if (width != 0 & height != 0 & width >= WindowWidth/4 & height >= WindowHeight / 4)
                         {
                             System.Diagnostics.Debug.WriteLine($"Value: {kvp.Value}");
 
@@ -207,12 +210,14 @@ namespace WindowManager
                         else
                         {
                             System.Diagnostics.Debug.WriteLine("Not a valid rectangle");
+                            infoBar.Message = "The rectangle is too small, please draw it again. ";
                         }
                     }
                 }
                 else
                 {
                     System.Diagnostics.Debug.WriteLine("There is no rectangle");
+                    infoBar.Message = "No rectangle has been drawn.";
                 }
             }
 
