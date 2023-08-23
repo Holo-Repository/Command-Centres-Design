@@ -64,6 +64,9 @@ namespace WindowManager.UserControls
             this.NumWindows._string = this.NumWindows._int.ToString();
 
             NumWindowsTextBlock.Text = this.NumWindows._string;
+
+            SetButtonBackgroundColor();
+
         }
 
         public void DecrementNumWindows()
@@ -72,6 +75,24 @@ namespace WindowManager.UserControls
             this.NumWindows._string = this.NumWindows._int.ToString();
 
             NumWindowsTextBlock.Text = this.NumWindows._string;
+
+            SetButtonBackgroundColor();
+        }
+
+        public void SetButtonBackgroundColor()
+        {
+            SolidColorBrush BackgroundColor;
+            if (NumWindows._int < 8)
+            {
+                BackgroundColor = new SolidColorBrush(Microsoft.UI.Colors.Transparent);
+            }
+            else
+            {
+                BackgroundColor = new SolidColorBrush(Microsoft.UI.Colors.Gray);
+            }
+
+            AddWebPanel.Background = BackgroundColor;
+            AddTeamsPanel.Background = BackgroundColor;
         }
 
         // This prompts the dialog pop-up when you click on Add by URI

@@ -10,30 +10,31 @@
 
     <StackPanel Orientation="Horizontal" Spacing="15">
         <MenuBar Height="40">
-            <MenuBarItem Title="+ Add Web Panel" >
+            <MenuBarItem x:ConnectionId='4' Title="+ Add Web Panel" 
+                         x:Name="AddWebPanel">
 
                 <MenuFlyoutSubItem Text="Popular Websites">
 
-                    <MenuFlyoutItem x:ConnectionId='9' Text="Bing"                             >
+                    <MenuFlyoutItem x:ConnectionId='11' Text="Bing"                             >
                         <MenuFlyoutItem.Icon>
                             <ImageIcon Source="/Assets/bing-logo.png"/>
                         </MenuFlyoutItem.Icon>
                     </MenuFlyoutItem>
 
-                    <MenuFlyoutItem x:ConnectionId='10' Text="Youtube"                             >
+                    <MenuFlyoutItem x:ConnectionId='12' Text="Youtube"                             >
                         <MenuFlyoutItem.Icon>
                             <ImageIcon Source="/Assets/youtube_logo.png"/>
                         </MenuFlyoutItem.Icon>
                     </MenuFlyoutItem>
 
-                    <MenuFlyoutItem x:ConnectionId='11' Text="NHS England"                             >
+                    <MenuFlyoutItem x:ConnectionId='13' Text="NHS England"                             >
                         <MenuFlyoutItem.Icon>
                             <ImageIcon Source="/Assets/nhs-logo.png"/>
                         </MenuFlyoutItem.Icon>
                     </MenuFlyoutItem>
 
                 </MenuFlyoutSubItem>
-                <MenuFlyoutItem x:ConnectionId='8' Text="Add by URL"                               >
+                <MenuFlyoutItem x:ConnectionId='10' Text="Add by URL"                               >
                     <MenuFlyoutItem.KeyboardAccelerators>
                         <KeyboardAccelerator Modifiers="Control" Key="U"/>
                     </MenuFlyoutItem.KeyboardAccelerators>
@@ -41,8 +42,8 @@
 
             </MenuBarItem>
 
-            <MenuBarItem Title="+ Add Teams Panel">
-                <MenuFlyoutItem x:ConnectionId='6' Text="Create A Meeting"                             >
+            <MenuBarItem x:ConnectionId='5' Title="+ Add Teams Panel" x:Name="AddTeamsPanel">
+                <MenuFlyoutItem x:ConnectionId='8' Text="Create A Meeting"                             >
                     <MenuFlyoutItem.Icon>
                         <ImageIcon Source="/Assets/microsoft-teams-logo.png"/>
                     </MenuFlyoutItem.Icon>
@@ -50,7 +51,7 @@
                         <KeyboardAccelerator Modifiers="Control" Key="Z"/>
                     </MenuFlyoutItem.KeyboardAccelerators>
                 </MenuFlyoutItem>
-                <MenuFlyoutItem x:ConnectionId='7' Text="Join A Meeting"                             >
+                <MenuFlyoutItem x:ConnectionId='9' Text="Join A Meeting"                             >
                     <MenuFlyoutItem.Icon>
                         <ImageIcon Source="/Assets/microsoft-teams-logo.png"/>
                     </MenuFlyoutItem.Icon>
@@ -61,7 +62,7 @@
             </MenuBarItem>
 
             <MenuBarItem Title="Change Teams URLs">
-                <MenuFlyoutItem x:ConnectionId='4' Text="Create A Meeting URL"                            >
+                <MenuFlyoutItem x:ConnectionId='6' Text="Create A Meeting URL"                            >
                     <MenuFlyoutItem.Icon>
                         <SymbolIcon Symbol="Setting"/>
                     </MenuFlyoutItem.Icon>
@@ -69,7 +70,7 @@
                         <KeyboardAccelerator Modifiers="Control" Key="Z"/>
                     </MenuFlyoutItem.KeyboardAccelerators>
                 </MenuFlyoutItem>
-                <MenuFlyoutItem x:ConnectionId='5' Text="Join A Meeting URL"                            >
+                <MenuFlyoutItem x:ConnectionId='7' Text="Join A Meeting URL"                            >
                     <MenuFlyoutItem.Icon>
                         <SymbolIcon Symbol="Setting"/>
                     </MenuFlyoutItem.Icon>
@@ -84,11 +85,15 @@
         <ToggleSwitch x:ConnectionId='2' OffContent="Borders Off" OnContent="Borders On" IsOn="True"
                                                     />
 
-        <Border BorderThickness="1" BorderBrush="LightBlue" CornerRadius="5">
+        <Border BorderThickness="1" BorderBrush="LightGray" 
+                CornerRadius="5"
+                Height="30">
         <StackPanel Orientation="Horizontal" Spacing="5"
-                    Background="LightGray"
+                    Background="white"
                     CornerRadius="5"
-                    Height="15">
+                    Height="30"
+                    Padding="5"
+                    VerticalAlignment="Center">
             <TextBlock Text="Number of Windows: "
                        VerticalAlignment="Center"
                        TextWrapping="Wrap"/>
@@ -96,7 +101,8 @@
                 <TextBlock x:ConnectionId='3'                                   
                    x:Name="NumWindowsTextBlock"
                    VerticalAlignment="Center"
-                           Margin="10"/>
+                           FontWeight="SemiBold"
+                           />
             
         </StackPanel>
         </Border>
