@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="WindowManager.CalibrationInfoPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WindowManager"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <StackPanel x:ConnectionId='2' 
+        x:Name="stackpanel"
+        Margin="15"
+                VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+        <TextBlock x:ConnectionId='3' x:Name="HelpTitle" Text="Calibration Guide" Style="{StaticResource TitleTextBlockStyle}" 
+                           VerticalAlignment="Top" Margin="15" FontSize="35"/>
+            <Grid>
+            <StackPanel Orientation="Horizontal">
+                <Rectangle Height ="400" Width="100" Fill="LightPink"/>
+                <StackPanel Orientation="Vertical" Margin="20">
+                    <TextBlock Text="Calibrating the Application"
+                                   Style="{StaticResource SubtitleTextBlockStyle}" TextWrapping="Wrap"
+                                   FontSize="25"/>
+                    <TextBlock Text="To calibrate the application to your own TV setup, please follow the steps below: "
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   MaxWidth="800"
+                                   HorizontalAlignment="Left"
+                                   Margin="0,15,0,0"/>
+                    <TextBlock Text="1. First, place the projector in the desired position. Make sure that it is secure, and at least 2 metres away from the TV. "
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   MaxWidth="800"
+                                   HorizontalAlignment="Left"
+                                   Margin="30,10,0,0"/>
+                    <TextBlock Text="2. Click on the 'Begin Calibration' button. This will take you to the calibration page." 
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   MaxWidth="800"
+                                   HorizontalAlignment="Left"
+                                   Margin="30,5,0,0"/>
+                    <TextBlock Text="3. Once on the calibration page, you can use your mouse to draw a rectangle around where the TV is. Please note that the rectangle can only be drawn on the white area."
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   MaxWidth="800"
+                                   HorizontalAlignment="Left"
+                                   Margin="30,5,0,0"/>
+                    <TextBlock Text="4.  If you have drawn the rectangle incorrectly, you can draw another rectangle in the same way, and the old rectangle will be cleared." 
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   MaxWidth="800"
+                                   HorizontalAlignment="Left"
+                                   Margin="30,5,0,0"/>
+                    <TextBlock Text="5.  Once the position of the rectangle is in the same position as your TV, you can press the spacebar to confirm." 
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   MaxWidth="800"
+                                   HorizontalAlignment="Left"
+                                   Margin="30,5,0,0"/>
+                    <TextBlock Text="6. This will save the TV coordinates to the settings, and your application is correctly calibrated. " 
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   MaxWidth="800"
+                                   HorizontalAlignment="Left"
+                                   Margin="30,5,0,0"/>
+                    <TextBlock Text="7. The 'esc' key can be pressed at any time to exit the calibration window" 
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   MaxWidth="800"
+                                   HorizontalAlignment="Left"
+                                   Margin="30,5,0,0"/>
+
+                    <Button x:ConnectionId='4'                           Margin="0,20,0,0">
+                        <StackPanel Orientation="Horizontal" Spacing="5">
+                            <SymbolIcon Symbol="Setting"/>
+                            <TextBlock Text="Begin Calibration"/>
+                        </StackPanel>
+                        
+                    </Button>
+                </StackPanel>
+            </StackPanel>
+
+        </Grid>
+    </StackPanel>
+    
+    </Page>
+
