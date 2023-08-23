@@ -111,14 +111,14 @@ namespace WindowManager
                     if (Array.TrueForAll(panel, item => item == null)) continue; //to fix fucky json -> c# nonsense
 
                     int a = (panel[2] - 1) % 3; //PanelNum to 0 index column position
-
                     int c = panel[0]; //ColumnSpan
                     double csize = 0;
                     for (int i = 0; i < c; i++) csize += original_settings.Grid.ColumnWidths[a + i];
 
+                    int b = (int)Math.Floor((double)(panel[2] - 1) / 3); //PanelNum to 0 index row position
                     int r = panel[1]; //RowSpan
                     double rsize = 0;
-                    for (int i = 0; i < r; i++) rsize += original_settings.Grid.RowHeights[a + i];
+                    for (int j = 0; j < r; j++) rsize += original_settings.Grid.RowHeights[b + j];
 
                     //check incoming format against minimum panel dimensions
                     if (rsize < MinimumDimensions.MinimumPanelHeight || csize < MinimumDimensions.MinimumPanelWidth)
