@@ -188,6 +188,19 @@ namespace WindowManager
                             // Will need to reload main window at the end of this
                             CalculateGridDimensions();
 
+                            //recalculate intermediate rectangles and optimal frames
+                            int screenPanel = MainWindow.settings.Tv.PanelNum;
+                            double[] ColumnWidths = MainWindow.settings.Grid.ColumnWidths;
+                            double[] RowHeights = MainWindow.settings.Grid.RowHeights;
+
+                            OptimalFrameMembers.intermediateRectangles = PanelAlgorithms.IntermediateRectangles(screenPanel, ColumnWidths, RowHeights, MinimumDimensions.MinimumPanelHeight, MinimumDimensions.MinimumPanelWidth);
+                            OptimalFrameMembers.optimalFrames = PanelAlgorithms.OptimalFrames(OptimalFrameMembers.intermediateRectangles);
+
+                            //MainWindow.settings.Panels.CloseAllPanels();
+
+                            WindowManagerPage windowManagerPage = new WindowManagerPage();
+                            windowManagerPage.DisplayPanelsFromJSON(MainWindow.settings);
+
                             infoBar.Message = "Calibration settings successfully saved. Press ESC to exit.";
 
                         }
@@ -210,7 +223,7 @@ namespace WindowManager
             }
         }
 
-        private void CalculateGridDimensions()
+        public void CalculateGridDimensions()
         {
             // create variables for readability
             Tv tv = MainWindow.settings.Tv;

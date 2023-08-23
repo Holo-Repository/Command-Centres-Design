@@ -25,16 +25,22 @@ using Windows.Graphics.Printing.PrintTicket;
 namespace WindowManager
 {
 
-    public class MinimumDimensions
+    public static class MinimumDimensions
     {
-        public double MinimumPanelHeight { get; }
-        public double MinimumPanelWidth { get; }
+        public static double MinimumPanelHeight { get; private set; }
+        public static double MinimumPanelWidth { get; private set; }
 
-        public MinimumDimensions(double height, double width)
+        public static void Initialize(double height, double width)
         {
-            MinimumPanelHeight = height * 0.028; //equals c.30 for 1080 pixel tall screen
-            MinimumPanelWidth = width * 0.016; //equals c.30 for 1920 pixel wide screen
+            MinimumPanelHeight = height * 0.1; // 10% of screenheight
+            MinimumPanelWidth = width * 0.1; // 10% of screenwidth
         }
+    }
+
+    public class OptimalFrameMembers
+    {
+        public static List<int[]> intermediateRectangles;
+        public static List<List<int[]>> optimalFrames;
     }
 
     /// <summary>
@@ -49,9 +55,6 @@ namespace WindowManager
         // Calculate these!
         public double[] ColumnWidths;
         public double[] RowHeights;
-
-        public List<int[]> intermediateRectangles;
-        public List<List<int[]>> optimalFrames;
 
         // A dictionary to map panel number : row number
         private Dictionary<int, int> RowMappings = new Dictionary<int, int>()
@@ -79,15 +82,19 @@ namespace WindowManager
             Directory.SetCurrentDirectory(currentDir);
 
             //Minimum panel dimensions - scaled to window size - see definition above
-            MinimumDimensions minDim = new MinimumDimensions(MainWindow.settings.WindowDimensions.Height, MainWindow.settings.WindowDimensions.Width);
+            MinimumDimensions.Initialize(MainWindow.settings.WindowDimensions.Height, MainWindow.settings.WindowDimensions.Width);
 
-            screenPanel = MainWindow.settings.Tv.PanelNum;
-            ColumnWidths = MainWindow.settings.Grid.ColumnWidths;
-            RowHeights = MainWindow.settings.Grid.RowHeights;
+            if (screenPanel != MainWindow.settings.Tv.PanelNum)
+            {
+                screenPanel = MainWindow.settings.Tv.PanelNum;
+                ColumnWidths = MainWindow.settings.Grid.ColumnWidths;
+                RowHeights = MainWindow.settings.Grid.RowHeights;
 
-            //initialise intermediate rectantles and optimal frames
-            intermediateRectangles = PanelAlgorithms.IntermediateRectangles(screenPanel, ColumnWidths, RowHeights, minDim.MinimumPanelHeight, minDim.MinimumPanelWidth);
-            optimalFrames = PanelAlgorithms.OptimalFrames(intermediateRectangles);
+                //initialise intermediate rectantles and optimal frames
+                OptimalFrameMembers.intermediateRectangles = PanelAlgorithms.IntermediateRectangles(screenPanel, ColumnWidths, RowHeights, MinimumDimensions.MinimumPanelHeight, MinimumDimensions.MinimumPanelWidth);
+                OptimalFrameMembers.optimalFrames = PanelAlgorithms.OptimalFrames(OptimalFrameMembers.intermediateRectangles);
+            }
+
 
             // Initialise main window
             this.InitializeComponent();
@@ -272,10 +279,17 @@ namespace WindowManager
             Panel[] panelArray = MainWindow.settings.Panels.GetPanelsArray();
 
             // 1. Prioritise URIs
-            List<Uri> UriListByPriority = PanelAlgorithms.UriPriority(deltaUri, intermediateRectangles, panelArray, isAdd);
+            List<Uri> UriListByPriority = PanelAlgorithms.UriPriority(deltaUri,OptimalFrameMembers.intermediateRectangles, panelArray, isAdd);
+
+            if (UriListByPriority.Count == 0 )
+            {
+                MainWindow.settings.Panels.CloseAllPanels();
+                DisplayPanelsFromJSON(MainWindow.settings);
+                return;
+            }
 
             // 2. Identify layout
-            dynamic packedFrames = PanelAlgorithms.PackedFrames(UriListByPriority, optimalFrames);
+            dynamic packedFrames = PanelAlgorithms.PackedFrames(UriListByPriority, OptimalFrameMembers.optimalFrames);
 
             // PackedFrames is a dict where keys are strings of panel names e.g. "Panel1"
             // The value corresponding to that key is another dict where the keys are "uri", "ColumnSpan", and "RowSpan"
@@ -307,13 +321,14 @@ namespace WindowManager
             bool isAdd = true;
 
             Panel[] panelArray = MainWindow.settings.Panels.GetPanelsArray();
-            if (panelArray.Length == optimalFrames.Count) return; //prevents user from adding more panels than layout supports
+            Panel[] fullPanels = panelArray.Where(x => x != null).ToArray();
+            if (fullPanels.Length == OptimalFrameMembers.optimalFrames.Count) return; //prevents user from adding more panels than layout supports
 
             // 1. Prioritise URIs
-            List<Uri> UriListByPriority = PanelAlgorithms.UriPriority(deltaUri, intermediateRectangles, panelArray, isAdd);
+            List<Uri> UriListByPriority = PanelAlgorithms.UriPriority(deltaUri, OptimalFrameMembers.intermediateRectangles, panelArray, isAdd);
 
             // 2. Identify layout
-            dynamic packedFrames = PanelAlgorithms.PackedFrames(UriListByPriority, optimalFrames);
+            dynamic packedFrames = PanelAlgorithms.PackedFrames(UriListByPriority, OptimalFrameMembers.optimalFrames);
             // PackedFrames is a dict where keys are strings of panel names e.g. "Panel1"
             // The value corresponding to that key is another dict where the keys are "uri", "ColumnSpan", and "RowSpan"
             Dictionary<string, Dictionary<string, object>>.KeyCollection PanelNames = packedFrames.Keys;

@@ -69,9 +69,9 @@ namespace WindowManager
             try
             {
                 // Move the selected file to the app's installation folder
-               Windows.Storage.StorageFolder destinationFolder = await Windows.Storage.StorageFolder.GetFolderFromPathAsync(settingsFolder);
+               StorageFolder destinationFolder = await StorageFolder.GetFolderFromPathAsync(settingsFolder);
                 // Move the selected file to the destination folder
-               Windows.Storage.StorageFile settings = await Windows.Storage.StorageFile.GetFileFromPathAsync(settingsFilePath);
+               StorageFile settings = await StorageFile.GetFileFromPathAsync(settingsFilePath);
 
                 // reading json content from original settings and storing panel number
                 string jsonContent = await FileIO.ReadTextAsync(settings);
@@ -93,7 +93,6 @@ namespace WindowManager
                 }
 
                 //establish minimum panel dimensions
-                MinimumDimensions minDim = new MinimumDimensions(original_settings.WindowDimensions.Height, original_settings.WindowDimensions.Width);
                 List<dynamic[]> new_panels = new List<dynamic[]>
                 {
                     new dynamic[] { new_settings.Panels.Panel1?.ColumnSpan, new_settings.Panels.Panel1?.RowSpan, new_settings.Panels.Panel1?.PanelNum },
@@ -122,7 +121,7 @@ namespace WindowManager
                     for (int i = 0; i < r; i++) rsize += original_settings.Grid.RowHeights[a + i];
 
                     //check incoming format against minimum panel dimensions
-                    if (rsize < minDim.MinimumPanelHeight || csize < minDim.MinimumPanelWidth)
+                    if (rsize < MinimumDimensions.MinimumPanelHeight || csize < MinimumDimensions.MinimumPanelWidth)
                     {
                         PickAFileOutputTextBlock.Text = "Incompatible app calibration."; //changed from "Incompatible file format."
                         return;
@@ -135,6 +134,20 @@ namespace WindowManager
 
                 // Overwrite the old settings file with the updated content
                 await FileIO.WriteTextAsync(settings, updatedJsonContent);
+
+                CalibrationWindow calibrationWindow = new CalibrationWindow();
+                calibrationWindow.CalculateGridDimensions();
+
+                //recalculate intermediate rectangles and optimal frames
+                int screenPanel = MainWindow.settings.Tv.PanelNum;
+                double[] ColumnWidths = MainWindow.settings.Grid.ColumnWidths;
+                double[] RowHeights = MainWindow.settings.Grid.RowHeights;
+
+                OptimalFrameMembers.intermediateRectangles = PanelAlgorithms.IntermediateRectangles(screenPanel, ColumnWidths, RowHeights, MinimumDimensions.MinimumPanelHeight, MinimumDimensions.MinimumPanelWidth);
+                OptimalFrameMembers.optimalFrames = PanelAlgorithms.OptimalFrames(OptimalFrameMembers.intermediateRectangles);
+
+                WindowManagerPage windowManagerPage = new WindowManagerPage();
+                windowManagerPage.DisplayPanelsFromJSON(MainWindow.settings);
 
                 //await file.CopyAndReplaceAsync(settings);
                 PickAFileOutputTextBlock.Text = "Setting updated successfully.";

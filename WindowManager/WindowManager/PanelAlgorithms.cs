@@ -81,6 +81,16 @@ namespace WindowManager
                 intermediates.Add(new int[] { 2, 3, 5, 6, 8, 9 });
             }
 
+
+
+            List<int[]> widthtest = intermediates
+                .Where(rectangle => rectangle.Sum(x => widths[x - 1]) >= minWidth)
+                .ToList();
+
+            List<double> widthSums = widthtest
+                .Select(rectangle => rectangle.Sum(x => widths[x - 1]))
+                .ToList();
+
             //remove screen overlapping and unviable dimensions rectangles
             List<int[]> filteredIntermediates = intermediates.Where(rectangle => !rectangle.Contains(screen) &&
                 rectangle.Sum(x => heights[x-1]) >= minHeight && rectangle.Sum(x => widths[x-1]) >= minWidth).ToList();
@@ -240,6 +250,7 @@ namespace WindowManager
                     double averageIndex = candidateList.Average(candidate => intermediates.IndexOf(candidate));
                     return averageIndex;
                 }).ToList();
+                if (sortedCandidates.Count == 0) break; //if cannot fit fewer panels then cannot fit more; more can always have fewer, not always true vice versa
                 optimalFrames.Add(sortedCandidates[0]); //take highest ranked
             }
 
