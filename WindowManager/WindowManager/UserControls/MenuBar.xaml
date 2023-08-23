@@ -84,6 +84,9 @@
         <ToggleSwitch OffContent="Borders Off" OnContent="Borders On" IsOn="True"
                       Toggled="ToggleSwitch_Toggled"/>
 
+        <TextBlock Text="{x:Bind ViewModel.DefaultNumWindows.NumWindowsString}"
+                   VerticalAlignment="Center"/>
+
     </StackPanel>
 
 </UserControl>

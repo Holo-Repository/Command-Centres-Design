@@ -24,9 +24,12 @@ namespace WindowManager.UserControls
         public event TypedEventHandler<object, Uri> Add_Window;
         public event TypedEventHandler<object, bool> Toggle_Border_Visibility;
 
+        public NumWindowsViewModel ViewModel { get; set; }
+
         public MenuBar()
         {
             this.InitializeComponent();
+            this.ViewModel = new NumWindowsViewModel();
         }
 
         // This prompts the dialog pop-up when you click on Add by URI
