@@ -43,45 +43,6 @@ namespace WindowManager
         public static List<List<int[]>> optimalFrames;
     }
 
-    // class for data binding number of windows to UI
-    public class NumWindows
-    {
-        public int NumWindow { get; set; }
-        public string NumWindowsString { get; set; }
-
-        public NumWindows()
-        {
-            this.NumWindow = CountNumWindows();
-            this.NumWindowsString = NumWindow.ToString();
-
-        }
-
-        public int CountNumWindows()
-        {
-            int NumPanels = 0;
-
-            Panel[] panels = MainWindow.settings.Panels.GetPanelsArray();
-            foreach(Panel panel in panels)
-            {
-                if (panel != null)
-                {
-                    NumPanels += 1;
-                }
-            }
-
-            return NumPanels;
-        }
-    }
-
-    // view model for NumWindows for data binding
-    public class NumWindowsViewModel
-    {
-        // private field
-        private NumWindows defaultNumWindows = new NumWindows();
-        // public read/write property
-        public NumWindows DefaultNumWindows { get {  return this.defaultNumWindows; } }
-    }
-
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
@@ -353,6 +314,8 @@ namespace WindowManager
             //4. Display panels from JSON
             DisplayPanelsFromJSON(MainWindow.settings);
 
+            MainMenuBar.DecrementNumWindows();
+
         }
 
         public void Add_WebPanel(object sender, Uri deltaUri)
@@ -390,6 +353,8 @@ namespace WindowManager
 
             // 4. Update panels from JSON
             DisplayPanelsFromJSON(MainWindow.settings);
+
+            MainMenuBar.IncrementNumWindows();
 
         }
 

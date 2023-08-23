@@ -84,7 +84,9 @@
         <ToggleSwitch x:ConnectionId='2' OffContent="Borders Off" OnContent="Borders On" IsOn="True"
                                                     />
 
-        <TextBlock x:ConnectionId='3'                                                             />
+        <TextBlock x:ConnectionId='3'                                   
+                   x:Name="NumWindowsTextBlock"
+                   VerticalAlignment="Center"/>
 
     </StackPanel>
 

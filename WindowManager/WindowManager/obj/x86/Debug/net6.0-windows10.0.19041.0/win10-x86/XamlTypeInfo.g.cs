@@ -277,7 +277,7 @@ namespace WindowManager.WindowManager_XamlTypeInfo
             _typeNameTable[49] = "System.Collections.Generic.IList`1<Microsoft.UI.Xaml.Controls.MenuFlyoutItemBase>";
             _typeNameTable[50] = "Microsoft.UI.Xaml.Controls.MenuFlyoutItemBase";
             _typeNameTable[51] = "WindowManager.UserControls.MenuBar";
-            _typeNameTable[52] = "WindowManager.NumWindowsViewModel";
+            _typeNameTable[52] = "WindowManager.UserControls.NumWindowsData";
             _typeNameTable[53] = "WindowManager.UserControls.TvPanel";
             _typeNameTable[54] = "Microsoft.UI.Xaml.Controls.WebView2";
             _typeNameTable[55] = "Microsoft.UI.Xaml.FrameworkElement";
@@ -340,7 +340,7 @@ namespace WindowManager.WindowManager_XamlTypeInfo
             _typeTable[49] = typeof(global::System.Collections.Generic.IList<global::Microsoft.UI.Xaml.Controls.MenuFlyoutItemBase>);
             _typeTable[50] = typeof(global::Microsoft.UI.Xaml.Controls.MenuFlyoutItemBase);
             _typeTable[51] = typeof(global::WindowManager.UserControls.MenuBar);
-            _typeTable[52] = typeof(global::WindowManager.NumWindowsViewModel);
+            _typeTable[52] = typeof(global::WindowManager.UserControls.NumWindowsData);
             _typeTable[53] = typeof(global::WindowManager.UserControls.TvPanel);
             _typeTable[54] = typeof(global::Microsoft.UI.Xaml.Controls.WebView2);
             _typeTable[55] = typeof(global::Microsoft.UI.Xaml.FrameworkElement);
@@ -399,7 +399,7 @@ namespace WindowManager.WindowManager_XamlTypeInfo
         private object Activate_46_MenuBar() { return new global::Microsoft.UI.Xaml.Controls.MenuBar(); }
         private object Activate_48_MenuBarItem() { return new global::Microsoft.UI.Xaml.Controls.MenuBarItem(); }
         private object Activate_51_MenuBar() { return new global::WindowManager.UserControls.MenuBar(); }
-        private object Activate_52_NumWindowsViewModel() { return new global::WindowManager.NumWindowsViewModel(); }
+        private object Activate_52_NumWindowsData() { return new global::WindowManager.UserControls.NumWindowsData(); }
         private object Activate_53_TvPanel() { return new global::WindowManager.UserControls.TvPanel(); }
         private object Activate_54_WebView2() { return new global::Microsoft.UI.Xaml.Controls.WebView2(); }
         private object Activate_59_WebPanel() { return new global::WindowManager.UserControls.WebPanel(); }
@@ -795,12 +795,12 @@ namespace WindowManager.WindowManager_XamlTypeInfo
             case 51:   //  WindowManager.UserControls.MenuBar
                 userType = new global::WindowManager.WindowManager_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.UserControl"));
                 userType.Activator = Activate_51_MenuBar;
-                userType.AddMemberName("ViewModel");
+                userType.AddMemberName("NumWindows");
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 52:   //  WindowManager.NumWindowsViewModel
+            case 52:   //  WindowManager.UserControls.NumWindowsData
                 userType = new global::WindowManager.WindowManager_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
                 userType.SetIsReturnTypeStub();
                 userType.SetIsLocalType();
@@ -1530,15 +1530,15 @@ namespace WindowManager.WindowManager_XamlTypeInfo
             var that = (global::Microsoft.UI.Xaml.Controls.MenuBarItem)instance;
             that.Title = (global::System.String)Value;
         }
-        private object get_66_MenuBar_ViewModel(object instance)
+        private object get_66_MenuBar_NumWindows(object instance)
         {
             var that = (global::WindowManager.UserControls.MenuBar)instance;
-            return that.ViewModel;
+            return that.NumWindows;
         }
-        private void set_66_MenuBar_ViewModel(object instance, object Value)
+        private void set_66_MenuBar_NumWindows(object instance, object Value)
         {
             var that = (global::WindowManager.UserControls.MenuBar)instance;
-            that.ViewModel = (global::WindowManager.NumWindowsViewModel)Value;
+            that.NumWindows = (global::WindowManager.UserControls.NumWindowsData)Value;
         }
         private object get_67_WebView2_Source(object instance)
         {
@@ -2065,11 +2065,11 @@ namespace WindowManager.WindowManager_XamlTypeInfo
                 xamlMember.Getter = get_65_MenuBarItem_Title;
                 xamlMember.Setter = set_65_MenuBarItem_Title;
                 break;
-            case "WindowManager.UserControls.MenuBar.ViewModel":
+            case "WindowManager.UserControls.MenuBar.NumWindows":
                 userType = (global::WindowManager.WindowManager_XamlTypeInfo.XamlUserType)GetXamlTypeByName("WindowManager.UserControls.MenuBar");
-                xamlMember = new global::WindowManager.WindowManager_XamlTypeInfo.XamlMember(this, "ViewModel", "WindowManager.NumWindowsViewModel");
-                xamlMember.Getter = get_66_MenuBar_ViewModel;
-                xamlMember.Setter = set_66_MenuBar_ViewModel;
+                xamlMember = new global::WindowManager.WindowManager_XamlTypeInfo.XamlMember(this, "NumWindows", "WindowManager.UserControls.NumWindowsData");
+                xamlMember.Getter = get_66_MenuBar_NumWindows;
+                xamlMember.Setter = set_66_MenuBar_NumWindows;
                 break;
             case "Microsoft.UI.Xaml.Controls.WebView2.Source":
                 userType = (global::WindowManager.WindowManager_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.WebView2");

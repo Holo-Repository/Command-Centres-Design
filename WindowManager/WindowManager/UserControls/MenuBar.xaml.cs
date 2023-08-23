@@ -18,18 +18,60 @@ using Windows.Foundation.Collections;
 
 namespace WindowManager.UserControls
 {
+    public class NumWindowsData
+    {
+        public int _int { get; set; }
+        public string _string { get; set; }
+
+        public NumWindowsData()
+        {
+            _int = CountPanelsFromJson();
+            _string = _int.ToString();
+        }
+
+        public int CountPanelsFromJson()
+        {
+            int NumPanels = 0;
+
+            foreach(Panel panel in MainWindow.settings.Panels.GetPanelsArray())
+            {
+                if (panel != null)
+                {
+                    NumPanels++;
+                }
+            }
+
+            return NumPanels;
+        }
+    }
     public sealed partial class MenuBar : UserControl
     {
         //public event TypedEventHandler<object, RoutedEventArgs> MenuFlyoutItem_Click;
         public event TypedEventHandler<object, Uri> Add_Window;
         public event TypedEventHandler<object, bool> Toggle_Border_Visibility;
 
-        public NumWindowsViewModel ViewModel { get; set; }
+        public NumWindowsData NumWindows { get; set; }
 
         public MenuBar()
         {
             this.InitializeComponent();
-            this.ViewModel = new NumWindowsViewModel();
+            this.NumWindows = new NumWindowsData();
+        }
+
+        public void IncrementNumWindows()
+        {
+            this.NumWindows._int++;
+            this.NumWindows._string = this.NumWindows._int.ToString();
+
+            NumWindowsTextBlock.Text = this.NumWindows._string;
+        }
+
+        public void DecrementNumWindows()
+        {
+            this.NumWindows._int--;
+            this.NumWindows._string = this.NumWindows._int.ToString();
+
+            NumWindowsTextBlock.Text = this.NumWindows._string;
         }
 
         // This prompts the dialog pop-up when you click on Add by URI
