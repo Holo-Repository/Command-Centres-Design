@@ -88,7 +88,7 @@ namespace WindowManager
                 //checking if layouts are compatible
                 if (tvPanelNumber != new_panel_number)
                 {
-                    PickAFileOutputTextBlock.Text = "Incompatible app calibration."; //changed from "Incompatible file format."
+                    PickAFileOutputTextBlock.Text = "Incompatible screen position."; //changed from "Incompatible file format."
                     return;
                 }
 
@@ -123,37 +123,31 @@ namespace WindowManager
                     //check incoming format against minimum panel dimensions
                     if (rsize < MinimumDimensions.MinimumPanelHeight || csize < MinimumDimensions.MinimumPanelWidth)
                     {
-                        PickAFileOutputTextBlock.Text = "Incompatible app calibration."; //changed from "Incompatible file format."
+                        PickAFileOutputTextBlock.Text = "Incompatible panel sizing."; //changed from "Incompatible file format."
                         return;
                     }
                 }
 
-                //remove indent
+                //kill all panels - make way for new
+                MainWindow.settings.Panels.CloseAllPanels();
+
                 original_settings.Panels = new_settings.Panels;
-                string updatedJsonContent = JsonSerializer.Serialize(original_settings, new JsonSerializerOptions { WriteIndented = true });
+                //string updatedJsonContent = JsonSerializer.Serialize(original_settings, new JsonSerializerOptions { WriteIndented = true });
+                // 3. Write to JSON - function will only take SettingsData object
+                SettingsManager.SerialiseSettingsJSON(original_settings);
 
                 // Overwrite the old settings file with the updated content
-                await FileIO.WriteTextAsync(settings, updatedJsonContent);
-
-                CalibrationWindow calibrationWindow = new CalibrationWindow();
-                calibrationWindow.CalculateGridDimensions();
-
-                //recalculate intermediate rectangles and optimal frames
-                int screenPanel = MainWindow.settings.Tv.PanelNum;
-                double[] ColumnWidths = MainWindow.settings.Grid.ColumnWidths;
-                double[] RowHeights = MainWindow.settings.Grid.RowHeights;
-
-                OptimalFrameMembers.intermediateRectangles = PanelAlgorithms.IntermediateRectangles(screenPanel, ColumnWidths, RowHeights, MinimumDimensions.MinimumPanelHeight, MinimumDimensions.MinimumPanelWidth);
-                OptimalFrameMembers.optimalFrames = PanelAlgorithms.OptimalFrames(OptimalFrameMembers.intermediateRectangles);
-
-                //WindowManagerPage windowManagerPage = new WindowManagerPage();
-                //windowManagerPage.DisplayPanelsFromJSON(MainWindow.settings);
+                //await FileIO.WriteTextAsync(settings, updatedJsonContent);
 
                 // overwrite settings with new ones
                 MainWindow.settings = SettingsManager.DeserialiseSettingsJSON();
 
+                //for whatever reason, this is not doing anything
+                //WindowManagerPage windowManagerPage = new WindowManagerPage();
+                //windowManagerPage.DisplayPanelsFromJSON(MainWindow.settings);
+
                 //await file.CopyAndReplaceAsync(settings);
-                PickAFileOutputTextBlock.Text = "Setting updated successfully.";
+                PickAFileOutputTextBlock.Text = "Settings updated successfully.";
               
             }
             catch (Exception ex)

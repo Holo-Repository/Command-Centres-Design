@@ -172,6 +172,9 @@ namespace WindowManager
                         // Get width and height of the rectangle
                         double width = rectangleRect.Width;
                         double height = rectangleRect.Height;
+
+                        //ADD CHECK ON PANEL SIZES - find number of URIs and see if enough panels meet minimum size
+
                         if (width != 0 & height != 0 & width >= WindowWidth/8 & height >= WindowHeight / 8)
                         {
                             System.Diagnostics.Debug.WriteLine($"Value: {kvp.Value}");
@@ -196,13 +199,29 @@ namespace WindowManager
                             double[] ColumnWidths = MainWindow.settings.Grid.ColumnWidths;
                             double[] RowHeights = MainWindow.settings.Grid.RowHeights;
 
+                            //recalibrate panels
                             OptimalFrameMembers.intermediateRectangles = PanelAlgorithms.IntermediateRectangles(screenPanel, ColumnWidths, RowHeights, MinimumDimensions.MinimumPanelHeight, MinimumDimensions.MinimumPanelWidth);
                             OptimalFrameMembers.optimalFrames = PanelAlgorithms.OptimalFrames(OptimalFrameMembers.intermediateRectangles);
 
-                            //MainWindow.settings.Panels.CloseAllPanels();
+                            Panel[] panelArray = MainWindow.settings.Panels.GetPanelsArray();
+                            Uri nullUri = null;
+                            List<Uri> UriListByPriority = PanelAlgorithms.UriPriority(nullUri, OptimalFrameMembers.intermediateRectangles, panelArray, true);
+                            dynamic packedFrames = PanelAlgorithms.PackedFrames(UriListByPriority, OptimalFrameMembers.optimalFrames);
 
-                            WindowManagerPage windowManagerPage = new WindowManagerPage();
-                            windowManagerPage.DisplayPanelsFromJSON(MainWindow.settings);
+                            Dictionary<string, Dictionary<string, object>>.KeyCollection PanelNames = packedFrames.Keys;
+
+                            //kill old panels to clear way for new
+                            MainWindow.settings.Panels.CloseAllPanels();
+
+                            foreach (var PanelNameString in PanelNames)
+                            {
+                                Uri uri = packedFrames[PanelNameString]["uri"];
+                                int ColumnSpan = packedFrames[PanelNameString]["ColumnSpan"];
+                                int RowSpan = packedFrames[PanelNameString]["RowSpan"];
+
+                                MainWindow.settings.Panels.SetPanelDataByName(PanelNameString, uri, ColumnSpan, RowSpan);
+
+                            }
 
                             infoBar.Message = "Calibration settings successfully saved. Press ESC to exit.";
 
