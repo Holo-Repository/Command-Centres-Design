@@ -211,7 +211,7 @@ namespace WindowManager
                             Dictionary<string, Dictionary<string, object>>.KeyCollection PanelNames = packedFrames.Keys;
 
                             //kill old panels to clear way for new
-                            MainWindow.settings.Panels.CloseAllPanels();
+                            //MainWindow.settings.Panels.CloseAllPanels(); //necessary?
 
                             foreach (var PanelNameString in PanelNames)
                             {
