@@ -1,1 +1,0 @@
-C:\code\Command-Centres-Design\WindowManager\WindowManager\WindowManager.csproj;x86
