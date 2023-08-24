@@ -9,32 +9,35 @@
     mc:Ignorable="d">
 
     <StackPanel Orientation="Horizontal" Spacing="15">
-        <MenuBar Height="40">
-            <MenuBarItem x:ConnectionId='4' Title="+ Add Web Panel" 
+        <MenuBar x:ConnectionId='2' Height="40"
+                 x:Name="menuBar">
+            <MenuBarItem x:ConnectionId='5' Title="+ Add Web Panel" 
                          x:Name="AddWebPanel">
 
-                <MenuFlyoutSubItem Text="Popular Websites">
+                <MenuFlyoutSubItem x:ConnectionId='11' 
+                    x:Name="PopularWebsites" Text="Popular Websites">
 
-                    <MenuFlyoutItem x:ConnectionId='11' Text="Bing"                             >
+                    <MenuFlyoutItem x:ConnectionId='13' Text="Bing"                             >
                         <MenuFlyoutItem.Icon>
                             <ImageIcon Source="/Assets/bing-logo.png"/>
                         </MenuFlyoutItem.Icon>
                     </MenuFlyoutItem>
 
-                    <MenuFlyoutItem x:ConnectionId='12' Text="Youtube"                             >
+                    <MenuFlyoutItem x:ConnectionId='14' Text="Youtube"                             >
                         <MenuFlyoutItem.Icon>
                             <ImageIcon Source="/Assets/youtube_logo.png"/>
                         </MenuFlyoutItem.Icon>
                     </MenuFlyoutItem>
 
-                    <MenuFlyoutItem x:ConnectionId='13' Text="NHS England"                             >
+                    <MenuFlyoutItem x:ConnectionId='15' Text="NHS England"                             >
                         <MenuFlyoutItem.Icon>
                             <ImageIcon Source="/Assets/nhs-logo.png"/>
                         </MenuFlyoutItem.Icon>
                     </MenuFlyoutItem>
 
                 </MenuFlyoutSubItem>
-                <MenuFlyoutItem x:ConnectionId='10' Text="Add by URL"                               >
+                <MenuFlyoutItem x:ConnectionId='12' x:Name="AddByURL"
+                    Text="Add by URL"                               >
                     <MenuFlyoutItem.KeyboardAccelerators>
                         <KeyboardAccelerator Modifiers="Control" Key="U"/>
                     </MenuFlyoutItem.KeyboardAccelerators>
@@ -42,8 +45,8 @@
 
             </MenuBarItem>
 
-            <MenuBarItem x:ConnectionId='5' Title="+ Add Teams Panel" x:Name="AddTeamsPanel">
-                <MenuFlyoutItem x:ConnectionId='8' Text="Create A Meeting"                             >
+            <MenuBarItem x:ConnectionId='6' Title="+ Add Teams Panel" x:Name="AddTeamsPanel">
+                <MenuFlyoutItem x:ConnectionId='9' Text="Create A Meeting"                             >
                     <MenuFlyoutItem.Icon>
                         <ImageIcon Source="/Assets/microsoft-teams-logo.png"/>
                     </MenuFlyoutItem.Icon>
@@ -51,7 +54,7 @@
                         <KeyboardAccelerator Modifiers="Control" Key="Z"/>
                     </MenuFlyoutItem.KeyboardAccelerators>
                 </MenuFlyoutItem>
-                <MenuFlyoutItem x:ConnectionId='9' Text="Join A Meeting"                             >
+                <MenuFlyoutItem x:ConnectionId='10' Text="Join A Meeting"                             >
                     <MenuFlyoutItem.Icon>
                         <ImageIcon Source="/Assets/microsoft-teams-logo.png"/>
                     </MenuFlyoutItem.Icon>
@@ -62,7 +65,7 @@
             </MenuBarItem>
 
             <MenuBarItem Title="Change Teams URLs">
-                <MenuFlyoutItem x:ConnectionId='6' Text="Create A Meeting URL"                            >
+                <MenuFlyoutItem x:ConnectionId='7' Text="Create A Meeting URL"                            >
                     <MenuFlyoutItem.Icon>
                         <SymbolIcon Symbol="Setting"/>
                     </MenuFlyoutItem.Icon>
@@ -70,7 +73,7 @@
                         <KeyboardAccelerator Modifiers="Control" Key="Z"/>
                     </MenuFlyoutItem.KeyboardAccelerators>
                 </MenuFlyoutItem>
-                <MenuFlyoutItem x:ConnectionId='7' Text="Join A Meeting URL"                            >
+                <MenuFlyoutItem x:ConnectionId='8' Text="Join A Meeting URL"                            >
                     <MenuFlyoutItem.Icon>
                         <SymbolIcon Symbol="Setting"/>
                     </MenuFlyoutItem.Icon>
@@ -82,7 +85,7 @@
 
         </MenuBar>
 
-        <ToggleSwitch x:ConnectionId='2' OffContent="Borders Off" OnContent="Borders On" IsOn="True"
+        <ToggleSwitch x:ConnectionId='3' OffContent="Borders Off" OnContent="Borders On" IsOn="True"
                                                     />
 
         <Border BorderThickness="1" BorderBrush="LightGray" 
@@ -98,7 +101,7 @@
                        VerticalAlignment="Center"
                        TextWrapping="Wrap"/>
             
-                <TextBlock x:ConnectionId='3'                                   
+                <TextBlock x:ConnectionId='4'                                   
                    x:Name="NumWindowsTextBlock"
                    VerticalAlignment="Center"
                            FontWeight="SemiBold"

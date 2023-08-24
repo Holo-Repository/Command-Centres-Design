@@ -26,7 +26,15 @@ namespace WindowManager.UserControls
         public NumWindowsData()
         {
             _int = CountPanelsFromJson();
-            _string = _int.ToString();
+
+            if(_int == 8)
+            {
+                _string = "Max";
+            } else
+            {
+                _string = _int.ToString();
+            }
+       
         }
 
         public int CountPanelsFromJson()
@@ -56,6 +64,7 @@ namespace WindowManager.UserControls
         {
             this.InitializeComponent();
             this.NumWindows = new NumWindowsData();
+            NumPanelsConditionalFormatting();
         }
 
         public void IncrementNumWindows()
@@ -65,7 +74,7 @@ namespace WindowManager.UserControls
 
             NumWindowsTextBlock.Text = this.NumWindows._string;
 
-            SetButtonBackgroundColor();
+            NumPanelsConditionalFormatting();
 
         }
 
@@ -76,23 +85,42 @@ namespace WindowManager.UserControls
 
             NumWindowsTextBlock.Text = this.NumWindows._string;
 
-            SetButtonBackgroundColor();
+            NumPanelsConditionalFormatting();
         }
 
-        public void SetButtonBackgroundColor()
+        public void NumPanelsConditionalFormatting()
         {
-            SolidColorBrush BackgroundColor;
+            //SolidColorBrush BackgroundColor;
+            //SolidColorBrush TextColor;
+
+            if (this.NumWindows._int == 8 )
+            {
+                NumWindowsTextBlock.Text = "Max";
+            }
+
             if (NumWindows._int < 8)
             {
-                BackgroundColor = new SolidColorBrush(Microsoft.UI.Colors.Transparent);
+                menuBar.IsEnabled = true;
+                //PopularWebsites.IsEnabled = true;
+                //AddByURL.IsEnabled = true;
+                //BackgroundColor = new SolidColorBrush(Microsoft.UI.Colors.Transparent);
+                //TextColor = new SolidColorBrush(Microsoft.UI.Colors.Black);
             }
             else
             {
-                BackgroundColor = new SolidColorBrush(Microsoft.UI.Colors.Gray);
+                menuBar.IsEnabled = false;
+                //PopularWebsites.IsEnabled = false;
+                //AddByURL.IsEnabled = false;
+                //BackgroundColor = new SolidColorBrush(Microsoft.UI.Colors.LightGray);
+                //TextColor = new SolidColorBrush(Microsoft.UI.Colors.Red);
             }
 
-            AddWebPanel.Background = BackgroundColor;
-            AddTeamsPanel.Background = BackgroundColor;
+            //AddWebPanel.Background = BackgroundColor;
+            //AddWebPanel.Foreground = TextColor;
+
+            //AddTeamsPanel.Background = BackgroundColor;
+            //AddTeamsPanel.Foreground = TextColor;
+            
         }
 
         // This prompts the dialog pop-up when you click on Add by URI

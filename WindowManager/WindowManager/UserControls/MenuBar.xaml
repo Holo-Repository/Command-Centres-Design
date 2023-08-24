@@ -9,11 +9,13 @@
     mc:Ignorable="d">
 
     <StackPanel Orientation="Horizontal" Spacing="15">
-        <MenuBar Height="40">
+        <MenuBar Height="40"
+                 x:Name="menuBar">
             <MenuBarItem Title="+ Add Web Panel" 
                          x:Name="AddWebPanel">
 
-                <MenuFlyoutSubItem Text="Popular Websites">
+                <MenuFlyoutSubItem 
+                    x:Name="PopularWebsites" Text="Popular Websites">
 
                     <MenuFlyoutItem Text="Bing" Click="MenuFlyoutItem_Click">
                         <MenuFlyoutItem.Icon>
@@ -34,7 +36,8 @@
                     </MenuFlyoutItem>
 
                 </MenuFlyoutSubItem>
-                <MenuFlyoutItem Text="Add by URL" Click="MenuFlyoutItem_Click_1">
+                <MenuFlyoutItem x:Name="AddByURL"
+                    Text="Add by URL" Click="MenuFlyoutItem_Click_1">
                     <MenuFlyoutItem.KeyboardAccelerators>
                         <KeyboardAccelerator Modifiers="Control" Key="U"/>
                     </MenuFlyoutItem.KeyboardAccelerators>

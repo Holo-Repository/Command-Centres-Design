@@ -146,8 +146,11 @@ namespace WindowManager
                 OptimalFrameMembers.intermediateRectangles = PanelAlgorithms.IntermediateRectangles(screenPanel, ColumnWidths, RowHeights, MinimumDimensions.MinimumPanelHeight, MinimumDimensions.MinimumPanelWidth);
                 OptimalFrameMembers.optimalFrames = PanelAlgorithms.OptimalFrames(OptimalFrameMembers.intermediateRectangles);
 
-                WindowManagerPage windowManagerPage = new WindowManagerPage();
-                windowManagerPage.DisplayPanelsFromJSON(MainWindow.settings);
+                //WindowManagerPage windowManagerPage = new WindowManagerPage();
+                //windowManagerPage.DisplayPanelsFromJSON(MainWindow.settings);
+
+                // overwrite settings with new ones
+                MainWindow.settings = SettingsManager.DeserialiseSettingsJSON();
 
                 //await file.CopyAndReplaceAsync(settings);
                 PickAFileOutputTextBlock.Text = "Setting updated successfully.";

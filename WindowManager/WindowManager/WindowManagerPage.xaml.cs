@@ -99,6 +99,9 @@ namespace WindowManager
             // Initialise main window
             this.InitializeComponent();
 
+            // overwrite settings object in case new file has been uploaded
+
+
             // Adjust layout
             AdjustGridSize(MainWindow.settings);
 
