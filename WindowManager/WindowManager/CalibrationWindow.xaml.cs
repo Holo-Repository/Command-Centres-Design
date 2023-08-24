@@ -184,6 +184,14 @@ namespace WindowManager
                             double tv_x = kvp.Value.X;
                             double tv_y = kvp.Value.Y;
 
+                            //OLD FOR RESET IF NEEDED
+                            double old_TvHeight = MainWindow.settings.Tv.Height;
+                            double old_TvWidth = MainWindow.settings.Tv.Width;
+                            double old_TvX = MainWindow.settings.Tv.X_Position;
+                            double old_TvY = MainWindow.settings.Tv.Y_Position;
+
+                            Panel[] panelArray = MainWindow.settings.Panels.GetPanelsArray();
+
                             MainWindow.settings.Tv.Height = tv_height;
                             MainWindow.settings.Tv.Width = tv_width;
                             MainWindow.settings.Tv.X_Position = tv_x;
@@ -199,11 +207,32 @@ namespace WindowManager
                             double[] ColumnWidths = MainWindow.settings.Grid.ColumnWidths;
                             double[] RowHeights = MainWindow.settings.Grid.RowHeights;
 
-                            //recalibrate panels
-                            OptimalFrameMembers.intermediateRectangles = PanelAlgorithms.IntermediateRectangles(screenPanel, ColumnWidths, RowHeights, MinimumDimensions.MinimumPanelHeight, MinimumDimensions.MinimumPanelWidth);
-                            OptimalFrameMembers.optimalFrames = PanelAlgorithms.OptimalFrames(OptimalFrameMembers.intermediateRectangles);
+                            List<int[]> IR = PanelAlgorithms.IntermediateRectangles(screenPanel, ColumnWidths, RowHeights, MinimumDimensions.MinimumPanelHeight, MinimumDimensions.MinimumPanelWidth);
+                            List<List<int[]>> OF = PanelAlgorithms.OptimalFrames(OptimalFrameMembers.intermediateRectangles);
 
-                            Panel[] panelArray = MainWindow.settings.Panels.GetPanelsArray();
+
+                            //CHECK IF PANELS FIT - OTHERWISE, REJECT AND RESET
+                            //BETTER IF COULD SIMPLY REJECT, BUT A LOT OF UNDOING WOULD BE NEEDED
+                            if (OF.Count < panelArray.Where(x => x != null).Count())
+                            {
+                                MainWindow.settings.Tv.Height = old_TvHeight;
+                                MainWindow.settings.Tv.Width = old_TvWidth;
+                                MainWindow.settings.Tv.X_Position = old_TvX;
+                                MainWindow.settings.Tv.Y_Position = old_TvY;
+
+                                SettingsManager.SerialiseSettingsJSON(MainWindow.settings);
+
+                                CalculateGridDimensions();
+
+                                System.Diagnostics.Debug.WriteLine("Panels too small after recalibration");
+                                infoBar.Message = "New configuration too small to support panel content. ";
+                                return;
+                            }
+
+                            //recalibrate panels
+                            OptimalFrameMembers.intermediateRectangles = IR;
+                            OptimalFrameMembers.optimalFrames = OF;
+
                             Uri nullUri = null;
                             List<Uri> UriListByPriority = PanelAlgorithms.UriPriority(nullUri, OptimalFrameMembers.intermediateRectangles, panelArray, true);
                             dynamic packedFrames = PanelAlgorithms.PackedFrames(UriListByPriority, OptimalFrameMembers.optimalFrames);
