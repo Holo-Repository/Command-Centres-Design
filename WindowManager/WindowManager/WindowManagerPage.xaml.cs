@@ -317,6 +317,8 @@ namespace WindowManager
             //4. Display panels from JSON
             DisplayPanelsFromJSON(MainWindow.settings);
 
+            MainMenuBar.DecrementNumWindows();
+
         }
 
         public void Add_WebPanel(object sender, Uri deltaUri)
@@ -354,6 +356,8 @@ namespace WindowManager
 
             // 4. Update panels from JSON
             DisplayPanelsFromJSON(MainWindow.settings);
+
+            MainMenuBar.IncrementNumWindows();
 
         }
 

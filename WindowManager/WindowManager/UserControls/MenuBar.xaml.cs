@@ -27,21 +27,22 @@ namespace WindowManager.UserControls
         {
             _int = CountPanelsFromJson();
 
-            if(_int == 8)
+            if (_int == 8)
             {
                 _string = "Max";
-            } else
+            }
+            else
             {
                 _string = _int.ToString();
             }
-       
+
         }
 
         public int CountPanelsFromJson()
         {
             int NumPanels = 0;
 
-            foreach(Panel panel in MainWindow.settings.Panels.GetPanelsArray())
+            foreach (Panel panel in MainWindow.settings.Panels.GetPanelsArray())
             {
                 if (panel != null)
                 {
@@ -52,12 +53,13 @@ namespace WindowManager.UserControls
             return NumPanels;
         }
     }
-
     public sealed partial class MenuBar : UserControl
     {
         //public event TypedEventHandler<object, RoutedEventArgs> MenuFlyoutItem_Click;
         public event TypedEventHandler<object, Uri> Add_Window;
         public event TypedEventHandler<object, bool> Toggle_Border_Visibility;
+
+        public NumWindowsData NumWindows { get; set; }
 
         public MenuBar()
         {
@@ -92,7 +94,7 @@ namespace WindowManager.UserControls
             //SolidColorBrush BackgroundColor;
             //SolidColorBrush TextColor;
 
-            if (this.NumWindows._int == 8 )
+            if (this.NumWindows._int == 8)
             {
                 NumWindowsTextBlock.Text = "Max";
             }
@@ -119,7 +121,6 @@ namespace WindowManager.UserControls
 
             //AddTeamsPanel.Background = BackgroundColor;
             //AddTeamsPanel.Foreground = TextColor;
-            
 
         }
 
@@ -133,7 +134,7 @@ namespace WindowManager.UserControls
             dialog.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
             dialog.Title = "Enter URL:";
             dialog.PrimaryButtonText = "Go";
-           
+
             dialog.CloseButtonText = "Cancel";
             dialog.DefaultButton = ContentDialogButton.Primary;
 
@@ -210,12 +211,14 @@ namespace WindowManager.UserControls
                 dialogTitle = "Enter Create A Meeting Page URL:";
                 dialog.PrimaryButtonClick += ChangeCreateURLClick;
 
-            } else if (menuFlyoutItem.Text == "Join A Meeting URL")
+            }
+            else if (menuFlyoutItem.Text == "Join A Meeting URL")
             {
                 dialogTitle = "Enter Join A Meeting URL: ";
                 dialog.PrimaryButtonClick += ChangeJoinURLClick;
 
-            } else
+            }
+            else
             {
                 throw new ArgumentException("MenuFlyoutItem.Text invalid", nameof(menuFlyoutItem.Text));
             }

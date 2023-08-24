@@ -9,7 +9,6 @@
     mc:Ignorable="d">
 
     <StackPanel Orientation="Horizontal" Spacing="15">
-
         <MenuBar Height="40"
                  x:Name="menuBar">
             <MenuBarItem Title="+ Add Web Panel" 
@@ -46,7 +45,7 @@
 
             </MenuBarItem>
 
-            <MenuBarItem Title="+ Add Teams Panel">
+            <MenuBarItem Title="+ Add Teams Panel" x:Name="AddTeamsPanel">
                 <MenuFlyoutItem Text="Create A Meeting" Click="MenuFlyoutItem_Click">
                     <MenuFlyoutItem.Icon>
                         <ImageIcon Source="/Assets/microsoft-teams-logo.png"/>
@@ -88,6 +87,28 @@
 
         <ToggleSwitch OffContent="Borders Off" OnContent="Borders On" IsOn="True"
                       Toggled="ToggleSwitch_Toggled"/>
+
+        <Border BorderThickness="1" BorderBrush="LightGray" 
+                CornerRadius="5"
+                Height="30">
+            <StackPanel Orientation="Horizontal" Spacing="5"
+                    Background="white"
+                    CornerRadius="5"
+                    Height="30"
+                    Padding="5"
+                    VerticalAlignment="Center">
+                <TextBlock Text="Number of Windows: "
+                       VerticalAlignment="Center"
+                       TextWrapping="Wrap"/>
+
+                <TextBlock Text="{x:Bind NumWindows._string}"
+                   x:Name="NumWindowsTextBlock"
+                   VerticalAlignment="Center"
+                           FontWeight="SemiBold"
+                           />
+
+            </StackPanel>
+        </Border>
 
     </StackPanel>
 
