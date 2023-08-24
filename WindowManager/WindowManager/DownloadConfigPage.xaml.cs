@@ -122,6 +122,9 @@ namespace WindowManager
                 // Overwrite the old settings file with the updated content
                 //await FileIO.WriteTextAsync(settings, updatedJsonContent);
 
+                // overwrite settings with new ones
+                MainWindow.settings = SettingsManager.DeserialiseSettingsJSON();
+
                 //for whatever reason, this is not doing anything
                 //WindowManagerPage windowManagerPage = new WindowManagerPage();
                 //windowManagerPage.DisplayPanelsFromJSON(MainWindow.settings);

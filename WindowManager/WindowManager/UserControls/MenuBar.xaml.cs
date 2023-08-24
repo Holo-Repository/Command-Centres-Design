@@ -18,15 +18,110 @@ using Windows.Foundation.Collections;
 
 namespace WindowManager.UserControls
 {
+    public class NumWindowsData
+    {
+        public int _int { get; set; }
+        public string _string { get; set; }
+
+        public NumWindowsData()
+        {
+            _int = CountPanelsFromJson();
+
+            if (_int == 8)
+            {
+                _string = "Max";
+            }
+            else
+            {
+                _string = _int.ToString();
+            }
+
+        }
+
+        public int CountPanelsFromJson()
+        {
+            int NumPanels = 0;
+
+            foreach (Panel panel in MainWindow.settings.Panels.GetPanelsArray())
+            {
+                if (panel != null)
+                {
+                    NumPanels++;
+                }
+            }
+
+            return NumPanels;
+        }
+    }
     public sealed partial class MenuBar : UserControl
     {
         //public event TypedEventHandler<object, RoutedEventArgs> MenuFlyoutItem_Click;
         public event TypedEventHandler<object, Uri> Add_Window;
         public event TypedEventHandler<object, bool> Toggle_Border_Visibility;
 
+        public NumWindowsData NumWindows { get; set; }
+
         public MenuBar()
         {
             this.InitializeComponent();
+            this.NumWindows = new NumWindowsData();
+            NumPanelsConditionalFormatting();
+        }
+
+        public void IncrementNumWindows()
+        {
+            this.NumWindows._int++;
+            this.NumWindows._string = this.NumWindows._int.ToString();
+
+            NumWindowsTextBlock.Text = this.NumWindows._string;
+
+            NumPanelsConditionalFormatting();
+
+        }
+
+        public void DecrementNumWindows()
+        {
+            this.NumWindows._int--;
+            this.NumWindows._string = this.NumWindows._int.ToString();
+
+            NumWindowsTextBlock.Text = this.NumWindows._string;
+
+            NumPanelsConditionalFormatting();
+        }
+
+        public void NumPanelsConditionalFormatting()
+        {
+            //SolidColorBrush BackgroundColor;
+            //SolidColorBrush TextColor;
+
+            if (this.NumWindows._int == 8)
+            {
+                NumWindowsTextBlock.Text = "Max";
+            }
+
+            if (NumWindows._int < 8)
+            {
+                menuBar.IsEnabled = true;
+                //PopularWebsites.IsEnabled = true;
+                //AddByURL.IsEnabled = true;
+                //BackgroundColor = new SolidColorBrush(Microsoft.UI.Colors.Transparent);
+                //TextColor = new SolidColorBrush(Microsoft.UI.Colors.Black);
+            }
+            else
+            {
+                menuBar.IsEnabled = false;
+                //PopularWebsites.IsEnabled = false;
+                //AddByURL.IsEnabled = false;
+                //BackgroundColor = new SolidColorBrush(Microsoft.UI.Colors.LightGray);
+                //TextColor = new SolidColorBrush(Microsoft.UI.Colors.Red);
+            }
+
+            //AddWebPanel.Background = BackgroundColor;
+            //AddWebPanel.Foreground = TextColor;
+
+            //AddTeamsPanel.Background = BackgroundColor;
+            //AddTeamsPanel.Foreground = TextColor;
+
         }
 
         // This prompts the dialog pop-up when you click on Add by URI
@@ -39,7 +134,7 @@ namespace WindowManager.UserControls
             dialog.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
             dialog.Title = "Enter URL:";
             dialog.PrimaryButtonText = "Go";
-           
+
             dialog.CloseButtonText = "Cancel";
             dialog.DefaultButton = ContentDialogButton.Primary;
 
@@ -116,12 +211,14 @@ namespace WindowManager.UserControls
                 dialogTitle = "Enter Create A Meeting Page URL:";
                 dialog.PrimaryButtonClick += ChangeCreateURLClick;
 
-            } else if (menuFlyoutItem.Text == "Join A Meeting URL")
+            }
+            else if (menuFlyoutItem.Text == "Join A Meeting URL")
             {
                 dialogTitle = "Enter Join A Meeting URL: ";
                 dialog.PrimaryButtonClick += ChangeJoinURLClick;
 
-            } else
+            }
+            else
             {
                 throw new ArgumentException("MenuFlyoutItem.Text invalid", nameof(menuFlyoutItem.Text));
             }

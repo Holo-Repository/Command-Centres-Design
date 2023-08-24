@@ -99,6 +99,9 @@ namespace WindowManager
             // Initialise main window
             this.InitializeComponent();
 
+            // overwrite settings object in case new file has been uploaded
+
+
             // Adjust layout
             AdjustGridSize(MainWindow.settings);
 
@@ -314,6 +317,8 @@ namespace WindowManager
             //4. Display panels from JSON
             DisplayPanelsFromJSON(MainWindow.settings);
 
+            MainMenuBar.DecrementNumWindows();
+
         }
 
         public void Add_WebPanel(object sender, Uri deltaUri)
@@ -351,6 +356,8 @@ namespace WindowManager
 
             // 4. Update panels from JSON
             DisplayPanelsFromJSON(MainWindow.settings);
+
+            MainMenuBar.IncrementNumWindows();
 
         }
 

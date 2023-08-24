@@ -1,1 +1,82 @@
+<<<<<<< HEAD
 {"Tv":{"Height":263.0000114440918,"Width":388.6666660308838,"X_Position":0,"Y_Position":0,"PanelNum":1},"WindowDimensions":{"Height":1080,"Width":1920,"ScalingFactor":1.5},"Grid":{"Height":645,"Width":1230,"RowHeights":[263.0000114440918,190.9999942779541,190.9999942779541],"ColumnWidths":[388.6666660308838,420.6666669845581,420.6666669845581]},"Panels":{"Panel1":null,"Panel2":{"PanelNum":2,"Uri":"https://www.bbc.com/","RowSpan":1,"ColumnSpan":1},"Panel3":null,"Panel4":{"PanelNum":4,"Uri":"https://www.bing.com/","RowSpan":2,"ColumnSpan":1},"Panel5":null,"Panel6":{"PanelNum":6,"Uri":"https://www.bing.com/","RowSpan":1,"ColumnSpan":1},"Panel7":null,"Panel8":{"PanelNum":8,"Uri":"https://www.england.nhs.uk/","RowSpan":1,"ColumnSpan":1},"Panel9":{"PanelNum":9,"Uri":"https://www.youtube.com/","RowSpan":1,"ColumnSpan":1}},"TeamsURIs":{"Join":"https://www.apple.com","Create":"https://www.bbc.com"}}
+=======
+{
+  "Tv": {
+    "Height": 271.33331298828125,
+    "Width": 420.6666564941406,
+    "X_Position": 369.3333435058594,
+    "Y_Position": 153.6666717529297,
+    "PanelNum": 5
+  },
+  "WindowDimensions": {
+    "Height": 1080,
+    "Width": 1920,
+    "ScalingFactor": 1.5
+  },
+  "Grid": {
+    "Height": 645,
+    "Width": 1230,
+    "RowHeights": [
+      153.6666717529297,
+      271.33331298828125,
+      220.00001525878906
+    ],
+    "ColumnWidths": [
+      369.3333435058594,
+      420.6666564941406,
+      440
+    ]
+  },
+  "Panels": {
+    "Panel1": null,
+    "Panel2": {
+      "PanelNum": 2,
+      "Uri": "https://www.youtube.com/",
+      "RowSpan": 1,
+      "ColumnSpan": 1
+    },
+    "Panel3": {
+      "PanelNum": 3,
+      "Uri": "https://www.bing.com/",
+      "RowSpan": 1,
+      "ColumnSpan": 1
+    },
+    "Panel4": {
+      "PanelNum": 4,
+      "Uri": "https://www.bbc.com/",
+      "RowSpan": 1,
+      "ColumnSpan": 1
+    },
+    "Panel5": null,
+    "Panel6": {
+      "PanelNum": 6,
+      "Uri": "https://www.bbc.com/",
+      "RowSpan": 1,
+      "ColumnSpan": 1
+    },
+    "Panel7": {
+      "PanelNum": 7,
+      "Uri": "https://www.bbc.com/",
+      "RowSpan": 1,
+      "ColumnSpan": 1
+    },
+    "Panel8": {
+      "PanelNum": 8,
+      "Uri": "https://www.bing.com/",
+      "RowSpan": 1,
+      "ColumnSpan": 1
+    },
+    "Panel9": {
+      "PanelNum": 9,
+      "Uri": "https://www.youtube.com/",
+      "RowSpan": 1,
+      "ColumnSpan": 1
+    }
+  },
+  "TeamsURIs": {
+    "Join": "https://www.apple.com",
+    "Create": "https://www.bbc.com"
+  }
+}
+>>>>>>> c5a61eecd5de43ac7d3cad4b51696e7ab6135083
