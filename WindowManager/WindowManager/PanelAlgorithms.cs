@@ -135,6 +135,9 @@ namespace WindowManager
             combinedList.Sort((a, b) => intermediates.IndexOf(a.Item1).CompareTo(intermediates.IndexOf(b.Item1)));
             uris = combinedList.Select(tuple => tuple.Item2).ToList();
 
+            //for recalibration - simply return ordered uris, neither adding nor subtracting
+            if (deltaUri == null) return uris;
+
             if (isAdd) uris.Add(deltaUri);
             else uris.Remove(deltaUri);
 

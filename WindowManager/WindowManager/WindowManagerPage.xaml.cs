@@ -317,50 +317,43 @@ namespace WindowManager
             //4. Display panels from JSON
             DisplayPanelsFromJSON(MainWindow.settings);
 
-            MainMenuBar.DecrementNumWindows();
-
         }
 
         public void Add_WebPanel(object sender, Uri deltaUri)
         {
-            if (MainMenuBar.NumWindows._int < 8)
+            bool isAdd = true;
+
+            Panel[] panelArray = MainWindow.settings.Panels.GetPanelsArray();
+            Panel[] fullPanels = panelArray.Where(x => x != null).ToArray();
+            if (fullPanels.Length == OptimalFrameMembers.optimalFrames.Count) return; //prevents user from adding more panels than layout supports
+
+            // 1. Prioritise URIs
+            List<Uri> UriListByPriority = PanelAlgorithms.UriPriority(deltaUri, OptimalFrameMembers.intermediateRectangles, panelArray, isAdd);
+
+            // 2. Identify layout
+            dynamic packedFrames = PanelAlgorithms.PackedFrames(UriListByPriority, OptimalFrameMembers.optimalFrames);
+            // PackedFrames is a dict where keys are strings of panel names e.g. "Panel1"
+            // The value corresponding to that key is another dict where the keys are "uri", "ColumnSpan", and "RowSpan"
+            Dictionary<string, Dictionary<string, object>>.KeyCollection PanelNames = packedFrames.Keys;
+
+            //kill all panels - make way for new
+            MainWindow.settings.Panels.CloseAllPanels();
+
+            foreach (var PanelNameString in PanelNames)
             {
-                bool isAdd = true;
+                Uri uri = packedFrames[PanelNameString]["uri"];
+                int ColumnSpan = packedFrames[PanelNameString]["ColumnSpan"];
+                int RowSpan = packedFrames[PanelNameString]["RowSpan"];
 
-                Panel[] panelArray = MainWindow.settings.Panels.GetPanelsArray();
-                Panel[] fullPanels = panelArray.Where(x => x != null).ToArray();
-                if (fullPanels.Length == OptimalFrameMembers.optimalFrames.Count) return; //prevents user from adding more panels than layout supports
+                MainWindow.settings.Panels.SetPanelDataByName(PanelNameString, uri, ColumnSpan, RowSpan);
 
-                // 1. Prioritise URIs
-                List<Uri> UriListByPriority = PanelAlgorithms.UriPriority(deltaUri, OptimalFrameMembers.intermediateRectangles, panelArray, isAdd);
-
-                // 2. Identify layout
-                dynamic packedFrames = PanelAlgorithms.PackedFrames(UriListByPriority, OptimalFrameMembers.optimalFrames);
-                // PackedFrames is a dict where keys are strings of panel names e.g. "Panel1"
-                // The value corresponding to that key is another dict where the keys are "uri", "ColumnSpan", and "RowSpan"
-                Dictionary<string, Dictionary<string, object>>.KeyCollection PanelNames = packedFrames.Keys;
-
-                //kill all panels - make way for new
-                MainWindow.settings.Panels.CloseAllPanels();
-
-                foreach (var PanelNameString in PanelNames)
-                {
-                    Uri uri = packedFrames[PanelNameString]["uri"];
-                    int ColumnSpan = packedFrames[PanelNameString]["ColumnSpan"];
-                    int RowSpan = packedFrames[PanelNameString]["RowSpan"];
-
-                    MainWindow.settings.Panels.SetPanelDataByName(PanelNameString, uri, ColumnSpan, RowSpan);
-
-                }
-
-                // 3. Write to JSON - function will only take SettingsData object
-                SettingsManager.SerialiseSettingsJSON(MainWindow.settings);
-
-                // 4. Update panels from JSON
-                DisplayPanelsFromJSON(MainWindow.settings);
-
-                MainMenuBar.IncrementNumWindows();
             }
+
+            // 3. Write to JSON - function will only take SettingsData object
+            SettingsManager.SerialiseSettingsJSON(MainWindow.settings);
+
+            // 4. Update panels from JSON
+            DisplayPanelsFromJSON(MainWindow.settings);
 
         }
 
@@ -391,6 +384,5 @@ namespace WindowManager
 
             }
         }
-
     }
 }

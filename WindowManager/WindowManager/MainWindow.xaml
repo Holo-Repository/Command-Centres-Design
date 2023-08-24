@@ -32,7 +32,7 @@
                 </NavigationViewItem.Icon>-->
                 <NavigationViewItem Icon="Help" Content="Help" Tag="WindowManager.HelpPage" />
                 <NavigationViewItem Icon="Setting" Content="Calibration" Tag="WindowManager.CalibrationInfoPage" />
-                <NavigationViewItem Icon="Upload" Content="Window Configuration File" Tag="WindowManager.DownloadConfigPage" />
+                <NavigationViewItem Icon="Upload" Content="Download Window Configuration" Tag="WindowManager.DownloadConfigPage" />
             </NavigationView.MenuItems>
 
             <ScrollViewer>

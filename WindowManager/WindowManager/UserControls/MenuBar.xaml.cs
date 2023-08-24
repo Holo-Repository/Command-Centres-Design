@@ -52,13 +52,12 @@ namespace WindowManager.UserControls
             return NumPanels;
         }
     }
+
     public sealed partial class MenuBar : UserControl
     {
         //public event TypedEventHandler<object, RoutedEventArgs> MenuFlyoutItem_Click;
         public event TypedEventHandler<object, Uri> Add_Window;
         public event TypedEventHandler<object, bool> Toggle_Border_Visibility;
-
-        public NumWindowsData NumWindows { get; set; }
 
         public MenuBar()
         {
@@ -121,6 +120,7 @@ namespace WindowManager.UserControls
             //AddTeamsPanel.Background = BackgroundColor;
             //AddTeamsPanel.Foreground = TextColor;
             
+
         }
 
         // This prompts the dialog pop-up when you click on Add by URI
