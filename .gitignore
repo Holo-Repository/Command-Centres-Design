@@ -1,1 +1,4 @@
-WindowManager/.vs/
+/.vs
+/WindowManager/.vs
+/WindowManager/WindowManager/obj
+/WindowManager/WindowManager/bin
