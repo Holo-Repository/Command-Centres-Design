@@ -69,56 +69,39 @@ namespace WindowManager
             try
             {
                 // Move the selected file to the app's installation folder
-               StorageFolder destinationFolder = await StorageFolder.GetFolderFromPathAsync(settingsFolder);
+                //StorageFolder destinationFolder = await StorageFolder.GetFolderFromPathAsync(settingsFolder); //unnecessary?
                 // Move the selected file to the destination folder
-               StorageFile settings = await StorageFile.GetFileFromPathAsync(settingsFilePath);
+                //StorageFile settings = await StorageFile.GetFileFromPathAsync(settingsFilePath);
 
                 // reading json content from original settings and storing panel number
-                string jsonContent = await FileIO.ReadTextAsync(settings);
-                SettingsData original_settings = JsonSerializer.Deserialize<SettingsData>(jsonContent);
-
-                int tvPanelNumber = original_settings.Tv.PanelNum;
+                //string jsonContent = await FileIO.ReadTextAsync(settings);
+                //SettingsData original_settings = JsonSerializer.Deserialize<SettingsData>(jsonContent);
 
                 // reading json content from new settings 
                 string jsonContent_new = await FileIO.ReadTextAsync(file);
                 SettingsData new_settings = JsonSerializer.Deserialize<SettingsData>(jsonContent_new);
 
-                int new_panel_number = new_settings.Tv.PanelNum;
-
                 //checking if layouts are compatible
-                if (tvPanelNumber != new_panel_number)
+                if (MainWindow.settings.Tv.PanelNum != new_settings.Tv.PanelNum)
                 {
-                    PickAFileOutputTextBlock.Text = "Incompatible screen position."; //changed from "Incompatible file format."
+                    PickAFileOutputTextBlock.Text = "Incompatible screen location."; //changed from "Incompatible file format."
                     return;
                 }
 
-                //establish minimum panel dimensions
-                List<dynamic[]> new_panels = new List<dynamic[]>
+                Panel[] panelArray = new_settings.Panels.GetPanelsArray();
+                foreach (Panel panel in panelArray)
                 {
-                    new dynamic[] { new_settings.Panels.Panel1?.ColumnSpan, new_settings.Panels.Panel1?.RowSpan, new_settings.Panels.Panel1?.PanelNum },
-                    new dynamic[] { new_settings.Panels.Panel2?.ColumnSpan, new_settings.Panels.Panel2?.RowSpan, new_settings.Panels.Panel2?.PanelNum },
-                    new dynamic[] { new_settings.Panels.Panel3?.ColumnSpan, new_settings.Panels.Panel3?.RowSpan, new_settings.Panels.Panel3?.PanelNum },
-                    new dynamic[] { new_settings.Panels.Panel4?.ColumnSpan, new_settings.Panels.Panel4?.RowSpan, new_settings.Panels.Panel4?.PanelNum },
-                    new dynamic[] { new_settings.Panels.Panel5?.ColumnSpan, new_settings.Panels.Panel5?.RowSpan, new_settings.Panels.Panel5?.PanelNum },
-                    new dynamic[] { new_settings.Panels.Panel6?.ColumnSpan, new_settings.Panels.Panel6?.RowSpan, new_settings.Panels.Panel6?.PanelNum },
-                    new dynamic[] { new_settings.Panels.Panel7?.ColumnSpan, new_settings.Panels.Panel7?.RowSpan, new_settings.Panels.Panel7?.PanelNum },
-                    new dynamic[] { new_settings.Panels.Panel8?.ColumnSpan, new_settings.Panels.Panel8?.RowSpan, new_settings.Panels.Panel8?.PanelNum },
-                    new dynamic[] { new_settings.Panels.Panel9?.ColumnSpan, new_settings.Panels.Panel9?.RowSpan, new_settings.Panels.Panel9?.PanelNum }
-                };
+                    if (panel == null) continue; //to fix fucky json -> c# nonsense
 
-                foreach (dynamic[] panel in new_panels)
-                {
-                    if (Array.TrueForAll(panel, item => item == null)) continue; //to fix fucky json -> c# nonsense
-
-                    int a = (panel[2] - 1) % 3; //PanelNum to 0 index column position
-                    int c = panel[0]; //ColumnSpan
+                    int a = (panel.PanelNum - 1) % 3; //PanelNum to 0 index column position
+                    int c = panel.ColumnSpan;
                     double csize = 0;
-                    for (int i = 0; i < c; i++) csize += original_settings.Grid.ColumnWidths[a + i];
+                    for (int i = 0; i < c; i++) csize += MainWindow.settings.Grid.ColumnWidths[a + i];
 
-                    int b = (int)Math.Floor((double)(panel[2] - 1) / 3); //PanelNum to 0 index row position
-                    int r = panel[1]; //RowSpan
+                    int b = (int)Math.Floor((double)(panel.PanelNum - 1) / 3); //PanelNum to 0 index row position
+                    int r = panel.RowSpan;
                     double rsize = 0;
-                    for (int j = 0; j < r; j++) rsize += original_settings.Grid.RowHeights[b + j];
+                    for (int j = 0; j < r; j++) rsize += MainWindow.settings.Grid.RowHeights[b + j];
 
                     //check incoming format against minimum panel dimensions
                     if (rsize < MinimumDimensions.MinimumPanelHeight || csize < MinimumDimensions.MinimumPanelWidth)
@@ -129,12 +112,12 @@ namespace WindowManager
                 }
 
                 //kill all panels - make way for new
-                MainWindow.settings.Panels.CloseAllPanels();
+                //MainWindow.settings.Panels.CloseAllPanels();
 
-                original_settings.Panels = new_settings.Panels;
+                MainWindow.settings.Panels = new_settings.Panels;
                 //string updatedJsonContent = JsonSerializer.Serialize(original_settings, new JsonSerializerOptions { WriteIndented = true });
                 // 3. Write to JSON - function will only take SettingsData object
-                SettingsManager.SerialiseSettingsJSON(original_settings);
+                SettingsManager.SerialiseSettingsJSON(MainWindow.settings);
 
                 // Overwrite the old settings file with the updated content
                 //await FileIO.WriteTextAsync(settings, updatedJsonContent);
