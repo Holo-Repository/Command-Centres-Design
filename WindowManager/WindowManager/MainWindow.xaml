@@ -35,12 +35,17 @@
                 <NavigationViewItem Icon="Upload" Content="Download Window Configuration" Tag="WindowManager.DownloadConfigPage" />
             </NavigationView.MenuItems>
 
-            <ScrollViewer>
-                <Frame x:Name="ContentFrame" IsTabStop="True" 
+            <ScrollViewer x:Name="scrollViewer"
+                VerticalScrollBarVisibility="Auto"
+                Height="Auto"
+                Width="Auto">
+                
+                <Frame x:Name="ContentFrame"
                        Width="{Binding Path=MainWindow.settings.Grid.Width}"
                        Height="{Binding Path=MainWindow.settings.Grid.Height}"
                        HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-                NavigationFailed="ContentFrame_NavigationFailed"/>
+                       NavigationFailed="ContentFrame_NavigationFailed"/>
+                
             </ScrollViewer>
 
         </NavigationView>

@@ -62,6 +62,9 @@ namespace WindowManager
             // Initialise main window
             this.InitializeComponent();
 
+            // set height of scroll viewer - need to add menu bar on top
+            scrollViewer.Height = settings.Grid.Height + 75;
+
             //// C# code to set AppTitleBar uielement as titlebar
             Window window = this;
             window.ExtendsContentIntoTitleBar = true;  // enable custom titlebar

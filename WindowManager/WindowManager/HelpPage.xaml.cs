@@ -26,7 +26,8 @@ namespace WindowManager
         public HelpPage()
         {
             this.InitializeComponent();
-            stackpanel.Height = MainWindow.settings.Grid.Height;
+            //stackpanel.Height = MainWindow.settings.Grid.Height;
+            stackpanel.Width = MainWindow.settings.Grid.Width - 160;
         }
     }
 }

@@ -191,7 +191,6 @@ namespace WindowManager
 
                             SettingsManager.SerialiseSettingsJSON(MainWindow.settings);
 
-                            // Will need to reload main window at the end of this
                             CalculateGridDimensions();
 
                             //recalculate intermediate rectangles and optimal frames

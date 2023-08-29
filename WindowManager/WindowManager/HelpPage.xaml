@@ -11,32 +11,190 @@
 
     <StackPanel 
         x:Name="stackpanel"
-        Margin="15">
+        Margin="15"
+        HorizontalAlignment="Left"
+        Height="Auto">
         <TextBlock x:Name="HelpTitle" Text="Help Guide" Style="{StaticResource TitleTextBlockStyle}" 
                            VerticalAlignment="Top" Margin="15" FontSize="35"/>
-        <Grid>
+
             <StackPanel Orientation="Horizontal">
-                <Rectangle Height ="300" Width="100" Fill="CornflowerBlue"/>
-                <StackPanel Orientation="Vertical" Margin="20">
-                    <TextBlock Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit" 
-                                   Style="{StaticResource SubtitleTextBlockStyle}" TextWrapping="Wrap"
-                                   FontSize="30"/>
+                <Rectangle Height ="1500" Width="100" Fill="CornflowerBlue"
+                           VerticalAlignment="Top"/>
+                
+                <StackPanel x:Name="TextPanel" Orientation="Vertical" Margin="20" Spacing="50">
+                    <StackPanel x:Name="AboutPanel" Orientation="Vertical" Spacing="10">
+                        <TextBlock Text="About" 
+                                       Style="{StaticResource SubtitleTextBlockStyle}" TextWrapping="Wrap"
+                                       FontSize="30"/>
 
-                    <TextBlock Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum" 
-                                   Style="{StaticResource BodyTextBlockStyle}"
-                                   MaxWidth="800"
-                                   HorizontalAlignment="Left"
-                                   Margin="0,10,0,0"/>
+                        <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                                   FontSize="15"
+                                   TextWrapping="WrapWholeWords"
+                                   Width="1070">
+                            <Run Text="Command Centres Design is a proof-of-concept application which aims to streamline visualisation of" />
+                            <Run Text="web-based data from a variety of sources simultaneously. The app is designed to be used in" />
+                            <Run Text="conjunction with a central TV screen or monitor, as shown below. Once the app has been calibrated " />
+                            <Run Text="for the central screen, the window manager can project web content in panels arranged around the" />
+                             <Run Text="screen." />
+                        </TextBlock>
+                    </StackPanel>
 
-                    <TextBlock Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum" 
-                                   Style="{StaticResource BodyTextBlockStyle}"
-                                   MaxWidth="800"
-                                   HorizontalAlignment="Left"
-                                   Margin="0,10,0,0"/>
+                <StackPanel x:Name="AddPanel" Orientation="Vertical" Spacing="30">
+
+                    <StackPanel x:Name="AddPanelIntro" Orientation="Vertical" Spacing="10">
+                        <TextBlock Text="Adding a Panel" 
+                                       Style="{StaticResource SubtitleTextBlockStyle}" TextWrapping="Wrap"
+                                       FontSize="30"/>
+
+                        <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                                   FontSize="15"
+                                   TextWrapping="WrapWholeWords"
+                                   Width="1070">
+                            <Run Text="Users are able to add two different types of panels into the Window Manager: A Web Panel or a" />
+                            <Run Text="Teams Panel. Web panels host any HTML content accessible via a valid URL within the panel. These" />
+                            <Run Text="can be added either via the “Popular Websites” shortcut, or by specifying a URL. Teams Panels link" />
+                            <Run Text="to a custom web application which enables selected Microsoft Teams functionality. Users are able to" />
+                             <Run Text="either join or schedule a Teams meeting, depending on the type of panel selected." />
+                        </TextBlock>
+                    </StackPanel>
+
+                    <StackPanel x:Name="AddWebPanel" Spacing="10">
+                        <TextBlock Text="• Adding a Web Panel" 
+                                       Style="{StaticResource BodyTextBlockStyle}" TextWrapping="Wrap"
+                                       FontSize="25"/>
+
+                            <TextBlock FontSize="15" Style="{StaticResource BodyTextBlockStyle}" Margin="0,10,0,0"
+                                       Text="To add a Web Panel by Popular Websites shortcut:"/>
+                        
+                        <TextBlock FontSize="15" Style="{StaticResource BodyTextBlockStyle}" Margin="25,0,0,0"
+                                       Text="1. Navigate to the Window Manager tab."/>
+
+                        <TextBlock FontSize="15" Style="{StaticResource BodyTextBlockStyle}" Margin="25,0,0,0"
+                                       Text="2. Select + Add Web Panel."/>
+
+                        <TextBlock FontSize="15" Style="{StaticResource BodyTextBlockStyle}" Margin="25,0,0,0"
+                                       Text="3. Hover over Popular Websites."/>
+
+                        <TextBlock FontSize="15" Style="{StaticResource BodyTextBlockStyle}" Margin="25,0,0,0"
+                                       Text="4. Select the desired website from the list."/>
+                        <TextBlock FontSize="15" Style="{StaticResource BodyTextBlockStyle}" Margin="25,0,0,0"
+                                       Text="5. Wait for panel to render."/>
+                        
+
+                        <TextBlock FontSize="15" Style="{StaticResource BodyTextBlockStyle}"
+                                       Text="To add a Web Panel by URL:" Margin="0,10,0,0"/>
+
+                        <TextBlock FontSize="15" Style="{StaticResource BodyTextBlockStyle}" Margin="25,0,0,0"
+                                       Text="1. Navigate to the Window Manager tab."/>
+
+                        <TextBlock FontSize="15" Style="{StaticResource BodyTextBlockStyle}" Margin="25,0,0,0"
+                                       Text="2. Select + Add Web Panel."/>
+
+                        <TextBlock FontSize="15" Style="{StaticResource BodyTextBlockStyle}" Margin="25,0,0,0"
+                                       Text="3. Select Add by URL."/>
+
+                        <TextBlock FontSize="15" Style="{StaticResource BodyTextBlockStyle}" Margin="25,0,0,0"
+                                       Text="4. Enter the desired URL when prompted in the format https://www..."/>
+                        <TextBlock FontSize="15" Style="{StaticResource BodyTextBlockStyle}" Margin="25,0,0,0"
+                                       Text="5. Press Go and wait for panel to render."/>
+
+                    </StackPanel>
+
+                    <StackPanel x:Name="AddTeamsPanel" Spacing="10">
+                        <TextBlock Text="• Adding a Teams Panel" 
+                                       Style="{StaticResource BodyTextBlockStyle}" TextWrapping="Wrap"
+                                       FontSize="25"/>
+                        
+                        <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                                   FontSize="15"
+                                   TextWrapping="WrapWholeWords"
+                                   Width="1070">
+                            <Run Text="Command Centres Design is a proof-of-concept application which aims to streamline visualisation of " />
+                            <Run Text="web-based data from a variety of sources simultaneously. The app is designed to be used in " />
+                            <Run Text="conjunction with a central TV screen or monitor, as shown below. Once the app has been calibrated " />
+                            <Run Text="for the central screen, the window manager can project web content in panels arranged around the " />
+                             <Run Text="screen." />
+                        </TextBlock>
+                    </StackPanel>
+
                 </StackPanel>
+
+                <StackPanel x:Name="TeamsFunctionality" Orientation="Vertical" Spacing="30">
+
+                    <StackPanel x:Name="TeamsFunctionalityAbout" Orientation="Vertical" Spacing="10">
+                        <TextBlock Text="Microsoft Teams Functionality" 
+                                       Style="{StaticResource SubtitleTextBlockStyle}" TextWrapping="Wrap"
+                                       FontSize="30"/>
+
+                        <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                                   FontSize="15"
+                                   TextWrapping="WrapWholeWords"
+                                   Width="1070">
+                            <Run Text="Command Centres Design is a proof-of-concept application which aims to streamline visualisation of " />
+                            <Run Text="web-based data from a variety of sources simultaneously. The app is designed to be used in " />
+                            <Run Text="conjunction with a central TV screen or monitor, as shown below. Once the app has been calibrated " />
+                            <Run Text="for the central screen, the window manager can project web content in panels arranged around the " />
+                             <Run Text="screen." />
+                        </TextBlock>
+                    </StackPanel>
+
+                    <StackPanel x:Name="TeamsFunctionalityAdd" Spacing="10">
+                        <TextBlock Text="• Adding a Teams Panel" 
+                                       Style="{StaticResource BodyTextBlockStyle}" TextWrapping="Wrap"
+                                       FontSize="25"/>
+
+                        <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                                   FontSize="15"
+                                   TextWrapping="WrapWholeWords"
+                                   Width="1070">
+                            <Run Text="Command Centres Design is a proof-of-concept application which aims to streamline visualisation of " />
+                            <Run Text="web-based data from a variety of sources simultaneously. The app is designed to be used in " />
+                            <Run Text="conjunction with a central TV screen or monitor, as shown below. Once the app has been calibrated " />
+                            <Run Text="for the central screen, the window manager can project web content in panels arranged around the " />
+                             <Run Text="screen." />
+                        </TextBlock>
+                    </StackPanel>
+
+                    <StackPanel x:Name="ChangeTeamsURIs" Spacing="10">
+                        <TextBlock Text="• Change Teams URLs" 
+                                       Style="{StaticResource BodyTextBlockStyle}" TextWrapping="Wrap"
+                                       FontSize="25"/>
+
+                        <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                                   FontSize="15"
+                                   TextWrapping="WrapWholeWords"
+                                   Width="1070">
+                            <Run Text="Command Centres Design is a proof-of-concept application which aims to streamline visualisation of " />
+                            <Run Text="web-based data from a variety of sources simultaneously. The app is designed to be used in " />
+                            <Run Text="conjunction with a central TV screen or monitor, as shown below. Once the app has been calibrated " />
+                            <Run Text="for the central screen, the window manager can project web content in panels arranged around the " />
+                             <Run Text="screen." />
+                        </TextBlock>
+                    </StackPanel>
+
+                </StackPanel>
+
+                <StackPanel x:Name="BorderPanel" Orientation="Vertical" Spacing="10">
+                    <TextBlock Text="Panel Borders" 
+                                       Style="{StaticResource SubtitleTextBlockStyle}" TextWrapping="Wrap"
+                                       FontSize="30"/>
+
+                    <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                                   FontSize="15"
+                                   TextWrapping="WrapWholeWords"
+                                   Width="1070">
+                            <Run Text="Command Centres Design is a proof-of-concept application which aims to streamline visualisation of" />
+                            <Run Text="web-based data from a variety of sources simultaneously. The app is designed to be used in" />
+                            <Run Text="conjunction with a central TV screen or monitor, as shown below. Once the app has been calibrated " />
+                            <Run Text="for the central screen, the window manager can project web content in panels arranged around the" />
+                             <Run Text="screen." />
+                    </TextBlock>
+                </StackPanel>
+
+
+            </StackPanel>
             </StackPanel>
 
-        </Grid>
     </StackPanel>
 
 </Page>
