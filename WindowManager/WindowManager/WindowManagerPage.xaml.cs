@@ -256,8 +256,6 @@ namespace WindowManager
 
         private void WebPanel_PointerEntered(object sender, PointerRoutedEventArgs e)
         {
-            System.Diagnostics.Debug.WriteLine("Pointer entered");
-
             WebPanel webPanel = sender as WebPanel;
             webPanel.ChangeCommandBarVisibility("visible");
 
@@ -265,8 +263,6 @@ namespace WindowManager
 
         private void WebPanel_PointerExited(object sender, PointerRoutedEventArgs e)
         {
-            System.Diagnostics.Debug.WriteLine("Pointer exited");
-
             WebPanel webPanel = sender as WebPanel;
             webPanel.ChangeCommandBarVisibility("collapsed");
         }

@@ -148,7 +148,7 @@ namespace WindowManager
 
         private void NavigationViewItem_Loaded(object sender, RoutedEventArgs e)
         {
-            System.Diagnostics.Debug.WriteLine("Window Manager Page reloaded");
+            System.Diagnostics.Debug.WriteLine("Nav view page reloaded");
         }
     }
 }

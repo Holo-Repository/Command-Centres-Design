@@ -110,6 +110,16 @@
             </StackPanel>
         </Border>
 
+        <TeachingTip x:Name="InvalidURL"
+	        Title="Invalid URL."
+	        Subtitle="URLs must be valid and entered in http format."
+	        PreferredPlacement="Center"
+	        PlacementMargin="20"
+	        IsLightDismissEnabled="True"
+	        CloseButtonContent="Cancel"
+            ActionButtonClick="InvalidURL_ActionButtonClick"
+	        ActionButtonContent="Try again"/>
+
     </StackPanel>
 
 </UserControl>

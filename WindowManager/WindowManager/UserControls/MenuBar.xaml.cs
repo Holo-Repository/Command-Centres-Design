@@ -150,14 +150,22 @@ namespace WindowManager.UserControls
 
         private void GoButtonClick(ContentDialog dialog, ContentDialogButtonClickEventArgs args)
         {
-            // currently url must be entered with the format http://www....
             TextBox textBox = dialog.Content as TextBox;
-            string UriString = textBox.Text;
-            Uri deltaUri = new Uri(UriString);
+            string uriString = textBox.Text;
 
-            //bubble the event up to the parent
-            if (this.Add_Window != null)
-                this.Add_Window(this, deltaUri);
+            if (Uri.TryCreate(uriString, UriKind.Absolute, out Uri uriResult) &&
+                (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps))
+            {
+                // Valid URL entered
+                if (this.Add_Window != null)
+                    this.Add_Window(this, uriResult);
+            }
+            else
+            {
+                // Invalid URL entered
+                // You can display an error message or handle the validation failure here
+                InvalidURL.IsOpen = true;
+            }
 
         }
 
@@ -274,6 +282,30 @@ namespace WindowManager.UserControls
             //bubble the event up to the parent
             if (this.Toggle_Border_Visibility != null)
                 this.Toggle_Border_Visibility(this, state);
+        }
+
+        private async void InvalidURL_ActionButtonClick(TeachingTip sender, object args)
+        {
+            InvalidURL.IsOpen = false;
+
+            ContentDialog dialog = new ContentDialog();
+
+            // XamlRoot must be set in the case of a ContentDialog running in a Desktop app
+            dialog.XamlRoot = this.XamlRoot;
+            dialog.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
+            dialog.Title = "Enter URL:";
+            dialog.PrimaryButtonText = "Go";
+
+            dialog.CloseButtonText = "Cancel";
+            dialog.DefaultButton = ContentDialogButton.Primary;
+
+            TextBox textBox = new TextBox();
+            textBox.PlaceholderText = "https://";
+            dialog.Content = textBox;
+
+            dialog.PrimaryButtonClick += GoButtonClick;
+
+            var result = await dialog.ShowAsync();
         }
     }
 }
