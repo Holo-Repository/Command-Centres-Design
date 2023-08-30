@@ -65,7 +65,7 @@
             </MenuBarItem>
 
             <MenuBarItem Title="Change Teams URLs">
-                <MenuFlyoutItem Text="Create A Meeting URL" Click="ChangeURLItem_Click">
+                <MenuFlyoutItem Text="Create A Meeting URL" Click="MenuFlyoutItem_Click_1">
                     <MenuFlyoutItem.Icon>
                         <SymbolIcon Symbol="Setting"/>
                     </MenuFlyoutItem.Icon>
@@ -73,7 +73,7 @@
                         <KeyboardAccelerator Modifiers="Control" Key="Z"/>
                     </MenuFlyoutItem.KeyboardAccelerators>
                 </MenuFlyoutItem>
-                <MenuFlyoutItem Text="Join A Meeting URL" Click="ChangeURLItem_Click">
+                <MenuFlyoutItem Text="Join A Meeting URL" Click="MenuFlyoutItem_Click_1">
                     <MenuFlyoutItem.Icon>
                         <SymbolIcon Symbol="Setting"/>
                     </MenuFlyoutItem.Icon>
@@ -110,15 +110,51 @@
             </StackPanel>
         </Border>
 
-        <TeachingTip x:Name="InvalidURL"
-	        Title="Invalid URL."
+        <TeachingTip x:Name="InvalidWebPanelURL"
+	        Title="Invalid Web Panel URL"
 	        Subtitle="URLs must be valid and entered in http format."
 	        PreferredPlacement="Center"
 	        PlacementMargin="20"
 	        IsLightDismissEnabled="True"
 	        CloseButtonContent="Cancel"
-            ActionButtonClick="InvalidURL_ActionButtonClick"
+            ActionButtonClick="InvalidWebPanelURL_TryAgain"
 	        ActionButtonContent="Try again"/>
+
+        <TeachingTip x:Name="InvalidCreateURL"
+	        Title="Invalid Create URL"
+	        Subtitle="URLs must be valid and entered in http format."
+	        PreferredPlacement="Center"
+	        PlacementMargin="20"
+	        IsLightDismissEnabled="True"
+	        CloseButtonContent="Cancel"
+            ActionButtonClick="InvalidCreateURL_TryAgain"
+	        ActionButtonContent="Try again"/>
+
+        <TeachingTip x:Name="InvalidJoinURL"
+	        Title="Invalid Join URL"
+	        Subtitle="URLs must be valid and entered in http format."
+	        PreferredPlacement="Center"
+	        PlacementMargin="20"
+	        IsLightDismissEnabled="True"
+	        CloseButtonContent="Cancel"
+            ActionButtonClick="InvalidJoinURL_TryAgain"
+	        ActionButtonContent="Try again"/>
+
+        <TeachingTip x:Name="ChangeCreate_Success"
+	        Title="Success!"
+	        Subtitle="Create a Teams meeting URL was successfully changed."
+	        PreferredPlacement="Center"
+	        PlacementMargin="20"
+	        IsLightDismissEnabled="True"
+	        CloseButtonContent="Close"/>
+
+        <TeachingTip x:Name="ChangeJoin_Success"
+	        Title="Success!"
+	        Subtitle="Join a Teams meeting URL was successfully changed."
+	        PreferredPlacement="Center"
+	        PlacementMargin="20"
+	        IsLightDismissEnabled="True"
+	        CloseButtonContent="Close"/>
 
     </StackPanel>
 

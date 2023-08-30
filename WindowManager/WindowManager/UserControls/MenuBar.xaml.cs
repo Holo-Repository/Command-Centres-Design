@@ -55,7 +55,6 @@ namespace WindowManager.UserControls
     }
     public sealed partial class MenuBar : UserControl
     {
-        //public event TypedEventHandler<object, RoutedEventArgs> MenuFlyoutItem_Click;
         public event TypedEventHandler<object, Uri> Add_Window;
         public event TypedEventHandler<object, bool> Toggle_Border_Visibility;
 
@@ -91,9 +90,6 @@ namespace WindowManager.UserControls
 
         public void NumPanelsConditionalFormatting()
         {
-            //SolidColorBrush BackgroundColor;
-            //SolidColorBrush TextColor;
-
             if (this.NumWindows._int == 8)
             {
                 NumWindowsTextBlock.Text = "Max";
@@ -102,49 +98,11 @@ namespace WindowManager.UserControls
             if (NumWindows._int < 8)
             {
                 menuBar.IsEnabled = true;
-                //PopularWebsites.IsEnabled = true;
-                //AddByURL.IsEnabled = true;
-                //BackgroundColor = new SolidColorBrush(Microsoft.UI.Colors.Transparent);
-                //TextColor = new SolidColorBrush(Microsoft.UI.Colors.Black);
             }
             else
             {
                 menuBar.IsEnabled = false;
-                //PopularWebsites.IsEnabled = false;
-                //AddByURL.IsEnabled = false;
-                //BackgroundColor = new SolidColorBrush(Microsoft.UI.Colors.LightGray);
-                //TextColor = new SolidColorBrush(Microsoft.UI.Colors.Red);
             }
-
-            //AddWebPanel.Background = BackgroundColor;
-            //AddWebPanel.Foreground = TextColor;
-
-            //AddTeamsPanel.Background = BackgroundColor;
-            //AddTeamsPanel.Foreground = TextColor;
-
-        }
-
-        // This prompts the dialog pop-up when you click on Add by URI
-        private async void MenuFlyoutItem_Click_1(object sender, RoutedEventArgs e)
-        {
-            ContentDialog dialog = new ContentDialog();
-
-            // XamlRoot must be set in the case of a ContentDialog running in a Desktop app
-            dialog.XamlRoot = this.XamlRoot;
-            dialog.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
-            dialog.Title = "Enter URL:";
-            dialog.PrimaryButtonText = "Go";
-
-            dialog.CloseButtonText = "Cancel";
-            dialog.DefaultButton = ContentDialogButton.Primary;
-
-            TextBox textBox = new TextBox();
-            textBox.PlaceholderText = "https://";
-            dialog.Content = textBox;
-
-            dialog.PrimaryButtonClick += GoButtonClick;
-
-            var result = await dialog.ShowAsync();
 
         }
 
@@ -163,13 +121,12 @@ namespace WindowManager.UserControls
             else
             {
                 // Invalid URL entered
-                // You can display an error message or handle the validation failure here
-                InvalidURL.IsOpen = true;
+                InvalidWebPanelURL.IsOpen = true;
             }
 
         }
 
-        // Send the correct uri according to content
+        // Send the correct uri according to content for website shortcuts
         private void MenuFlyoutItem_Click(object sender, RoutedEventArgs e)
         {
             MenuFlyoutItem menuFlyoutItem = sender as MenuFlyoutItem;
@@ -202,11 +159,10 @@ namespace WindowManager.UserControls
                 this.Add_Window(this, deltaUri);
         }
 
-        private async void ChangeURLItem_Click(object sender, RoutedEventArgs e)
+        // add web panel by url, change create and join teams urls
+        private async void MenuFlyoutItem_Click_1(object sender, RoutedEventArgs e)
         {
             MenuFlyoutItem menuFlyoutItem = sender as MenuFlyoutItem;
-            //Uri deltaUri;
-
             ContentDialog dialog = new ContentDialog();
 
             // XamlRoot must be set in the case of a ContentDialog running in a Desktop app
@@ -214,7 +170,13 @@ namespace WindowManager.UserControls
             dialog.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
             string dialogTitle;
 
-            if (menuFlyoutItem.Text == "Create A Meeting URL")
+            if (menuFlyoutItem.Text == "Add by URL")
+            {
+                dialogTitle = "Enter Web Panel URL:";
+                dialog.PrimaryButtonClick += GoButtonClick;
+
+            }
+            else if (menuFlyoutItem.Text == "Create A Meeting URL")
             {
                 dialogTitle = "Enter Create A Meeting Page URL:";
                 dialog.PrimaryButtonClick += ChangeCreateURLClick;
@@ -241,35 +203,51 @@ namespace WindowManager.UserControls
             textBox.PlaceholderText = "https://";
             dialog.Content = textBox;
 
-            dialog.PrimaryButtonClick += ChangeJoinURLClick;
-
             var result = await dialog.ShowAsync();
 
         }
 
         private void ChangeJoinURLClick(ContentDialog dialog, ContentDialogButtonClickEventArgs args)
         {
-            // currently url must be entered with the format http://www....
             TextBox textBox = dialog.Content as TextBox;
             string joinUriString = textBox.Text;
 
-            MainWindow.settings.TeamsURIs.Join = joinUriString;
-            SettingsManager.SerialiseSettingsJSON(MainWindow.settings);
-
-            //bubble the event up to the parent
-            //if (this.Reload_Page != null)
-            //    this.Reload_Page(this, deltaUri);
-
+            if (Uri.TryCreate(joinUriString, UriKind.Absolute, out Uri uriResult) &&
+                (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps))
+            {
+                // Valid URL entered
+                MainWindow.settings.TeamsURIs.Join = joinUriString;
+                SettingsManager.SerialiseSettingsJSON(MainWindow.settings);
+                // show success message
+                ChangeJoin_Success.IsOpen = true;
+            }
+            else
+            {
+                // Invalid URL entered
+                InvalidJoinURL.IsOpen = true;
+            }
+            
         }
 
         private void ChangeCreateURLClick(ContentDialog dialog, ContentDialogButtonClickEventArgs args)
         {
-            // currently url must be entered with the format http://www....
             TextBox textBox = dialog.Content as TextBox;
-            string CreateUriString = textBox.Text;
+            string createUriString = textBox.Text;
 
-            MainWindow.settings.TeamsURIs.Create = CreateUriString;
-            SettingsManager.SerialiseSettingsJSON(MainWindow.settings);
+            if (Uri.TryCreate(createUriString, UriKind.Absolute, out Uri uriResult) &&
+                (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps))
+            {
+                // Valid URL entered
+                MainWindow.settings.TeamsURIs.Create = createUriString;
+                SettingsManager.SerialiseSettingsJSON(MainWindow.settings);
+                // show success message
+                ChangeCreate_Success.IsOpen = true;
+            }
+            else
+            {
+                // Invalid URL entered
+                InvalidCreateURL.IsOpen = true;
+            }
 
         }
 
@@ -284,9 +262,9 @@ namespace WindowManager.UserControls
                 this.Toggle_Border_Visibility(this, state);
         }
 
-        private async void InvalidURL_ActionButtonClick(TeachingTip sender, object args)
+        private async void InvalidWebPanelURL_TryAgain(TeachingTip sender, object args)
         {
-            InvalidURL.IsOpen = false;
+            InvalidWebPanelURL.IsOpen = false;
 
             ContentDialog dialog = new ContentDialog();
 
@@ -304,6 +282,54 @@ namespace WindowManager.UserControls
             dialog.Content = textBox;
 
             dialog.PrimaryButtonClick += GoButtonClick;
+
+            var result = await dialog.ShowAsync();
+        }
+
+        private async void InvalidCreateURL_TryAgain(TeachingTip sender, object args)
+        {
+            InvalidCreateURL.IsOpen = false;
+
+            ContentDialog dialog = new ContentDialog();
+
+            // XamlRoot must be set in the case of a ContentDialog running in a Desktop app
+            dialog.XamlRoot = this.XamlRoot;
+            dialog.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
+            dialog.Title = "Enter Create A Meeting Page URL:";
+            dialog.PrimaryButtonText = "Go";
+
+            dialog.CloseButtonText = "Cancel";
+            dialog.DefaultButton = ContentDialogButton.Primary;
+
+            TextBox textBox = new TextBox();
+            textBox.PlaceholderText = "https://";
+            dialog.Content = textBox;
+
+            dialog.PrimaryButtonClick += ChangeCreateURLClick;
+
+            var result = await dialog.ShowAsync();
+        }
+
+        private async void InvalidJoinURL_TryAgain(TeachingTip sender, object args)
+        {
+            InvalidJoinURL.IsOpen = false;
+
+            ContentDialog dialog = new ContentDialog();
+
+            // XamlRoot must be set in the case of a ContentDialog running in a Desktop app
+            dialog.XamlRoot = this.XamlRoot;
+            dialog.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
+            dialog.Title = "Enter Join A Meeting Page URL:";
+            dialog.PrimaryButtonText = "Go";
+
+            dialog.CloseButtonText = "Cancel";
+            dialog.DefaultButton = ContentDialogButton.Primary;
+
+            TextBox textBox = new TextBox();
+            textBox.PlaceholderText = "https://";
+            dialog.Content = textBox;
+
+            dialog.PrimaryButtonClick += ChangeJoinURLClick;
 
             var result = await dialog.ShowAsync();
         }
