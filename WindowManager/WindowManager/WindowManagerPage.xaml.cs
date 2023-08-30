@@ -284,6 +284,7 @@ namespace WindowManager
             {
                 MainWindow.settings.Panels.CloseAllPanels();
                 DisplayPanelsFromJSON(MainWindow.settings);
+                MainMenuBar.DecrementNumWindows(); //should now decrement to zero
                 return;
             }
 
@@ -308,7 +309,7 @@ namespace WindowManager
             }
 
             // 3. Write to JSON - function will only take SettingsData object
-            //SettingsManager.SerialiseSettingsJSON(MainWindow.settings);
+            SettingsManager.SerialiseSettingsJSON(MainWindow.settings);
 
             //4. Display panels from JSON
             DisplayPanelsFromJSON(MainWindow.settings);

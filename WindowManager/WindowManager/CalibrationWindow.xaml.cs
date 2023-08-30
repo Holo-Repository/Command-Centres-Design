@@ -239,7 +239,7 @@ namespace WindowManager
                             Dictionary<string, Dictionary<string, object>>.KeyCollection PanelNames = packedFrames.Keys;
 
                             //kill old panels to clear way for new
-                            //MainWindow.settings.Panels.CloseAllPanels(); //necessary?
+                            MainWindow.settings.Panels.CloseAllPanels();
 
                             foreach (var PanelNameString in PanelNames)
                             {
@@ -250,6 +250,9 @@ namespace WindowManager
                                 MainWindow.settings.Panels.SetPanelDataByName(PanelNameString, uri, ColumnSpan, RowSpan);
 
                             }
+
+                            //write to JSON
+                            SettingsManager.SerialiseSettingsJSON(MainWindow.settings);
 
                             infoBar.Message = "Calibration settings successfully saved. Press ESC to exit.";
 
