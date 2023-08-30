@@ -207,7 +207,7 @@ namespace WindowManager
                             double[] RowHeights = MainWindow.settings.Grid.RowHeights;
 
                             List<int[]> IR = PanelAlgorithms.IntermediateRectangles(screenPanel, ColumnWidths, RowHeights, MinimumDimensions.MinimumPanelHeight, MinimumDimensions.MinimumPanelWidth);
-                            List<List<int[]>> OF = PanelAlgorithms.OptimalFrames(OptimalFrameMembers.intermediateRectangles);
+                            List<List<int[]>> OF = PanelAlgorithms.OptimalFrames(IR); //silly, silly mistake
 
 
                             //CHECK IF PANELS FIT - OTHERWISE, REJECT AND RESET
