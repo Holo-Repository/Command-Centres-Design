@@ -207,7 +207,7 @@ namespace WindowManager
                             double[] RowHeights = MainWindow.settings.Grid.RowHeights;
 
                             List<int[]> IR = PanelAlgorithms.IntermediateRectangles(screenPanel, ColumnWidths, RowHeights, MinimumDimensions.MinimumPanelHeight, MinimumDimensions.MinimumPanelWidth);
-                            List<List<int[]>> OF = PanelAlgorithms.OptimalFrames(OptimalFrameMembers.intermediateRectangles);
+                            List<List<int[]>> OF = PanelAlgorithms.OptimalFrames(IR); //silly, silly mistake
 
 
                             //CHECK IF PANELS FIT - OTHERWISE, REJECT AND RESET
@@ -239,7 +239,7 @@ namespace WindowManager
                             Dictionary<string, Dictionary<string, object>>.KeyCollection PanelNames = packedFrames.Keys;
 
                             //kill old panels to clear way for new
-                            //MainWindow.settings.Panels.CloseAllPanels(); //necessary?
+                            MainWindow.settings.Panels.CloseAllPanels();
 
                             // this loop is overwriting tv panel
                             foreach (var PanelNameString in PanelNames)
@@ -251,6 +251,9 @@ namespace WindowManager
                                 MainWindow.settings.Panels.SetPanelDataByName(PanelNameString, uri, ColumnSpan, RowSpan);
 
                             }
+
+                            //write to JSON
+                            SettingsManager.SerialiseSettingsJSON(MainWindow.settings);
 
                             infoBar.Message = "Calibration settings successfully saved. Press ESC to exit.";
 

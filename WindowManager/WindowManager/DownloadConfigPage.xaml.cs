@@ -112,7 +112,7 @@ namespace WindowManager
                 }
 
                 //kill all panels - make way for new
-                //MainWindow.settings.Panels.CloseAllPanels();
+                MainWindow.settings.Panels.CloseAllPanels();
 
                 MainWindow.settings.Panels = new_settings.Panels;
                 //string updatedJsonContent = JsonSerializer.Serialize(original_settings, new JsonSerializerOptions { WriteIndented = true });
