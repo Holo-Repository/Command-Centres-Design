@@ -25,6 +25,12 @@ using WinRT.Interop;
 using Windows.UI.WindowManagement;
 using System.Reflection.Metadata;
 using AppWindow = Microsoft.UI.Windowing.AppWindow;
+using System.Text.Json;
+using System.Reflection;
+using Windows.UI.ApplicationSettings;
+using Microsoft.UI.Xaml.Media.Animation;
+using Windows.Devices.Enumeration;
+using System.Runtime.InteropServices;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -36,33 +42,47 @@ namespace WindowManager
     /// </summary>
     public sealed partial class MainWindow : Window
     {
-        private string SwapUri;
+        // settings object is initialise in the main window - maybe this should change
+        public static SettingsData settings;
+
         public MainWindow()
         {
+            // Directory.GetCurrentDirectory was returning service directory of system32 so using this workaround instead
+            string baseDir = AppDomain.CurrentDomain.BaseDirectory;
+            string projectName = "WindowManager\\";
+            int startOfProj = baseDir.LastIndexOf(projectName);
+
+            string currentDir = baseDir.Substring(0, (startOfProj + projectName.Length));
+            Directory.SetCurrentDirectory(currentDir);
+
+            //Read settings from Json into class variable - this must come after the above code to correct current directory
+            settings = SettingsManager.DeserialiseSettingsJSON();
+
+            SettingsData test = new SettingsData();
+            // Initialise main window
             this.InitializeComponent();
 
-            // Probably should put this in its own function WireEventHandlers
+            // set height of scroll viewer - need to add menu bar on top
+            scrollViewer.Height = settings.Grid.Height + 75;
 
-            List<WebPanel> populateFrames = new List<WebPanel> { Panel1, Panel2, Panel3, Panel4, Panel5, Panel6 };
-            foreach (WebPanel panel in populateFrames)
-            {
-                panel.Frame_DragStarting += new TypedEventHandler<UIElement, DragStartingEventArgs>(WebPanel_DragStarting);
-                panel.Frame_DragOver += new TypedEventHandler<object, DragEventArgs>(WebPanel_DragOver);
-                panel.Frame_Drop += new TypedEventHandler<object, DragEventArgs>(WebPanel_Drop);
-                panel.Frame_DropCompleted += new TypedEventHandler<UIElement, DropCompletedEventArgs>(WebPanel_DropCompleted);
-                panel.Frame_PointerEntered += new TypedEventHandler<object, PointerRoutedEventArgs>(WebPanel_PointerEntered);
-                panel.Frame_PointerExited += new TypedEventHandler<object, PointerRoutedEventArgs>(WebPanel_PointerExited);
-            }
+            //// C# code to set AppTitleBar uielement as titlebar
+            Window window = this;
+            window.ExtendsContentIntoTitleBar = true;  // enable custom titlebar
+            window.SetTitleBar(AppTitleBar);      // set user ui element as titlebar
 
-            MainMenuBar.MenuFlyoutItem_Click += new TypedEventHandler<object, RoutedEventArgs>(Calibration_Click);
+            double AppBarWidth = AppTitleBar.Width;
 
-            System.Diagnostics.Debug.WriteLine("Initialising");
+            // Set fullscreen, get size of window and set scale factor
+            AppWindow m_appWindow = GetAppWindowForCurrentWindow();
+            m_appWindow.SetPresenter(AppWindowPresenterKind.FullScreen);
 
+            Windows.Graphics.SizeInt32 Size = m_appWindow.Size;
+            int WindowHeight = Size.Height;
+            int WindowWidth = Size.Width;
 
-            AppWindow _appWindow = GetAppWindowForCurrentWindow();
-            //            _appWindow.SetPresenter(AppWindowPresenterKind.FullScreen);
+            settings.WindowDimensions.Height = WindowHeight;
+            settings.WindowDimensions.Width = WindowWidth;
 
-            //System.Diagnostics.Debug.WriteLine(_appWindow.ClientSize)
 
         }
 
@@ -71,77 +91,64 @@ namespace WindowManager
             IntPtr hWnd = WindowNative.GetWindowHandle(this);
             WindowId myWndId = Win32Interop.GetWindowIdFromWindow(hWnd);
 
+            [DllImport("user32.dll")]
+            static extern int GetDpiForWindow(IntPtr hwnd);
+
+            // dots per inch
+            int dpi = GetDpiForWindow(hWnd);
+
+            // Calculate the scaling factor
+            double scalingFactor = dpi / 96.0f;
+
+            settings.WindowDimensions.ScalingFactor = scalingFactor;
+
             return AppWindow.GetFromWindowId(myWndId);
-        }
-
-        // event handlers
-        private void WebPanel_DragStarting(UIElement sender, DragStartingEventArgs args)
-        {
-
-            WebPanel panel = sender as WebPanel;
-            Uri panel_uri = new Uri(panel.Source);
-
-            // set payload of DataPackage to WebLink
-            args.Data.SetWebLink(panel_uri);
 
         }
 
-        private void WebPanel_DragOver(object sender, DragEventArgs e)
+        private void NavView_Loaded(object sender, RoutedEventArgs e)
         {
-            e.AcceptedOperation = DataPackageOperation.Move;
-
+            // NavView doesn't load any page by default, so load home page.
+            NavView.SelectedItem = NavView.MenuItems[0];
+            ContentFrame.Navigate(typeof(WindowManagerPage));
         }
 
-        private async void WebPanel_Drop(object sender, DragEventArgs e)
+        private void NavView_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
         {
-            System.Diagnostics.Debug.WriteLine("Drop event handler triggered");
-
-            WebPanel panel = sender as WebPanel;
-
-            if (e.DataView.Contains(StandardDataFormats.WebLink))
+            if (args.IsSettingsInvoked == true)
             {
-                var webLink = await e.DataView.GetWebLinkAsync();
-                if (webLink != null)
-                {
-                    // getter returns a string
-                    SwapUri = panel.Source;
-                    panel.SetUri(webLink);
-
-                }
+                NavView_Navigate(typeof(WindowManagerPage), args.RecommendedNavigationTransitionInfo);
+                ScrollViewer scroll = sender.Content as ScrollViewer;
+            }
+            else if (args.InvokedItemContainer != null)
+            {
+                Type navPageType = Type.GetType(args.InvokedItemContainer.Tag.ToString());
+                NavView_Navigate(navPageType, args.RecommendedNavigationTransitionInfo);
+                args.InvokedItemContainer.UpdateLayout();
             }
         }
 
-        private void WebPanel_DropCompleted(UIElement sender, DropCompletedEventArgs args)
+        private void NavView_Navigate(Type navPageType, NavigationTransitionInfo transitionInfo)
         {
-            System.Diagnostics.Debug.WriteLine("DropCompleted event handler triggered");
-            
-            // remove frame1 content
-            WebPanel panel = sender as WebPanel;
-            panel.SetUri(new Uri(SwapUri));
+            // Get the page type before navigation so you can prevent duplicate
+            // entries in the backstack.
+            Type preNavPageType = ContentFrame.CurrentSourcePageType;
 
+            // Only navigate if the selected page isn't currently loaded.
+            if (navPageType is not null && !Type.Equals(preNavPageType, navPageType))
+            {
+                ContentFrame.Navigate(navPageType, null, transitionInfo);
+            }
+        }
+        private void ContentFrame_NavigationFailed(object sender, NavigationFailedEventArgs e)
+        {
+            throw new Exception("Failed to load Page " + e.SourcePageType.FullName);
         }
 
-        private void WebPanel_PointerEntered(object sender, PointerRoutedEventArgs e)
+
+        private void NavigationViewItem_Loaded(object sender, RoutedEventArgs e)
         {
-            System.Diagnostics.Debug.WriteLine("Pointer entered");
-
-            WebPanel webPanel = sender as WebPanel;
-            webPanel.ChangeCommandBarVisibility("visible");
-
-        }
-
-        private void WebPanel_PointerExited(object sender, PointerRoutedEventArgs e)
-        {
-            System.Diagnostics.Debug.WriteLine("Pointer exited");
-
-            WebPanel webPanel = sender as WebPanel;
-            webPanel.ChangeCommandBarVisibility("collapsed");
-        }
-
-        private void Calibration_Click(object sender, RoutedEventArgs e)
-        {
-            CalibrationWindow calibrationWindow = new CalibrationWindow();
-            calibrationWindow.Activate();
+            System.Diagnostics.Debug.WriteLine("Nav view page reloaded");
         }
     }
 }

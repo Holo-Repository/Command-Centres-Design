@@ -13,9 +13,15 @@
     <StartupObject>WindowManager.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="CalibrationInfoPage.xaml" />
     <None Remove="CalibrationWindow.xaml" />
+    <None Remove="DownloadConfigPage.xaml" />
+    <None Remove="HelpPage.xaml" />
+    <None Remove="TestPage.xaml" />
     <None Remove="UserControls\MenuBar.xaml" />
+    <None Remove="UserControls\TvPanel.xaml" />
     <None Remove="UserControls\WebPanel.xaml" />
+    <None Remove="WindowManagerPage.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -29,7 +35,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.3.230502000" />
+    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.3.230602002" />
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.755" />
     <Manifest Include="$(ApplicationManifest)" />
   </ItemGroup>
@@ -59,6 +65,36 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="C:\code\Command-Centres-Design\WindowManager\WindowManager\.editorconfig" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="TestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="DownloadConfigPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="CalibrationInfoPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="HelpPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="WindowManagerPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="UserControls\TvPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="UserControls\WebPanel.xaml">

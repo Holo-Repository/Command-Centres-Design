@@ -8,68 +8,154 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <MenuBar>
-        <MenuBarItem Title="File">
-            <MenuFlyoutItem Text="New">
-                <MenuFlyoutItem.KeyboardAccelerators>
-                    <KeyboardAccelerator Modifiers="Control" Key="N"/>
-                </MenuFlyoutItem.KeyboardAccelerators>
-            </MenuFlyoutItem>
-            <MenuFlyoutItem Text="Open...">
-                <MenuFlyoutItem.KeyboardAccelerators>
-                    <KeyboardAccelerator Modifiers="Control" Key="O"/>
-                </MenuFlyoutItem.KeyboardAccelerators>
-            </MenuFlyoutItem>
-            <MenuFlyoutItem Text="Save">
-                <MenuFlyoutItem.KeyboardAccelerators>
-                    <KeyboardAccelerator Modifiers="Control" Key="S"/>
-                </MenuFlyoutItem.KeyboardAccelerators>
-            </MenuFlyoutItem>
-            <MenuFlyoutItem Text="Exit">
-                <MenuFlyoutItem.KeyboardAccelerators>
-                    <KeyboardAccelerator Modifiers="Control" Key="E"/>
-                </MenuFlyoutItem.KeyboardAccelerators>
-            </MenuFlyoutItem>
-        </MenuBarItem>
+    <StackPanel Orientation="Horizontal" Spacing="15">
+        <MenuBar Height="40"
+                 x:Name="menuBar">
+            <MenuBarItem Title="+ Add Web Panel" 
+                         x:Name="AddWebPanel">
 
-        <MenuBarItem Title="Edit">
-            <MenuFlyoutItem Text="Undo">
-                <MenuFlyoutItem.KeyboardAccelerators>
-                    <KeyboardAccelerator Modifiers="Control" Key="Z"/>
-                </MenuFlyoutItem.KeyboardAccelerators>
-            </MenuFlyoutItem>
-            <MenuFlyoutItem Text="Cut">
-                <MenuFlyoutItem.KeyboardAccelerators>
-                    <KeyboardAccelerator Modifiers="Control" Key="X"/>
-                </MenuFlyoutItem.KeyboardAccelerators>
-            </MenuFlyoutItem>
-            <MenuFlyoutItem Text="Copy">
-                <MenuFlyoutItem.KeyboardAccelerators>
-                    <KeyboardAccelerator Modifiers="Control" Key="C"/>
-                </MenuFlyoutItem.KeyboardAccelerators>
-            </MenuFlyoutItem>
-            <MenuFlyoutItem Text="Paste">
-                <MenuFlyoutItem.KeyboardAccelerators>
-                    <KeyboardAccelerator Modifiers="Control" Key="V"/>
-                </MenuFlyoutItem.KeyboardAccelerators>
-            </MenuFlyoutItem>
-        </MenuBarItem>
+                <MenuFlyoutSubItem 
+                    x:Name="PopularWebsites" Text="Popular Websites">
 
-        <MenuBarItem Title="Help">
-            <MenuFlyoutItem Text="About">
-                <MenuFlyoutItem.KeyboardAccelerators>
-                    <KeyboardAccelerator Modifiers="Control" Key="I"/>
-                </MenuFlyoutItem.KeyboardAccelerators>
-            </MenuFlyoutItem>
-        </MenuBarItem>
+                    <MenuFlyoutItem Text="Bing" Click="MenuFlyoutItem_Click">
+                        <MenuFlyoutItem.Icon>
+                            <ImageIcon Source="/Assets/bing-logo.png"/>
+                        </MenuFlyoutItem.Icon>
+                    </MenuFlyoutItem>
 
-        <MenuBarItem Title="Calibration">
-            <MenuFlyoutItem Text="Begin Calibration" Click="MenuFlyoutItem1_Click">
-                <MenuFlyoutItem.KeyboardAccelerators>
-                    <KeyboardAccelerator Modifiers="Control" Key="S"/>
-                </MenuFlyoutItem.KeyboardAccelerators>
-            </MenuFlyoutItem>
-        </MenuBarItem>
-    </MenuBar>
-    
+                    <MenuFlyoutItem Text="Youtube" Click="MenuFlyoutItem_Click">
+                        <MenuFlyoutItem.Icon>
+                            <ImageIcon Source="/Assets/youtube_logo.png"/>
+                        </MenuFlyoutItem.Icon>
+                    </MenuFlyoutItem>
+
+                    <MenuFlyoutItem Text="NHS England" Click="MenuFlyoutItem_Click">
+                        <MenuFlyoutItem.Icon>
+                            <ImageIcon Source="/Assets/nhs-logo.png"/>
+                        </MenuFlyoutItem.Icon>
+                    </MenuFlyoutItem>
+
+                </MenuFlyoutSubItem>
+                <MenuFlyoutItem x:Name="AddByURL"
+                    Text="Add by URL" Click="MenuFlyoutItem_Click_1">
+                    <MenuFlyoutItem.KeyboardAccelerators>
+                        <KeyboardAccelerator Modifiers="Control" Key="U"/>
+                    </MenuFlyoutItem.KeyboardAccelerators>
+                </MenuFlyoutItem>
+
+            </MenuBarItem>
+
+            <MenuBarItem Title="+ Add Teams Panel" x:Name="AddTeamsPanel">
+                <MenuFlyoutItem Text="Create A Meeting" Click="MenuFlyoutItem_Click">
+                    <MenuFlyoutItem.Icon>
+                        <ImageIcon Source="/Assets/microsoft-teams-logo.png"/>
+                    </MenuFlyoutItem.Icon>
+                    <MenuFlyoutItem.KeyboardAccelerators>
+                        <KeyboardAccelerator Modifiers="Control" Key="Z"/>
+                    </MenuFlyoutItem.KeyboardAccelerators>
+                </MenuFlyoutItem>
+                <MenuFlyoutItem Text="Join A Meeting" Click="MenuFlyoutItem_Click">
+                    <MenuFlyoutItem.Icon>
+                        <ImageIcon Source="/Assets/microsoft-teams-logo.png"/>
+                    </MenuFlyoutItem.Icon>
+                    <MenuFlyoutItem.KeyboardAccelerators>
+                        <KeyboardAccelerator Modifiers="Control" Key="X"/>
+                    </MenuFlyoutItem.KeyboardAccelerators>
+                </MenuFlyoutItem>
+            </MenuBarItem>
+
+            <MenuBarItem Title="Change Teams URLs">
+                <MenuFlyoutItem Text="Create A Meeting URL" Click="MenuFlyoutItem_Click_1">
+                    <MenuFlyoutItem.Icon>
+                        <SymbolIcon Symbol="Setting"/>
+                    </MenuFlyoutItem.Icon>
+                    <MenuFlyoutItem.KeyboardAccelerators>
+                        <KeyboardAccelerator Modifiers="Control" Key="Z"/>
+                    </MenuFlyoutItem.KeyboardAccelerators>
+                </MenuFlyoutItem>
+                <MenuFlyoutItem Text="Join A Meeting URL" Click="MenuFlyoutItem_Click_1">
+                    <MenuFlyoutItem.Icon>
+                        <SymbolIcon Symbol="Setting"/>
+                    </MenuFlyoutItem.Icon>
+                    <MenuFlyoutItem.KeyboardAccelerators>
+                        <KeyboardAccelerator Modifiers="Control" Key="X"/>
+                    </MenuFlyoutItem.KeyboardAccelerators>
+                </MenuFlyoutItem>
+            </MenuBarItem>
+
+        </MenuBar>
+
+        <ToggleSwitch OffContent="Borders Off" OnContent="Borders On" IsOn="True"
+                      Toggled="ToggleSwitch_Toggled"/>
+
+        <Border BorderThickness="1" BorderBrush="LightGray" 
+                CornerRadius="5"
+                Height="30">
+            <StackPanel Orientation="Horizontal" Spacing="5"
+                    Background="white"
+                    CornerRadius="5"
+                    Height="30"
+                    Padding="5"
+                    VerticalAlignment="Center">
+                <TextBlock Text="Number of Windows: "
+                       VerticalAlignment="Center"
+                       TextWrapping="Wrap"/>
+
+                <TextBlock Text="{x:Bind NumWindows._string}"
+                   x:Name="NumWindowsTextBlock"
+                   VerticalAlignment="Center"
+                           FontWeight="SemiBold"
+                           />
+
+            </StackPanel>
+        </Border>
+
+        <TeachingTip x:Name="InvalidWebPanelURL"
+	        Title="Invalid Web Panel URL"
+	        Subtitle="URLs must be valid and entered in http format."
+	        PreferredPlacement="Center"
+	        PlacementMargin="20"
+	        IsLightDismissEnabled="True"
+	        CloseButtonContent="Cancel"
+            ActionButtonClick="InvalidWebPanelURL_TryAgain"
+	        ActionButtonContent="Try again"/>
+
+        <TeachingTip x:Name="InvalidCreateURL"
+	        Title="Invalid Create URL"
+	        Subtitle="URLs must be valid and entered in http format."
+	        PreferredPlacement="Center"
+	        PlacementMargin="20"
+	        IsLightDismissEnabled="True"
+	        CloseButtonContent="Cancel"
+            ActionButtonClick="InvalidCreateURL_TryAgain"
+	        ActionButtonContent="Try again"/>
+
+        <TeachingTip x:Name="InvalidJoinURL"
+	        Title="Invalid Join URL"
+	        Subtitle="URLs must be valid and entered in http format."
+	        PreferredPlacement="Center"
+	        PlacementMargin="20"
+	        IsLightDismissEnabled="True"
+	        CloseButtonContent="Cancel"
+            ActionButtonClick="InvalidJoinURL_TryAgain"
+	        ActionButtonContent="Try again"/>
+
+        <TeachingTip x:Name="ChangeCreate_Success"
+	        Title="Success!"
+	        Subtitle="Create a Teams meeting URL was successfully changed."
+	        PreferredPlacement="Center"
+	        PlacementMargin="20"
+	        IsLightDismissEnabled="True"
+	        CloseButtonContent="Close"/>
+
+        <TeachingTip x:Name="ChangeJoin_Success"
+	        Title="Success!"
+	        Subtitle="Join a Teams meeting URL was successfully changed."
+	        PreferredPlacement="Center"
+	        PlacementMargin="20"
+	        IsLightDismissEnabled="True"
+	        CloseButtonContent="Close"/>
+
+    </StackPanel>
+
 </UserControl>

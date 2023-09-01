@@ -9,36 +9,46 @@
     xmlns:controls="using:Microsoft.UI.Xaml.Controls"
     mc:Ignorable="d">
 
-    <StackPanel>
+    <StackPanel Orientation="Vertical">
+        
+        <Border x:Name="AppTitleBar">
+            <StackPanel Orientation="Horizontal" Height="35px">
+                <ImageIcon Source="/Assets/CCD-logo.png" Width="20" Height="20" Margin="10,0,0,0"/>
+                <TextBlock x:Name="AppTitle" Text="Command Centres Design" Style="{StaticResource CaptionTextBlockStyle}" 
+                           VerticalAlignment="Top" Margin="10"/>
+            </StackPanel>
+        </Border>
+        
+        <NavigationView x:Name="NavView"
+                     Loaded="NavView_Loaded"
+                     ItemInvoked="NavView_ItemInvoked"
+                     PaneDisplayMode="LeftCompact"
+                        CompactPaneLength="50">
+            <NavigationView.MenuItems>
+                <!--Change Icon to TaskView icon from Fluent-->
+                <NavigationViewItem Icon="NewWindow" Content="Windows" Tag="WindowManager.WindowManagerPage" Loaded="NavigationViewItem_Loaded" />
+                <!--<NavigationViewItem.Icon>
+                    <FontIcon Glyph="&#xEB3C;"/>
+                </NavigationViewItem.Icon>-->
+                <NavigationViewItem Icon="Help" Content="Help" Tag="WindowManager.HelpPage" />
+                <NavigationViewItem Icon="Setting" Content="Calibration" Tag="WindowManager.CalibrationInfoPage" />
+                <NavigationViewItem Icon="Upload" Content="Download Window Configuration" Tag="WindowManager.DownloadConfigPage" />
+            </NavigationView.MenuItems>
 
-        <local:MenuBar x:Name="MainMenuBar" HorizontalAlignment="Left"/>
-
-        <Grid HorizontalAlignment="Left">
-
-            <Grid.RowDefinitions >
-                <RowDefinition Height="205"/>
-                <RowDefinition Height="205"/>
-                <RowDefinition Height="205"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions >
-                <ColumnDefinition Width="426"/>
-                <ColumnDefinition Width="426"/>
-                <ColumnDefinition Width="427"/>
-            </Grid.ColumnDefinitions>
-
-            <local:WebPanel x:Name="Panel1" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="2" 
-                            Source="https://www.microsoft.com"/>
-            <local:WebPanel x:Name="Panel2" Grid.Column="2" Grid.Row="0"/>
-            <local:WebPanel x:Name="Panel3" Grid.Column="2" Grid.Row="1"/>
-            <local:WebPanel x:Name="Panel4" Grid.Column="0" Grid.Row="2" 
-                            Source="https://www.google.com"/>
-            <local:WebPanel x:Name="Panel5" Grid.Column="1" Grid.Row="2"/>
-            <local:WebPanel x:Name="Panel6" Grid.Column="2" Grid.Row="2"/>
-                            
+            <ScrollViewer x:Name="scrollViewer"
+                VerticalScrollBarVisibility="Auto"
+                Height="Auto"
+                Width="Auto">
                 
-        </Grid>
-   
+                <Frame x:Name="ContentFrame"
+                       Width="{Binding Path=MainWindow.settings.Grid.Width}"
+                       Height="{Binding Path=MainWindow.settings.Grid.Height}"
+                       HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                       NavigationFailed="ContentFrame_NavigationFailed"/>
+                
+            </ScrollViewer>
 
+        </NavigationView>
     </StackPanel>
-
+    
 </Window>

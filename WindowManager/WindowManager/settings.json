@@ -1,68 +1,70 @@
 {
-  "tv": {
-    "height": 100,
-    "width": 100,
-    "x_position": 50,
-    "y_position": 50
+  "Tv": {
+    "Height": 260.3333511352539,
+    "Width": 416.6666679382324,
+    "X_Position": 0,
+    "Y_Position": 0,
+    "PanelNum": 1
   },
-
-  "num_panels": 6,
-
-  "panels": [
-    {
-      "1": {
-        "gridRow": 0,
-        "gridColumn": 0,
-        "gridRowSpan": 2,
-        "gridColumnSpan": 2,
-        "empty": "false",
-        "uri": "https://www.google.com"
-      }
+  "WindowDimensions": {
+    "Height": 1080,
+    "Width": 1920,
+    "ScalingFactor": 1.5
+  },
+  "Grid": {
+    "Height": 645,
+    "Width": 1230,
+    "RowHeights": [ 260.3333511352539, 192.33332443237305, 192.33332443237305 ],
+    "ColumnWidths": [ 416.6666679382324, 406.6666660308838, 406.6666660308838 ]
+  },
+  "Panels": {
+    "Panel1": null,
+    "Panel2": {
+      "PanelNum": 2,
+      "Uri": "https://www.bing.com/",
+      "RowSpan": 1,
+      "ColumnSpan": 2
     },
-    {
-      "2": {
-        "gridRow": 0,
-        "gridColumn": 2,
-        "gridSpan": 1,
-        "empty": "true",
-        "uri": ""
-      }
+    "Panel3": null,
+    "Panel4": {
+      "PanelNum": 4,
+      "Uri": "https://www.google.com/",
+      "RowSpan": 1,
+      "ColumnSpan": 1
     },
-    {
-      "3": {
-        "gridRow": 1,
-        "gridColumn": 2,
-        "gridSpan": 1,
-        "empty": "true",
-        "uri": ""
-      }
+    "Panel5": {
+      "PanelNum": 5,
+      "Uri": "https://www.bing.com/",
+      "RowSpan": 1,
+      "ColumnSpan": 1
     },
-    {
-      "4": {
-        "gridRow": 0,
-        "gridColumn": 0,
-        "gridSpan": 1,
-        "empty": "false",
-        "uri": "https://www.google.com"
-      }
+    "Panel6": {
+      "PanelNum": 6,
+      "Uri": "https://flightclubdarts.com/",
+      "RowSpan": 1,
+      "ColumnSpan": 1
     },
-    {
-      "5": {
-        "gridRow": 0,
-        "gridColumn": 0,
-        "gridSpan": 1,
-        "empty": "false",
-        "uri": "https://www.google.com"
-      }
+    "Panel7": {
+      "PanelNum": 7,
+      "Uri": "https://support.microsoft.com/en-gb/office/join-a-teams-meeting-078e9868-f1aa-4414-8bb9-ee88e9236ee4",
+      "RowSpan": 1,
+      "ColumnSpan": 1
     },
-    {
-      "6": {
-        "gridRow": 0,
-        "gridColumn": 0,
-        "gridSpan": 1,
-        "empty": "false",
-        "uri": "https://www.google.com"
-      }
+    "Panel8": {
+      "PanelNum": 8,
+      "Uri": "https://www.google.com/",
+      "RowSpan": 1,
+      "ColumnSpan": 1
+    },
+    "Panel9": {
+      "PanelNum": 9,
+      "Uri": "https://www.google.com/",
+      "RowSpan": 1,
+      "ColumnSpan": 1
     }
-  ]
+  },
+  "TeamsURIs": {
+    "Join": "https://support.microsoft.com/en-gb/office/join-a-teams-meeting-078e9868-f1aa-4414-8bb9-ee88e9236ee4",
+    "Create": "https://support.microsoft.com/en-au/office/create-a-meeting-in-microsoft-teams-free-eb571219-517b-49bf-afe1-4fff091efa85"
+  }
 }
