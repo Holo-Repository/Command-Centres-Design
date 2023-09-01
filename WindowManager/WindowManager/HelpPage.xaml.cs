@@ -27,7 +27,7 @@ namespace WindowManager
         {
             this.InitializeComponent();
             //stackpanel.Height = MainWindow.settings.Grid.Height;
-            stackpanel.Width = MainWindow.settings.Grid.Width - 160;
+            stackpanel.Width = MainWindow.settings.Grid.Width;
         }
     }
 }

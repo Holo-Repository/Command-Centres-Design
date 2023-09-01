@@ -18,10 +18,10 @@
                            VerticalAlignment="Top" Margin="15" FontSize="35"/>
 
             <StackPanel Orientation="Horizontal">
-                <Rectangle Height ="1500" Width="100" Fill="CornflowerBlue"
+                <Rectangle Height ="1400" Width="100" Fill="CornflowerBlue"
                            VerticalAlignment="Top"/>
                 
-                <StackPanel x:Name="TextPanel" Orientation="Vertical" Margin="20" Spacing="50">
+                <StackPanel x:Name="TextPanel" Orientation="Vertical" Margin="20" Spacing="30">
                     <StackPanel x:Name="AboutPanel" Orientation="Vertical" Spacing="10">
                         <TextBlock Text="About" 
                                        Style="{StaticResource SubtitleTextBlockStyle}" TextWrapping="Wrap"
@@ -55,17 +55,18 @@
                             <Run Text="can be added either via the “Popular Websites” shortcut, or by specifying a URL. Teams Panels link" />
                             <Run Text="to a custom web application which enables selected Microsoft Teams functionality. Users are able to" />
                              <Run Text="either join or schedule a Teams meeting, depending on the type of panel selected." />
+                            <Run FontWeight="Bold" Text="The maximum number of panels at any given time is 8 (not including the TV panel)." />
                         </TextBlock>
                     </StackPanel>
 
                     <StackPanel x:Name="AddWebPanel" Spacing="10">
-                        <TextBlock Text="• Adding a Web Panel" 
+                        <TextBlock Text="Adding a Web Panel" 
                                        Style="{StaticResource BodyTextBlockStyle}" TextWrapping="Wrap"
                                        FontSize="25"/>
 
-                            <TextBlock FontSize="15" Style="{StaticResource BodyTextBlockStyle}" Margin="0,10,0,0"
+                        <TextBlock FontSize="15" Style="{StaticResource BodyTextBlockStyle}" Margin="0,10,0,0"
                                        Text="To add a Web Panel by Popular Websites shortcut:"/>
-                        
+
                         <TextBlock FontSize="15" Style="{StaticResource BodyTextBlockStyle}" Margin="25,0,0,0"
                                        Text="1. Navigate to the Window Manager tab."/>
 
@@ -79,7 +80,7 @@
                                        Text="4. Select the desired website from the list."/>
                         <TextBlock FontSize="15" Style="{StaticResource BodyTextBlockStyle}" Margin="25,0,0,0"
                                        Text="5. Wait for panel to render."/>
-                        
+
 
                         <TextBlock FontSize="15" Style="{StaticResource BodyTextBlockStyle}"
                                        Text="To add a Web Panel by URL:" Margin="0,10,0,0"/>
@@ -99,24 +100,6 @@
                                        Text="5. Press Go and wait for panel to render."/>
 
                     </StackPanel>
-
-                    <StackPanel x:Name="AddTeamsPanel" Spacing="10">
-                        <TextBlock Text="• Adding a Teams Panel" 
-                                       Style="{StaticResource BodyTextBlockStyle}" TextWrapping="Wrap"
-                                       FontSize="25"/>
-                        
-                        <TextBlock Style="{StaticResource BodyTextBlockStyle}"
-                                   FontSize="15"
-                                   TextWrapping="WrapWholeWords"
-                                   Width="1070">
-                            <Run Text="Command Centres Design is a proof-of-concept application which aims to streamline visualisation of " />
-                            <Run Text="web-based data from a variety of sources simultaneously. The app is designed to be used in " />
-                            <Run Text="conjunction with a central TV screen or monitor, as shown below. Once the app has been calibrated " />
-                            <Run Text="for the central screen, the window manager can project web content in panels arranged around the " />
-                             <Run Text="screen." />
-                        </TextBlock>
-                    </StackPanel>
-
                 </StackPanel>
 
                 <StackPanel x:Name="TeamsFunctionality" Orientation="Vertical" Spacing="30">
@@ -130,8 +113,8 @@
                                    FontSize="15"
                                    TextWrapping="WrapWholeWords"
                                    Width="1070">
-                            <Run Text="Command Centres Design is a proof-of-concept application which aims to streamline visualisation of " />
-                            <Run Text="web-based data from a variety of sources simultaneously. The app is designed to be used in " />
+                            <Run Text="[Add about Teams app here]" />
+                            <Run Text="" />
                             <Run Text="conjunction with a central TV screen or monitor, as shown below. Once the app has been calibrated " />
                             <Run Text="for the central screen, the window manager can project web content in panels arranged around the " />
                              <Run Text="screen." />
@@ -139,24 +122,28 @@
                     </StackPanel>
 
                     <StackPanel x:Name="TeamsFunctionalityAdd" Spacing="10">
-                        <TextBlock Text="• Adding a Teams Panel" 
+                        <TextBlock Text="Adding a Teams Panel" 
                                        Style="{StaticResource BodyTextBlockStyle}" TextWrapping="Wrap"
                                        FontSize="25"/>
 
-                        <TextBlock Style="{StaticResource BodyTextBlockStyle}"
-                                   FontSize="15"
-                                   TextWrapping="WrapWholeWords"
-                                   Width="1070">
-                            <Run Text="Command Centres Design is a proof-of-concept application which aims to streamline visualisation of " />
-                            <Run Text="web-based data from a variety of sources simultaneously. The app is designed to be used in " />
-                            <Run Text="conjunction with a central TV screen or monitor, as shown below. Once the app has been calibrated " />
-                            <Run Text="for the central screen, the window manager can project web content in panels arranged around the " />
-                             <Run Text="screen." />
-                        </TextBlock>
+                        <TextBlock FontSize="15" Style="{StaticResource BodyTextBlockStyle}" Margin="0,10,0,0"
+                                       Text=""/>
+
+                        <TextBlock FontSize="15" Style="{StaticResource BodyTextBlockStyle}" Margin="25,0,0,0"
+                                       Text="1."/>
+
+                        <TextBlock FontSize="15" Style="{StaticResource BodyTextBlockStyle}" Margin="25,0,0,0"
+                                       Text="2. "/>
+
+                        <TextBlock FontSize="15" Style="{StaticResource BodyTextBlockStyle}" Margin="25,0,0,0"
+                                       Text="3. "/>
+
+                        <TextBlock FontSize="15" Style="{StaticResource BodyTextBlockStyle}" Margin="25,0,0,0"
+                                       Text="4. "/>
                     </StackPanel>
 
                     <StackPanel x:Name="ChangeTeamsURIs" Spacing="10">
-                        <TextBlock Text="• Change Teams URLs" 
+                        <TextBlock Text="Change Teams URLs" 
                                        Style="{StaticResource BodyTextBlockStyle}" TextWrapping="Wrap"
                                        FontSize="25"/>
 
@@ -164,8 +151,8 @@
                                    FontSize="15"
                                    TextWrapping="WrapWholeWords"
                                    Width="1070">
-                            <Run Text="Command Centres Design is a proof-of-concept application which aims to streamline visualisation of " />
-                            <Run Text="web-based data from a variety of sources simultaneously. The app is designed to be used in " />
+                            <Run Text="[Add about changing URLs for shortcuts here]" />
+                            <Run Text="" />
                             <Run Text="conjunction with a central TV screen or monitor, as shown below. Once the app has been calibrated " />
                             <Run Text="for the central screen, the window manager can project web content in panels arranged around the " />
                              <Run Text="screen." />
@@ -183,11 +170,9 @@
                                    FontSize="15"
                                    TextWrapping="WrapWholeWords"
                                    Width="1070">
-                            <Run Text="Command Centres Design is a proof-of-concept application which aims to streamline visualisation of" />
-                            <Run Text="web-based data from a variety of sources simultaneously. The app is designed to be used in" />
-                            <Run Text="conjunction with a central TV screen or monitor, as shown below. Once the app has been calibrated " />
-                            <Run Text="for the central screen, the window manager can project web content in panels arranged around the" />
-                             <Run Text="screen." />
+                            <Run Text="By default, every panel has a thin, black border around it. Borders can be turned off using the Borders toggle button in the Window Manager menu bar for a seamless look between content." />
+                            <Run Text="" />
+                            
                     </TextBlock>
                 </StackPanel>
 

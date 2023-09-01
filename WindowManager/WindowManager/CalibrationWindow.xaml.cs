@@ -197,7 +197,7 @@ namespace WindowManager
                             MainWindow.settings.Tv.X_Position = tv_x;
                             MainWindow.settings.Tv.Y_Position = tv_y;
 
-                            SettingsManager.SerialiseSettingsJSON(MainWindow.settings);
+                            //SettingsManager.SerialiseSettingsJSON(MainWindow.settings);
 
                             CalculateGridDimensions();
 
@@ -241,6 +241,7 @@ namespace WindowManager
                             //kill old panels to clear way for new
                             //MainWindow.settings.Panels.CloseAllPanels(); //necessary?
 
+                            // this loop is overwriting tv panel
                             foreach (var PanelNameString in PanelNames)
                             {
                                 Uri uri = packedFrames[PanelNameString]["uri"];
@@ -478,12 +479,15 @@ namespace WindowManager
                     //// new panel content = null (tv)
                     //panelsArray[tv.PanelNum - 1] = null;
 
-                    previousPanelData = newPanelData;
-                    // set panel num back to correct value
-                    previousPanelData.PanelNum = previousTvPanel;
-
-                    // reassign changed panels in array
-                    panelsArray[previousTvPanel - 1] = previousPanelData;
+                    panelsArray[previousTvPanel - 1] = new Panel
+                    {
+                        PanelNum = previousTvPanel,
+                        Uri = panelsArray[tv.PanelNum - 1].Uri,
+                        // row and col span will always be 1 because TV always occupied single grid square
+                        RowSpan = 1,
+                        ColumnSpan = 1
+                    };
+                        
                     panelsArray[tv.PanelNum - 1] = null;
                 }
 
