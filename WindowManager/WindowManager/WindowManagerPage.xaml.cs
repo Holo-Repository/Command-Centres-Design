@@ -250,7 +250,10 @@ namespace WindowManager
 
             // remove frame1 content
             WebPanel panel = sender as WebPanel;
-            panel.SetUri(new Uri(SwapUri));
+            if(SwapUri != null)
+            {
+                panel.SetUri(new Uri(SwapUri));
+            }
 
         }
 
