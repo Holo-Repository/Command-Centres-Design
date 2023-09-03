@@ -105,41 +105,61 @@
                 <StackPanel x:Name="TeamsFunctionality" Orientation="Vertical" Spacing="30">
 
                     <StackPanel x:Name="TeamsFunctionalityAbout" Orientation="Vertical" Spacing="10">
+                      
                         <TextBlock Text="Microsoft Teams Functionality" 
                                        Style="{StaticResource SubtitleTextBlockStyle}" TextWrapping="Wrap"
                                        FontSize="30"/>
-
                         <TextBlock Style="{StaticResource BodyTextBlockStyle}"
                                    FontSize="15"
                                    TextWrapping="WrapWholeWords"
                                    Width="1070">
-                            <Run Text="[Add about Teams app here]" />
-                            <Run Text="" />
-                            <Run Text="conjunction with a central TV screen or monitor, as shown below. Once the app has been calibrated " />
-                            <Run Text="for the central screen, the window manager can project web content in panels arranged around the " />
-                             <Run Text="screen." />
+                            <Run Text="The Command Centre web application allows you to join and participate in Teams calls as if" />
+                            <Run Text="you are using the actual app. This web application can be used in one of the panels, allowing " />
+                            <Run Text="users to communicate via video calls and messages whilst sill interacting with all the other panels. " />
+                            <Run Text="There is also the option for users to create Teams calls whilst using the web application." />
                         </TextBlock>
+
                     </StackPanel>
 
                     <StackPanel x:Name="TeamsFunctionalityAdd" Spacing="10">
-                        <TextBlock Text="Adding a Teams Panel" 
+                        <TextBlock Text="Using the Web Application" 
                                        Style="{StaticResource BodyTextBlockStyle}" TextWrapping="Wrap"
                                        FontSize="25"/>
-
-                        <TextBlock FontSize="15" Style="{StaticResource BodyTextBlockStyle}" Margin="0,10,0,0"
-                                       Text=""/>
-
-                        <TextBlock FontSize="15" Style="{StaticResource BodyTextBlockStyle}" Margin="25,0,0,0"
-                                       Text="1."/>
+                        <TextBlock FontSize="15" Style="{StaticResource BodyTextBlockStyle}"
+                                       Text="Joining a Teams call" Margin="0,10,0,0"/>
 
                         <TextBlock FontSize="15" Style="{StaticResource BodyTextBlockStyle}" Margin="25,0,0,0"
-                                       Text="2. "/>
+                                       Text="1. Navigate to the Window Manager tab."/>
 
                         <TextBlock FontSize="15" Style="{StaticResource BodyTextBlockStyle}" Margin="25,0,0,0"
-                                       Text="3. "/>
+                                       Text="2. Select + Add Teams Panel."/>
 
                         <TextBlock FontSize="15" Style="{StaticResource BodyTextBlockStyle}" Margin="25,0,0,0"
-                                       Text="4. "/>
+                                       Text="3. Select Join a meeting"/>
+
+                        <TextBlock FontSize="15" Style="{StaticResource BodyTextBlockStyle}" Margin="25,0,0,0"
+                                       Text="4. Enter your Teams meeting link and guest name to join the call."/>
+                        <TextBlock FontSize="15" Style="{StaticResource BodyTextBlockStyle}" Margin="25,0,0,0"
+                                       Text="5. Click 'Join' and wait for the video calling component to render."/>
+                    
+                        <TextBlock FontSize="15" Style="{StaticResource BodyTextBlockStyle}"
+                                       Text="Creating a Teams call" Margin="0,10,0,0"/>
+
+                        <TextBlock FontSize="15" Style="{StaticResource BodyTextBlockStyle}" Margin="25,0,0,0"
+                                       Text="1. Navigate to the Window Manager tab."/>
+
+                        <TextBlock FontSize="15" Style="{StaticResource BodyTextBlockStyle}" Margin="25,0,0,0"
+                                       Text="2. Select + Add Teams Panel."/>
+
+                        <TextBlock FontSize="15" Style="{StaticResource BodyTextBlockStyle}" Margin="25,0,0,0"
+                                       Text="3. Select Create a meeting"/>
+
+                        <TextBlock FontSize="15" Style="{StaticResource BodyTextBlockStyle}" Margin="25,0,0,0"
+                                       Text="4. Enter your Outlook email ad the full name associated with that account and click 'Next'."/>
+                        <TextBlock FontSize="15" Style="{StaticResource BodyTextBlockStyle}" Margin="25,0,0,0"
+                                       Text="5. Enter the meeting details, such as the meeting subject, an attendee, and the start and end datetimes."/>
+                        <TextBlock FontSize="15" Style="{StaticResource BodyTextBlockStyle}" Margin="25,0,0,0"
+                                       Text="6. Click 'Create'. The meeting link should appear to you on the screen, and a confirmation email sent to your outlook email."/>
                     </StackPanel>
 
                     <StackPanel x:Name="ChangeTeamsURIs" Spacing="10">
