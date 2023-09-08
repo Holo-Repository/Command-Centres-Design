@@ -18,7 +18,7 @@
                            VerticalAlignment="Top" Margin="15" FontSize="35"/>
 
             <StackPanel Orientation="Horizontal">
-                <Rectangle Height ="1400" Width="100" Fill="CornflowerBlue"
+                <Rectangle Height ="1650" Width="100" Fill="CornflowerBlue"
                            VerticalAlignment="Top"/>
                 
                 <StackPanel x:Name="TextPanel" Orientation="Vertical" Margin="20" Spacing="30">
@@ -171,11 +171,9 @@
                                    FontSize="15"
                                    TextWrapping="WrapWholeWords"
                                    Width="1070">
-                            <Run Text="[Add about changing URLs for shortcuts here]" />
-                            <Run Text="" />
-                            <Run Text="conjunction with a central TV screen or monitor, as shown below. Once the app has been calibrated " />
-                            <Run Text="for the central screen, the window manager can project web content in panels arranged around the " />
-                             <Run Text="screen." />
+                            <Run Text="The URLs opened in the web panels when creating or joining a teams meeting can be configured by clicking the Change Teams URLs button in the menu bar of the window manager tab." />
+                            <Run Text="This is to account for the fact that the URL of the Teams React app may change when deploying inside an existing system." />
+                        
                         </TextBlock>
                     </StackPanel>
 
