@@ -91,7 +91,7 @@ namespace WindowManager
                 Panel[] panelArray = new_settings.Panels.GetPanelsArray();
                 foreach (Panel panel in panelArray)
                 {
-                    if (panel == null) continue; //to fix fucky json -> c# nonsense
+                    if (panel == null) continue; //to account for json formatting discrepency
 
                     int a = (panel.PanelNum - 1) % 3; //PanelNum to 0 index column position
                     int c = panel.ColumnSpan;
