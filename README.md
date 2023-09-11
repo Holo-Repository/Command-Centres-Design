@@ -1,4 +1,4 @@
-# Command-Centres-Design
+# UCL Command Centres Design v1.0
 
 ## Table of Contents
 - [Introduction](#introduction)
@@ -7,7 +7,11 @@
 - [Usage](#usage)
 
 ## Introduction
-The Illumiroom Command Centre represents a continuation of the Illumiroom line of projects, and hopes to provide a simple, highly configurable software solution to a largely hardware-dependent problem.
+The Illumiroom-inspired Command Centre Design represents a continuation of the Illumiroom line of projects, and hopes to provide a simple, highly configurable software solution to a largely hardware-dependent problem.
+This version does not make use of ML and computer vision techniques in its predecessor, UCL-Open-Illumiroom-v2 (www.expandedexperiences.com). However it focuses on a lightweight C# App that can be used to position (and retain) windows around a centre TV/Monitor.
+It therefore will enable a number of "Command Centres" to be built, with multiple windows mimicking multimonitor wall setups. 
+It requires a TV/Monitor, a projector, and a laptop or PC running windows 10/11 that can output two HDMI signals.
+The software makes use of and improves upon the calibration of where the TV is located in relation to the projection, developed on the UCL-Open-Illumiroom-v2 project.
 
 ## Features
 - **Configurable Panel Selection**
